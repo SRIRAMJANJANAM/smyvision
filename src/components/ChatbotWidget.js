@@ -821,7 +821,7 @@ const checkProjectStatusWithForm = async (phoneNumber) => {
         q.includes("can u automate business")||
         q.includes("yes register")||
         q.includes("register") ||
-        q.includes('i need a website for my project') ||
+        q.includes('i need a website') ||
         q.includes('i need a project')
       ) {
         return `
