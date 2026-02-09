@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 
 // Enhanced SVG Icons with light theme colors
 const LightIcons = {
@@ -69,6 +70,155 @@ const LightIcons = {
   ),
 };
 
+// SEO Structured Data Component (Hidden)
+const SEOStructuredData = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebDevelopmentCompany",
+    "name": "SMYVISION TECHNOLOGIES",
+    "description": "Top web development company in Vijayawada, Hyderabad, and Bangalore offering professional website development, automation solutions, and chatbot development services.",
+    "url": "https://smyvision.com",
+    "founder": "Sri Ram Janjanam",
+    "foundingDate": "2026",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Vijayawada",
+      "addressRegion": "Andhra Pradesh",
+      "addressCountry": "India"
+    },
+    "serviceArea": {
+      "@type": "Place",
+      "name": "Vijayawada, Hyderabad, Bangalore, India"
+    },
+    "serviceType": [
+      "Website Development",
+      "Web Application Development",
+      "Automation Solutions",
+      "Chatbot Development",
+      "Digital Transformation"
+    ],
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Vijayawada"
+      },
+      {
+        "@type": "City",
+        "name": "Hyderabad"
+      },
+      {
+        "@type": "City",
+        "name": "Bangalore"
+      },
+      {
+        "@type": "State",
+        "name": "Andhra Pradesh"
+      },
+      {
+        "@type": "State",
+        "name": "Telangana"
+      },
+      {
+        "@type": "State",
+        "name": "Karnataka"
+      }
+    ],
+    "offers": {
+      "@type": "AggregateOffer",
+      "offerCount": "3",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Website Development Services",
+          "description": "Professional website development for businesses in Vijayawada, Hyderabad, and Bangalore"
+        },
+        {
+          "@type": "Offer",
+          "name": "Automation Development",
+          "description": "Business automation solutions for companies in South India"
+        },
+        {
+          "@type": "Offer",
+          "name": "Chatbot Solutions",
+          "description": "AI-powered chatbot development for enterprises"
+        }
+      ]
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+918500352005",
+      "contactType": "customer service",
+      "areaServed": ["IN"],
+      "availableLanguage": ["English", "Telugu", "Hindi"]
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/smyvisiontechnologies",
+      "https://twitter.com/smyvisiontech",
+      "https://facebook.com/smyvisiontechnologies"
+    ]
+  };
+
+  return (
+    <script type="application/ld+json">
+      {JSON.stringify(structuredData)}
+    </script>
+  );
+};
+
+// Hidden SEO Text Component
+const HiddenSEOText = () => {
+  return (
+    <div style={{
+      position: 'absolute',
+      left: '-9999px',
+      top: '-9999px',
+      height: '1px',
+      width: '1px',
+      overflow: 'hidden'
+    }}>
+      <h1>SMYVISION TECHNOLOGIES - Top Web Development Company</h1>
+      <h2>Best Website Development Services in Vijayawada, Hyderabad, Bangalore</h2>
+      
+      <p>SMYVISION TECHNOLOGIES is the leading web development company in Vijayawada, Hyderabad, and Bangalore. We specialize in professional website development services for businesses across South India.</p>
+      
+      <h3>Web Development Services in Vijayawada</h3>
+      <p>As the top web development company in Vijayawada, we offer customized website solutions for local businesses. Our Vijayawada-based team provides expert web development services with 24/7 support.</p>
+      
+      <h3>Website Development Company in Hyderabad</h3>
+      <p>We are a premier website development company in Hyderabad offering cutting-edge web solutions. Our Hyderabad office serves clients with responsive website design and development services.</p>
+      
+      <h3>Best Web Developers in Bangalore</h3>
+      <p>Our Bangalore team provides professional web development services for startups and enterprises. We are recognized as one of the best web development companies in Bangalore for automation and chatbot solutions.</p>
+      
+      <h3>Services Offered:</h3>
+      <ul>
+        <li>Website Development in Vijayawada</li>
+        <li>Web Development Company Hyderabad</li>
+        <li>Bangalore Web Development Services</li>
+        <li>E-commerce Website Development</li>
+        <li>Custom Web Applications</li>
+        <li>Business Automation Solutions</li>
+        <li>AI Chatbot Development</li>
+      </ul>
+      
+      <h3>Why Choose Our Web Development Services?</h3>
+      <p>We are the preferred choice for web development in Vijayawada, Hyderabad, and Bangalore because of our:</p>
+      <ul>
+        <li>Expert team of web developers</li>
+        <li>Affordable pricing for businesses</li>
+        <li>Timely project delivery</li>
+        <li>24/7 technical support</li>
+        <li>Modern technology stack</li>
+        <li>Client-centric approach</li>
+      </ul>
+      
+      <p>Contact the best web development company in Vijayawada, Hyderabad, and Bangalore today. Call 8500352005 for a free consultation on website development services.</p>
+      
+      <h4>Keywords: top web development companies in vijayawada, website development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, affordable web development vijayawada, professional website developers hyderabad, custom web development bangalore, e-commerce website development south india</h4>
+    </div>
+  );
+};
+
 // Floating Bubbles Background Component
 const FloatingBubbles = () => {
   return (
@@ -132,13 +282,29 @@ function Services() {
   const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
-    // SEO Meta tags
+    // Enhanced SEO Meta tags for location-based keywords
     const metaTags = [
-      { name: 'description', content: 'SMYVISION TECHNOLOGIES provides professional website development and automation solutions. Transform your business with our expert technology services and digital solutions.' },
-      { name: 'keywords', content: 'website development, automation solutions, technology services, web development, business automation, digital transformation, SMYVISION' },
-      { property: 'og:title', content: 'Technology Services | SMYVISION TECHNOLOGIES' },
-      { property: 'og:description', content: 'Professional website development and automation solutions for businesses of all sizes.' },
-      { property: 'og:type', content: 'website' }
+      { name: 'description', content: 'Top web development company in Vijayawada, Hyderabad, Bangalore. SMYVISION TECHNOLOGIES provides professional website development, automation solutions, and chatbot development services across South India.' },
+      { name: 'keywords', content: 'top web development companies in vijayawada, website development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, affordable web development vijayawada, professional website developers hyderabad, custom web development bangalore, e-commerce website development south india, web development andhra pradesh, website company telangana, bangalore web services, vijayawada website designers, hyderabad web solutions' },
+      { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
+      { name: 'author', content: 'SMYVISION TECHNOLOGIES' },
+      { name: 'geo.region', content: 'IN-AP, IN-TG, IN-KA' },
+      { name: 'geo.placename', content: 'Vijayawada, Hyderabad, Bangalore' },
+      { name: 'geo.position', content: '16.5062;80.6480' },
+      { name: 'ICBM', content: '16.5062, 80.6480' },
+      
+      // Open Graph Tags
+      { property: 'og:title', content: 'Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION' },
+      { property: 'og:description', content: 'Professional website development services in Vijayawada, Hyderabad, and Bangalore. Custom web solutions, automation, and chatbot development for businesses.' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://smyvision.com/services' },
+      { property: 'og:locale', content: 'en_IN' },
+      { property: 'og:locale:alternate', content: 'te_IN' },
+      
+      // Twitter Cards
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Top Web Development Company | Vijayawada Hyderabad Bangalore' },
+      { name: 'twitter:description', content: 'Best web development services in Vijayawada, Hyderabad, Bangalore. Professional website solutions for businesses.' }
     ];
 
     metaTags.forEach(tag => {
@@ -149,7 +315,14 @@ function Services() {
       document.head.appendChild(meta);
     });
 
-    document.title = 'Technology Services | SMYVISION TECHNOLOGIES';
+    // Canonical URL
+    const canonicalLink = document.createElement('link');
+    canonicalLink.rel = 'canonical';
+    canonicalLink.href = 'https://smyvision.com/services';
+    document.head.appendChild(canonicalLink);
+
+    // Page Title with location keywords
+    document.title = 'Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION';
 
     // Ensure proper viewport setup
     const viewportMeta = document.querySelector('meta[name="viewport"]');
@@ -172,6 +345,9 @@ function Services() {
         const element = document.querySelector(selector);
         if (element) element.remove();
       });
+      
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) canonical.remove();
     };
   }, []);
 
@@ -252,818 +428,900 @@ function Services() {
   ];
 
   return (
-    <div style={{
-      position: 'relative',
-      minHeight: '100vh',
-      width: '100vw',
-      maxWidth: '100%',
-      background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
-      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-      overflowX: 'hidden',
-      boxSizing: 'border-box'
-    }}>
-      <AnimatedPattern />
-      <FloatingBubbles />
-
+    <>
+      {/* SEO Head Components */}
+      <Helmet>
+        <meta name="geo.region" content="IN-AP, IN-TG, IN-KA" />
+        <meta name="geo.placename" content="Vijayawada, Hyderabad, Bangalore" />
+        <meta name="geo.position" content="16.5062;80.6480" />
+        <meta name="ICBM" content="16.5062, 80.6480" />
+        <meta name="location" content="Vijayawada, Hyderabad, Bangalore, India" />
+        <link rel="canonical" href="https://smyvision.com/services" />
+        
+        {/* Location-specific alternate URLs */}
+        <link rel="alternate" hrefLang="en-in" href="https://smyvision.com/services" />
+        <link rel="alternate" hrefLang="te-in" href="https://smyvision.com/te/services" />
+        
+        {/* Local business schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "SMYVISION TECHNOLOGIES",
+            "image": "https://smyvision.com/logo.png",
+            "@id": "https://smyvision.com",
+            "url": "https://smyvision.com",
+            "telephone": "+918500352005",
+            "priceRange": "2999",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Vijayawada",
+              "addressLocality": "Vijayawada",
+              "addressRegion": "Andhra Pradesh",
+              "postalCode": "520001",
+              "addressCountry": "IN"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 16.5062,
+              "longitude": 80.6480
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "09:00",
+              "closes": "18:00"
+            },
+            "sameAs": [
+              "https://www.facebook.com/smyvisiontechnologies",
+              "https://twitter.com/smyvisiontech",
+              "https://www.linkedin.com/company/smyvisiontechnologies"
+            ]
+          })}
+        </script>
+      </Helmet>
+      
+      {/* Hidden SEO Structured Data */}
+      <SEOStructuredData />
+      
       <div style={{
         position: 'relative',
-        zIndex: 1,
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 clamp(16px, 5vw, 50px)',
-        width: '100%',
+        minHeight: '100vh',
+        width: '100vw',
+        maxWidth: '100%',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
+        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        overflowX: 'hidden',
         boxSizing: 'border-box'
       }}>
-        {/* Hero Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          style={{
-            textAlign: 'center',
-            padding: 'clamp(100px, 12vw, 140px) 0 60px',
-            position: 'relative',
-            width: '100%',
-            boxSizing: 'border-box'
-          }}
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: 'spring', stiffness: 100 }}
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: 'min(600px, 100vw)',
-              height: 'min(600px, 100vw)',
-              background: 'radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%)',
-              borderRadius: '50%',
-              zIndex: 0
-            }}
-          />
-          
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            style={{
-              fontSize: 'clamp(2rem, 6vw, 3.5rem)',
-              color: '#1e293b',
-              marginBottom: '20px',
-              fontWeight: '800',
-              lineHeight: '1.2',
-              position: 'relative',
-              padding: '0 10px'
-            }}
-          >
-            Transformative
-            <span style={{
-              background: 'linear-gradient(135deg, #4f46e5, #8b5cf6)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              display: 'block',
-              marginTop: '10px'
-            }}>
-              Technology Solutions
-            </span>
-          </motion.h1>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            style={{
-              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
-              color: '#64748b',
-              maxWidth: '800px',
-              margin: '0 auto 40px',
-              lineHeight: '1.6',
-              padding: '0 16px'
-            }}
-          >
-            Discover our comprehensive suite of technology services designed to accelerate your digital transformation, enhance operational efficiency, and drive sustainable business growth.
-          </motion.p>
+        {/* Hidden SEO Text (for search engines only) */}
+        <HiddenSEOText />
+        
+        <AnimatedPattern />
+        <FloatingBubbles />
 
-          {/* Animated Stats */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: 'clamp(16px, 4vw, 30px)',
-            flexWrap: 'wrap',
-            position: 'relative',
-            padding: '0 16px'
-          }}>
-            {[
-              { value: '3+', label: 'Services we offer', color: '#4f46e5' },
-              { value: '98%', label: 'Client Satisfaction', color: '#10b981' },
-              { value: '24/7', label: 'Support Available', color: '#3b82f6' }
-            ].map((stat, index) => (
+        <div style={{
+          position: 'relative',
+          zIndex: 1,
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 clamp(16px, 5vw, 50px)',
+          width: '100%',
+          boxSizing: 'border-box'
+        }}>
+          {/* Hero Section with improved semantic HTML */}
+          <header role="banner">
+            <motion.section
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              style={{
+                textAlign: 'center',
+                padding: 'clamp(100px, 12vw, 140px) 0 60px',
+                position: 'relative',
+                width: '100%',
+                boxSizing: 'border-box'
+              }}
+            >
               <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 + index * 0.1, type: 'spring' }}
-                whileHover={{ scale: 1.05, y: -5 }}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: 'spring', stiffness: 100 }}
                 style={{
-                  background: 'white',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid #e2e8f0',
-                  padding: 'clamp(20px, 4vw, 24px)',
-                  borderRadius: '16px',
-                  minWidth: '140px',
-                  maxWidth: '200px',
-                  flex: '1 1 0',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-                  transition: 'all 0.3s ease'
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: 'min(600px, 100vw)',
+                  height: 'min(600px, 100vw)',
+                  background: 'radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%)',
+                  borderRadius: '50%',
+                  zIndex: 0
                 }}
-              >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.8 + index * 0.1, type: 'spring' }}
-                  style={{
-                    fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-                    fontWeight: '800',
-                    color: stat.color,
-                    marginBottom: '8px'
-                  }}
-                >
-                  {stat.value}
-                </motion.div>
-                <div style={{
-                  fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                  color: '#64748b',
-                  fontWeight: '500'
-                }}>
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Expert Services */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: '-50px' }}
-          style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
-        >
-          <motion.div
-            initial={{ y: 50 }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            style={{ textAlign: 'center', marginBottom: '40px' }}
-          >
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-              color: '#1e293b',
-              marginBottom: '12px',
-              fontWeight: '700'
-            }}>
-              Our Expert Services
-            </h2>
-            <div style={{
-              width: '60px',
-              height: '4px',
-              background: 'linear-gradient(90deg, #4f46e5, #8b5cf6)',
-              margin: '0 auto 20px',
-              borderRadius: '2px'
-            }} />
-            <p style={{
-              fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-              color: '#64748b',
-              maxWidth: '800px',
-              margin: '0 auto',
-              lineHeight: '1.6',
-              padding: '0 16px'
-            }}>
-              Comprehensive technology solutions tailored to your business needs
-            </p>
-          </motion.div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
-            gap: 'clamp(24px, 5vw, 40px)',
-            marginBottom: '40px',
-            width: '100%'
-          }}>
-            {services.map((service, index) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                whileHover={{ y: -10 }}
-                onMouseEnter={() => setHoveredCard(service.id)}
-                onMouseLeave={() => setHoveredCard(null)}
+              />
+              
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
                 style={{
-                  background: 'white',
-                  border: `1px solid ${hoveredCard === service.id ? service.color : '#e2e8f0'}`,
-                  borderRadius: '20px',
-                  padding: 'clamp(24px, 4vw, 32px)',
-                  transition: 'all 0.3s ease',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  boxShadow: hoveredCard === service.id 
-                    ? `0 20px 40px ${service.color}20` 
-                    : '0 8px 24px rgba(0, 0, 0, 0.05)',
-                  width: '100%',
-                  boxSizing: 'border-box'
-                }}
-              >
-                {/* Service Icon */}
-                <motion.div
-                  animate={{
-                    scale: hoveredCard === service.id ? 1.1 : 1,
-                    rotate: hoveredCard === service.id ? [0, 10, -10, 0] : 0
-                  }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    width: '60px',
-                    height: '60px',
-                    background: hoveredCard === service.id 
-                      ? `linear-gradient(135deg, ${service.color}, ${service.color}80)`
-                      : service.bgColor,
-                    borderRadius: '16px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '20px',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                  {service.icon}
-                </motion.div>
-                
-                {/* Service Title */}
-                <h3 style={{
-                  fontSize: 'clamp(1.3rem, 3vw, 1.5rem)',
+                  fontSize: 'clamp(2rem, 6vw, 3.5rem)',
                   color: '#1e293b',
-                  marginBottom: '12px',
-                  fontWeight: '600',
-                  lineHeight: '1.3'
-                }}>
-                  {service.title}
-                </h3>
-                
-                {/* Service Description */}
-                <p style={{
-                  color: '#64748b',
                   marginBottom: '20px',
-                  fontSize: 'clamp(0.95rem, 2vw, 1rem)',
-                  lineHeight: '1.6'
+                  fontWeight: '800',
+                  lineHeight: '1.2',
+                  position: 'relative',
+                  padding: '0 10px'
+                }}
+              >
+                Transformative
+                <span style={{
+                  background: 'linear-gradient(135deg, #4f46e5, #8b5cf6)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  display: 'block',
+                  marginTop: '10px'
                 }}>
-                  {service.description}
-                </p>
-                
-                {/* Features */}
-                <div style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '8px',
-                  marginBottom: '24px'
-                }}>
-                  {service.features.map((feature, idx) => (
-                    <motion.span
-                      key={idx}
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 + idx * 0.1 }}
-                      whileHover={{ scale: 1.05, y: -2 }}
+                  Technology Solutions
+                </span>
+              </motion.h1>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                style={{
+                  fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+                  color: '#64748b',
+                  maxWidth: '800px',
+                  margin: '0 auto 40px',
+                  lineHeight: '1.6',
+                  padding: '0 16px'
+                }}
+              >
+                Discover our comprehensive suite of technology services designed to accelerate your digital transformation, enhance operational efficiency, and drive sustainable business growth.
+              </motion.p>
+
+              {/* Animated Stats */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: 'clamp(16px, 4vw, 30px)',
+                flexWrap: 'wrap',
+                position: 'relative',
+                padding: '0 16px'
+              }}>
+                {[
+                  { value: '3+', label: 'Services we offer', color: '#4f46e5' },
+                  { value: '98%', label: 'Client Satisfaction', color: '#10b981' },
+                  { value: '24/7', label: 'Support Available', color: '#3b82f6' }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.5 + index * 0.1, type: 'spring' }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    style={{
+                      background: 'white',
+                      backdropFilter: 'blur(10px)',
+                      border: '1px solid #e2e8f0',
+                      padding: 'clamp(20px, 4vw, 24px)',
+                      borderRadius: '16px',
+                      minWidth: '140px',
+                      maxWidth: '200px',
+                      flex: '1 1 0',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.8 + index * 0.1, type: 'spring' }}
                       style={{
-                        background: service.bgColor,
-                        color: service.color,
-                        padding: '6px 12px',
-                        borderRadius: '16px',
-                        fontSize: '0.8rem',
-                        fontWeight: '500',
-                        border: `1px solid ${service.color}20`,
-                        transition: 'all 0.2s ease'
+                        fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
+                        fontWeight: '800',
+                        color: stat.color,
+                        marginBottom: '8px'
                       }}
                     >
-                      {feature}
-                    </motion.span>
+                      {stat.value}
+                    </motion.div>
+                    <div style={{
+                      fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+                      color: '#64748b',
+                      fontWeight: '500'
+                    }}>
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.section>
+          </header>
+
+          {/* Main Content with semantic sections */}
+          <main role="main">
+            {/* Expert Services */}
+            <section aria-labelledby="expert-services-title">
+              <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: '-50px' }}
+                style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
+              >
+                <motion.div
+                  initial={{ y: 50 }}
+                  whileInView={{ y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  style={{ textAlign: 'center', marginBottom: '40px' }}
+                >
+                  <h2 id="expert-services-title" style={{
+                    fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
+                    color: '#1e293b',
+                    marginBottom: '12px',
+                    fontWeight: '700'
+                  }}>
+                    Our Expert Services
+                  </h2>
+                  <div style={{
+                    width: '60px',
+                    height: '4px',
+                    background: 'linear-gradient(90deg, #4f46e5, #8b5cf6)',
+                    margin: '0 auto 20px',
+                    borderRadius: '2px'
+                  }} />
+                  <p style={{
+                    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+                    color: '#64748b',
+                    maxWidth: '800px',
+                    margin: '0 auto',
+                    lineHeight: '1.6',
+                    padding: '0 16px'
+                  }}>
+                    Comprehensive technology solutions tailored to your business needs
+                  </p>
+                </motion.div>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
+                  gap: 'clamp(24px, 5vw, 40px)',
+                  marginBottom: '40px',
+                  width: '100%'
+                }}>
+                  {services.map((service, index) => (
+                    <motion.article
+                      key={service.id}
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.2 }}
+                      whileHover={{ y: -10 }}
+                      onMouseEnter={() => setHoveredCard(service.id)}
+                      onMouseLeave={() => setHoveredCard(null)}
+                      style={{
+                        background: 'white',
+                        border: `1px solid ${hoveredCard === service.id ? service.color : '#e2e8f0'}`,
+                        borderRadius: '20px',
+                        padding: 'clamp(24px, 4vw, 32px)',
+                        transition: 'all 0.3s ease',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        boxShadow: hoveredCard === service.id 
+                          ? `0 20px 40px ${service.color}20` 
+                          : '0 8px 24px rgba(0, 0, 0, 0.05)',
+                        width: '100%',
+                        boxSizing: 'border-box'
+                      }}
+                    >
+                      {/* Service Icon */}
+                      <motion.div
+                        animate={{
+                          scale: hoveredCard === service.id ? 1.1 : 1,
+                          rotate: hoveredCard === service.id ? [0, 10, -10, 0] : 0
+                        }}
+                        transition={{ duration: 0.3 }}
+                        style={{
+                          width: '60px',
+                          height: '60px',
+                          background: hoveredCard === service.id 
+                            ? `linear-gradient(135deg, ${service.color}, ${service.color}80)`
+                            : service.bgColor,
+                          borderRadius: '16px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          marginBottom: '20px',
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        {service.icon}
+                      </motion.div>
+                      
+                      {/* Service Title */}
+                      <h3 style={{
+                        fontSize: 'clamp(1.3rem, 3vw, 1.5rem)',
+                        color: '#1e293b',
+                        marginBottom: '12px',
+                        fontWeight: '600',
+                        lineHeight: '1.3'
+                      }}>
+                        {service.title}
+                      </h3>
+                      
+                      {/* Service Description */}
+                      <p style={{
+                        color: '#64748b',
+                        marginBottom: '20px',
+                        fontSize: 'clamp(0.95rem, 2vw, 1rem)',
+                        lineHeight: '1.6'
+                      }}>
+                        {service.description}
+                      </p>
+                      
+                      {/* Features */}
+                      <div style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '8px',
+                        marginBottom: '24px'
+                      }}>
+                        {service.features.map((feature, idx) => (
+                          <motion.span
+                            key={idx}
+                            initial={{ opacity: 0, scale: 0 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 + idx * 0.1 }}
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            style={{
+                              background: service.bgColor,
+                              color: service.color,
+                              padding: '6px 12px',
+                              borderRadius: '16px',
+                              fontSize: '0.8rem',
+                              fontWeight: '500',
+                              border: `1px solid ${service.color}20`,
+                              transition: 'all 0.2s ease'
+                            }}
+                          >
+                            {feature}
+                          </motion.span>
+                        ))}
+                      </div>
+                      
+                      {/* Get Started Button */}
+                      <motion.button
+                        whileHover={{ scale: 1.05, boxShadow: `0 10px 20px ${service.color}40` }}
+                        whileTap={{ scale: 0.95 }}
+                        style={{
+                          background: `linear-gradient(135deg, ${service.color}, ${service.color}80)`,
+                          color: 'white',
+                          border: 'none',
+                          padding: '12px 24px',
+                          borderRadius: '12px',
+                          fontSize: '0.95rem',
+                          fontWeight: '600',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '8px',
+                          boxShadow: `0 5px 15px ${service.color}30`,
+                          width: '100%',
+                          maxWidth: '180px'
+                        }}
+                        onClick={handleGetStarted}
+                      >
+                        Get Started
+                        <motion.span
+                          animate={{ x: hoveredCard === service.id ? 5 : 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          →
+                        </motion.span>
+                      </motion.button>
+                    </motion.article>
                   ))}
                 </div>
-                
-                {/* Get Started Button */}
-                <motion.button
-                  whileHover={{ scale: 1.05, boxShadow: `0 10px 20px ${service.color}40` }}
-                  whileTap={{ scale: 0.95 }}
-                  style={{
-                    background: `linear-gradient(135deg, ${service.color}, ${service.color}80)`,
-                    color: 'white',
-                    border: 'none',
-                    padding: '12px 24px',
-                    borderRadius: '12px',
-                    fontSize: '0.95rem',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px',
-                    boxShadow: `0 5px 15px ${service.color}30`,
-                    width: '100%',
-                    maxWidth: '180px'
-                  }}
-                  onClick={handleGetStarted}
-                >
-                  Get Started
-                  <motion.span
-                    animate={{ x: hoveredCard === service.id ? 5 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    →
-                  </motion.span>
-                </motion.button>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+              </motion.section>
+            </section>
 
-        {/* Why Choose Us */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
-        >
-          <motion.div
-            initial={{ y: 50 }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            style={{ textAlign: 'center', marginBottom: '40px' }}
-          >
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-              color: '#1e293b',
-              marginBottom: '12px',
-              fontWeight: '700'
-            }}>
-              Why Choose Us
-            </h2>
-            <div style={{
-              width: '60px',
-              height: '4px',
-              background: 'linear-gradient(90deg, #10b981, #3b82f6)',
-              margin: '0 auto 20px',
-              borderRadius: '2px'
-            }} />
-            <p style={{
-              fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-              color: '#64748b',
-              maxWidth: '800px',
-              margin: '0 auto',
-              lineHeight: '1.6',
-              padding: '0 16px'
-            }}>
-              What sets us apart in delivering exceptional technology solutions
-            </p>
-          </motion.div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))',
-            gap: 'clamp(16px, 4vw, 24px)',
-            width: '100%'
-          }}>
-            {whyChooseUs.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+            {/* Why Choose Us */}
+            <section aria-labelledby="why-choose-us-title">
+              <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
+                style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
+              >
+                <motion.div
+                  initial={{ y: 50 }}
+                  whileInView={{ y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  style={{ textAlign: 'center', marginBottom: '40px' }}
+                >
+                  <h2 id="why-choose-us-title" style={{
+                    fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
+                    color: '#1e293b',
+                    marginBottom: '12px',
+                    fontWeight: '700'
+                  }}>
+                    Why Choose Us
+                  </h2>
+                  <div style={{
+                    width: '60px',
+                    height: '4px',
+                    background: 'linear-gradient(90deg, #10b981, #3b82f6)',
+                    margin: '0 auto 20px',
+                    borderRadius: '2px'
+                  }} />
+                  <p style={{
+                    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+                    color: '#64748b',
+                    maxWidth: '800px',
+                    margin: '0 auto',
+                    lineHeight: '1.6',
+                    padding: '0 16px'
+                  }}>
+                    What sets us apart in delivering exceptional technology solutions
+                  </p>
+                </motion.div>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))',
+                  gap: 'clamp(16px, 4vw, 24px)',
+                  width: '100%'
+                }}>
+                  {whyChooseUs.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      whileHover={{ y: -10 }}
+                      style={{
+                        background: 'white',
+                        border: '1px solid #e2e8f0',
+                        borderRadius: '16px',
+                        padding: 'clamp(20px, 4vw, 24px)',
+                        textAlign: 'center',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.05)',
+                        width: '100%',
+                        boxSizing: 'border-box'
+                      }}
+                    >
+                      <motion.div
+                        animate={{ 
+                          rotateY: hoveredCard === index ? 360 : 0,
+                          scale: hoveredCard === index ? 1.1 : 1
+                        }}
+                        transition={{ duration: 0.6 }}
+                        style={{
+                          fontSize: 'clamp(1.8rem, 4vw, 2.2rem)',
+                          marginBottom: '16px',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          color: item.color
+                        }}
+                        onMouseEnter={() => setHoveredCard(index)}
+                        onMouseLeave={() => setHoveredCard(null)}
+                      >
+                        {item.icon}
+                      </motion.div>
+                      <h3 style={{
+                        fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
+                        color: '#1e293b',
+                        marginBottom: '8px',
+                        fontWeight: '600'
+                      }}>
+                        {item.title}
+                      </h3>
+                      <p style={{
+                        color: '#64748b',
+                        fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+                        lineHeight: '1.5'
+                      }}>
+                        {item.desc}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.section>
+            </section>
+
+            {/* Our Process */}
+            <section aria-labelledby="our-process-title">
+              <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
+              >
+                <motion.div
+                  initial={{ y: 50 }}
+                  whileInView={{ y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  style={{ textAlign: 'center', marginBottom: '40px' }}
+                >
+                  <h2 id="our-process-title" style={{
+                    fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
+                    color: '#1e293b',
+                    marginBottom: '12px',
+                    fontWeight: '700'
+                  }}>
+                    Our Process
+                  </h2>
+                  <div style={{
+                    width: '60px',
+                    height: '4px',
+                    background: 'linear-gradient(90deg, #8b5cf6, #ec4899)',
+                    margin: '0 auto 20px',
+                    borderRadius: '2px'
+                  }} />
+                  <p style={{
+                    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+                    color: '#64748b',
+                    maxWidth: '800px',
+                    margin: '0 auto',
+                    lineHeight: '1.6',
+                    padding: '0 16px'
+                  }}>
+                    A structured approach to delivering exceptional technology solutions
+                  </p>
+                </motion.div>
+
+                <div style={{
+                  position: 'relative',
+                  maxWidth: '800px',
+                  margin: '0 auto',
+                  width: '100%'
+                }}>
+                  {/* Connecting Line */}
+                  <div style={{
+                    position: 'absolute',
+                    left: '30px',
+                    top: '0',
+                    bottom: '0',
+                    width: '2px',
+                    background: 'linear-gradient(to bottom, #4f46e5, #8b5cf6, #3b82f6)',
+                    zIndex: 0
+                  }} />
+                  
+                  {processSteps.map((step, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        marginBottom: '30px',
+                        position: 'relative',
+                        zIndex: 1,
+                        width: '100%'
+                      }}
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        style={{
+                          width: '60px',
+                          height: '60px',
+                          background: 'linear-gradient(135deg, #4f46e5, #8b5cf6)',
+                          borderRadius: '50%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '1.2rem',
+                          fontWeight: 'bold',
+                          color: 'white',
+                          flexShrink: 0,
+                          marginRight: '20px',
+                          zIndex: 2,
+                          boxShadow: '0 8px 16px rgba(79, 70, 229, 0.3)'
+                        }}
+                      >
+                        {step.number}
+                      </motion.div>
+                      
+                      <motion.div
+                        whileHover={{ x: 10 }}
+                        style={{
+                          background: 'white',
+                          border: '1px solid #e2e8f0',
+                          borderRadius: '16px',
+                          padding: 'clamp(16px, 4vw, 24px)',
+                          flex: 1,
+                          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.05)',
+                          width: 'calc(100% - 80px)',
+                          boxSizing: 'border-box'
+                        }}
+                      >
+                        <h3 style={{
+                          fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
+                          color: '#1e293b',
+                          marginBottom: '8px',
+                          fontWeight: '600'
+                        }}>
+                          {step.title}
+                        </h3>
+                        <p style={{
+                          color: '#64748b',
+                          fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                          lineHeight: '1.6'
+                        }}>
+                          {step.desc}
+                        </p>
+                      </motion.div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.section>
+            </section>
+
+            {/* CTA Section */}
+            <section aria-labelledby="cta-title">
+              <motion.section
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
                 style={{
-                  background: 'white',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '16px',
-                  padding: 'clamp(20px, 4vw, 24px)',
                   textAlign: 'center',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.05)',
+                  background: 'linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%)',
+                  padding: 'clamp(40px, 8vw, 60px) clamp(16px, 4vw, 32px)',
+                  borderRadius: '24px',
+                  margin: 'clamp(60px, 10vw, 100px) 0',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  boxShadow: '0 20px 40px rgba(79, 70, 229, 0.3)',
                   width: '100%',
                   boxSizing: 'border-box'
                 }}
               >
-                <motion.div
-                  animate={{ 
-                    rotateY: hoveredCard === index ? 360 : 0,
-                    scale: hoveredCard === index ? 1.1 : 1
-                  }}
-                  transition={{ duration: 0.6 }}
+                <motion.h2
+                  id="cta-title"
+                  initial={{ y: 30 }}
+                  whileInView={{ y: 0 }}
+                  viewport={{ once: true }}
                   style={{
-                    fontSize: 'clamp(1.8rem, 4vw, 2.2rem)',
-                    marginBottom: '16px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    color: item.color
-                  }}
-                  onMouseEnter={() => setHoveredCard(index)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                >
-                  {item.icon}
-                </motion.div>
-                <h3 style={{
-                  fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
-                  color: '#1e293b',
-                  marginBottom: '8px',
-                  fontWeight: '600'
-                }}>
-                  {item.title}
-                </h3>
-                <p style={{
-                  color: '#64748b',
-                  fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                  lineHeight: '1.5'
-                }}>
-                  {item.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Our Process */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
-        >
-          <motion.div
-            initial={{ y: 50 }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            style={{ textAlign: 'center', marginBottom: '40px' }}
-          >
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-              color: '#1e293b',
-              marginBottom: '12px',
-              fontWeight: '700'
-            }}>
-              Our Process
-            </h2>
-            <div style={{
-              width: '60px',
-              height: '4px',
-              background: 'linear-gradient(90deg, #8b5cf6, #ec4899)',
-              margin: '0 auto 20px',
-              borderRadius: '2px'
-            }} />
-            <p style={{
-              fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-              color: '#64748b',
-              maxWidth: '800px',
-              margin: '0 auto',
-              lineHeight: '1.6',
-              padding: '0 16px'
-            }}>
-              A structured approach to delivering exceptional technology solutions
-            </p>
-          </motion.div>
-
-          <div style={{
-            position: 'relative',
-            maxWidth: '800px',
-            margin: '0 auto',
-            width: '100%'
-          }}>
-            {/* Connecting Line */}
-            <div style={{
-              position: 'absolute',
-              left: '30px',
-              top: '0',
-              bottom: '0',
-              width: '2px',
-              background: 'linear-gradient(to bottom, #4f46e5, #8b5cf6, #3b82f6)',
-              zIndex: 0
-            }} />
-            
-            {processSteps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '30px',
-                  position: 'relative',
-                  zIndex: 1,
-                  width: '100%'
-                }}
-              >
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  style={{
-                    width: '60px',
-                    height: '60px',
-                    background: 'linear-gradient(135deg, #4f46e5, #8b5cf6)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '1.2rem',
-                    fontWeight: 'bold',
+                    fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
                     color: 'white',
-                    flexShrink: 0,
-                    marginRight: '20px',
-                    zIndex: 2,
-                    boxShadow: '0 8px 16px rgba(79, 70, 229, 0.3)'
+                    marginBottom: '16px',
+                    fontWeight: '700'
                   }}
                 >
-                  {step.number}
-                </motion.div>
+                  Ready to Transform Your Business?
+                </motion.h2>
+                <motion.p
+                  initial={{ y: 30 }}
+                  whileInView={{ y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  style={{
+                    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+                    color: 'rgba(255, 255, 255, 0.9)',
+                    maxWidth: '600px',
+                    margin: '0 auto 32px',
+                    lineHeight: '1.6',
+                    padding: '0 16px'
+                  }}
+                >
+                  Let our experts help you choose the right technology solutions for your specific needs.
+                </motion.p>
                 
                 <motion.div
-                  whileHover={{ x: 10 }}
-                  style={{
-                    background: 'white',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '16px',
-                    padding: 'clamp(16px, 4vw, 24px)',
-                    flex: 1,
-                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.05)',
-                    width: 'calc(100% - 80px)',
-                    boxSizing: 'border-box'
-                  }}
-                >
-                  <h3 style={{
-                    fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
-                    color: '#1e293b',
-                    marginBottom: '8px',
-                    fontWeight: '600'
-                  }}>
-                    {step.title}
-                  </h3>
-                  <p style={{
-                    color: '#64748b',
-                    fontSize: 'clamp(0.9rem, 2vw, 1rem)',
-                    lineHeight: '1.6'
-                  }}>
-                    {step.desc}
-                  </p>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* CTA Section */}
-        <motion.section
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          style={{
-            textAlign: 'center',
-            background: 'linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%)',
-            padding: 'clamp(40px, 8vw, 60px) clamp(16px, 4vw, 32px)',
-            borderRadius: '24px',
-            margin: 'clamp(60px, 10vw, 100px) 0',
-            position: 'relative',
-            overflow: 'hidden',
-            boxShadow: '0 20px 40px rgba(79, 70, 229, 0.3)',
-            width: '100%',
-            boxSizing: 'border-box'
-          }}
-        >
-          <motion.h2
-            initial={{ y: 30 }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            style={{
-              fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-              color: 'white',
-              marginBottom: '16px',
-              fontWeight: '700'
-            }}
-          >
-            Ready to Transform Your Business?
-          </motion.h2>
-          <motion.p
-            initial={{ y: 30 }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            style={{
-              fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-              color: 'rgba(255, 255, 255, 0.9)',
-              maxWidth: '600px',
-              margin: '0 auto 32px',
-              lineHeight: '1.6',
-              padding: '0 16px'
-            }}
-          >
-            Let our experts help you choose the right technology solutions for your specific needs.
-          </motion.p>
-          
-          <motion.div
-            initial={{ y: 30 }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: 'clamp(16px, 4vw, 24px)',
-              flexWrap: 'wrap',
-              width: '100%'
-            }}
-          >
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              style={{
-                background: 'white',
-                color: '#4f46e5',
-                border: 'none',
-                padding: 'clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px)',
-                borderRadius: '12px',
-                fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
-                width: '100%',
-                maxWidth: '250px'
-              }}
-              onClick={handleGetStarted}
-            >
-              Get Free Consultation
-            </motion.button>
-            
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              style={{
-                background: 'rgba(255, 255, 255, 0.2)',
-                color: 'white',
-                border: '2px solid white',
-                padding: 'clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px)',
-                borderRadius: '12px',
-                fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                backdropFilter: 'blur(10px)',
-                width: '100%',
-                maxWidth: '250px'
-              }}
-              onClick={handleCallNow}
-            >
-              Call Now: 8500352005
-            </motion.button>
-          </motion.div>
-        </motion.section>
-
-        {/* FAQ Section */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
-        >
-          <motion.div
-            initial={{ y: 50 }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            style={{ textAlign: 'center', marginBottom: '40px' }}
-          >
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-              color: '#1e293b',
-              marginBottom: '12px',
-              fontWeight: '700'
-            }}>
-              Frequently Asked Questions
-            </h2>
-            <div style={{
-              width: '60px',
-              height: '4px',
-              background: 'linear-gradient(90deg, #0f0bf5, #09ff00)',
-              margin: '0 auto 20px',
-              borderRadius: '2px'
-            }} />
-            <p style={{
-              fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-              color: '#64748b',
-              maxWidth: '800px',
-              margin: '0 auto',
-              lineHeight: '1.6',
-              padding: '0 16px'
-            }}>
-              Find answers to common questions about our services
-            </p>
-          </motion.div>
-
-          <div style={{
-            maxWidth: '800px',
-            margin: '0 auto',
-            width: '100%',
-            boxSizing: 'border-box'
-          }}>
-            <AnimatePresence>
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ y: 30 }}
+                  whileInView={{ y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ delay: 0.2 }}
                   style={{
-                    background: 'white',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '12px',
-                    marginBottom: '12px',
-                    overflow: 'hidden',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: 'clamp(16px, 4vw, 24px)',
+                    flexWrap: 'wrap',
                     width: '100%'
                   }}
                 >
-                  <motion.div
-                    whileHover={{ background: '#f8fafc' }}
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
                     style={{
-                      padding: 'clamp(16px, 4vw, 20px)',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  >
-                    <h3 style={{
-                      fontSize: 'clamp(1rem, 2vw, 1.1rem)',
-                      color: '#1e293b',
+                      background: 'white',
+                      color: '#4f46e5',
+                      border: 'none',
+                      padding: 'clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px)',
+                      borderRadius: '12px',
+                      fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
                       fontWeight: '600',
-                      marginRight: '16px',
-                      flex: 1,
-                      textAlign: 'left'
-                    }}>
-                      {faq.question}
-                    </h3>
-                    <motion.div
-                      animate={{ rotate: openFaq === index ? 45 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      style={{
-                        fontSize: '1.5rem',
-                        color: '#4f46e5',
-                        fontWeight: '300',
-                        flexShrink: 0
-                      }}
-                    >
-                      +
-                    </motion.div>
-                  </motion.div>
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+                      width: '100%',
+                      maxWidth: '250px'
+                    }}
+                    onClick={handleGetStarted}
+                  >
+                    Get Free Consultation
+                  </motion.button>
                   
-                  <AnimatePresence>
-                    {openFaq === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        style={{ overflow: 'hidden' }}
-                      >
-                        <div style={{
-                          padding: '0 clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px)',
-                          color: '#64748b',
-                          fontSize: 'clamp(0.9rem, 2vw, 1rem)',
-                          lineHeight: '1.6',
-                          borderTop: '1px solid #e2e8f0',
-                          textAlign: 'left'
-                        }}>
-                          {faq.answer}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.2)',
+                      color: 'white',
+                      border: '2px solid white',
+                      padding: 'clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px)',
+                      borderRadius: '12px',
+                      fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      backdropFilter: 'blur(10px)',
+                      width: '100%',
+                      maxWidth: '250px'
+                    }}
+                    onClick={handleCallNow}
+                  >
+                    Call Now: 8500352005
+                  </motion.button>
                 </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-        </motion.section>
+              </motion.section>
+            </section>
+
+            {/* FAQ Section */}
+            <section aria-labelledby="faq-title">
+              <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
+              >
+                <motion.div
+                  initial={{ y: 50 }}
+                  whileInView={{ y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  style={{ textAlign: 'center', marginBottom: '40px' }}
+                >
+                  <h2 id="faq-title" style={{
+                    fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
+                    color: '#1e293b',
+                    marginBottom: '12px',
+                    fontWeight: '700'
+                  }}>
+                    Frequently Asked Questions
+                  </h2>
+                  <div style={{
+                    width: '60px',
+                    height: '4px',
+                    background: 'linear-gradient(90deg, #0f0bf5, #09ff00)',
+                    margin: '0 auto 20px',
+                    borderRadius: '2px'
+                  }} />
+                  <p style={{
+                    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+                    color: '#64748b',
+                    maxWidth: '800px',
+                    margin: '0 auto',
+                    lineHeight: '1.6',
+                    padding: '0 16px'
+                  }}>
+                    Find answers to common questions about our services
+                  </p>
+                </motion.div>
+
+                <div style={{
+                  maxWidth: '800px',
+                  margin: '0 auto',
+                  width: '100%',
+                  boxSizing: 'border-box'
+                }}>
+                  <AnimatePresence>
+                    {faqs.map((faq, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        style={{
+                          background: 'white',
+                          border: '1px solid #e2e8f0',
+                          borderRadius: '12px',
+                          marginBottom: '12px',
+                          overflow: 'hidden',
+                          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
+                          width: '100%'
+                        }}
+                      >
+                        <motion.div
+                          whileHover={{ background: '#f8fafc' }}
+                          style={{
+                            padding: 'clamp(16px, 4vw, 20px)',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            transition: 'all 0.3s ease'
+                          }}
+                          onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                        >
+                          <h3 style={{
+                            fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+                            color: '#1e293b',
+                            fontWeight: '600',
+                            marginRight: '16px',
+                            flex: 1,
+                            textAlign: 'left'
+                          }}>
+                            {faq.question}
+                          </h3>
+                          <motion.div
+                            animate={{ rotate: openFaq === index ? 45 : 0 }}
+                            transition={{ duration: 0.3 }}
+                            style={{
+                              fontSize: '1.5rem',
+                              color: '#4f46e5',
+                              fontWeight: '300',
+                              flexShrink: 0
+                            }}
+                          >
+                            +
+                          </motion.div>
+                        </motion.div>
+                        
+                        <AnimatePresence>
+                          {openFaq === index && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                              style={{ overflow: 'hidden' }}
+                            >
+                              <div style={{
+                                padding: '0 clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px)',
+                                color: '#64748b',
+                                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                                lineHeight: '1.6',
+                                borderTop: '1px solid #e2e8f0',
+                                textAlign: 'left'
+                              }}>
+                                {faq.answer}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </div>
+              </motion.section>
+            </section>
+          </main>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

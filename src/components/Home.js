@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 // Import Lucide React Icons
 import { 
@@ -18,6 +19,210 @@ import {
   FaGoogle, FaRegClock, FaStar, FaCrown,
   FaNetworkWired, FaDatabase, FaRocket, FaRegHandshake
 } from 'react-icons/fa';
+
+// SEO Structured Data Component (Hidden)
+const SEOStructuredData = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebDevelopmentCompany",
+        "@id": "https://smyvision.com/#company",
+        "name": "SMYVISION TECHNOLOGIES",
+        "description": "Top web development company in Vijayawada, Hyderabad, and Bangalore offering professional website development, automation solutions, and chatbot development services.",
+        "url": "https://smyvision.com",
+        "logo": "https://smyvision.com/logo.png",
+        "founder": "Sri Ram Janjanam",
+        "foundingDate": "2026",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Vijayawada",
+          "addressRegion": "Andhra Pradesh",
+          "postalCode": "520001",
+          "addressCountry": "India",
+          "streetAddress": "Vijayawada"
+        },
+        "serviceArea": {
+          "@type": "Place",
+          "name": "Vijayawada, Hyderabad, Bangalore, Andhra Pradesh, Telangana, Karnataka"
+        },
+        "areaServed": [
+          {
+            "@type": "City",
+            "name": "Vijayawada"
+          },
+          {
+            "@type": "City",
+            "name": "Hyderabad"
+          },
+          {
+            "@type": "City",
+            "name": "Bangalore"
+          },
+          {
+            "@type": "State",
+            "name": "Andhra Pradesh"
+          },
+          {
+            "@type": "State",
+            "name": "Telangana"
+          },
+          {
+            "@type": "State",
+            "name": "Karnataka"
+          }
+        ],
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "name": "Website Development Services",
+            "description": "Professional website development for businesses in Vijayawada, Hyderabad, and Bangalore"
+          },
+          {
+            "@type": "Offer",
+            "name": "Automation Development",
+            "description": "Business automation solutions for companies in South India"
+          },
+          {
+            "@type": "Offer",
+            "name": "Chatbot Solutions",
+            "description": "AI-powered chatbot development for enterprises"
+          }
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+918500352005",
+          "contactType": "customer service",
+          "areaServed": ["IN"],
+          "availableLanguage": ["English", "Telugu", "Hindi"]
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/smyvisiontechnologies",
+          "https://twitter.com/smyvisiontech",
+          "https://facebook.com/smyvisiontechnologies"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://smyvision.com/#webpage",
+        "url": "https://smyvision.com",
+        "name": "Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION",
+        "description": "Professional web development services in Vijayawada, Hyderabad, and Bangalore. Custom website development, automation solutions, and chatbot development.",
+        "isPartOf": {
+          "@id": "https://smyvision.com/#website"
+        },
+        "inLanguage": "en-IN",
+        "potentialAction": [{
+          "@type": "ReadAction",
+          "target": ["https://smyvision.com"]
+        }]
+      },
+      {
+        "@type": "Service",
+        "name": "Website Development",
+        "serviceType": "WebDevelopment",
+        "provider": {
+          "@id": "https://smyvision.com/#company"
+        },
+        "areaServed": "Vijayawada, Hyderabad, Bangalore",
+        "description": "Professional website development services for businesses in Vijayawada, Hyderabad, and Bangalore"
+      },
+      {
+        "@type": "Service",
+        "name": "Automation Solutions",
+        "serviceType": "BusinessAutomation",
+        "provider": {
+          "@id": "https://smyvision.com/#company"
+        },
+        "areaServed": "Vijayawada, Hyderabad, Bangalore",
+        "description": "Business automation solutions for companies in South India"
+      },
+      {
+        "@type": "Service",
+        "name": "Chatbot Development",
+        "serviceType": "SoftwareDevelopment",
+        "provider": {
+          "@id": "https://smyvision.com/#company"
+        },
+        "areaServed": "Vijayawada, Hyderabad, Bangalore",
+        "description": "AI-powered chatbot development services"
+      }
+    ]
+  };
+
+  return (
+    <script type="application/ld+json">
+      {JSON.stringify(structuredData)}
+    </script>
+  );
+};
+
+// Hidden SEO Text Component for Home Page
+const HiddenSEOText = () => {
+  return (
+    <div style={{
+      position: 'absolute',
+      left: '-9999px',
+      top: '-9999px',
+      height: '1px',
+      width: '1px',
+      overflow: 'hidden',
+      opacity: '0',
+      pointerEvents: 'none'
+    }}>
+      <h1>SMYVISION TECHNOLOGIES - Top Web Development Company in Vijayawada, Hyderabad, Bangalore</h1>
+      <h2>Best Website Development Services | Web Developers in South India</h2>
+      
+      <p>SMYVISION TECHNOLOGIES is the leading web development company serving businesses in Vijayawada, Hyderabad, and Bangalore. We provide comprehensive digital solutions including professional website development, business automation, and AI chatbot development.</p>
+      
+      <h3>Web Development Services in Vijayawada</h3>
+      <p>As one of the top web development companies in Vijayawada, we offer customized website solutions for local businesses. Our expert team in Vijayawada specializes in responsive web design, e-commerce development, and SEO-optimized websites that drive results.</p>
+      
+      <h3>Website Development Company in Hyderabad</h3>
+      <p>Our Hyderabad-based web development team provides cutting-edge digital solutions for businesses across Telangana. We are recognized as a premier website development company in Hyderabad for our innovative approach and proven results.</p>
+      
+      <h3>Best Web Developers in Bangalore</h3>
+      <p>With a strong presence in Bangalore, we deliver world-class web development services for startups and enterprises. Our Bangalore team excels in creating scalable web applications, automation systems, and intelligent chatbot solutions.</p>
+      
+      <h3>Our Core Services:</h3>
+      <ul>
+        <li>Custom Website Development in Vijayawada</li>
+        <li>Professional Web Development Services in Hyderabad</li>
+        <li>Enterprise Web Solutions in Bangalore</li>
+        <li>E-commerce Website Development</li>
+        <li>Business Process Automation</li>
+        <li>AI Chatbot Development</li>
+        <li>Mobile Responsive Web Design</li>
+        <li>SEO-Optimized Websites</li>
+        <li>Digital Transformation Solutions</li>
+      </ul>
+      
+      <h3>Why Choose Our Web Development Company?</h3>
+      <p>We stand out as the best web development company for businesses in Vijayawada, Hyderabad, and Bangalore because we offer:</p>
+      <ul>
+        <li>Expert web developers with years of experience</li>
+        <li>Affordable web development packages</li>
+        <li>Timely project delivery and 24/7 support</li>
+        <li>Cutting-edge technology stack</li>
+        <li>Client-centric approach and transparent communication</li>
+        <li>Proven track record across multiple industries</li>
+      </ul>
+      
+      <h3>Industries We Serve:</h3>
+      <p>Our web development services cater to various industries including healthcare, education, retail, manufacturing, hospitality, technology startups, and more across Vijayawada, Hyderabad, and Bangalore.</p>
+      
+      <h3>Contact Information:</h3>
+      <p>For professional web development services in Vijayawada, Hyderabad, or Bangalore, contact us today:</p>
+      <ul>
+        <li>Phone: 8500352005</li>
+        <li>Email: info@smyvision.com</li>
+        <li>Service Areas: Vijayawada, Hyderabad, Bangalore, Andhra Pradesh, Telangana, Karnataka</li>
+      </ul>
+      
+      <h4>Keywords: top web development companies in vijayawada, website development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, affordable web development vijayawada, professional website developers hyderabad, custom web development bangalore, e-commerce website development south india, web development company vijayawada, hyderabad website developers, bangalore web development services, responsive web design vijayawada, digital solutions hyderabad, software development bangalore</h4>
+    </div>
+  );
+};
 
 // Extract CSS to a separate constant for better organization
 const globalStyles = `
@@ -1078,7 +1283,58 @@ const Home = () => {
   const statsRef = useRef(null);
   const benefitsRef = useRef(null);
   const servicesRef = useRef(null);
-  
+
+  // Set up SEO meta tags on component mount
+  useEffect(() => {
+    // Set page title with SEO keywords
+    document.title = 'Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION';
+    
+    // Set meta description
+    const metaDescription = document.createElement('meta');
+    metaDescription.name = 'description';
+    metaDescription.content = 'SMYVISION TECHNOLOGIES - Top web development company in Vijayawada, Hyderabad, Bangalore offering professional website development, automation solutions, and chatbot development services.';
+    document.head.appendChild(metaDescription);
+    
+    // Set keywords meta
+    const metaKeywords = document.createElement('meta');
+    metaKeywords.name = 'keywords';
+    metaKeywords.content = 'top web development companies in vijayawada, website development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, affordable web development vijayawada, professional website developers hyderabad, custom web development bangalore, e-commerce website development south india, web development company vijayawada, hyderabad website developers, bangalore web development services';
+    document.head.appendChild(metaKeywords);
+    
+    // Set location meta tags
+    const metaRegion = document.createElement('meta');
+    metaRegion.name = 'geo.region';
+    metaRegion.content = 'IN-AP, IN-TG, IN-KA';
+    document.head.appendChild(metaRegion);
+    
+    const metaPlacename = document.createElement('meta');
+    metaPlacename.name = 'geo.placename';
+    metaPlacename.content = 'Vijayawada, Hyderabad, Bangalore';
+    document.head.appendChild(metaPlacename);
+    
+    // Open Graph tags
+    const ogTitle = document.createElement('meta');
+    ogTitle.setAttribute('property', 'og:title');
+    ogTitle.content = 'Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION';
+    document.head.appendChild(ogTitle);
+    
+    const ogDescription = document.createElement('meta');
+    ogDescription.setAttribute('property', 'og:description');
+    ogDescription.content = 'Professional web development services in Vijayawada, Hyderabad, and Bangalore. Custom website development, automation solutions, and chatbot development.';
+    document.head.appendChild(ogDescription);
+    
+    // Canonical link
+    const canonicalLink = document.createElement('link');
+    canonicalLink.rel = 'canonical';
+    canonicalLink.href = 'https://smyvision.com';
+    document.head.appendChild(canonicalLink);
+    
+    return () => {
+      // Clean up meta tags on unmount
+      document.querySelectorAll('[name="description"], [name="keywords"], [name="geo.region"], [name="geo.placename"], [property="og:title"], [property="og:description"], [rel="canonical"]').forEach(el => el.remove());
+    };
+  }, []);
+
   // Animation controls
   const heroControls = useAnimation();
   const statsControls = useAnimation();
@@ -1338,9 +1594,54 @@ const Home = () => {
 
   return (
     <>
+      {/* SEO Meta Tags and Structured Data */}
+      <Helmet>
+        <html lang="en" prefix="og: https://ogp.me/ns#" />
+        <title>Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION</title>
+        <meta name="description" content="SMYVISION TECHNOLOGIES - Top web development company in Vijayawada, Hyderabad, Bangalore offering professional website development, automation solutions, and chatbot development services." />
+        <meta name="keywords" content="top web development companies in vijayawada, website development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, affordable web development vijayawada, professional website developers hyderabad, custom web development bangalore, e-commerce website development south india" />
+        <meta name="author" content="SMYVISION TECHNOLOGIES" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        
+        {/* Location Meta Tags */}
+        <meta name="geo.region" content="IN-AP, IN-TG, IN-KA" />
+        <meta name="geo.placename" content="Vijayawada, Hyderabad, Bangalore" />
+        <meta name="geo.position" content="16.5062;80.6480" />
+        <meta name="ICBM" content="16.5062, 80.6480" />
+        <meta name="location" content="Vijayawada, Hyderabad, Bangalore, India" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION" />
+        <meta property="og:description" content="Professional web development services in Vijayawada, Hyderabad, and Bangalore. Custom website development, automation solutions, and chatbot development." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://smyvision.com" />
+        <meta property="og:locale" content="en_IN" />
+        <meta property="og:locale:alternate" content="te_IN" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Top Web Development Company | Vijayawada Hyderabad Bangalore" />
+        <meta name="twitter:description" content="Best web development services in Vijayawada, Hyderabad, Bangalore. Professional website solutions for businesses." />
+        
+        {/* Canonical and Alternate Links */}
+        <link rel="canonical" href="https://smyvision.com" />
+        <link rel="alternate" hrefLang="en-in" href="https://smyvision.com" />
+        <link rel="alternate" hrefLang="te-in" href="https://smyvision.com/te" />
+        
+        {/* Additional Meta Tags */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta charSet="utf-8" />
+      </Helmet>
+      
+      {/* Hidden SEO Structured Data */}
+      <SEOStructuredData />
+      
       <style jsx global>{globalStyles}</style>
       
       <div className="home">
+        {/* Hidden SEO Text (for search engines only) */}
+        <HiddenSEOText />
+        
         {/* Floating Particles Background - Subtle */}
         <div className="particles-container">
           {particles.map((particle) => (
@@ -1359,7 +1660,7 @@ const Home = () => {
         </div>
 
         {/* Hero Section */}
-        <section className="hero" ref={heroRef}>
+        <section className="hero" ref={heroRef} itemScope itemType="https://schema.org/WebPage">
           <div className="container">
             <motion.div 
               className="hero-content max-w-3xl mx-auto text-center"
@@ -1848,8 +2149,6 @@ const Home = () => {
                   </motion.div>
                 ))}
               </motion.div>
-
-              
             </motion.div>
           </div>
         </section>

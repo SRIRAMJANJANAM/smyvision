@@ -46,7 +46,7 @@ const ChatbotWidget = () => {
   const inputRef = useRef(null);
 
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby1pdBXYPHeBeO1xwBxDVSSONCRYOJQVxigGpHW6tzoVNIEe4wezhDWESqgRZbBpVhr/exec';
-  const STATUS_API_URL = 'https://script.google.com/macros/s/AKfycbw33S28AQ3kFzy6pdet3jJSTYFnMH1vRLIAiq903F6RNSHzfdIbv8cor0BCQ5Uwu1uxgw/exec';
+  const STATUS_API_URL = 'https://script.google.com/macros/s/AKfycbyrAa6P9hUuAKb3mI6uHB83NR1owqp4dOjCh_nF405RZ2PXUEjSpDTWsLb9briOxdkm/exec';
 
   const suggestedQuestions = [
     "What services do you offer?",
@@ -192,59 +192,29 @@ const ChatbotWidget = () => {
     }, delay);
   };
 
-  // API call to check project status - WITH CACHE BUSTING
+  // API call to check project status - FIXED for Google Apps Script CORS
+  // In your React component, change checkProjectStatus function:
 const checkProjectStatus = async (phoneNumber) => {
   try {
-    console.log('Checking status for phone:', phoneNumber);
-    
     const cleanPhone = phoneNumber.toString().trim();
-    
-    // Add timestamp to prevent caching
     const timestamp = Date.now();
-    const urlWithCache = `${STATUS_API_URL}?nocache=${timestamp}`;
     
-    // Use XMLHttpRequest (works better with Google Apps Script)
-    const data = await new Promise((resolve) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', urlWithCache, true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      
-      xhr.onload = function() {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          try {
-            const response = JSON.parse(xhr.responseText);
-            console.log('Direct XHR response:', response);
-            resolve(response);
-          } catch {
-            resolve({
-              success: false,
-              message: "Invalid response format",
-              raw: xhr.responseText
-            });
-          }
-        } else {
-          // If direct fails, try proxy
-          console.log('Direct failed, trying proxy...');
-          fetchWithProxyReal(cleanPhone, timestamp).then(resolve);
-        }
-      };
-      
-      xhr.onerror = function() {
-        console.log('XHR error, trying proxy...');
-        fetchWithProxyReal(cleanPhone, timestamp).then(resolve);
-      };
-      
-      xhr.timeout = 8000;
-      xhr.ontimeout = function() {
-        console.log('XHR timeout, trying proxy...');
-        fetchWithProxyReal(cleanPhone, timestamp).then(resolve);
-      };
-      
-      xhr.send(JSON.stringify({ "Number": cleanPhone }));
-    });
+    // Use GET request with URL parameter
+    const url = `${STATUS_API_URL}?number=${cleanPhone}&nocache=${timestamp}`;
     
-    return data;
+    const response = await fetch(url);
     
+    if (response.ok) {
+      const data = await response.json();
+      console.log('Status check response:', data);
+      return data;
+    } else {
+      console.error('Status check failed:', response.status);
+      return {
+        success: false,
+        message: `Server error: ${response.status}`
+      };
+    }
   } catch (error) {
     console.error("Error in checkProjectStatus:", error);
     return {
@@ -254,47 +224,98 @@ const checkProjectStatus = async (phoneNumber) => {
   }
 };
 
-// Updated proxy function with cache busting
-const fetchWithProxyReal = async (phoneNumber, timestamp) => {
-  try {
-    // Try different proxies
-    const proxies = [
-      'https://api.allorigins.win/raw?url=',
-      'https://corsproxy.io/?',
-      'https://api.codetabs.com/v1/proxy?quest='
-    ];
+// JSONP approach for Google Apps Script
+const checkProjectStatusJSONP = (phoneNumber, timestamp) => {
+  return new Promise((resolve) => {
+    const cleanPhone = phoneNumber.toString().trim();
     
-    for (const proxy of proxies) {
-      try {
-        const encodedUrl = encodeURIComponent(`${STATUS_API_URL}?nocache=${timestamp}`);
-        const response = await fetch(proxy + encodedUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ "Number": phoneNumber }),
-        });
-        
-        if (response.ok) {
-          const data = await response.json();
-          console.log(`Proxy ${proxy} success for ${phoneNumber}:`, data);
-          return data;
-        }
-      } catch (proxyError) {
-        console.log(`Proxy ${proxy} failed:`, proxyError.message);
-        continue;
-      }
-    }
+    // Create a unique callback function name
+    const callbackName = 'jsonpCallback_' + Date.now();
     
-    throw new Error('All proxies failed');
+    // Create the script element
+    const script = document.createElement('script');
+    const url = `${STATUS_API_URL}?number=${cleanPhone}&callback=${callbackName}&nocache=${timestamp}`;
     
-  } catch (error) {
-    console.error('All proxy attempts failed:', error);
-    return {
-      success: false,
-      message: "Unable to connect to server."
+    // Define the callback function
+    window[callbackName] = (data) => {
+      // Clean up
+      delete window[callbackName];
+      document.body.removeChild(script);
+      
+      console.log('JSONP response received:', data);
+      resolve(data);
     };
-  }
+    
+    // Set timeout for JSONP request
+    const timeoutId = setTimeout(() => {
+      delete window[callbackName];
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+      console.log('JSONP timeout');
+      resolve({
+        success: false,
+        message: "Request timeout. Please try again."
+      });
+    }, 10000);
+    
+    // Handle script load error
+    script.onerror = () => {
+      clearTimeout(timeoutId);
+      delete window[callbackName];
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+      console.log('JSONP script load error');
+      resolve({
+        success: false,
+        message: "Network error. Please check your connection."
+      });
+    };
+    
+    // Set script source and add to document
+    script.src = url;
+    document.body.appendChild(script);
+    
+    console.log('JSONP request sent for phone:', cleanPhone);
+  });
+};
+
+// Alternative: Use form submission approach (works with Google Apps Script)
+const checkProjectStatusWithForm = async (phoneNumber) => {
+  return new Promise((resolve) => {
+    const cleanPhone = phoneNumber.toString().trim();
+    const timestamp = Date.now();
+    
+    // Create a hidden form
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = `${STATUS_API_URL}?nocache=${timestamp}`;
+    form.style.display = 'none';
+    
+    // Create hidden input for phone number
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'number';
+    input.value = cleanPhone;
+    
+    form.appendChild(input);
+    document.body.appendChild(form);
+    
+    // Submit the form
+    form.submit();
+    
+    // Remove the form
+    setTimeout(() => {
+      document.body.removeChild(form);
+    }, 1000);
+    
+    // Since we can't get response from form submission, return a generic response
+    resolve({
+      success: false,
+      message: "Request submitted. Please check your email for status or contact support."
+    });
+  });
 };
 
   // Send data to Google Sheets
@@ -448,7 +469,7 @@ const fetchWithProxyReal = async (phoneNumber, timestamp) => {
     return indianPhoneRegex.test(phone.trim());
   };
 
-  // Process status enquiry
+  // Process status enquiry - UPDATED with multiple approaches
   const processStatusInfo = async (msg) => {
     if (currentStatusField === "phone") {
       if (msg.trim() && !validateIndianPhone(msg)) {
@@ -463,33 +484,32 @@ const fetchWithProxyReal = async (phoneNumber, timestamp) => {
       setIsSubmitting(true);
       
       try {
+        // Try multiple approaches
         const statusData = await checkProjectStatus(msg.trim());
         
         setIsSubmitting(false);
         
         console.log('Status data received:', statusData);
         
-        if (statusData.success === true) {
-          if (statusData.customerDetails) {
-            const customer = statusData.customerDetails;
-            const botMsg = `✅ Project Status Found!\n\n📋 Your Project Details:\n\n🔄 Status: ${customer.status}\n📊 Progress: ${customer.Progress}%\n➡️ Next Step: ${customer["Next step"]}\n\n👤 Customer: ${customer.Name}\n📱 Phone: ${customer["Phone Number"]}\n📧 Email: ${customer.Email}\n🏗️ Project: ${customer["Project type"]}\n🛠️ Team: ${customer["Imp Team"]}\n📅 Start Date: ${new Date(customer.DOS).toLocaleDateString()}\n🧾 Invoice No: ${customer["Invoice No"]}\n🔗 Link: ${customer.Link !== "---" ? customer.Link : "Not available yet"}\n\nNeed more info? Contact our support team!`;
-            
-            setMessages(prev => [
-              ...prev.slice(0, -1),
-              { sender: "bot", text: botMsg }
-            ]);
-          } else {
-            const botMsg = `✅ Status check completed!\n\n📞 **Contact Support for Details:**\n📧 Email: smyvisiontechnologies@gmail.com\n📞 Phone: +91 8500352005\n💬 WhatsApp: +91 8500352005`;
-            
-            setMessages(prev => [
-              ...prev.slice(0, -1),
-              { sender: "bot", text: botMsg }
-            ]);
-          }
-        } else {
-          console.log('API returned failure:', statusData.message);
+        if (statusData.success === true && statusData.data && statusData.data.length > 0) {
+          const customer = statusData.data[0];
+          const botMsg = `✅ Project Status Found!\n\n📋 Your Project Details:\n\n🔄 Status: ${customer.status}\n📊 Progress: ${customer.Progress}%\n➡️ Next Step: ${customer["Next step"]}\n\n👤 Customer: ${customer.Name}\n📧 Email: ${customer.Email}\n🏗️ Project: ${customer["Project type"]}\n🛠️ Team: ${customer["Imp Team"]}\n📅 Start Date: ${new Date(customer.DOS).toLocaleDateString()}\n🧾 Invoice No: ${customer["Invoice No"]}\n🔗 Link: ${customer.Link !== "--" ? customer.Link : "Not available yet"}\n\nNeed more info? Contact our support team!`;
           
-          const botMsg = `❌ ${statusData.message}\n\n You can register directly in this chat—just tell us your requirement.\n or \nPlease contact our sales team:\n\n📧 Email: smyvisiontechnologies@gmail.com\n📞 Phone: +91 8500352005\n💬 WhatsApp: +91 8500352005`;
+          setMessages(prev => [
+            ...prev.slice(0, -1),
+            { sender: "bot", text: botMsg }
+          ]);
+        } else if (statusData.message && statusData.message.includes("timeout")) {
+          // If timeout, try form submission approach
+          const formResponse = await checkProjectStatusWithForm(msg.trim());
+          const botMsg = `⏱️ Status check is taking longer than expected.\n\n${formResponse.message}\n\nYou can also contact us directly:\n\n📧 Email: smyvisiontechnologies@gmail.com\n📞 Phone: +91 8500352005\n💬 WhatsApp: +91 8500352005`;
+          
+          setMessages(prev => [
+            ...prev.slice(0, -1),
+            { sender: "bot", text: botMsg }
+          ]);
+        } else {
+          const botMsg = `❌ ${statusData.message || "No project found with this phone number."}\n\nYou can register directly in this chat—just tell us your requirement.\n\nor\n\nPlease contact our sales team:\n\n📧 Email: smyvisiontechnologies@gmail.com\n📞 Phone: +91 8500352005\n💬 WhatsApp: +91 8500352005`;
           
           setMessages(prev => [
             ...prev.slice(0, -1),
@@ -1709,7 +1729,7 @@ const fetchWithProxyReal = async (phoneNumber, timestamp) => {
             }
             100% {
               transform: scale(1);
-              box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+              boxShadow: 0 0 0 0 rgba(79, 70, 229, 0);
             }
           }
           
