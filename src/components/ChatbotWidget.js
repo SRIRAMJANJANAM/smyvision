@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-const ChatbotWidget = () => {
+const ChatbotWidget = ({ setIsChatbotOpen }) => {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
     { sender: "bot", text: "Hi there! 👋 I'm your assistant from SMYVISION. How can I help you today?" }
@@ -85,12 +85,20 @@ const ChatbotWidget = () => {
     }
   };
 
+  // Toggle chatbot visibility
+  const handleToggle = () => {
+    const newState = !open;
+    setOpen(newState);
+    setIsChatbotOpen(newState);
+  };
+
   // Clear all cache and reset everything
   const clearAllCache = () => {
     console.log("Clearing all chat cache and resetting state");
     
     // Reset all state variables
     setOpen(false);
+    setIsChatbotOpen(false);
     setMessages([
       { sender: "bot", text: `${getTimeBasedGreeting()}! 👋 I'm your assistant from SMYVISION. How can I help you today?` }
     ]);
@@ -149,6 +157,12 @@ const ChatbotWidget = () => {
     }
   };
 
+  // Close chatbot
+  const handleClose = () => {
+    setOpen(false);
+    setIsChatbotOpen(false);
+  };
+
   // Auto-focus input when chat opens or message sent
   useEffect(() => {
     if (open && inputRef.current) {
@@ -192,131 +206,117 @@ const ChatbotWidget = () => {
     }, delay);
   };
 
-  // API call to check project status - FIXED for Google Apps Script CORS
-  // In your React component, change checkProjectStatus function:
-const checkProjectStatus = async (phoneNumber) => {
-  try {
-    const cleanPhone = phoneNumber.toString().trim();
-    const timestamp = Date.now();
-    
-    // Use GET request with URL parameter
-    const url = `${STATUS_API_URL}?number=${cleanPhone}&nocache=${timestamp}`;
-    
-    const response = await fetch(url);
-    
-    if (response.ok) {
-      const data = await response.json();
-      console.log('Status check response:', data);
-      return data;
-    } else {
-      console.error('Status check failed:', response.status);
+  // API call to check project status
+  const checkProjectStatus = async (phoneNumber) => {
+    try {
+      const cleanPhone = phoneNumber.toString().trim();
+      const timestamp = Date.now();
+      
+      const url = `${STATUS_API_URL}?number=${cleanPhone}&nocache=${timestamp}`;
+      
+      const response = await fetch(url);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Status check response:', data);
+        return data;
+      } else {
+        console.error('Status check failed:', response.status);
+        return {
+          success: false,
+          message: `Server error: ${response.status}`
+        };
+      }
+    } catch (error) {
+      console.error("Error in checkProjectStatus:", error);
       return {
         success: false,
-        message: `Server error: ${response.status}`
+        message: "Network error. Please try again."
       };
     }
-  } catch (error) {
-    console.error("Error in checkProjectStatus:", error);
-    return {
-      success: false,
-      message: "Network error. Please try again."
-    };
-  }
-};
+  };
 
-// JSONP approach for Google Apps Script
-const checkProjectStatusJSONP = (phoneNumber, timestamp) => {
-  return new Promise((resolve) => {
-    const cleanPhone = phoneNumber.toString().trim();
-    
-    // Create a unique callback function name
-    const callbackName = 'jsonpCallback_' + Date.now();
-    
-    // Create the script element
-    const script = document.createElement('script');
-    const url = `${STATUS_API_URL}?number=${cleanPhone}&callback=${callbackName}&nocache=${timestamp}`;
-    
-    // Define the callback function
-    window[callbackName] = (data) => {
-      // Clean up
-      delete window[callbackName];
-      document.body.removeChild(script);
+  // JSONP approach for Google Apps Script
+  const checkProjectStatusJSONP = (phoneNumber, timestamp) => {
+    return new Promise((resolve) => {
+      const cleanPhone = phoneNumber.toString().trim();
       
-      console.log('JSONP response received:', data);
-      resolve(data);
-    };
-    
-    // Set timeout for JSONP request
-    const timeoutId = setTimeout(() => {
-      delete window[callbackName];
-      if (document.body.contains(script)) {
+      const callbackName = 'jsonpCallback_' + Date.now();
+      
+      const script = document.createElement('script');
+      const url = `${STATUS_API_URL}?number=${cleanPhone}&callback=${callbackName}&nocache=${timestamp}`;
+      
+      window[callbackName] = (data) => {
+        delete window[callbackName];
         document.body.removeChild(script);
-      }
-      console.log('JSONP timeout');
-      resolve({
-        success: false,
-        message: "Request timeout. Please try again."
-      });
-    }, 10000);
-    
-    // Handle script load error
-    script.onerror = () => {
-      clearTimeout(timeoutId);
-      delete window[callbackName];
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-      console.log('JSONP script load error');
-      resolve({
-        success: false,
-        message: "Network error. Please check your connection."
-      });
-    };
-    
-    // Set script source and add to document
-    script.src = url;
-    document.body.appendChild(script);
-    
-    console.log('JSONP request sent for phone:', cleanPhone);
-  });
-};
-
-// Alternative: Use form submission approach (works with Google Apps Script)
-const checkProjectStatusWithForm = async (phoneNumber) => {
-  return new Promise((resolve) => {
-    const cleanPhone = phoneNumber.toString().trim();
-    const timestamp = Date.now();
-    
-    // Create a hidden form
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = `${STATUS_API_URL}?nocache=${timestamp}`;
-    form.style.display = 'none';
-    
-    // Create hidden input for phone number
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'number';
-    input.value = cleanPhone;
-    
-    form.appendChild(input);
-    document.body.appendChild(form);
-    
-    // Submit the form
-    form.submit();
-    
-    // Remove the form
-    setTimeout(() => {
-      document.body.removeChild(form);
-    }, 1000);
-    
-    // Since we can't get response from form submission, return a generic response
-    resolve({
-      success: false,
-      message: "Request submitted. Please check your email for status or contact support."
+        
+        console.log('JSONP response received:', data);
+        resolve(data);
+      };
+      
+      const timeoutId = setTimeout(() => {
+        delete window[callbackName];
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+        console.log('JSONP timeout');
+        resolve({
+          success: false,
+          message: "Request timeout. Please try again."
+        });
+      }, 10000);
+      
+      script.onerror = () => {
+        clearTimeout(timeoutId);
+        delete window[callbackName];
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+        console.log('JSONP script load error');
+        resolve({
+          success: false,
+          message: "Network error. Please check your connection."
+        });
+      };
+      
+      script.src = url;
+      document.body.appendChild(script);
+      
+      console.log('JSONP request sent for phone:', cleanPhone);
     });
-  });
-};
+  };
+
+  // Alternative: Use form submission approach
+  const checkProjectStatusWithForm = async (phoneNumber) => {
+    return new Promise((resolve) => {
+      const cleanPhone = phoneNumber.toString().trim();
+      const timestamp = Date.now();
+      
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = `${STATUS_API_URL}?nocache=${timestamp}`;
+      form.style.display = 'none';
+      
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'number';
+      input.value = cleanPhone;
+      
+      form.appendChild(input);
+      document.body.appendChild(form);
+      
+      form.submit();
+      
+      setTimeout(() => {
+        document.body.removeChild(form);
+      }, 1000);
+      
+      resolve({
+        success: false,
+        message: "Request submitted. Please check your email for status or contact support."
+      });
+    });
+  };
 
   // Send data to Google Sheets
   const sendToGoogleSheet = async (data) => {
@@ -469,7 +469,7 @@ const checkProjectStatusWithForm = async (phoneNumber) => {
     return indianPhoneRegex.test(phone.trim());
   };
 
-  // Process status enquiry - UPDATED with multiple approaches
+  // Process status enquiry
   const processStatusInfo = async (msg) => {
     if (currentStatusField === "phone") {
       if (msg.trim() && !validateIndianPhone(msg)) {
@@ -484,7 +484,6 @@ const checkProjectStatusWithForm = async (phoneNumber) => {
       setIsSubmitting(true);
       
       try {
-        // Try multiple approaches
         const statusData = await checkProjectStatus(msg.trim());
         
         setIsSubmitting(false);
@@ -500,7 +499,6 @@ const checkProjectStatusWithForm = async (phoneNumber) => {
             { sender: "bot", text: botMsg }
           ]);
         } else if (statusData.message && statusData.message.includes("timeout")) {
-          // If timeout, try form submission approach
           const formResponse = await checkProjectStatusWithForm(msg.trim());
           const botMsg = `⏱️ Status check is taking longer than expected.\n\n${formResponse.message}\n\nYou can also contact us directly:\n\n📧 Email: smyvisiontechnologies@gmail.com\n📞 Phone: +91 8500352005\n💬 WhatsApp: +91 8500352005`;
           
@@ -806,8 +804,7 @@ const checkProjectStatusWithForm = async (phoneNumber) => {
         return "We provide all types of websites and projects 🚀 including static and dynamic websites, full-stack web applications, business and e-commerce websites, portfolios, and custom web solutions. We also build advanced projects like AI chatbots, automation systems, admin dashboards, APIs, and software integrations. Tell us what you need, and we'll build it for you!";
       }
 
-      // ${q}.
-      if (
+    if (
         q.includes("can you do website") ||
         q.includes("can u do website") ||
         q.includes("can you build a website") ||
@@ -1218,7 +1215,7 @@ const checkProjectStatusWithForm = async (phoneNumber) => {
       {/* Chat Icon - On mobile, don't show the X when chat is open */}
       {!isMobile && (
         <div
-          onClick={() => setOpen(!open)}
+          onClick={handleToggle}
           style={getChatIconStyles()}
         >
           {open ? "✕" : "💬"}
@@ -1228,7 +1225,7 @@ const checkProjectStatusWithForm = async (phoneNumber) => {
       {/* Mobile: Show chat icon only when chat is closed */}
       {isMobile && !open && (
         <div
-          onClick={() => setOpen(!open)}
+          onClick={handleToggle}
           style={getChatIconStyles()}
         >
           💬
@@ -1336,31 +1333,28 @@ const checkProjectStatusWithForm = async (phoneNumber) => {
               >
                 {isMobile ? "Clear" : "Clear Chat"}
               </button>
-              {/* Keep the X button in header for mobile too */}
-              {isMobile && (
-                <button
-                  onClick={() => setOpen(false)}
-                  disabled={isSubmitting || isTyping}
-                  style={{
-                    background: "rgb(255, 0, 0)",
-                    border: "none",
-                    color: "white",
-                    width: "28px",
-                    height: "28px",
-                    borderRadius: "50%",
-                    cursor: (isSubmitting || isTyping) ? "not-allowed" : "pointer",
-                    fontSize: "16px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    opacity: (isSubmitting || isTyping) ? 0.6 : 1,
-                    backdropFilter: "blur(10px)",
-                    flexShrink: 0
+              <button
+                onClick={handleClose}
+                disabled={isSubmitting || isTyping}
+                style={{
+                  background: "rgba(255, 0, 0, 0.8)",
+                  border: "none",
+                  color: "white",
+                  width: "28px",
+                  height: "28px",
+                  borderRadius: "50%",
+                  cursor: (isSubmitting || isTyping) ? "not-allowed" : "pointer",
+                  fontSize: "16px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  opacity: (isSubmitting || isTyping) ? 0.6 : 1,
+                  backdropFilter: "blur(10px)",
+                  flexShrink: 0
                 }}
-                >
-                  ✕
-                </button>
-              )}
+              >
+                ✕
+              </button>
             </div>
           </div>
 

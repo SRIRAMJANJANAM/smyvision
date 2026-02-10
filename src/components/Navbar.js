@@ -240,6 +240,14 @@ function Navbar() {
               <h1 className="logo-main" itemProp="name">SMYVISION</h1>
               <span className="logo-tagline" itemProp="description">TECHNOLOGIES</span>
             </div>
+            
+            {/* Mobile-only company name text with stacked layout */}
+            {isMobile && (
+              <div className="mobile-company-name">
+                <div className="mobile-company-main">SMYVISION</div>
+                <div className="mobile-company-sub">TECHNOLOGIES</div>
+              </div>
+            )}
           </div>
         </Link>
 
@@ -596,6 +604,35 @@ function Navbar() {
           letter-spacing: 1.5px;
           text-transform: uppercase;
           margin-top: 4px;
+        }
+
+        /* Mobile-only company name with stacked layout */
+        .mobile-company-name {
+          display: none;
+          flex-direction: column;
+          margin-left: 8px;
+          line-height: 1.1;
+        }
+
+        .mobile-company-main {
+          font-size: 1.1rem;
+          font-weight: 800;
+          background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          letter-spacing: -0.3px;
+          white-space: nowrap;
+        }
+
+        .mobile-company-sub {
+          font-size: 0.65rem;
+          font-weight: 600;
+          color: #64748b;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          margin-top: 2px;
+          white-space: nowrap;
         }
 
         /* Desktop Navigation */
@@ -1043,14 +1080,31 @@ function Navbar() {
           .mobile-services-trigger .mobile-nav-icon {
             margin-right: 12px;
           }
+          
+          /* Show mobile company name in mobile view */
+          .mobile-company-name {
+            display: flex;
+          }
+          
+          /* Hide the regular logo text in mobile view */
+          .logo-text-container {
+            display: none;
+          }
         }
 
         @media (max-width: 768px) {
-          .logo-text-container {
-            display: ${isScrolled ? 'none' : 'flex'};
+          .mobile-company-main {
+            font-size: 1rem;
           }
           
+          .mobile-company-sub {
+            font-size: 0.6rem;
+            letter-spacing: 0.8px;
+          }
           
+          .mobile-company-name {
+            margin-left: 6px;
+          }
         }
 
         @media (max-width: 640px) {
@@ -1066,14 +1120,73 @@ function Navbar() {
             padding: 0 16px;
           }
 
-          .logo-text-container {
-            display: none;
+          .mobile-company-main {
+            font-size: 0.95rem;
           }
-
           
+          .mobile-company-sub {
+            font-size: 0.55rem;
+            letter-spacing: 0.7px;
+          }
+          
+          .mobile-company-name {
+            margin-left: 5px;
+          }
           
           .mobile-services-trigger .mobile-nav-icon {
             margin-right: 10px;
+          }
+          
+          /* Adjust logo image size for smaller screens */
+          .logo-image-container {
+            width: 40px;
+            height: 40px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .mobile-company-main {
+            font-size: 0.9rem;
+          }
+          
+          .mobile-company-sub {
+            font-size: 0.5rem;
+            letter-spacing: 0.6px;
+          }
+          
+          .logo-wrapper {
+            gap: 8px;
+          }
+        }
+        
+        @media (max-width: 400px) {
+          .mobile-company-main {
+            font-size: 0.85rem;
+          }
+          
+          .mobile-company-sub {
+            font-size: 0.45rem;
+          }
+          
+          .mobile-company-name {
+            margin-left: 4px;
+          }
+        }
+
+        /* Very small screens */
+        @media (max-width: 360px) {
+          .mobile-company-main {
+            font-size: 0.8rem;
+          }
+          
+          .mobile-company-sub {
+            font-size: 0.42rem;
+            letter-spacing: 0.5px;
+          }
+          
+          .logo-image-container {
+            width: 35px;
+            height: 35px;
           }
         }
 
@@ -1106,6 +1219,10 @@ function Navbar() {
           
           .logo-image {
             filter: grayscale(100%);
+          }
+          
+          .mobile-company-name {
+            display: none !important;
           }
         }
       `}</style>
