@@ -99,7 +99,7 @@ const SEOStructuredData = () => {
         "sameAs": [
           "https://www.linkedin.com/company/smyvisiontechnologies",
           "https://twitter.com/smyvisiontech",
-          "https://facebook.com/smyvisiontechnologies"
+          "https://www.facebook.com/share/1AAbW51BTs/"
         ]
       },
       {
@@ -170,7 +170,7 @@ const HiddenSEOText = () => {
       opacity: '0',
       pointerEvents: 'none'
     }}>
-      <h1>SMYVISION TECHNOLOGIES - Top Web Development Company in Vijayawada, Hyderabad, Bangalore</h1>
+      <p>SMYVISION TECHNOLOGIES - Top Web Development Company in Vijayawada, Hyderabad, Bangalore</p>
       <h2>Best Website Development Services | Web Developers in South India</h2>
       
       <p>SMYVISION TECHNOLOGIES is the leading web development company serving businesses in Vijayawada, Hyderabad, and Bangalore. We provide comprehensive digital solutions including professional website development, business automation, and AI chatbot development.</p>
@@ -1323,15 +1323,11 @@ const Home = () => {
     ogDescription.content = 'Professional web development services in Vijayawada, Hyderabad, and Bangalore. Custom website development, automation solutions, and chatbot development.';
     document.head.appendChild(ogDescription);
     
-    // Canonical link
-    const canonicalLink = document.createElement('link');
-    canonicalLink.rel = 'canonical';
-    canonicalLink.href = 'https://smyvision.com';
-    document.head.appendChild(canonicalLink);
+
     
     return () => {
       // Clean up meta tags on unmount
-      document.querySelectorAll('[name="description"], [name="keywords"], [name="geo.region"], [name="geo.placename"], [property="og:title"], [property="og:description"], [rel="canonical"]').forEach(el => el.remove());
+      document.querySelectorAll('[name="description"], [name="keywords"], [name="geo.region"], [name="geo.placename"], [property="og:title"], [property="og:description"]').forEach(el => el.remove());
     };
   }, []);
 
@@ -1623,8 +1619,7 @@ const Home = () => {
         <meta name="twitter:title" content="Top Web Development Company | Vijayawada Hyderabad Bangalore" />
         <meta name="twitter:description" content="Best web development services in Vijayawada, Hyderabad, Bangalore. Professional website solutions for businesses." />
         
-        {/* Canonical and Alternate Links */}
-        <link rel="canonical" href="https://smyvision.com" />
+        {/*  Alternate Links */}
         <link rel="alternate" hrefLang="en-in" href="https://smyvision.com" />
         <link rel="alternate" hrefLang="te-in" href="https://smyvision.com/te" />
         

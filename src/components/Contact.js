@@ -419,7 +419,7 @@ Please follow up with this lead.`;
   ];
 
   const socialMedia = [
-    { icon: <LightIcons.Facebook />, label: 'Facebook', url: 'https://facebook.com/smyvisiontechnolgies', color: '#1877F2' },
+    { icon: <LightIcons.Facebook />, label: 'Facebook', url: 'https://www.facebook.com/share/1AAbW51BTs/', color: '#1877F2' },
     { icon: <LightIcons.Instagram />, label: 'Instagram', url: 'intent://instagram.com/_u/smyvisiontechnologies/#Intent;package=com.instagram.android;scheme=https;end', color: 'linear-gradient(45deg, #833AB4, #FD1D1D, #F77737)' },
     { icon: <LightIcons.Youtube />, label: 'YouTube', url: 'https://www.youtube.com/@SmyvisionTechnologies', color: '#FF0000' },
     { icon: <LightIcons.Twitter />, label: 'Twitter', url: 'https://twitter.com/smyvisiontech', color: '#1DA1F2' },

@@ -115,7 +115,7 @@ const About = () => {
           "sameAs": [
             "https://www.linkedin.com/company/smyvisiontechnologies",
             "https://twitter.com/smyvisiontech",
-            "https://facebook.com/smyvisiontech"
+            "https://www.facebook.com/share/1AAbW51BTs/"
           ]
         }
       ]

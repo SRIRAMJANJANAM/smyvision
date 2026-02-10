@@ -154,7 +154,7 @@ const SEOStructuredData = () => {
     "sameAs": [
       "https://www.linkedin.com/company/smyvisiontechnologies",
       "https://twitter.com/smyvisiontech",
-      "https://facebook.com/smyvisiontechnologies"
+      "https://www.facebook.com/share/1AAbW51BTs/"
     ]
   };
 
@@ -479,7 +479,7 @@ function Services() {
               "closes": "18:00"
             },
             "sameAs": [
-              "https://www.facebook.com/smyvisiontechnologies",
+              "https://www.facebook.com/share/1AAbW51BTs/",
               "https://twitter.com/smyvisiontech",
               "https://www.linkedin.com/company/smyvisiontechnologies"
             ]

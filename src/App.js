@@ -11,6 +11,9 @@ import Footer from "./components/Footer";
 import ChatbotWidget from "./components/ChatbotWidget";
 import ScrollToTop from "./components/ScrollToTop";
 import Preloader from "./components/Preloader"; // 👈 ADD THIS
+import Canonical from "./components/Canonical";
+import SEOManager from "./components/SEOManager";
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -29,8 +32,9 @@ function App() {
 
   return (
     <Router>
+      <Canonical />
       <ScrollToTop />
-
+      <SEOManager /> 
       <Navbar />
 
       <div style={{ marginTop: "3.5vw", minHeight: "80vh", padding: "0.5rem" }}>

@@ -65,7 +65,7 @@ function Footer() {
   ];
 
   const socialLinks = [
-    { icon: <FaFacebookF />, url: 'https://facebook.com/smyvisiontechnologies', label: 'Facebook' },
+    { icon: <FaFacebookF />, url: 'https://www.facebook.com/share/1AAbW51BTs/', label: 'Facebook' },
     { icon: <FaTwitter />, url: 'https://twitter.com/smyvisiontech', label: 'Twitter' },
     { icon: <FaLinkedinIn />, url: 'https://linkedin.com/company/smyvisiontechnologies', label: 'LinkedIn' },
     { icon: <FaInstagram />, url: 'https://instagram.com/smyvisiontechnologies', label: 'Instagram' },
@@ -253,7 +253,15 @@ function Footer() {
             <span style={styles.separator}>•</span>
             <Link to="/" style={styles.legalLink}>Terms of Service</Link>
             <span style={styles.separator}>•</span>
-            <Link to="/" style={styles.legalLink}>Sitemap</Link>
+            <a
+  href="http://localhost:3000/sitemap.xml"
+  style={styles.legalLink}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Sitemap
+</a>
+
           </div>
         </div>
       </div>

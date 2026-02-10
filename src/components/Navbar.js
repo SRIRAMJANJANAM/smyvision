@@ -134,13 +134,13 @@ function Navbar() {
   const servicesItems = [
     { 
       name: "Websites", 
-      path: "/services/websites", 
+      path: "/services", 
       icon: <IconGlobe />,
       description: "Custom responsive website development & design services"
     },
     { 
       name: "Automation", 
-      path: "/services/automation", 
+      path: "/services", 
       icon: <IconCog />,
       description: "Business process automation solutions for efficiency"
     },
