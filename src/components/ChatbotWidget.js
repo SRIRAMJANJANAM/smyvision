@@ -822,7 +822,7 @@ const checkProjectStatusWithForm = async (phoneNumber) => {
         q.includes("yes register")||
         q.includes("register") ||
         q.includes('i need a website') ||
-        q.includes('i need a project')
+        q.includes('i need')
       ) {
         return `
       Please select what you are looking for:
