@@ -58,8 +58,8 @@ function Footer() {
   ];
 
   const services = [
-    { name: 'Website Development', path: '/services/websites', icon: <FaRocket /> },
-    { name: 'Business Automation', path: '/services/automation', icon: <FaLightbulb /> },
+    { name: 'Website Development', path: '/services', icon: <FaRocket /> },
+    { name: 'Business Automation', path: '/services', icon: <FaLightbulb /> },
     // { name: 'Digital Marketing', path: '/services/marketing', icon: <FaChartLine /> },
     // { name: 'Security Solutions', path: '/services/security', icon: <FaShieldAlt /> }
   ];
@@ -254,7 +254,7 @@ function Footer() {
             <Link to="/" style={styles.legalLink}>Terms of Service</Link>
             <span style={styles.separator}>•</span>
             <a
-  href="http://localhost:3000/sitemap.xml"
+  href="/sitemap.xml"
   style={styles.legalLink}
   target="_blank"
   rel="noopener noreferrer"
