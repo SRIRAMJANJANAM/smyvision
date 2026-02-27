@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://smyvisiontechnologies.com/sitemap.xml
+Sitemap: https://smyvision.vercel.app/sitemap.xml
