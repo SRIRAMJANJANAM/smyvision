@@ -6,7 +6,7 @@ function Canonical() {
 
   useEffect(() => {
     const canonicalUrl =
-      "https://smyvisiontechnologies.com" + pathname;
+      "https://smyvision.vercel.app" + pathname;
 
     let link = document.querySelector("link[rel='canonical']");
 

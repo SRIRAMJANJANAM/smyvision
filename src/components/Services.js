@@ -77,7 +77,7 @@ const SEOStructuredData = () => {
     "@type": "WebDevelopmentCompany",
     "name": "SMYVISION TECHNOLOGIES",
     "description": "Top web development company in Vijayawada, Hyderabad, and Bangalore offering professional website development, automation solutions, and chatbot development services.",
-    "url": "https://smyvision.com",
+    "url": "https://smyvision.vercel.app",
     "founder": "Sri Ram Janjanam",
     "foundingDate": "2026",
     "address": {
@@ -297,7 +297,7 @@ function Services() {
       { property: 'og:title', content: 'Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION' },
       { property: 'og:description', content: 'Professional website development services in Vijayawada, Hyderabad, and Bangalore. Custom web solutions, automation, and chatbot development for businesses.' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: 'https://smyvision.com/services' },
+      { property: 'og:url', content: 'https://smyvision.vercel.app/services' },
       { property: 'og:locale', content: 'en_IN' },
       { property: 'og:locale:alternate', content: 'te_IN' },
       
@@ -318,7 +318,7 @@ function Services() {
     // Canonical URL
     const canonicalLink = document.createElement('link');
     canonicalLink.rel = 'canonical';
-    canonicalLink.href = 'https://smyvision.com/services';
+    canonicalLink.href = 'https://smyvision.vercel.app/services';
     document.head.appendChild(canonicalLink);
 
     // Page Title with location keywords
@@ -436,11 +436,11 @@ function Services() {
         <meta name="geo.position" content="16.5062;80.6480" />
         <meta name="ICBM" content="16.5062, 80.6480" />
         <meta name="location" content="Vijayawada, Hyderabad, Bangalore, India" />
-        <link rel="canonical" href="https://smyvision.com/services" />
+        <link rel="canonical" href="https://smyvision.vercel.app/services" />
         
         {/* Location-specific alternate URLs */}
-        <link rel="alternate" hrefLang="en-in" href="https://smyvision.com/services" />
-        <link rel="alternate" hrefLang="te-in" href="https://smyvision.com/te/services" />
+        <link rel="alternate" hrefLang="en-in" href="https://smyvision.vercel.app/services" />
+        <link rel="alternate" hrefLang="te-in" href="https://smyvision.vercel.app/te/services" />
         
         {/* Local business schema */}
         <script type="application/ld+json">
@@ -448,9 +448,9 @@ function Services() {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "SMYVISION TECHNOLOGIES",
-            "image": "https://smyvision.com/logo.png",
-            "@id": "https://smyvision.com",
-            "url": "https://smyvision.com",
+            "image": "https://smyvision.vercel.app/logo.png",
+            "@id": "https://smyvision.vercel.app",
+            "url": "https://smyvision.vercel.app",
             "telephone": "+918500352005",
             "priceRange": "2999",
             "address": {

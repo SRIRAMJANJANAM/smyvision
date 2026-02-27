@@ -202,7 +202,7 @@ function Navbar() {
       itemType="https://schema.org/Organization"
     >
       <meta itemProp="name" content="SMYVISION Technologies" />
-      <link itemProp="url" href="https://smyvision.com" />
+      <link itemProp="url" href="https://smyvision.vercel.app" />
       
       <nav 
         className="navbar"
@@ -492,7 +492,7 @@ function Navbar() {
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                       <polyline points="22,6 12,13 2,6"></polyline>
                     </svg>
-                    <span itemProp="email">info@smyvision.com</span>
+                    <span itemProp="email">smyvisiontechnologies@gmail.com</span>
                   </div>
                 </div>
               </div>

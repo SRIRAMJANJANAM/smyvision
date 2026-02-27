@@ -27,11 +27,11 @@ const SEOStructuredData = () => {
     "@graph": [
       {
         "@type": "WebDevelopmentCompany",
-        "@id": "https://smyvision.com/#company",
+        "@id": "https://smyvision.vercel.app/#company",
         "name": "SMYVISION TECHNOLOGIES",
         "description": "Top web development company in Vijayawada, Hyderabad, and Bangalore offering professional website development, automation solutions, and chatbot development services.",
-        "url": "https://smyvision.com",
-        "logo": "https://smyvision.com/logo.png",
+        "url": "https://smyvision.vercel.app",
+        "logo": "https://smyvision.vercel.app/logo.png",
         "founder": "Sri Ram Janjanam",
         "foundingDate": "2026",
         "address": {
@@ -104,17 +104,17 @@ const SEOStructuredData = () => {
       },
       {
         "@type": "WebPage",
-        "@id": "https://smyvision.com/#webpage",
-        "url": "https://smyvision.com",
+        "@id": "https://smyvision.vercel.app/#webpage",
+        "url": "https://smyvision.vercel.app",
         "name": "Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION",
         "description": "Professional web development services in Vijayawada, Hyderabad, and Bangalore. Custom website development, automation solutions, and chatbot development.",
         "isPartOf": {
-          "@id": "https://smyvision.com/#website"
+          "@id": "https://smyvision.vercel.app/#website"
         },
         "inLanguage": "en-IN",
         "potentialAction": [{
           "@type": "ReadAction",
-          "target": ["https://smyvision.com"]
+          "target": ["https://smyvision.vercel.app"]
         }]
       },
       {
@@ -122,7 +122,7 @@ const SEOStructuredData = () => {
         "name": "Website Development",
         "serviceType": "WebDevelopment",
         "provider": {
-          "@id": "https://smyvision.com/#company"
+          "@id": "https://smyvision.vercel.app/#company"
         },
         "areaServed": "Vijayawada, Hyderabad, Bangalore",
         "description": "Professional website development services for businesses in Vijayawada, Hyderabad, and Bangalore"
@@ -132,7 +132,7 @@ const SEOStructuredData = () => {
         "name": "Automation Solutions",
         "serviceType": "BusinessAutomation",
         "provider": {
-          "@id": "https://smyvision.com/#company"
+          "@id": "https://smyvision.vercel.app/#company"
         },
         "areaServed": "Vijayawada, Hyderabad, Bangalore",
         "description": "Business automation solutions for companies in South India"
@@ -142,7 +142,7 @@ const SEOStructuredData = () => {
         "name": "Chatbot Development",
         "serviceType": "SoftwareDevelopment",
         "provider": {
-          "@id": "https://smyvision.com/#company"
+          "@id": "https://smyvision.vercel.app/#company"
         },
         "areaServed": "Vijayawada, Hyderabad, Bangalore",
         "description": "AI-powered chatbot development services"
@@ -215,7 +215,7 @@ const HiddenSEOText = () => {
       <p>For professional web development services in Vijayawada, Hyderabad, or Bangalore, contact us today:</p>
       <ul>
         <li>Phone: 8500352005</li>
-        <li>Email: info@smyvision.com</li>
+        <li>Email: smyvisiontechnologies@gmail.com</li>
         <li>Service Areas: Vijayawada, Hyderabad, Bangalore, Andhra Pradesh, Telangana, Karnataka</li>
       </ul>
       
@@ -1610,7 +1610,7 @@ const Home = () => {
         <meta property="og:title" content="Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION" />
         <meta property="og:description" content="Professional web development services in Vijayawada, Hyderabad, and Bangalore. Custom website development, automation solutions, and chatbot development." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://smyvision.com" />
+        <meta property="og:url" content="https://smyvision.vercel.app" />
         <meta property="og:locale" content="en_IN" />
         <meta property="og:locale:alternate" content="te_IN" />
         
@@ -1620,8 +1620,8 @@ const Home = () => {
         <meta name="twitter:description" content="Best web development services in Vijayawada, Hyderabad, Bangalore. Professional website solutions for businesses." />
         
         {/*  Alternate Links */}
-        <link rel="alternate" hrefLang="en-in" href="https://smyvision.com" />
-        <link rel="alternate" hrefLang="te-in" href="https://smyvision.com/te" />
+        <link rel="alternate" hrefLang="en-in" href="https://smyvision.vercel.app" />
+        <link rel="alternate" hrefLang="te-in" href="https://smyvision.vercel.app/te" />
         
         {/* Additional Meta Tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
