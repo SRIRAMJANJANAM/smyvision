@@ -2,27 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://smyvision.vercel.app/</loc>
+    <loc>https://smyvisiontechnologies.vercel.app/</loc>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://smyvision.vercel.app/about</loc>
+    <loc>https://smyvisiontechnologies.vercel.app/about</loc>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://smyvision.vercel.app/services</loc>
+    <loc>https://smyvisiontechnologies.vercel.app/services</loc>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://smyvision.vercel.app/careers</loc>
+    <loc>https://smyvisiontechnologies.vercel.app/careers</loc>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://smyvision.vercel.app/contact</loc>
+    <loc>https://smyvisiontechnologies.vercel.app/contact</loc>
     <priority>0.6</priority>
   </url>
 

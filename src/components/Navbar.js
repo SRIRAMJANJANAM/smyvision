@@ -202,7 +202,7 @@ function Navbar() {
       itemType="https://schema.org/Organization"
     >
       <meta itemProp="name" content="SMYVISION Technologies" />
-      <link itemProp="url" href="https://smyvision.vercel.app" />
+      <link itemProp="url" href="https://smyvisiontechnologies.vercel.app" />
       
       <nav 
         className="navbar"

@@ -13,25 +13,25 @@ const About = () => {
       "@graph": [
         {
           "@type": "AboutPage",
-          "@id": "https://smyvision.vercel.app/about#webpage",
-          "url": "https://smyvision.vercel.app/about",
+          "@id": "https://smyvisiontechnologies.vercel.app/about#webpage",
+          "url": "https://smyvisiontechnologies.vercel.app/about",
           "name": "About SMYVISION TECHNOLOGIES - Top Web Development Company in Vijayawada, Hyderabad, Bangalore",
           "description": "Learn about SMYVISION TECHNOLOGIES, the leading web development company in Vijayawada, Hyderabad, and Bangalore offering website development, automation solutions, and chatbot services.",
           "isPartOf": {
-            "@id": "https://smyvision.vercel.app/#website"
+            "@id": "https://smyvisiontechnologies.vercel.app/#website"
           },
           "inLanguage": "en-IN",
           "about": {
-            "@id": "https://smyvision.vercel.app/#company"
+            "@id": "https://smyvisiontechnologies.vercel.app/#company"
           }
         },
         {
           "@type": "WebDevelopmentCompany",
-          "@id": "https://smyvision.vercel.app/#company",
+          "@id": "https://smyvisiontechnologies.vercel.app/#company",
           "name": "SMYVISION TECHNOLOGIES",
           "description": "Top web development company in Vijayawada, Hyderabad, and Bangalore offering professional website development, automation solutions, and chatbot development services.",
-          "url": "https://smyvision.vercel.app",
-          "logo": "https://smyvision.vercel.app/logo.png",
+          "url": "https://smyvisiontechnologies.vercel.app",
+          "logo": "https://smyvisiontechnologies.vercel.app/logo.png",
           "founder": "SMYVISION Team",
           "foundingDate": "2020",
           "address": {
@@ -668,7 +668,7 @@ const About = () => {
         <meta property="og:title" content="About SMYVISION TECHNOLOGIES - Top Web Development Company in Vijayawada, Hyderabad, Bangalore" />
         <meta property="og:description" content="Learn about SMYVISION TECHNOLOGIES, the leading web development company in Vijayawada, Hyderabad, and Bangalore offering website development, automation solutions, and chatbot services." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://smyvision.vercel.app/about" />
+        <meta property="og:url" content="https://smyvisiontechnologies.vercel.app/about" />
         <meta property="og:locale" content="en_IN" />
         <meta property="og:locale:alternate" content="te_IN" />
         
@@ -678,9 +678,9 @@ const About = () => {
         <meta name="twitter:description" content="Leading web development company in Vijayawada, Hyderabad, Bangalore. Professional website solutions for businesses." />
         
         {/* Canonical and Alternate Links */}
-        <link rel="canonical" href="https://smyvision.vercel.app/about" />
-        <link rel="alternate" hrefLang="en-in" href="https://smyvision.vercel.app/about" />
-        <link rel="alternate" hrefLang="te-in" href="https://smyvision.vercel.app/te/about" />
+        <link rel="canonical" href="https://smyvisiontechnologies.vercel.app/about" />
+        <link rel="alternate" hrefLang="en-in" href="https://smyvisiontechnologies.vercel.app/about" />
+        <link rel="alternate" hrefLang="te-in" href="https://smyvisiontechnologies.vercel.app/te/about" />
         
         {/* Additional Meta Tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -2687,7 +2687,7 @@ const About = () => {
             "@type": "AboutPage",
             "name": "About SMYVISION TECHNOLOGIES",
             "description": "Learn about SMYVISION TECHNOLOGIES, a leading web development company in Vijayawada, Hyderabad, and Bangalore offering website development, automation solutions, and chatbot services.",
-            "url": "https://smyvision.vercel.app/about",
+            "url": "https://smyvisiontechnologies.vercel.app/about",
             "mainEntity": {
               "@type": "Organization",
               "name": "SMYVISION TECHNOLOGIES",
