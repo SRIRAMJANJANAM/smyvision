@@ -6,11 +6,11 @@ function Navbar() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
   const location = useLocation();
   const navbarRef = useRef(null);
   const servicesRef = useRef(null);
 
-  // Check for mobile view
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 1024);
@@ -24,16 +24,23 @@ function Navbar() {
     return () => window.removeEventListener("resize", checkMobile);
   }, [isMenuOpen]);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 8);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu when clicking outside
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isMenuOpen]);
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (navbarRef.current && !navbarRef.current.contains(e.target)) {
@@ -46,181 +53,148 @@ function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Close services dropdown when clicking outside on desktop
-  useEffect(() => {
-    const handleServicesClick = (e) => {
-      if (
-        servicesRef.current &&
-        !servicesRef.current.contains(e.target) &&
-        !isMobile
-      ) {
-        setIsServicesOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleServicesClick);
-    return () => document.removeEventListener("mousedown", handleServicesClick);
-  }, [isMobile]);
-
-  // Close dropdowns when navigating
   useEffect(() => {
     setIsServicesOpen(false);
     if (isMobile) setIsMenuOpen(false);
   }, [location.pathname, isMobile]);
 
-  // Import your logo - adjust the path as needed
-  const logoUrl = "/Logo.png"; // or "/public/logo.png" depending on your setup
+  const logoUrl = "/Logo.png";
 
-  // SVG Icons for better quality and customization
   const IconHome = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
   );
 
   const IconCode = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="16 18 22 12 16 6"></polyline>
-      <polyline points="8 6 2 12 8 18"></polyline>
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
     </svg>
   );
 
   const IconUsers = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-      <circle cx="9" cy="7" r="4"></circle>
-      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
     </svg>
   );
 
   const IconBriefcase = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+      <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
     </svg>
   );
 
   const IconMail = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-      <polyline points="22,6 12,13 2,6"></polyline>
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+      <polyline points="22,6 12,13 2,6" />
     </svg>
   );
 
   const IconGlobe = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10"></circle>
-      <line x1="2" y1="12" x2="22" y2="12"></line>
-      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
     </svg>
   );
 
   const IconCog = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="3"></circle>
-      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
     </svg>
   );
 
   const IconSparkles = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 18l6-6-6-6"/>
+      <path d="M9 18l6-6-6-6" />
     </svg>
   );
 
-  // Services data with SEO-friendly descriptions
   const servicesItems = [
-    { 
-      name: "Websites", 
-      path: "/services", 
+    {
+      name: "Websites",
+      path: "/services",
       icon: <IconGlobe />,
-      description: "Custom responsive website development & design services"
+      description: "Custom responsive website development & design services",
     },
-    { 
-      name: "Automation", 
-      path: "/services", 
+    {
+      name: "Automation",
+      path: "/services",
       icon: <IconCog />,
-      description: "Business process automation solutions for efficiency"
+      description: "Business process automation solutions for efficiency",
     },
-    { 
-      name: "Explore All Services", 
-      path: "/services", 
+    {
+      name: "Explore All Services",
+      path: "/services",
       icon: <IconSparkles />,
-      description: "View all our technology and digital services"
-    }
+      description: "View all our technology and digital services",
+    },
   ];
 
   const navLinks = [
-    { 
-      name: "Home", 
-      path: "/", 
+    {
+      name: "Home",
+      path: "/",
       title: "Home | SMYVISION Technologies",
-      icon: <IconHome />
+      icon: <IconHome />,
     },
-    { 
-      name: "About", 
-      path: "/about", 
+    {
+      name: "About",
+      path: "/about",
       title: "About Us | SMYVISION Technologies",
-      icon: <IconUsers />
+      icon: <IconUsers />,
     },
-    { 
-      name: "Careers", 
-      path: "/careers", 
+    {
+      name: "Careers",
+      path: "/careers",
       title: "Careers | Join SMYVISION",
-      icon: <IconBriefcase />
-    }
+      icon: <IconBriefcase />,
+    },
   ];
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    if (!isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    setIsMenuOpen((prev) => !prev);
   };
 
   const toggleServices = (e) => {
     e.stopPropagation();
-    setIsServicesOpen(!isServicesOpen);
+    setIsServicesOpen((prev) => !prev);
   };
 
   return (
-    <header 
+    <header
       ref={navbarRef}
-      className={`navbar-container ${isScrolled ? 'scrolled' : ''}`}
-      style={{
-        background: isScrolled
-  ? "linear-gradient(90deg, #bbd3ff, #ffffff)"
-  : "linear-gradient(90deg, #ffffff, #bbd3ff)",
-        backdropFilter: isScrolled ? 'blur(10px)' : 'none',
-        boxShadow: isScrolled ? '0 4px 30px rgb(26, 72, 172)' : '0 1px 0 rgb(118, 108, 255)'
-      }}
+      className={`navbar-container ${isScrolled ? "scrolled" : ""}`}
       itemScope
       itemType="https://schema.org/Organization"
     >
       <meta itemProp="name" content="SMYVISION Technologies" />
       <link itemProp="url" href="https://smyvisiontechnologies.vercel.app" />
-      
-      <nav 
+
+      <nav
         className="navbar"
         aria-label="Main Navigation"
         itemScope
         itemType="https://schema.org/SiteNavigationElement"
       >
-        {/* Logo with Schema.org markup */}
-        <Link 
-          to="/" 
+        <Link
+          to="/"
           className="logo-link"
           aria-label="SMYVISION Technologies Home"
           itemProp="url"
         >
           <div className="logo-wrapper" itemScope itemType="https://schema.org/ImageObject">
             <div className="logo-image-container">
-              <img 
-                src={logoUrl} 
+              <img
+                src={logoUrl}
                 alt="SMYVISION Technologies Logo"
                 className="logo-image"
                 width="40"
@@ -228,20 +202,20 @@ function Navbar() {
                 loading="lazy"
                 itemProp="contentUrl"
                 onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextElementSibling.style.display = 'block';
+                  e.target.style.display = "none";
+                  e.target.nextElementSibling.style.display = "block";
                 }}
               />
-              <div className="logo-fallback" style={{display: 'none'}}>
+              <div className="logo-fallback" style={{ display: "none" }}>
                 <div className="logo-icon">SV</div>
               </div>
             </div>
+
             <div className="logo-text-container">
               <h1 className="logo-main" itemProp="name">SMYVISION</h1>
               <span className="logo-tagline" itemProp="description">TECHNOLOGIES</span>
             </div>
-            
-            {/* Mobile-only company name text with stacked layout */}
+
             {isMobile && (
               <div className="mobile-company-name">
                 <div className="mobile-company-main">SMYVISION</div>
@@ -251,21 +225,19 @@ function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="desktop-nav">
           {navLinks.map((link) => (
-            <NavLink 
+            <NavLink
               key={link.path}
-              to={link.path} 
+              to={link.path}
               label={link.name}
               title={link.title}
               current={location.pathname === link.path}
               icon={link.icon}
             />
           ))}
-          
-          {/* Services Dropdown for Desktop */}
-          <div 
+
+          <div
             ref={servicesRef}
             className="services-container"
             onMouseEnter={() => !isMobile && setIsServicesOpen(true)}
@@ -274,8 +246,8 @@ function Navbar() {
             itemType="https://schema.org/Service"
           >
             <button
-              className={`services-trigger ${isServicesOpen ? 'active' : ''} ${
-                location.pathname.startsWith("/services") ? 'current' : ''
+              className={`services-trigger ${isServicesOpen ? "active" : ""} ${
+                location.pathname.startsWith("/services") ? "current" : ""
               }`}
               onClick={toggleServices}
               aria-expanded={isServicesOpen}
@@ -287,29 +259,12 @@ function Navbar() {
                 <IconCode />
               </span>
               Services
-              <svg 
-                className={`dropdown-arrow ${isServicesOpen ? 'open' : ''}`}
-                width="12" 
-                height="12" 
-                viewBox="0 0 12 12"
-                aria-hidden="true"
-              >
-                <path 
-                  d="M2 4.5L6 8.5L10 4.5" 
-                  stroke="currentColor" 
-                  strokeWidth="1.5" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                />
+              <svg className={`dropdown-arrow ${isServicesOpen ? "open" : ""}`} width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M2 4.5L6 8.5L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
 
-            {/* Services Dropdown Menu */}
-            <div 
-              className={`services-dropdown ${isServicesOpen ? 'open' : ''}`}
-              aria-label="Our Services Menu"
-              role="menu"
-            >
+            <div className={`services-dropdown ${isServicesOpen ? "open" : ""}`} aria-label="Our Services Menu" role="menu">
               {servicesItems.map((item, index) => (
                 <Link
                   key={index}
@@ -318,38 +273,25 @@ function Navbar() {
                   onClick={() => setIsServicesOpen(false)}
                   role="menuitem"
                   aria-label={item.description}
-                  title={item.description}
                   itemProp="hasOfferCatalog"
                   itemScope
                   itemType="https://schema.org/OfferCatalog"
                 >
                   <span className="service-icon" aria-hidden="true">{item.icon}</span>
-                  <div>
+                  <div className="service-content">
                     <div className="service-name" itemProp="name">{item.name}</div>
                     <div className="service-description" itemProp="description">{item.description}</div>
                   </div>
-                  <svg 
-                    className="arrow-right"
-                    width="16" 
-                    height="16" 
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                  >
-                    <path 
-                      d="M6 12L10 8L6 4" 
-                      stroke="currentColor" 
-                      strokeWidth="1.5" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                    />
+                  <svg className="arrow-right" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </Link>
               ))}
             </div>
           </div>
 
-          <Link 
-            to="/contact" 
+          <Link
+            to="/contact"
             className="contact-button"
             aria-label="Contact SMYVISION Technologies"
             title="Contact Us for Technology Solutions"
@@ -359,24 +301,14 @@ function Navbar() {
           >
             <span className="button-icon" aria-hidden="true"><IconMail /></span>
             Get In Touch
-            <svg 
-              className="button-arrow"
-              width="16" 
-              height="16" 
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-              <path 
-                d="M8 0L16 8L8 16L6.8 14.8L13.6 8L6.8 1.2L8 0Z" 
-                fill="currentColor"
-              />
+            <svg className="button-arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 0L16 8L8 16L6.8 14.8L13.6 8L6.8 1.2L8 0Z" fill="currentColor" />
             </svg>
           </Link>
         </div>
 
-        {/* Mobile Hamburger Menu Button */}
         <button
-          className={`hamburger ${isMenuOpen ? 'open' : ''}`}
+          className={`hamburger ${isMenuOpen ? "open" : ""}`}
           aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMenuOpen}
           onClick={toggleMenu}
@@ -387,9 +319,8 @@ function Navbar() {
           <span className="hamburger-line"></span>
         </button>
 
-        {/* Mobile Navigation Menu */}
-        <div 
-          className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}
+        <div
+          className={`mobile-menu ${isMenuOpen ? "open" : ""}`}
           id="mobile-menu"
           role="dialog"
           aria-modal="true"
@@ -408,40 +339,27 @@ function Navbar() {
                   description={link.title}
                 />
               ))}
-              
-              {/* Mobile Services Accordion */}
+
               <div className="mobile-services-container">
                 <button
-                  className={`mobile-services-trigger ${isServicesOpen ? 'open' : ''}`}
+                  className={`mobile-services-trigger ${isServicesOpen ? "open" : ""}`}
                   onClick={toggleServices}
                   aria-expanded={isServicesOpen}
                   aria-label="Our Services"
                 >
-                  <span className="mobile-nav-icon" aria-hidden="true">
-                    <IconCode />
+                  <span className="mobile-service-left">
+                    <span className="mobile-nav-icon" aria-hidden="true">
+                      <IconCode />
+                    </span>
+                    Services
                   </span>
-                  Services
-                  <svg 
-                    className={`mobile-dropdown-arrow ${isServicesOpen ? 'open' : ''}`}
-                    width="12" 
-                    height="12" 
-                    viewBox="0 0 12 12"
-                    aria-hidden="true"
-                  >
-                    <path 
-                      d="M2 4.5L6 8.5L10 4.5" 
-                      stroke="currentColor" 
-                      strokeWidth="1.5" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                    />
+
+                  <svg className={`mobile-dropdown-arrow ${isServicesOpen ? "open" : ""}`} width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                    <path d="M2 4.5L6 8.5L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
-                
-                <div 
-                  className={`mobile-services-dropdown ${isServicesOpen ? 'open' : ''}`}
-                  role="menu"
-                >
+
+                <div className={`mobile-services-dropdown ${isServicesOpen ? "open" : ""}`} role="menu">
                   {servicesItems.map((item, index) => (
                     <MobileNavLink
                       key={index}
@@ -456,8 +374,8 @@ function Navbar() {
                 </div>
               </div>
 
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="mobile-contact-button"
                 onClick={toggleMenu}
                 aria-label="Contact SMYVISION Technologies"
@@ -465,22 +383,12 @@ function Navbar() {
               >
                 <span className="button-icon" aria-hidden="true"><IconMail /></span>
                 Get In Touch
-                <svg 
-                  className="mobile-button-arrow"
-                  width="16" 
-                  height="16" 
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path 
-                    d="M8 0L16 8L8 16L6.8 14.8L13.6 8L6.8 1.2L8 0Z" 
-                    fill="currentColor"
-                  />
+                <svg className="mobile-button-arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M8 0L16 8L8 16L6.8 14.8L13.6 8L6.8 1.2L8 0Z" fill="currentColor" />
                 </svg>
               </Link>
             </div>
 
-            {/* Footer for mobile menu */}
             <div className="mobile-menu-footer">
               <div className="company-info">
                 <div className="company-name" itemProp="name">SMYVISION TECHNOLOGIES</div>
@@ -488,9 +396,9 @@ function Navbar() {
                 <div className="company-contact" itemProp="contactPoint" itemScope itemType="https://schema.org/ContactPoint">
                   <meta itemProp="contactType" content="customer service" />
                   <div className="contact-info">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '4px'}}>
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                      <polyline points="22,6 12,13 2,6"></polyline>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "4px" }}>
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
                     </svg>
                     <span itemProp="email">smyvisiontechnologies@gmail.com</span>
                   </div>
@@ -501,19 +409,41 @@ function Navbar() {
         </div>
       </nav>
 
-      {/* CSS Styles */}
       <style jsx>{`
         .navbar-container {
           position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
+          top: 14px;
+          left: 50%;
+          right: auto;
+          width: min(1180px, calc(100% - 36px));
+          transform: translateX(-50%);
           z-index: 1000;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-sizing: border-box;
+          max-width: calc(100vw - 36px);
+          background: linear-gradient(90deg, rgba(255,255,255,0.92), rgba(187,211,255,0.92));
+          backdrop-filter: blur(18px);
+          -webkit-backdrop-filter: blur(18px);
+          border: none;
+          border-radius: 999px;
+          box-shadow: 0 14px 45px rgba(26, 72, 172, 0.16);
+          will-change: width, top, border-radius, transform;
+          transition:
+            width 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+            top 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+            border-radius 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+            background 0.22s ease,
+            box-shadow 0.22s ease,
+            border-color 0.22s ease;
         }
 
         .navbar-container.scrolled {
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+          top: 0;
+          width: 100%;
+          max-width: 100vw;
+          border-radius: 0;
+          border: none;
+          background: linear-gradient(90deg, #bbd3ff, #ffffff);
+          box-shadow: 0 4px 30px rgba(26, 72, 172, 0.25);
         }
 
         .navbar {
@@ -522,19 +452,27 @@ function Navbar() {
           padding: 0 24px;
           display: flex;
           justify-content: space-between;
+          box-sizing: border-box;
           align-items: center;
-          height: 80px;
+          height: 78px;
+          will-change: height, padding;
+          transition: height 0.22s cubic-bezier(0.16, 1, 0.3, 1), padding 0.22s ease;
         }
 
-        /* Logo Styles */
+        .navbar-container.scrolled .navbar {
+          height: 74px;
+        }
+
         .logo-link {
           text-decoration: none;
-          transition: transform 0.3s ease;
           display: flex;
           align-items: center;
+          transition: transform 0.18s ease;
         }
 
-        
+        .logo-link:hover {
+          transform: translateY(-1px);
+        }
 
         .logo-wrapper {
           display: flex;
@@ -549,6 +487,12 @@ function Navbar() {
           display: flex;
           align-items: center;
           justify-content: center;
+          transition: width 0.18s ease, height 0.18s ease;
+        }
+
+        .navbar-container.scrolled .logo-image-container {
+          width: 46px;
+          height: 46px;
         }
 
         .logo-image {
@@ -557,16 +501,18 @@ function Navbar() {
           object-fit: contain;
           border-top-left-radius: 10px;
           border-bottom-right-radius: 10px;
-          transition: transform 0.3s ease;
+          transition: transform 0.18s ease, filter 0.18s ease;
         }
 
-        
+        .logo-link:hover .logo-image {
+          transform: scale(1.06) rotate(-1deg);
+        }
 
         .logo-fallback {
           width: 50px;
           height: 50px;
           background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-          border-radius: 8px;
+          border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -606,7 +552,6 @@ function Navbar() {
           margin-top: 4px;
         }
 
-        /* Mobile-only company name with stacked layout */
         .mobile-company-name {
           display: none;
           flex-direction: column;
@@ -635,44 +580,22 @@ function Navbar() {
           white-space: nowrap;
         }
 
-        /* Desktop Navigation */
         .desktop-nav {
           display: flex;
           align-items: center;
-          gap: 40px;
+          gap: 22px;
         }
 
-        /* Navigation Icon Styles */
-        .nav-icon {
-          margin-right: 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0.8;
-          transition: opacity 0.2s ease;
-        }
-
-        
-
-        .services-trigger .nav-icon {
-          opacity: 0.8;
-        }
-
-        .services-trigger:hover .nav-icon,
-        .services-trigger.active .nav-icon,
-        .services-trigger.current .nav-icon {
-          opacity: 1;
-        }
-
+        .nav-icon,
         .button-icon {
           margin-right: 8px;
           display: flex;
           align-items: center;
           justify-content: center;
-          opacity: 0.9;
+          opacity: 0.85;
+          transition: opacity 0.16s ease, transform 0.16s ease;
         }
 
-        /* Services Dropdown */
         .services-container {
           position: relative;
         }
@@ -681,44 +604,29 @@ function Navbar() {
           display: flex;
           align-items: center;
           gap: 6px;
-          background: none;
+          background: rgba(255,255,255,0.45);
           border: none;
           font-size: 1rem;
-          font-weight: 500;
+          font-weight: 700;
           color: #475569;
           cursor: pointer;
-          padding: 8px 12px;
-          border-radius: 8px;
-          transition: all 0.2s ease;
+          padding: 10px 14px;
+          border-radius: 999px;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
           position: relative;
         }
 
         .services-trigger:hover,
         .services-trigger.active,
         .services-trigger.current {
-          color: #3b82f6;
-          background: rgba(59, 130, 246, 0.05);
-        }
-
-        .services-trigger::after {
-          content: '';
-          position: absolute;
-          bottom: -4px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 0;
-          height: 2px;
-          background: #3b82f6;
-          border-radius: 1px;
-          transition: width 0.3s ease;
-        }
-
-        .services-trigger.current::after {
-          width: 20px;
+          color: #2563eb;
+          background: rgba(59, 130, 246, 0.09);
+          transform: translateY(-2px);
+          box-shadow: 0 10px 24px rgba(59, 130, 246, 0.14);
         }
 
         .dropdown-arrow {
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
           margin-left: 2px;
         }
 
@@ -729,76 +637,137 @@ function Navbar() {
         .services-dropdown {
           position: absolute;
           top: calc(100% + 12px);
-          left: 0;
-          background: white;
-          border-radius: 16px;
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-          padding: 12px;
-          min-width: 300px;
+          left: 50%;
+          width: min(560px, calc(100vw - 32px));
+          max-width: calc(100vw - 32px);
+          transform: translate(-50%, 10px) scale(0.98);
+          background: rgba(255,255,255,0.98);
+          backdrop-filter: blur(18px);
+          -webkit-backdrop-filter: blur(18px);
+          border-radius: 22px;
+          box-shadow: 0 18px 50px rgba(15, 23, 42, 0.14);
+          padding: 10px;
           opacity: 0;
-          transform: translateY(-10px);
           visibility: hidden;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          pointer-events: none;
+          will-change: opacity, transform;
+          transition:
+            opacity 0.16s ease,
+            visibility 0.16s ease,
+            transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
           z-index: 1000;
-          border: 1px solid rgba(0, 0, 0, 0.05);
+          border: none;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 10px;
+          box-sizing: border-box;
+          overflow: hidden;
+        }
+
+        .services-dropdown::before {
+          content: "";
+          position: absolute;
+          top: -6px;
+          left: 50%;
+          width: 14px;
+          height: 14px;
+          transform: translateX(-50%) rotate(45deg);
+          background: rgba(255,255,255,0.98);
+          border: none;
         }
 
         .services-dropdown.open {
           opacity: 1;
-          transform: translateY(0);
           visibility: visible;
+          pointer-events: auto;
+          transform: translate(-50%, 0) scale(1);
         }
 
         .service-item {
           display: flex;
-          align-items: center;
-          gap: 12px;
-          padding: 14px 16px;
-          border-radius: 12px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 9px;
+          padding: 12px;
+          min-height: 128px;
+          border-radius: 18px;
           text-decoration: none;
           color: #334155;
-          transition: all 0.2s ease;
+          transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
           position: relative;
           overflow: hidden;
+          background: linear-gradient(135deg, #ffffff, #f8fbff);
+          border: none;
+          box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.09);
+          box-sizing: border-box;
+        }
+
+        .service-item::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at top left, rgba(59,130,246,0.14), transparent 45%);
+          opacity: 0;
+          transition: opacity 0.16s ease;
         }
 
         .service-item:hover {
-          background: #f8fafc;
-          transform: translateX(4px);
-          color: #3b82f6;
+          transform: translateY(-3px);
+          color: #2563eb;
+          box-shadow:
+            inset 0 0 0 1px rgba(59, 130, 246, 0.18),
+            0 12px 24px rgba(59, 130, 246, 0.13);
+        }
+
+        .service-item:hover::before {
+          opacity: 1;
         }
 
         .service-icon {
+          width: 38px;
+          height: 38px;
+          border-radius: 14px;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          opacity: 0.8;
-          transition: opacity 0.2s ease;
+          color: #2563eb;
+          background: linear-gradient(135deg, rgba(59,130,246,0.14), rgba(139,92,246,0.14));
+          transition: transform 0.16s ease, background 0.16s ease;
+          position: relative;
+          z-index: 1;
         }
 
         .service-item:hover .service-icon {
-          opacity: 1;
+          transform: rotate(-4deg) scale(1.06);
+        }
+
+        .service-content {
+          position: relative;
+          z-index: 1;
         }
 
         .service-name {
-          font-weight: 600;
-          font-size: 0.95rem;
+          font-weight: 800;
+          font-size: 0.92rem;
           margin-bottom: 4px;
         }
 
         .service-description {
-          font-size: 0.8rem;
+          font-size: 0.74rem;
           color: #64748b;
-          line-height: 1.3;
+          line-height: 1.28;
         }
 
         .arrow-right {
-          margin-left: auto;
+          position: absolute;
+          right: 12px;
+          top: 14px;
           opacity: 0;
-          transform: translateX(-8px);
-          transition: all 0.2s ease;
+          transform: translateX(-6px);
+          transition: all 0.16s ease;
           flex-shrink: 0;
+          z-index: 1;
         }
 
         .service-item:hover .arrow-right {
@@ -806,57 +775,52 @@ function Navbar() {
           transform: translateX(0);
         }
 
-        /* Contact Button */
         .contact-button {
           display: flex;
           align-items: center;
           gap: 10px;
           background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
           color: white;
-          padding: 12px 28px;
-          border-radius: 12px;
+          padding: 12px 24px;
+          border-radius: 999px;
           text-decoration: none;
-          font-weight: 600;
+          font-weight: 700;
           font-size: 1rem;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+          box-shadow: 0 8px 24px rgba(59, 130, 246, 0.24);
           position: relative;
           overflow: hidden;
+          white-space: nowrap;
         }
 
         .contact-button::before {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
-          left: -100%;
+          left: -120%;
           width: 100%;
           height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-          transition: left 0.6s ease;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+          transition: left 0.38s ease;
         }
 
         .contact-button:hover::before {
-          left: 100%;
+          left: 120%;
         }
 
         .contact-button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
-        }
-
-        .contact-button:hover .button-icon {
-          animation: wiggle 0.6s ease;
+          transform: translateY(-3px);
+          box-shadow: 0 14px 34px rgba(59, 130, 246, 0.34);
         }
 
         .button-arrow {
-          transition: transform 0.3s ease;
+          transition: transform 0.18s ease;
         }
 
         .contact-button:hover .button-arrow {
           transform: translateX(4px);
         }
 
-        /* Hamburger Menu */
         .hamburger {
           display: none;
           flex-direction: column;
@@ -875,7 +839,7 @@ function Navbar() {
           height: 3px;
           background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
           border-radius: 3px;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
           transform-origin: left center;
         }
 
@@ -892,28 +856,33 @@ function Navbar() {
           transform: rotate(-45deg) translate(0px, 1px);
         }
 
-        /* Mobile Menu */
         .mobile-menu {
           display: none;
           position: fixed;
           top: 0;
-          right: -100%;
-          width: 100%;
+          right: 0;
+          width: 100vw;
           max-width: 400px;
-          height: 100vh;
-          background: white;
-          box-shadow: -20px 0 60px rgba(0, 0, 0, 0.1);
+          height: 100dvh;
+          background: rgba(255,255,255,0.98);
+          backdrop-filter: blur(18px);
+          -webkit-backdrop-filter: blur(18px);
+          box-shadow: -10px 0 35px rgba(0, 0, 0, 0.08);
           z-index: 1000;
-          transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          transform: translateX(100%);
+          will-change: transform;
+          transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
           overflow-y: auto;
+          overflow-x: hidden;
+          box-sizing: border-box;
         }
 
         .mobile-menu.open {
-          right: 0;
+          transform: translateX(0);
         }
 
         .mobile-menu-content {
-          height: 100%;
+          min-height: 100%;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -923,9 +892,8 @@ function Navbar() {
           padding: 100px 32px 40px;
         }
 
-        /* Mobile Services */
         .mobile-services-container {
-          border-bottom: 1px solid #f1f5f9;
+          border-bottom: none;
           margin-bottom: 20px;
         }
 
@@ -938,28 +906,24 @@ function Navbar() {
           background: none;
           border: none;
           font-size: 1.1rem;
-          font-weight: 500;
+          font-weight: 700;
           color: #334155;
           cursor: pointer;
-          transition: color 0.2s ease;
+          transition: color 0.16s ease;
+        }
+
+        .mobile-service-left {
+          display: flex;
+          align-items: center;
+          gap: 16px;
         }
 
         .mobile-services-trigger.open {
           color: #3b82f6;
         }
 
-        .mobile-services-trigger .mobile-nav-icon {
-          opacity: 0.8;
-          transition: opacity 0.2s ease;
-        }
-
-        .mobile-services-trigger:hover .mobile-nav-icon,
-        .mobile-services-trigger.open .mobile-nav-icon {
-          opacity: 1;
-        }
-
         .mobile-dropdown-arrow {
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .mobile-dropdown-arrow.open {
@@ -969,14 +933,13 @@ function Navbar() {
         .mobile-services-dropdown {
           max-height: 0;
           overflow: hidden;
-          transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: max-height 0.24s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .mobile-services-dropdown.open {
-          max-height: 400px;
+          max-height: 460px;
         }
 
-        /* Mobile Contact Button */
         .mobile-contact-button {
           display: flex;
           align-items: center;
@@ -985,27 +948,28 @@ function Navbar() {
           background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
           color: white;
           padding: 18px 32px;
-          border-radius: 16px;
+          border-radius: 18px;
           text-decoration: none;
-          font-weight: 600;
+          font-weight: 700;
           font-size: 1.1rem;
           margin-top: 40px;
-          transition: transform 0.3s ease;
+          transition: transform 0.18s ease, box-shadow 0.18s ease;
+          box-shadow: 0 14px 30px rgba(59, 130, 246, 0.22);
         }
 
         .mobile-contact-button:hover {
           transform: translateY(-2px);
+          box-shadow: 0 18px 36px rgba(59, 130, 246, 0.3);
         }
 
         .mobile-button-arrow {
-          transition: transform 0.3s ease;
+          transition: transform 0.18s ease;
         }
 
         .mobile-contact-button:hover .mobile-button-arrow {
           transform: translateX(6px);
         }
 
-        /* Mobile Menu Footer */
         .mobile-menu-footer {
           padding: 32px;
           border-top: 1px solid #f1f5f9;
@@ -1042,15 +1006,29 @@ function Navbar() {
           color: #475569;
         }
 
-        /* Animations */
-        @keyframes wiggle {
-          0%, 100% { transform: rotate(0deg); }
-          25% { transform: rotate(-5deg); }
-          75% { transform: rotate(5deg); }
-        }
-
-        /* Responsive */
         @media (max-width: 1024px) {
+          .navbar-container {
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            max-width: 100vw;
+            transform: none;
+            border-radius: 0;
+            border: none;
+          }
+
+          .navbar-container.scrolled {
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            max-width: 100vw;
+            transform: none;
+            border-radius: 0;
+            border: none;
+          }
+
           .desktop-nav {
             display: none;
           }
@@ -1064,7 +1042,7 @@ function Navbar() {
           }
 
           .navbar {
-            padding: 0 20px;
+            padding: 0 14px;
             height: 70px;
           }
 
@@ -1076,40 +1054,20 @@ function Navbar() {
             width: 45px;
             height: 45px;
           }
-          
-          .mobile-services-trigger .mobile-nav-icon {
-            margin-right: 12px;
-          }
-          
-          /* Show mobile company name in mobile view */
+
           .mobile-company-name {
             display: flex;
           }
-          
-          /* Hide the regular logo text in mobile view */
+
           .logo-text-container {
             display: none;
           }
         }
 
-        @media (max-width: 768px) {
-          .mobile-company-main {
-            font-size: 1rem;
-          }
-          
-          .mobile-company-sub {
-            font-size: 0.6rem;
-            letter-spacing: 0.8px;
-          }
-          
-          .mobile-company-name {
-            margin-left: 6px;
-          }
-        }
-
         @media (max-width: 640px) {
           .mobile-menu {
-            max-width: 100%;
+            max-width: 100vw;
+            width: 100vw;
           }
 
           .mobile-nav-links {
@@ -1117,87 +1075,74 @@ function Navbar() {
           }
 
           .navbar {
-            padding: 0 16px;
+            padding: 0 12px;
+          }
+
+          .logo-image-container {
+            width: 40px;
+            height: 40px;
           }
 
           .mobile-company-main {
             font-size: 0.95rem;
           }
-          
+
           .mobile-company-sub {
             font-size: 0.55rem;
             letter-spacing: 0.7px;
           }
-          
-          .mobile-company-name {
-            margin-left: 5px;
-          }
-          
-          .mobile-services-trigger .mobile-nav-icon {
-            margin-right: 10px;
-          }
-          
-          /* Adjust logo image size for smaller screens */
-          .logo-image-container {
-            width: 40px;
-            height: 40px;
-          }
         }
-        
-        @media (max-width: 480px) {
-          .mobile-company-main {
-            font-size: 0.9rem;
-          }
-          
-          .mobile-company-sub {
-            font-size: 0.5rem;
-            letter-spacing: 0.6px;
-          }
-          
-          .logo-wrapper {
-            gap: 8px;
-          }
-        }
-        
+
         @media (max-width: 400px) {
           .mobile-company-main {
             font-size: 0.85rem;
           }
-          
+
           .mobile-company-sub {
             font-size: 0.45rem;
           }
-          
+
           .mobile-company-name {
             margin-left: 4px;
           }
         }
 
-        /* Very small screens */
-        @media (max-width: 360px) {
-          .mobile-company-main {
-            font-size: 0.8rem;
+
+        @media (max-width: 768px) {
+          .services-dropdown {
+            left: 50%;
+            width: calc(100vw - 24px);
+            max-width: calc(100vw - 24px);
+            grid-template-columns: 1fr;
+            padding: 10px;
+            border-radius: 22px;
           }
-          
-          .mobile-company-sub {
-            font-size: 0.42rem;
-            letter-spacing: 0.5px;
+
+          .service-item {
+            min-height: auto;
+            flex-direction: row;
+            align-items: center;
+            padding: 12px;
           }
-          
-          .logo-image-container {
-            width: 35px;
-            height: 35px;
+
+          .service-icon {
+            width: 42px;
+            height: 42px;
+          }
+
+          .arrow-right {
+            position: static;
+            margin-left: auto;
           }
         }
 
-        /* Print Styles for SEO */
         @media print {
           .navbar-container {
             position: static;
             box-shadow: none;
             background: white !important;
           }
-          
+
           .contact-button,
           .mobile-contact-button,
           .hamburger,
@@ -1207,20 +1152,20 @@ function Navbar() {
           .button-icon {
             display: none;
           }
-          
+
           .desktop-nav {
             display: flex !important;
             gap: 20px;
           }
-          
+
           .services-dropdown {
             display: none;
           }
-          
+
           .logo-image {
             filter: grayscale(100%);
           }
-          
+
           .mobile-company-name {
             display: none !important;
           }
@@ -1230,12 +1175,11 @@ function Navbar() {
   );
 }
 
-// Navigation Link Component with SEO
 function NavLink({ to, label, current, title, icon }) {
   return (
     <Link
       to={to}
-      className={`nav-link ${current ? 'active' : ''}`}
+      className={`nav-link ${current ? "active" : ""}`}
       aria-current={current ? "page" : undefined}
       title={title}
       itemProp="url"
@@ -1247,12 +1191,11 @@ function NavLink({ to, label, current, title, icon }) {
   );
 }
 
-// Mobile Navigation Link Component with SEO
 function MobileNavLink({ to, label, onClick, current, icon, description }) {
   return (
     <Link
       to={to}
-      className={`mobile-nav-link ${current ? 'active' : ''}`}
+      className={`mobile-nav-link ${current ? "active" : ""}`}
       onClick={onClick}
       aria-current={current ? "page" : undefined}
       title={description || label}
@@ -1272,36 +1215,54 @@ function MobileNavLink({ to, label, onClick, current, icon, description }) {
   );
 }
 
-// Additional Styles
 const styles = `
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   .nav-link {
     position: relative;
     color: #475569;
     text-decoration: none;
-    font-weight: bolder;
+    font-weight: 800;
     font-size: 1rem;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
+    padding: 10px 14px;
+    border-radius: 999px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     align-items: center;
+    background: transparent;
+    border: none;
   }
 
-  
+  .nav-link:hover {
+    color: #2563eb;
+    background: rgba(59, 130, 246, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .nav-link:hover .nav-icon {
+    opacity: 1;
+    transform: scale(1.08);
+  }
 
   .nav-link.active {
     color: #3b82f6;
+    background: rgba(59, 130, 246, 0.08);
   }
 
   .nav-indicator {
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 2px;
-    background: #3b82f6;
-    border-radius: 1px;
+    display: none;
   }
 
   .mobile-nav-link {
@@ -1312,13 +1273,17 @@ const styles = `
     color: #334155;
     text-decoration: none;
     font-size: 1.1rem;
-    font-weight: 500;
-    border-bottom: 1px solid #f1f5f9;
-    transition: all 0.2s ease;
+    font-weight: 600;
+    border-bottom: none;
+    transition: all 0.16s ease;
     position: relative;
   }
 
-  
+  .mobile-nav-link:hover {
+    color: #2563eb;
+    transform: translateX(4px);
+  }
+
   .mobile-nav-link.active {
     color: #3b82f6;
   }
@@ -1329,11 +1294,14 @@ const styles = `
     justify-content: center;
     flex-shrink: 0;
     margin-top: 2px;
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
+    opacity: 0.85;
+    transition: opacity 0.16s ease, transform 0.16s ease;
   }
 
-  
+  .mobile-nav-link:hover .mobile-nav-icon {
+    opacity: 1;
+    transform: scale(1.08);
+  }
 
   .mobile-nav-description {
     font-size: 0.8rem;
@@ -1343,16 +1311,9 @@ const styles = `
   }
 
   .mobile-nav-indicator {
-    width: 4px;
-    height: 100%;
-    background: #3b82f6;
-    position: absolute;
-    left: -24px;
-    top: 0;
-    border-radius: 0 2px 2px 0;
+    display: none;
   }
 
-  /* SEO Enhancement: Structured Data */
   .sr-only {
     position: absolute;
     width: 1px;
@@ -1365,30 +1326,6 @@ const styles = `
     border: 0;
   }
 
-  /* Animation Keyframes for better UX */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideIn {
-    from {
-      transform: translateX(20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  /* Focus styles for accessibility */
   .nav-link:focus,
   .services-trigger:focus,
   .contact-button:focus,
@@ -1398,7 +1335,6 @@ const styles = `
     outline-offset: 2px;
   }
 
-  /* Reduced motion preferences */
   @media (prefers-reduced-motion: reduce) {
     .navbar-container,
     .services-dropdown,
@@ -1408,18 +1344,18 @@ const styles = `
     .contact-button,
     .nav-link,
     .mobile-nav-link {
-      transition: none;
-    }
-    
-    .contact-button:hover .button-icon {
-      animation: none;
+      transition: none !important;
+      animation: none !important;
     }
   }
 `;
 
-// Add styles to document
-if (typeof document !== 'undefined') {
+if (typeof document !== "undefined") {
+  const oldStyle = document.getElementById("navbar-extra-styles");
+  if (oldStyle) oldStyle.remove();
+
   const styleSheet = document.createElement("style");
+  styleSheet.id = "navbar-extra-styles";
   styleSheet.innerText = styles;
   document.head.appendChild(styleSheet);
 }

@@ -18,13 +18,10 @@ import {
   FaLightbulb,
   FaShieldAlt
 } from 'react-icons/fa';
-import { FiMail, FiCheckCircle } from 'react-icons/fi';
 
 function Footer() {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -38,16 +35,6 @@ function Footer() {
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email) {
-      // Add your subscription logic here
-      console.log('Subscribed:', email);
-      setSubscribed(true);
-      setTimeout(() => setSubscribed(false), 3000);
-      setEmail('');
-    }
-  };
 
   const quickLinks = [
     { name: 'Home', path: '/' },
@@ -74,46 +61,6 @@ function Footer() {
 
   return (
     <footer style={styles.footer}>
-      {/* Newsletter Section */}
-      <div style={styles.newsletterSection}>
-        <div style={styles.newsletterContent}>
-          <div style={styles.newsletterText}>
-            <h3 style={styles.newsletterTitle}>
-              <FiMail style={styles.newsletterIcon} />
-              Stay Ahead with Digital Insights
-            </h3>
-            <p style={styles.newsletterDescription}>
-              Subscribe to our newsletter for tech trends, business growth tips, and exclusive offers.
-            </p>
-          </div>
-          <form onSubmit={handleSubscribe} style={styles.newsletterForm}>
-            <div style={styles.inputWrapper}>
-              <input
-                type="email"
-                placeholder="Enter your business email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                style={styles.emailInput}
-                required
-              />
-              <button 
-                type="submit" 
-                style={styles.subscribeButton}
-                onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-                onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-              >
-                {subscribed ? <FiCheckCircle /> : 'Subscribe'}
-              </button>
-            </div>
-            {subscribed && (
-              <div style={styles.successMessage}>
-                ✓ Thank you for subscribing! Check your email.
-              </div>
-            )}
-          </form>
-        </div>
-      </div>
-
       {/* Main Footer Content */}
       <div style={styles.mainContent}>
         {/* Company Info */}
@@ -335,85 +282,6 @@ const styles = {
     overflow: 'hidden',
     borderTop: `1px solid ${colors.border}`,
     boxShadow: '0 -2px 30px rgba(0, 0, 0, 0.05)'
-  },
-  newsletterSection: {
-    backgroundColor: colors.surface,
-    padding: '50px 20px',
-    borderBottom: `1px solid ${colors.border}`
-  },
-  newsletterContent: {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: '30px'
-  },
-  newsletterText: {
-    flex: '1',
-    minWidth: '300px'
-  },
-  newsletterTitle: {
-    fontSize: '1.5rem',
-    fontWeight: '700',
-    color: colors.text,
-    margin: '0 0 10px 0',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px'
-  },
-  newsletterIcon: {
-    color: colors.primary,
-    fontSize: '1.8rem'
-  },
-  newsletterDescription: {
-    fontSize: '1rem',
-    color: colors.lightText,
-    lineHeight: '1.6',
-    margin: '0'
-  },
-  newsletterForm: {
-    flex: '1',
-    minWidth: '300px'
-  },
-  inputWrapper: {
-    display: 'flex',
-    gap: '10px',
-    position: 'relative'
-  },
-  emailInput: {
-    flex: '1',
-    padding: '15px 20px',
-    fontSize: '1rem',
-    border: `2px solid ${colors.border}`,
-    borderRadius: '12px',
-    outline: 'none',
-    transition: 'all 0.3s ease',
-    backgroundColor: colors.background,
-    color: colors.text,
-    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.05)'
-  },
-  subscribeButton: {
-    padding: '15px 30px',
-    backgroundColor: colors.primary,
-    color: 'white',
-    border: 'none',
-    borderRadius: '12px',
-    fontSize: '1rem',
-    fontWeight: '600',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    boxShadow: `0 4px 15px ${colors.primary}40`
-  },
-  successMessage: {
-    marginTop: '10px',
-    color: colors.accent,
-    fontSize: '0.9rem',
-    animation: 'fadeIn 0.5s ease'
   },
   mainContent: {
     maxWidth: '1200px',
@@ -646,18 +514,6 @@ const globalStyles = `
   }
 
   @media (max-width: 768px) {
-    .footer-newsletter-content {
-      flex-direction: column;
-      text-align: center;
-    }
-    
-    .footer-input-wrapper {
-      flex-direction: column;
-    }
-    
-    .footer-subscribe-button {
-      width: 100%;
-    }
     
     .footer-main-content {
       grid-template-columns: 1fr;

@@ -32,8 +32,8 @@ const About = () => {
           "description": "Top web development company in Vijayawada, Hyderabad, and Bangalore offering professional website development, automation solutions, and chatbot development services.",
           "url": "https://smyvisiontechnologies.vercel.app",
           "logo": "https://smyvisiontechnologies.vercel.app/logo.png",
-          "founder": "SMYVISION Team",
-          "foundingDate": "2020",
+          "founder": "SMYVISION TECHNOLOGIES Team",
+          "foundingDate": "2026",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Vijayawada",
@@ -246,16 +246,16 @@ const About = () => {
     // Set up SEO meta tags
     const metaDescription = document.createElement('meta');
     metaDescription.name = 'description';
-    metaDescription.content = 'About SMYVISION TECHNOLOGIES - Top web development company in Vijayawada, Hyderabad, Bangalore offering website development, automation solutions, and chatbot services. Learn about our mission, vision, and services.';
+    metaDescription.content = 'About SMYVISION TECHNOLOGIES - professional web development company serving Vijayawada, Hyderabad, Bangalore and South India with responsive websites, business automation, chatbot solutions, SEO-friendly web design, and digital transformation services.';
     document.head.appendChild(metaDescription);
     
     const metaKeywords = document.createElement('meta');
     metaKeywords.name = 'keywords';
-    metaKeywords.content = 'top web development companies in vijayawada, about web development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, about smyvision technologies, chatbot development company, business automation solutions';
+    metaKeywords.content = 'SMYVISION TECHNOLOGIES, about SMYVISION, top web development company Vijayawada, website development company Hyderabad, best web developers Bangalore, responsive website design Vijayawada, SEO website development Hyderabad, business automation solutions, chatbot development company, digital transformation services South India, affordable website development Andhra Pradesh Telangana Karnataka';
     document.head.appendChild(metaKeywords);
     
     // Set page title
-    document.title = 'About SMYVISION TECHNOLOGIES - Top Web Development Company in Vijayawada, Hyderabad, Bangalore';
+    document.title = 'About SMYVISION TECHNOLOGIES | Web Development, Automation & Chatbot Company';
     
     // Add scroll animation effect
     const handleScroll = () => {
@@ -588,6 +588,8 @@ const About = () => {
   const services = [
   {
     icon: <Icons.Globe />,
+    image: "/images/web.png",
+    fallbackImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80",
     title: "Website Development",
     description: "Custom, responsive websites that combine stunning design with robust functionality.",
     features: [
@@ -600,6 +602,8 @@ const About = () => {
   },
   {
     icon: <Icons.Chatbot />,
+    image: "/images/chat.png",
+    fallbackImage: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=900&q=80",
     title: "Smart Chatbots",
     description: "Revolutionary visual node-based chatbot development for complex conversations.",
     features: [
@@ -612,6 +616,8 @@ const About = () => {
   },
   {
     icon: <Icons.Automation />,
+    image: "/images/auto.png",
+    fallbackImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
     title: "Business Automation",
     description: "Automate repetitive tasks and save hours daily with custom 24/7 solutions.",
     features: [
@@ -651,10 +657,16 @@ const About = () => {
       {/* SEO Meta Tags and Structured Data */}
       <Helmet>
         <html lang="en" prefix="og: https://ogp.me/ns#" />
-        <title>About SMYVISION TECHNOLOGIES - Top Web Development Company in Vijayawada, Hyderabad, Bangalore</title>
-        <meta name="description" content="About SMYVISION TECHNOLOGIES - Top web development company in Vijayawada, Hyderabad, Bangalore offering website development, automation solutions, and chatbot services. Learn about our mission, vision, and services." />
-        <meta name="keywords" content="top web development companies in vijayawada, about web development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, about smyvision technologies, chatbot development company, business automation solutions, digital transformation services" />
+        <title>About SMYVISION TECHNOLOGIES | Web Development, Automation & Chatbot Company</title>
+        <meta name="description" content="About SMYVISION TECHNOLOGIES - professional web development company serving Vijayawada, Hyderabad, Bangalore and South India with responsive websites, business automation, chatbot solutions, SEO-friendly web design, and digital transformation services." />
+        <meta name="keywords" content="SMYVISION TECHNOLOGIES, about SMYVISION, top web development company Vijayawada, website development company Hyderabad, best web developers Bangalore, responsive website design Vijayawada, SEO website development Hyderabad, business automation solutions, chatbot development company, digital transformation services South India, affordable website development Andhra Pradesh Telangana Karnataka, digital transformation services" />
         <meta name="author" content="SMYVISION TECHNOLOGIES" />
+        <meta name="theme-color" content="#2563eb" />
+        <meta name="classification" content="Web Development Company, Automation Services, Chatbot Development" />
+        <meta name="coverage" content="India" />
+        <meta name="distribution" content="Global" />
+        <meta name="rating" content="General" />
+        <meta name="revisit-after" content="7 days" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         
         {/* Location Meta Tags */}
@@ -665,7 +677,7 @@ const About = () => {
         <meta name="location" content="Vijayawada, Hyderabad, Bangalore, India" />
         
         {/* Open Graph Tags */}
-        <meta property="og:title" content="About SMYVISION TECHNOLOGIES - Top Web Development Company in Vijayawada, Hyderabad, Bangalore" />
+        <meta property="og:title" content="About SMYVISION TECHNOLOGIES | Web Development, Automation & Chatbot Company" />
         <meta property="og:description" content="Learn about SMYVISION TECHNOLOGIES, the leading web development company in Vijayawada, Hyderabad, and Bangalore offering website development, automation solutions, and chatbot services." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://smyvisiontechnologies.vercel.app/about" />
@@ -674,7 +686,7 @@ const About = () => {
         
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About SMYVISION - Web Development Company | Vijayawada Hyderabad Bangalore" />
+        <meta name="twitter:title" content="About SMYVISION TECHNOLOGIES | Web Development Company" />
         <meta name="twitter:description" content="Leading web development company in Vijayawada, Hyderabad, Bangalore. Professional website solutions for businesses." />
         
         {/* Canonical and Alternate Links */}
@@ -700,6 +712,197 @@ const About = () => {
         
         <style>
           {`
+
+            /* SMYVISION home-matched premium theme */
+            :root {
+              --smy-primary: #2563eb;
+              --smy-secondary: #8b5cf6;
+              --smy-cyan: #06b6d4;
+              --smy-dark: #0f172a;
+              --smy-muted: #64748b;
+              --smy-soft: #f8fbff;
+            }
+
+            @keyframes smySoftGlow {
+              0%, 100% {
+                transform: translate3d(0, 0, 0) scale(1);
+                opacity: 0.55;
+              }
+              50% {
+                transform: translate3d(18px, -18px, 0) scale(1.06);
+                opacity: 0.82;
+              }
+            }
+
+            @keyframes smyLeftIn {
+              from {
+                opacity: 0;
+                transform: translateX(-34px) scale(0.98);
+              }
+              to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+              }
+            }
+
+            @keyframes smyRightIn {
+              from {
+                opacity: 0;
+                transform: translateX(34px) scale(0.98);
+              }
+              to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+              }
+            }
+
+            @keyframes smyZoomIn {
+              from {
+                opacity: 0;
+                transform: scale(0.94) translateY(18px);
+              }
+              to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+              }
+            }
+
+            section {
+              position: relative;
+            }
+
+            section::before {
+              content: "";
+              position: absolute;
+              width: 220px;
+              height: 220px;
+              left: -110px;
+              top: 24px;
+              border-radius: 50%;
+              background: radial-gradient(circle, rgba(37,99,235,.13), transparent 66%);
+              pointer-events: none;
+              animation: smySoftGlow 5s ease-in-out infinite;
+            }
+
+            section:nth-of-type(even)::before {
+              left: auto;
+              right: -110px;
+              background: radial-gradient(circle, rgba(139,92,246,.13), transparent 66%);
+            }
+
+            h1, h2, h3 {
+              letter-spacing: -0.035em;
+            }
+
+            section:nth-of-type(odd) h2,
+            section:nth-of-type(odd) h1 {
+              animation: smyLeftIn .55s cubic-bezier(.22,1,.36,1) both;
+            }
+
+            section:nth-of-type(even) h2,
+            section:nth-of-type(even) h1 {
+              animation: smyRightIn .55s cubic-bezier(.22,1,.36,1) both;
+            }
+
+            .animate-on-scroll.animated {
+              animation: smyZoomIn .48s cubic-bezier(.22,1,.36,1) both;
+            }
+
+            .gradient-text {
+              background: linear-gradient(135deg, var(--smy-primary), var(--smy-secondary), var(--smy-cyan));
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            }
+
+            .container {
+              padding-left: clamp(16px, 4vw, 32px);
+              padding-right: clamp(16px, 4vw, 32px);
+            }
+
+            .shadow-soft,
+            .hover-glow,
+            .gradient-border-hover {
+              border: 1px solid rgba(37,99,235,.10) !important;
+              box-shadow: 0 18px 50px rgba(15, 23, 42, .08) !important;
+            }
+
+            .hover-glow:hover,
+            .simple-hover-lift:hover,
+            .depth-hover:hover {
+              transform: translateY(-7px) scale(1.01);
+              box-shadow: 0 26px 70px rgba(37,99,235,.15) !important;
+            }
+
+            button,
+            a {
+              transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+            }
+
+            button:hover,
+            a:hover {
+              transform: translateY(-2px) scale(1.02);
+            }
+
+            @media (max-width: 768px) {
+              section::before {
+                width: 150px;
+                height: 150px;
+                left: -75px;
+                top: 18px;
+              }
+
+              section:nth-of-type(even)::before {
+                right: -75px;
+              }
+
+              section:nth-of-type(odd) h2,
+              section:nth-of-type(odd) h1,
+              section:nth-of-type(even) h2,
+              section:nth-of-type(even) h1 {
+                animation: smyZoomIn .45s cubic-bezier(.22,1,.36,1) both;
+              }
+            }
+
+
+
+            .about-service-image-wrap {
+              width: 100%;
+              height: 220px;
+              border-radius: 20px;
+              overflow: hidden;
+              margin-bottom: 1.5rem;
+              background: linear-gradient(135deg, rgba(37,99,235,.08), rgba(139,92,246,.08));
+              box-shadow: 0 18px 44px rgba(15, 23, 42, .12);
+            }
+
+            .about-service-image {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              display: block;
+              border-radius: 0;
+              margin-bottom: 0;
+              box-shadow: none;
+              transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
+            }
+
+            .about-service-image:hover {
+              transform: scale(1.035);
+              box-shadow: 0 24px 60px rgba(37, 99, 235, .18);
+            }
+
+            @media (max-width: 640px) {
+              .about-service-image-wrap {
+                height: 180px;
+                border-radius: 18px;
+              }
+
+              .about-service-image {
+                height: 100%;
+              }
+            }
+
             @keyframes fadeInUp {
               from {
                 opacity: 0;
@@ -1533,15 +1736,6 @@ const About = () => {
           paddingTop: '4rem',
           paddingBottom: '6rem'
         }}>
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '4px',
-            background: 'linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
-            animation: 'gradient 3s ease infinite'
-          }} />
           
           <div className="container">
             <div className="animate-on-scroll" style={{
@@ -1984,19 +2178,16 @@ const About = () => {
                     cursor: 'pointer'
                   }}
                 >
-                  <div style={{
-                    background: service.color,
-                    width: '3.5rem',
-                    height: '3.5rem',
-                    borderRadius: '0.75rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '1rem',
-                    transition: 'transform 0.3s ease',
-                    flexShrink: 0
-                  }} className="icon-hover-animate">
-                    {service.icon}
+                  <div className="about-service-image-wrap">
+                    <img
+                      src={service.image}
+                      alt={`${service.title} - SMYVISION TECHNOLOGIES`}
+                      className="about-service-image"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.src = service.fallbackImage;
+                      }}
+                    />
                   </div>
                   <h3 style={{ 
                     fontSize: '1.25rem', 

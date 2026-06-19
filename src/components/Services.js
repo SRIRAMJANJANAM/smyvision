@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import {
+  FaSearch,
+  FaClipboardList,
+  FaCode,
+  FaRocket,
+  FaHeadset
+} from 'react-icons/fa';
 
 // Enhanced SVG Icons with light theme colors
 const LightIcons = {
@@ -363,7 +370,7 @@ function Services() {
     {
       id: 1,
       title: 'Websites Development',
-      icon: <LightIcons.Globe />,
+      image: '/images/web.png',
       description: 'SMYVISION TECHNOLOGIES provides affordable and professional website solutions for businesses of all sizes. A well-designed website builds trust, credibility, and a strong online presence.',
       features: ['Customized Solutions', 'Expert Implementation', '24/7 Support', 'Regular Updates'],
       color: '#4f46e5',
@@ -372,7 +379,7 @@ function Services() {
     {
       id: 2,
       title: 'Automation Development',
-      icon: <LightIcons.Zap />,
+      image: '/images/auto.png',
       description: 'SMYVISION TECHNOLOGIES delivers reliable and affordable automation solutions to improve business efficiency. Automation reduces manual effort, minimizes errors, and saves valuable time.',
       features: ['High Accuracy & Reliability', 'Expert Implementation', 'Error Reduction & Consistency', 'Business-Specific Design'],
       color: '#008080',
@@ -380,7 +387,7 @@ function Services() {
     },{
       id: 3,
       title: 'Smart Chatbot Solutions',
-      icon: <LightIcons.Cogs />,
+      image: '/images/chat.png',
       description: 'SMYVISION TECHNOLOGIES creates intelligent chatbot solutions that engage customers instantly and provide accurate responses around the clock. Chatbots improve customer experience, reduce response time, and automate routine conversations.',
       features: ['24/7 Instant Customer Support',
     'Natural & Human-Like Conversations',
@@ -401,11 +408,11 @@ function Services() {
   ];
 
   const processSteps = [
-    { number: '01', title: 'Discovery', desc: 'Understanding your business needs, goals, and challenges through in-depth consultation.' },
-    { number: '02', title: 'Planning', desc: 'Designing tailored solutions and creating detailed implementation strategy.' },
-    { number: '03', title: 'Development', desc: 'Building robust solutions using cutting-edge technologies and best practices.' },
-    { number: '04', title: 'Deployment', desc: 'Launching solutions with seamless integration and comprehensive testing.' },
-    { number: '05', title: 'Support', desc: 'Providing ongoing maintenance, updates, and optimization services.' }
+    { icon: <FaSearch />, title: 'Discovery', desc: 'Understanding your business needs, goals, and challenges through in-depth consultation.' },
+    { icon: <FaClipboardList />, title: 'Planning', desc: 'Designing tailored solutions and creating detailed implementation strategy.' },
+    { icon: <FaCode />, title: 'Development', desc: 'Building robust solutions using cutting-edge technologies and best practices.' },
+    { icon: <FaRocket />, title: 'Deployment', desc: 'Launching solutions with seamless integration and comprehensive testing.' },
+    { icon: <FaHeadset />, title: 'Support', desc: 'Providing ongoing maintenance, updates, and optimization services.' }
   ];
 
   const faqs = [
@@ -723,30 +730,42 @@ function Services() {
                         boxSizing: 'border-box'
                       }}
                     >
-                      {/* Service Icon */}
+                      {/* Service Image */}
                       <motion.div
                         animate={{
-                          scale: hoveredCard === service.id ? 1.1 : 1,
-                          rotate: hoveredCard === service.id ? [0, 10, -10, 0] : 0
+                          scale: hoveredCard === service.id ? 1.02 : 1
                         }}
                         transition={{ duration: 0.3 }}
                         style={{
-                          width: '60px',
-                          height: '60px',
-                          background: hoveredCard === service.id 
-                            ? `linear-gradient(135deg, ${service.color}, ${service.color}80)`
-                            : service.bgColor,
-                          borderRadius: '16px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          marginBottom: '20px',
-                          transition: 'all 0.3s ease'
+                          width: '100%',
+                          height: 'clamp(180px, 22vw, 230px)',
+                          background: service.bgColor,
+                          borderRadius: '18px',
+                          overflow: 'hidden',
+                          marginBottom: '22px',
+                          transition: 'all 0.3s ease',
+                          boxShadow: hoveredCard === service.id
+                            ? `0 18px 36px ${service.color}25`
+                            : '0 10px 24px rgba(0, 0, 0, 0.06)'
                         }}
                       >
-                        {service.icon}
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          loading="lazy"
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            display: 'block',
+                            transition: 'transform 0.35s ease'
+                          }}
+                          onError={(e) => {
+                            e.currentTarget.src = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80';
+                          }}
+                        />
                       </motion.div>
-                      
+
                       {/* Service Title */}
                       <h3 style={{
                         fontSize: 'clamp(1.3rem, 3vw, 1.5rem)',
@@ -1030,7 +1049,7 @@ function Services() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontSize: '1.2rem',
+                          fontSize: '1.45rem',
                           fontWeight: 'bold',
                           color: 'white',
                           flexShrink: 0,
@@ -1039,7 +1058,7 @@ function Services() {
                           boxShadow: '0 8px 16px rgba(79, 70, 229, 0.3)'
                         }}
                       >
-                        {step.number}
+                        {step.icon}
                       </motion.div>
                       
                       <motion.div

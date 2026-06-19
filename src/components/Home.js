@@ -20,6 +20,8 @@ import {
   FaNetworkWired, FaDatabase, FaRocket, FaRegHandshake
 } from 'react-icons/fa';
 
+const PROJECT_DISPLAY_MS = 10000;
+
 // SEO Structured Data Component (Hidden)
 const SEOStructuredData = () => {
   const structuredData = {
@@ -1213,6 +1215,572 @@ const globalStyles = `
     }
   }
 
+
+  /* Smooth word-by-word heading animation */
+  .animated-words {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    line-height: 1.15;
+  }
+
+  .animated-word {
+    display: inline-block;
+    will-change: transform, opacity;
+  }
+
+  .words-left {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .words-center {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .section-heading-left {
+    text-align: left;
+  }
+
+  /* Premium button zoom animation */
+  .btn {
+    transform-origin: center;
+    will-change: transform;
+  }
+
+  .btn:hover {
+    transform: scale(1.07) translateY(-3px);
+  }
+
+  /* Services with real images */
+  .service-image-wrap {
+    width: 100%;
+    height: 190px;
+    border-radius: 24px;
+    overflow: hidden;
+    margin: 0 auto var(--spacing-6);
+    background: linear-gradient(135deg, var(--primary-100), var(--secondary-100));
+    box-shadow: 0 18px 36px rgba(2, 132, 199, 0.12);
+    position: relative;
+  }
+
+  .service-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(14,165,233,.12), rgba(168,85,247,.12));
+    pointer-events: none;
+  }
+
+  .service-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .service-card {
+    text-align: left;
+  }
+
+  .service-card h3,
+  .service-card p {
+    text-align: left;
+  }
+
+  .feature-item {
+    justify-content: flex-start;
+  }
+
+  /* Premium centered project showcase */
+  .project-section {
+    background:
+      radial-gradient(circle at 12% 16%, rgba(14,165,233,.13), transparent 34%),
+      radial-gradient(circle at 88% 78%, rgba(168,85,247,.13), transparent 34%),
+      linear-gradient(135deg, #ffffff 0%, #f5faff 50%, #fbf7ff 100%);
+    overflow: hidden;
+  }
+
+  .project-heading-center {
+    text-align: center;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .project-kicker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(14,165,233,.09);
+    color: var(--primary-700);
+    font-weight: 900;
+    letter-spacing: .16em;
+    font-size: .78rem;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .project-stage {
+    max-width: 1120px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-showcase {
+    width: 100%;
+    min-height: 560px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1300px;
+  }
+
+  .project-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--primary-700);
+    font-size: 30px;
+    font-weight: 900;
+    cursor: pointer;
+    z-index: 30;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .project-nav-btn:hover {
+    transform: translateY(-50%) scale(1.12);
+    background: white;
+    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.24);
+  }
+
+  .project-nav-btn:active {
+    transform: translateY(-50%) scale(0.94);
+  }
+
+  .project-prev {
+    left: 8px;
+  }
+
+  .project-next {
+    right: 8px;
+  }
+
+  .project-showcase::before {
+    content: '';
+    position: absolute;
+    width: min(78vw, 720px);
+    height: min(78vw, 720px);
+    max-width: 720px;
+    max-height: 720px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(255,255,255,.96) 0 42%, rgba(14,165,233,.08) 43% 48%, transparent 49%),
+      conic-gradient(from 160deg, rgba(14,165,233,.18), rgba(168,85,247,.18), rgba(16,185,129,.12), rgba(14,165,233,.18));
+    opacity: .7;
+    animation: softProjectGlow 5.2s linear infinite;
+    box-shadow: inset 0 0 70px rgba(14,165,233,.10), 0 28px 90px rgba(15,23,42,.08);
+  }
+
+  @keyframes softProjectGlow {
+    from { transform: rotate(0deg) scale(.98); }
+    to { transform: rotate(360deg) scale(.98); }
+  }
+
+  .project-ghost-card {
+    position: absolute;
+    width: min(76vw, 620px);
+    height: 390px;
+    border-radius: 34px;
+    overflow: hidden;
+    opacity: .18;
+    filter: blur(1.2px) saturate(.85);
+    box-shadow: 0 26px 70px rgba(15,23,42,.12);
+    border: 1px solid rgba(255,255,255,.75);
+    background: white;
+    pointer-events: none;
+  }
+
+  .project-ghost-card.left {
+    transform: translateX(-185px) rotate(-7deg) scale(.82);
+  }
+
+  .project-ghost-card.right {
+    transform: translateX(185px) rotate(7deg) scale(.82);
+  }
+
+  .project-ghost-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .project-main-card {
+    position: relative;
+    width: min(94vw, 940px);
+    min-height: 470px;
+    display: grid;
+    grid-template-columns: 1.12fr .88fr;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255,255,255,.95);
+    border: 1px solid rgba(14,165,233,.14);
+    border-radius: 38px;
+    overflow: hidden;
+    box-shadow: 0 34px 100px rgba(15,23,42,.17);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    z-index: 5;
+    transform-origin: center;
+  }
+
+  .project-main-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(120deg, rgba(14,165,233,.20), rgba(168,85,247,.20), rgba(16,185,129,.12));
+    opacity: .58;
+    z-index: -1;
+    filter: blur(24px);
+  }
+
+  .project-main-image-shell {
+    min-height: 470px;
+    position: relative;
+    overflow: hidden;
+    margin: 14px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, var(--primary-100), var(--secondary-100));
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.4);
+  }
+
+  .project-main-image {
+    width: 100%;
+    height: 100%;
+    min-height: 470px;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.04);
+    transition: transform .28s cubic-bezier(.22,1,.36,1);
+  }
+
+  .project-main-card:hover .project-main-image {
+    transform: scale(1.09);
+  }
+
+  .project-glass-label {
+    position: absolute;
+    left: 22px;
+    bottom: 22px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.85);
+    color: var(--primary-800);
+    font-weight: 900;
+    box-shadow: 0 12px 30px rgba(15,23,42,.14);
+    backdrop-filter: blur(14px);
+  }
+
+  .project-content {
+    padding: clamp(1.8rem, 4vw, 3.2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .project-content h3 {
+    font-size: clamp(1.55rem, 4vw, 2.7rem);
+    margin-bottom: 1rem;
+    color: var(--neutral-900);
+  }
+
+  .project-content p {
+    color: var(--neutral-600);
+    margin-bottom: 2rem;
+  }
+
+  .project-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    padding: 14px 20px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+    color: white;
+    font-weight: 900;
+    box-shadow: 0 14px 30px rgba(14,165,233,.26);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+
+  .project-main-card:hover .project-action {
+    transform: scale(1.06);
+    box-shadow: 0 18px 40px rgba(14,165,233,.32);
+  }
+
+  .project-tabs {
+    display: none;
+  }
+
+  .project-tab {
+    border: 0;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.82);
+    color: var(--neutral-600);
+    font-weight: 800;
+    font-size: .82rem;
+    box-shadow: 0 10px 24px rgba(15,23,42,.08);
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+  }
+
+  .project-tab:hover,
+  .project-tab.active {
+    transform: translateY(-2px) scale(1.04);
+    background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+    color: white;
+  }
+
+  .project-progress {
+    display: none;
+  }
+
+  .project-progress span {
+    display: none;
+  }
+
+  /* Why choose us centered premium cards */
+  .why-section {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-8);
+  }
+
+  .why-card {
+    text-align: center;
+    padding: var(--spacing-8);
+    background: rgba(255,255,255,.9);
+    border: 1px solid rgba(14,165,233,.12);
+    border-radius: 28px;
+    box-shadow: 0 20px 50px rgba(15,23,42,.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 70%;
+    height: 4px;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+  }
+
+  .why-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto var(--spacing-6);
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+    box-shadow: 0 16px 34px rgba(14,165,233,.26);
+  }
+
+  .why-card p {
+    margin-bottom: 0;
+  }
+
+  /* Changed CTA colors */
+  .cta-section,
+  .final-cta {
+    background:
+      radial-gradient(circle at 15% 20%, rgba(14,165,233,.18), transparent 35%),
+      radial-gradient(circle at 85% 75%, rgba(168,85,247,.18), transparent 35%),
+      linear-gradient(135deg, #eff8ff 0%, #ffffff 48%, #f5efff 100%);
+    color: var(--neutral-900);
+    border: 1px solid rgba(14,165,233,.12);
+    box-shadow: 0 24px 70px rgba(15,23,42,.08);
+  }
+
+  .cta-section h2,
+  .cta-section p,
+  .final-cta h2,
+  .final-cta p {
+    color: var(--neutral-900);
+  }
+
+  .price-tag {
+    background: linear-gradient(135deg, #ffffff, #eff8ff);
+    color: var(--primary-700);
+    border: 1px solid rgba(14,165,233,.18);
+  }
+
+  .consultation-card {
+    background: rgba(255,255,255,.86);
+    border: 1px solid rgba(14,165,233,.14);
+    box-shadow: 0 20px 50px rgba(15,23,42,.08);
+  }
+
+  .consultation-card h3,
+  .consultation-card p {
+    color: var(--neutral-900);
+  }
+
+  .trust-pill {
+    color: var(--neutral-700) !important;
+  }
+
+
+  @media (max-width: 900px) {
+    .project-stage {
+      min-height: 720px;
+    }
+
+    .project-orbit {
+      height: 700px;
+    }
+
+    .project-globe-card {
+      grid-template-columns: 1fr;
+      width: min(94vw, 620px);
+      min-height: auto;
+      border-radius: 30px;
+    }
+
+    .project-globe-image-shell,
+    .project-main-image {
+      min-height: 300px;
+    }
+
+    .orbit-preview-card {
+      width: 125px;
+      height: 86px;
+      border-radius: 18px;
+    }
+
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading-left,
+    .words-left {
+      text-align: center;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .service-image-wrap {
+      height: 170px;
+      border-radius: 20px;
+    }
+
+    .project-stage {
+      min-height: 650px;
+    }
+
+    .project-orbit {
+      height: 630px;
+    }
+
+    .project-content {
+      padding: 1.45rem;
+    }
+
+    .project-globe-image-shell,
+    .project-main-image {
+      min-height: 230px;
+    }
+
+    .project-globe-card {
+      border-radius: 24px;
+    }
+
+    .orbit-preview-card {
+      width: 102px;
+      height: 72px;
+      border-radius: 16px;
+    }
+  }
+
+
+
+  @media (max-width: 900px) {
+    .project-stage { min-height: 760px; }
+    .project-showcase { min-height: 720px; }
+    .project-main-card {
+      grid-template-columns: 1fr;
+      width: min(94vw, 640px);
+      min-height: auto;
+      border-radius: 30px;
+    }
+    .project-main-image-shell,
+    .project-main-image { min-height: 300px; }
+    .project-ghost-card { width: min(78vw, 460px); height: 300px; }
+    .project-ghost-card.left { transform: translate(-86px, -88px) rotate(-7deg) scale(.72); }
+    .project-ghost-card.right { transform: translate(86px, 90px) rotate(7deg) scale(.72); }
+  }
+
+  @media (max-width: 640px) {
+    .project-stage { min-height: 730px; }
+    .project-showcase { min-height: 700px; }
+    .project-content { padding: 1.45rem; text-align: center; align-items: center; }
+    .project-content .animated-words { justify-content: center; text-align: center; }
+    .project-main-image-shell,
+    .project-main-image { min-height: 225px; }
+    .project-main-card { border-radius: 24px; }
+    .project-main-image-shell { border-radius: 20px; margin: 10px; }
+    .project-ghost-card { display: none; }
+
+    .project-nav-btn {
+      width: 46px;
+      height: 46px;
+      font-size: 24px;
+    }
+
+    .project-prev {
+      left: 2px;
+    }
+
+    .project-next {
+      right: 2px;
+    }
+  }
+
   /* Print Styles */
   @media print {
     .btn::after,
@@ -1273,9 +1841,69 @@ const AnimatedShield = () => (
   </motion.div>
 );
 
+
+const smoothTextContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.022, delayChildren: 0.01 }
+  }
+};
+
+const createSmoothWord = (direction = 'left') => ({
+  hidden: {
+    opacity: 0,
+    x: direction === 'right' ? 22 : direction === 'center' ? 0 : -22,
+    y: direction === 'center' ? 14 : 6,
+    scale: 0.96,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.26, ease: [0.22, 1, 0.36, 1] }
+  }
+});
+
+const AnimatedWords = ({ text, className = '', as = 'h2', center = false, direction = 'left' }) => {
+  const Tag = motion[as] || motion.h2;
+  const wordVariant = createSmoothWord(direction);
+
+  return (
+    <Tag
+      className={`${className} animated-words ${center ? 'words-center' : 'words-left'}`}
+      variants={smoothTextContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.55 }}
+    >
+      {text.split(' ').map((word, index) => (
+        <motion.span key={`${word}-${index}`} variants={wordVariant} className="animated-word">
+          {word}&nbsp;
+        </motion.span>
+      ))}
+    </Tag>
+  );
+};
+
+const SmartImage = ({ localSrc, fallbackSrc, alt, className }) => {
+  const [src, setSrc] = useState(localSrc);
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      loading="lazy"
+      onError={() => setSrc(fallbackSrc)}
+    />
+  );
+};
+
 const Home = () => {
   const [stats, setStats] = useState({ projects: 0, industries: 0 });
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [activeProject, setActiveProject] = useState(0);
   const [particles, setParticles] = useState([]);
   const navigate = useNavigate();
   
@@ -1352,13 +1980,22 @@ const Home = () => {
     setParticles(newParticles);
   }, []);
 
+  // Premium project showcase auto switch
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveProject((prev) => (prev + 1) % projects.length);
+    }, PROJECT_DISPLAY_MS);
+
+    return () => clearInterval(timer);
+  }, []);
+
   // Animate stats counter
   useEffect(() => {
     const animateStats = () => {
       let projects = 0;
       let industries = 0;
-      const duration = 1500;
-      const steps = 50;
+      const duration = 650;
+      const steps = 32;
       const interval = duration / steps;
       
       const projectStep = 15 / steps;
@@ -1383,7 +2020,7 @@ const Home = () => {
       }, interval);
     };
 
-    const timer = setTimeout(animateStats, 300);
+    const timer = setTimeout(animateStats, 120);
     return () => clearTimeout(timer);
   }, []);
 
@@ -1394,6 +2031,14 @@ const Home = () => {
   const handleViewPortfolio = () => navigate('/about');
   const handleBookNow = () => navigate('/contact');
   const handleCallToday = () => window.location.href = 'tel:8500352005';
+
+  const nextProject = () => {
+    setActiveProject((prev) => (prev + 1) % projects.length);
+  };
+
+  const prevProject = () => {
+    setActiveProject((prev) => (prev + projects.length - 1) % projects.length);
+  };
 
   // Updated Benefits with better icons and animations
   const benefits = [
@@ -1477,25 +2122,78 @@ const Home = () => {
   // Updated Services with better icons
   const services = [
     {
-      icon: <Code2 size={28} />,
-      title: "Web Development",
-      description: "Custom websites built with modern technologies for optimal performance and user experience.",
+      image: '/images/web.png',
+      fallback: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80',
+      title: "Website Development",
+      description: "Premium, responsive, SEO-friendly websites built for business growth and better customer trust.",
       features: ["Responsive Design", "SEO Optimized", "Fast Loading"],
-      animation: "icon-float"
     },
     {
-      icon: <Workflow size={28} />,
-      title: "Automation",
-      description: "Streamline your business processes with intelligent automation solutions.",
-      features: ["Process Optimization", "Workflow Automation", "Integration"],
-      animation: "icon-wave"
+      image: '/images/auto.png',
+      fallback: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+      title: "Business Automation",
+      description: "Smart workflows that reduce manual work, save time, and keep your business running smoothly.",
+      features: ["Workflow Automation", "Easy Management", "Time Saving"],
     },
     {
-      icon: <Bot size={28} />,
-      title: "Chatbots",
-      description: "Chat systems with conversation flows you design and control.",
-      features: ["24/7 Support", "Instant Connect", "Help Visitors"],
-      animation: "icon-bounce"
+      image: '/images/chat.png',
+      fallback: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=900&q=80',
+      title: "Chatbot Solutions",
+      description: "Instant support systems that help visitors, capture leads, and improve customer experience.",
+      features: ["24/7 Support", "Lead Capture", "Instant Replies"],
+    }
+  ];
+
+  const projects = [
+    {
+      title: 'NKR Car Rentals',
+      category: 'Car Rental Website',
+      image: '/images/nkr.png',
+      fallback: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80',
+      url: 'https://www.nkrselfdrivecarrentals.in/',
+      description: 'A clean and responsive website experience for car rental bookings, customer trust, and quick access.'
+    },
+    {
+      title: 'Bindiya Beauty Salon',
+      category: 'Salon & Academy Website',
+      image: '/images/beauty.png',
+      fallback: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80',
+      url: 'https://www.bindiyazbeautysalon.in/',
+      description: 'A premium beauty salon website designed with elegant visuals, services, academy details, and mobile-first layout.'
+    },
+    {
+      title: 'Happy Organize',
+      category: 'Home Organizers',
+      image: '/images/home.png',
+      fallback: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
+      url: 'https://www.happyorganize.com/',
+      description: 'A modern organizing and event-focused website with simple navigation, beautiful sections, and smooth actions.'
+    },
+    {
+      title: 'Arvis Fertilizers',
+      category: 'Business Website',
+      image: '/images/arvis.png',
+      fallback: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80',
+      url: 'https://www.arvisfertilizers.com/',
+      description: 'A professional business website presentation for products, brand trust, customer reach, and digital visibility.'
+    }
+  ];
+
+  const whyChooseUs = [
+    {
+      icon: <Users size={26} />,
+      title: 'Expert Team',
+      description: 'Our skilled developers, designers, and digital experts work together to deliver reliable solutions tailored to your business needs.'
+    },
+    {
+      icon: <Sparkles size={26} />,
+      title: 'Cutting-Edge Strategies',
+      description: 'SMYVISION TECHNOLOGIES uses modern trends and smart technologies to improve visibility, engagement, and conversions.'
+    },
+    {
+      icon: <Clock size={26} />,
+      title: 'Timely Delivery',
+      description: 'We value your deadlines. Our process keeps every project smooth, organized, and delivered on time.'
     }
   ];
 
@@ -1541,8 +2239,8 @@ const Home = () => {
       rotateY: 0,
       transition: {
         type: "spring",
-        stiffness: 300,
-        damping: 20
+        stiffness: 420,
+        damping: 24
       }
     },
     hover: {
@@ -1551,8 +2249,8 @@ const Home = () => {
       rotateY: 2,
       transition: {
         type: "spring",
-        stiffness: 300,
-        damping: 20
+        stiffness: 420,
+        damping: 24
       }
     }
   };
@@ -1563,12 +2261,12 @@ const Home = () => {
       y: 0,
     },
     hover: {
-      scale: 1.02,
-      y: -2,
+      scale: 1.07,
+      y: -3,
       transition: {
         type: "spring",
-        stiffness: 400,
-        damping: 25
+        stiffness: 620,
+        damping: 28
       }
     },
     tap: {
@@ -1675,12 +2373,13 @@ const Home = () => {
                   </motion.span>
                 </div>
                 
-                <motion.h1 
+                <AnimatedWords
+                  text="Intelligent Digital Solutions for Modern Businesses"
+                  as="h1"
                   className="mb-6"
-                  variants={fadeIn}
-                >
-                  Intelligent Digital Solutions for Modern Businesses
-                </motion.h1>
+                  center
+                  direction="left"
+                />
                 
                 <motion.p 
                   className="text-lead mb-8 text-neutral-600"
@@ -1810,9 +2509,7 @@ const Home = () => {
               viewport={{ once: true }}
               variants={slideUp}
             >
-              <h2 className="mb-6">
-                Why Your Business Needs a Digital Presence
-              </h2>
+              <AnimatedWords text="Why Your Business Needs a Digital Presence" className="mb-6" center direction="right" />
               <p className="max-w-2xl mx-auto text-neutral-600">
                 In today's digital-first world, your online presence is your most valuable asset
               </p>
@@ -1846,7 +2543,7 @@ const Home = () => {
                     {benefit.icon}
                   </motion.div>
                   
-                  <h3 className="mb-4">{benefit.title}</h3>
+                  <AnimatedWords text={benefit.title} as="h3" className="mb-4" direction={index % 2 === 0 ? 'left' : 'right'} />
                   
                   <motion.div 
                     className="benefit-stat"
@@ -1877,7 +2574,7 @@ const Home = () => {
               viewport={{ once: true }}
               variants={slideUp}
             >
-              <h2 className="mb-6">Our Core Services</h2>
+              <AnimatedWords text="Our Core Services" className="mb-6" center direction="left" />
               <p className="max-w-2xl mx-auto text-neutral-600">
                 Comprehensive solutions designed to elevate your business to new heights
               </p>
@@ -1899,14 +2596,19 @@ const Home = () => {
                   whileHover="hover"
                 >
                   <motion.div 
-                    className="service-icon icon-float"
-                    whileHover={{ rotateY: 180, scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
+                    className="service-image-wrap"
+                    whileHover={{ scale: 1.08, rotate: index % 2 === 0 ? -2 : 2 }}
+                    transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    {service.icon}
+                    <SmartImage
+                      localSrc={service.image}
+                      fallbackSrc={service.fallback}
+                      alt={`${service.title} - SMYVISION TECHNOLOGIES`}
+                      className="service-photo"
+                    />
                   </motion.div>
                   
-                  <h3 className="mb-4">{service.title}</h3>
+                  <AnimatedWords text={service.title} as="h3" className="mb-4" direction={index % 2 === 0 ? 'left' : 'right'} />
                   
                   <p className="mb-6 text-neutral-600">{service.description}</p>
                   
@@ -1930,6 +2632,190 @@ const Home = () => {
           </div>
         </section>
 
+
+        {/* Latest Website Projects Section */}
+        <section className="section project-section">
+          <div className="container">
+            <motion.div
+              className="project-heading-center mb-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideUp}
+            >
+              <motion.div
+                className="project-kicker"
+                initial={{ opacity: 0, y: 12, scale: 0.94 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <Sparkles size={15} /> Our Projects
+              </motion.div>
+              <AnimatedWords text="Our Latest Projects" className="mb-6" center direction="right" />
+              <p className="max-w-2xl mx-auto text-neutral-600">
+                Selected website projects crafted with responsive layouts, fast performance, and smooth customer experience.
+              </p>
+            </motion.div>
+
+            <div className="project-stage">
+              <div className="project-showcase" aria-label="Premium website project showcase">
+                <button
+                  type="button"
+                  className="project-nav-btn project-prev"
+                  onClick={prevProject}
+                  aria-label="Previous project"
+                >
+                  ❮
+                </button>
+
+                <button
+                  type="button"
+                  className="project-nav-btn project-next"
+                  onClick={nextProject}
+                  aria-label="Next project"
+                >
+                  ❯
+                </button>
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={`left-${activeProject}`}
+                    className="project-ghost-card left"
+                    initial={{ opacity: 0, x: -120, scale: 0.72 }}
+                    animate={{ opacity: 0.18, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -120, scale: 0.72 }}
+                    transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <SmartImage
+                      localSrc={projects[(activeProject + projects.length - 1) % projects.length].image}
+                      fallbackSrc={projects[(activeProject + projects.length - 1) % projects.length].fallback}
+                      alt={`${projects[(activeProject + projects.length - 1) % projects.length].title} preview`}
+                      className=""
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    key={`right-${activeProject}`}
+                    className="project-ghost-card right"
+                    initial={{ opacity: 0, x: 120, scale: 0.72 }}
+                    animate={{ opacity: 0.18, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: 120, scale: 0.72 }}
+                    transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <SmartImage
+                      localSrc={projects[(activeProject + 1) % projects.length].image}
+                      fallbackSrc={projects[(activeProject + 1) % projects.length].fallback}
+                      alt={`${projects[(activeProject + 1) % projects.length].title} preview`}
+                      className=""
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                <AnimatePresence mode="wait">
+                  <motion.a
+                    key={projects[activeProject].title}
+                    href={projects[activeProject].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-main-card"
+                    initial={{ opacity: 0, x: activeProject % 2 === 0 ? -70 : 70, scale: 0.92 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: activeProject % 2 === 0 ? 70 : -70, scale: 0.92 }}
+                    transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                    whileHover={{ y: -8, scale: 1.012 }}
+                    whileTap={{ scale: 0.985 }}
+                  >
+                    <div className="project-main-image-shell">
+                      <SmartImage
+                        localSrc={projects[activeProject].image}
+                        fallbackSrc={projects[activeProject].fallback}
+                        alt={`${projects[activeProject].title} - SMYVISION TECHNOLOGIES`}
+                        className="project-main-image"
+                      />
+                      <div className="project-glass-label">
+                        <span>{projects[activeProject].category}</span>
+                      </div>
+                    </div>
+
+                    <div className="project-content">
+                      <AnimatedWords
+                        text={projects[activeProject].title}
+                        as="h3"
+                        direction={activeProject % 2 === 0 ? 'left' : 'right'}
+                      />
+                      <motion.p
+                        initial={{ opacity: 0, y: 14 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.28, delay: 0.08 }}
+                      >
+                        {projects[activeProject].description}
+                      </motion.p>
+                      <motion.div
+                        className="project-action"
+                        initial={{ opacity: 0, scale: 0.88 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.24, delay: 0.16 }}
+                        whileHover={{ scale: 1.08 }}
+                        whileTap={{ scale: 0.96 }}
+                      >
+                        View Website <ArrowRight size={18} />
+                      </motion.div>
+                    </div>
+                  </motion.a>
+                </AnimatePresence>
+                <div className="project-hidden-switch-note" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="section why-section">
+          <div className="container">
+            <motion.div
+              className="text-center mb-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideUp}
+            >
+              <AnimatedWords text="Why Choose SMYVISION TECHNOLOGIES" className="mb-6" center direction="right" />
+              <p className="max-w-3xl mx-auto text-neutral-600">
+                At SMYVISION TECHNOLOGIES, we prioritize innovation, result-driven strategies, and exceptional customer support. Our expertise in web development, automation, and digital solutions helps your brand stand out in the competitive online space.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="why-grid"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={staggerContainer}
+            >
+              {whyChooseUs.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  className="why-card"
+                  variants={slideUp}
+                  whileHover={{ y: -8, scale: 1.025 }}
+                  transition={{ duration: 0.22 }}
+                >
+                  <motion.div
+                    className="why-icon"
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 2 + index * 0.2, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    {item.icon}
+                  </motion.div>
+                  <AnimatedWords text={item.title} as="h3" center direction={index % 2 === 0 ? 'left' : 'right'} />
+                  <p>{item.description}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="cta-section">
           <div className="container">
@@ -1940,12 +2826,7 @@ const Home = () => {
               viewport={{ once: true }}
               variants={staggerContainer}
             >
-              <motion.h2 
-                className="mb-6"
-                variants={slideUp}
-              >
-                Ready to Build Your Digital Presence?
-              </motion.h2>
+              <AnimatedWords text="Ready to Build Your Digital Presence?" className="mb-6" center direction="left" />
               
               <motion.p 
                 className="mb-8 opacity-90"
@@ -1980,7 +2861,7 @@ const Home = () => {
                 </motion.button>
                 <motion.button 
                   className="btn btn-secondary"
-                  style={{background: 'transparent', borderColor: 'white', color: 'white'}}
+                  style={{background: 'white', borderColor: 'rgba(2,132,199,0.22)', color: 'var(--primary-700)'}}
                   variants={buttonHover}
                   initial="rest"
                   whileHover="hover"
@@ -2004,12 +2885,7 @@ const Home = () => {
               viewport={{ once: true }}
               variants={staggerContainer}
             >
-              <motion.h2 
-                className="mb-6"
-                variants={slideUp}
-              >
-                Transform Your Business Today
-              </motion.h2>
+              <AnimatedWords text="Transform Your Business Today" className="mb-6" center direction="right" />
               
               <motion.p 
                 className="mb-12 opacity-90"
@@ -2040,7 +2916,7 @@ const Home = () => {
                       <Calendar size={40} className="text-primary-300" />
                     </motion.div>
                   </div>
-                  <h3 className="mb-4">Schedule Consultation</h3>
+                  <AnimatedWords text="Schedule Consultation" as="h3" className="mb-4" center direction="left" />
                   <p className="mb-6 opacity-90">Free 30-minute strategy session</p>
                   <motion.button 
                     className="btn btn-primary flex items-center justify-center gap-3 mx-auto min-w-[180px]"
@@ -2076,7 +2952,7 @@ const Home = () => {
                       <Phone size={40} className="text-success-300" />
                     </motion.div>
                   </div>
-                  <h3 className="mb-4">Call Now</h3>
+                  <AnimatedWords text="Call Now" as="h3" className="mb-4" center direction="right" />
                   <p className="mb-6 opacity-90">Speak directly with our experts</p>
                   <motion.button 
                     className="btn btn-primary flex items-center justify-center gap-3 mx-auto min-w-[180px]"
@@ -2140,7 +3016,7 @@ const Home = () => {
                         {item.icon}
                       </div>
                     </div>
-                    <span className="text-white/80 font-medium text-base">{item.text}</span>
+                    <span className="trust-pill font-medium text-base">{item.text}</span>
                   </motion.div>
                 ))}
               </motion.div>
