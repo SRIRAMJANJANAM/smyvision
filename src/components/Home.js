@@ -1293,233 +1293,265 @@ const globalStyles = `
     justify-content: flex-start;
   }
 
-  /* Premium centered project showcase */
+  /* Perfect Latest Projects Marquee Showcase */
   .project-section {
     background:
-      radial-gradient(circle at 12% 16%, rgba(14,165,233,.13), transparent 34%),
-      radial-gradient(circle at 88% 78%, rgba(168,85,247,.13), transparent 34%),
-      linear-gradient(135deg, #ffffff 0%, #f5faff 50%, #fbf7ff 100%);
+      radial-gradient(circle at 12% 18%, rgba(14,165,233,.20), transparent 34%),
+      radial-gradient(circle at 86% 20%, rgba(168,85,247,.18), transparent 30%),
+      radial-gradient(circle at 50% 92%, rgba(16,185,129,.13), transparent 36%),
+      linear-gradient(135deg, #f8fbff 0%, #ffffff 42%, #faf7ff 100%);
     overflow: hidden;
+    position: relative;
+  }
+
+  .project-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(14,165,233,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168,85,247,.06) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
+    pointer-events: none;
+  }
+
+  .project-section::after {
+    content: '';
+    position: absolute;
+    width: 560px;
+    height: 560px;
+    border-radius: 50%;
+    left: 50%;
+    top: 44%;
+    transform: translate(-50%, -50%);
+    background: conic-gradient(from 180deg, rgba(14,165,233,.22), rgba(168,85,247,.20), rgba(16,185,129,.14), rgba(14,165,233,.22));
+    filter: blur(60px);
+    opacity: .45;
+    animation: projectAuraSpin 12s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes projectAuraSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
   }
 
   .project-heading-center {
     text-align: center;
-    max-width: 820px;
+    max-width: 860px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    z-index: 2;
   }
 
   .project-kicker {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 10px 18px;
+    gap: 9px;
+    padding: 10px 20px;
     border-radius: 999px;
-    background: rgba(14,165,233,.09);
+    background: rgba(255,255,255,.72);
     color: var(--primary-700);
-    font-weight: 900;
+    font-weight: 950;
     letter-spacing: .16em;
     font-size: .78rem;
     text-transform: uppercase;
     margin-bottom: 18px;
-  }
-
-  .project-stage {
-    max-width: 1120px;
-    margin: 0 auto;
-    position: relative;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .project-showcase {
-    width: 100%;
-    min-height: 560px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    perspective: 1300px;
-  }
-
-  .project-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 56px;
-    height: 56px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--primary-700);
-    font-size: 30px;
-    font-weight: 900;
-    cursor: pointer;
-    z-index: 30;
-    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.18);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-  }
-
-  .project-nav-btn:hover {
-    transform: translateY(-50%) scale(1.12);
-    background: white;
-    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.24);
-  }
-
-  .project-nav-btn:active {
-    transform: translateY(-50%) scale(0.94);
-  }
-
-  .project-prev {
-    left: 8px;
-  }
-
-  .project-next {
-    right: 8px;
-  }
-
-  .project-showcase::before {
-    content: '';
-    position: absolute;
-    width: min(78vw, 720px);
-    height: min(78vw, 720px);
-    max-width: 720px;
-    max-height: 720px;
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 50% 50%, rgba(255,255,255,.96) 0 42%, rgba(14,165,233,.08) 43% 48%, transparent 49%),
-      conic-gradient(from 160deg, rgba(14,165,233,.18), rgba(168,85,247,.18), rgba(16,185,129,.12), rgba(14,165,233,.18));
-    opacity: .7;
-    animation: softProjectGlow 5.2s linear infinite;
-    box-shadow: inset 0 0 70px rgba(14,165,233,.10), 0 28px 90px rgba(15,23,42,.08);
-  }
-
-  @keyframes softProjectGlow {
-    from { transform: rotate(0deg) scale(.98); }
-    to { transform: rotate(360deg) scale(.98); }
-  }
-
-  .project-ghost-card {
-    position: absolute;
-    width: min(76vw, 620px);
-    height: 390px;
-    border-radius: 34px;
-    overflow: hidden;
-    opacity: .18;
-    filter: blur(1.2px) saturate(.85);
-    box-shadow: 0 26px 70px rgba(15,23,42,.12);
-    border: 1px solid rgba(255,255,255,.75);
-    background: white;
-    pointer-events: none;
-  }
-
-  .project-ghost-card.left {
-    transform: translateX(-185px) rotate(-7deg) scale(.82);
-  }
-
-  .project-ghost-card.right {
-    transform: translateX(185px) rotate(7deg) scale(.82);
-  }
-
-  .project-ghost-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .project-main-card {
-    position: relative;
-    width: min(94vw, 940px);
-    min-height: 470px;
-    display: grid;
-    grid-template-columns: 1.12fr .88fr;
-    text-decoration: none;
-    color: inherit;
-    background: rgba(255,255,255,.95);
-    border: 1px solid rgba(14,165,233,.14);
-    border-radius: 38px;
-    overflow: hidden;
-    box-shadow: 0 34px 100px rgba(15,23,42,.17);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    z-index: 5;
-    transform-origin: center;
-  }
-
-  .project-main-card::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(120deg, rgba(14,165,233,.20), rgba(168,85,247,.20), rgba(16,185,129,.12));
-    opacity: .58;
-    z-index: -1;
-    filter: blur(24px);
-  }
-
-  .project-main-image-shell {
-    min-height: 470px;
-    position: relative;
-    overflow: hidden;
-    margin: 14px;
-    border-radius: 32px;
-    background: linear-gradient(135deg, var(--primary-100), var(--secondary-100));
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.4);
-  }
-
-  .project-main-image {
-    width: 100%;
-    height: 100%;
-    min-height: 470px;
-    object-fit: cover;
-    display: block;
-    transform: scale(1.04);
-    transition: transform .28s cubic-bezier(.22,1,.36,1);
-  }
-
-  .project-main-card:hover .project-main-image {
-    transform: scale(1.09);
-  }
-
-  .project-glass-label {
-    position: absolute;
-    left: 22px;
-    bottom: 22px;
-    padding: 12px 18px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.85);
-    color: var(--primary-800);
-    font-weight: 900;
-    box-shadow: 0 12px 30px rgba(15,23,42,.14);
+    border: 1px solid rgba(14,165,233,.18);
+    box-shadow: 0 16px 40px rgba(15,23,42,.08);
     backdrop-filter: blur(14px);
   }
 
-  .project-content {
-    padding: clamp(1.8rem, 4vw, 3.2rem);
+  .project-perfect-wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .project-featured-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 0;
+    min-height: 500px;
+    border-radius: 42px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255,255,255,.88);
+    border: 1px solid rgba(255,255,255,.78);
+    box-shadow: 0 38px 110px rgba(15,23,42,.18);
+    backdrop-filter: blur(24px);
+    transform-style: preserve-3d;
+  }
+
+  .project-featured-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(120deg, rgba(14,165,233,.75), rgba(168,85,247,.75), rgba(16,185,129,.55), rgba(14,165,233,.75));
+    background-size: 260% 260%;
+    animation: projectBorderFlow 4.5s ease infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  @keyframes projectBorderFlow {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .project-featured-image-area {
+    position: relative;
+    min-height: 500px;
+    padding: 18px;
+    overflow: hidden;
+  }
+
+  .project-browser-frame {
+    height: 100%;
+    min-height: 464px;
+    border-radius: 32px;
+    overflow: hidden;
+    background: #0f172a;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.18), 0 28px 70px rgba(15,23,42,.24);
+    position: relative;
+  }
+
+  .project-browser-top {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+  }
+
+  .project-dots {
+    display: flex;
+    gap: 7px;
+  }
+
+  .project-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.42);
+  }
+
+  .project-url-pill {
+    max-width: 58%;
+    padding: 6px 12px;
+    border-radius: 999px;
+    color: rgba(255,255,255,.82);
+    background: rgba(255,255,255,.10);
+    font-size: .76rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .project-featured-image {
+    width: 100%;
+    height: calc(100% - 42px);
+    min-height: 422px;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.02);
+    transition: transform .65s cubic-bezier(.22,1,.36,1), filter .65s ease;
+  }
+
+  .project-featured-card:hover .project-featured-image {
+    transform: scale(1.085);
+    filter: saturate(1.08) contrast(1.03);
+  }
+
+  .project-floating-chip {
+    position: absolute;
+    left: 34px;
+    bottom: 34px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.88);
+    color: var(--primary-800);
+    font-weight: 950;
+    box-shadow: 0 16px 36px rgba(15,23,42,.16);
+    backdrop-filter: blur(16px);
+  }
+
+  .project-featured-content {
+    padding: clamp(2rem, 4vw, 3.5rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
+    overflow: hidden;
   }
 
-  .project-content h3 {
-    font-size: clamp(1.55rem, 4vw, 2.7rem);
-    margin-bottom: 1rem;
+  .project-featured-content::before {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    right: -70px;
+    top: -55px;
+    background: radial-gradient(circle, rgba(14,165,233,.18), transparent 68%);
+  }
+
+  .project-count-badge {
+    width: fit-content;
+    padding: 9px 14px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(14,165,233,.12), rgba(168,85,247,.12));
+    color: var(--primary-700);
+    font-weight: 950;
+    font-size: .82rem;
+    margin-bottom: 18px;
+  }
+
+  .project-featured-content h3 {
+    font-size: clamp(2rem, 4.6vw, 3.65rem);
+    line-height: 1.02;
+    margin-bottom: 18px;
     color: var(--neutral-900);
   }
 
-  .project-content p {
+  .project-featured-content p {
+    margin-bottom: 26px;
     color: var(--neutral-600);
-    margin-bottom: 2rem;
+  }
+
+  .project-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .project-meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 13px;
+    border-radius: 999px;
+    background: white;
+    color: var(--neutral-700);
+    font-weight: 800;
+    font-size: .85rem;
+    border: 1px solid rgba(14,165,233,.12);
+    box-shadow: 0 10px 24px rgba(15,23,42,.07);
   }
 
   .project-action {
@@ -1527,50 +1559,225 @@ const globalStyles = `
     align-items: center;
     gap: 10px;
     width: fit-content;
-    padding: 14px 20px;
+    padding: 15px 22px;
     border-radius: 999px;
     background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
     color: white;
-    font-weight: 900;
-    box-shadow: 0 14px 30px rgba(14,165,233,.26);
-    transition: transform .2s ease, box-shadow .2s ease;
+    font-weight: 950;
+    box-shadow: 0 16px 34px rgba(14,165,233,.28);
+    transition: transform .22s ease, box-shadow .22s ease;
   }
 
-  .project-main-card:hover .project-action {
-    transform: scale(1.06);
-    box-shadow: 0 18px 40px rgba(14,165,233,.32);
+  .project-featured-card:hover .project-action {
+    transform: scale(1.07) translateY(-2px);
+    box-shadow: 0 22px 44px rgba(14,165,233,.35);
   }
 
-  .project-tabs {
-    display: none;
+  .project-timer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 5px;
+    background: rgba(15,23,42,.08);
+    overflow: hidden;
   }
 
-  .project-tab {
+  .project-timer span {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform-origin: left;
+    background: linear-gradient(90deg, var(--primary-500), var(--secondary-500), var(--success-500));
+    animation: projectTimer var(--project-duration, 10000ms) linear forwards;
+  }
+
+  @keyframes projectTimer {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  .project-marquee-shell {
+    margin-top: 42px;
+    position: relative;
+    overflow: hidden;
+    padding: 24px 0;
+  }
+
+  .project-marquee-shell::before,
+  .project-marquee-shell::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .project-marquee-shell::before {
+    left: 0;
+    background: linear-gradient(90deg, #f8fbff, transparent);
+  }
+
+  .project-marquee-shell::after {
+    right: 0;
+    background: linear-gradient(270deg, #faf7ff, transparent);
+  }
+
+  .project-marquee-track {
+    display: flex;
+    gap: 22px;
+    width: max-content;
+    animation: projectMarquee 24s linear infinite;
+    will-change: transform;
+  }
+
+  .project-marquee-shell:hover .project-marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes projectMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .project-mini-card {
+    width: 285px;
+    flex: 0 0 auto;
     border: 0;
+    text-align: left;
     cursor: pointer;
-    padding: 10px 14px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.82);
-    color: var(--neutral-600);
-    font-weight: 800;
-    font-size: .82rem;
-    box-shadow: 0 10px 24px rgba(15,23,42,.08);
-    transition: transform .2s ease, background .2s ease, color .2s ease;
+    padding: 10px;
+    border-radius: 28px;
+    background: rgba(255,255,255,.72);
+    border: 1px solid rgba(255,255,255,.8);
+    box-shadow: 0 18px 46px rgba(15,23,42,.10);
+    backdrop-filter: blur(14px);
+    transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, background .35s ease;
+    position: relative;
+    overflow: hidden;
   }
 
-  .project-tab:hover,
-  .project-tab.active {
-    transform: translateY(-2px) scale(1.04);
-    background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
-    color: white;
+  .project-mini-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(14,165,233,.12), rgba(168,85,247,.10));
+    opacity: 0;
+    transition: opacity .3s ease;
   }
 
-  .project-progress {
-    display: none;
+  .project-mini-card:hover,
+  .project-mini-card.active {
+    transform: translateY(-12px) scale(1.12);
+    background: rgba(255,255,255,.95);
+    box-shadow: 0 30px 70px rgba(15,23,42,.20);
+    z-index: 5;
   }
 
-  .project-progress span {
-    display: none;
+  .project-mini-card.active::before {
+    opacity: 1;
+  }
+
+  .project-mini-image-wrap {
+    height: 150px;
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, var(--primary-100), var(--secondary-100));
+  }
+
+  .project-mini-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .45s cubic-bezier(.22,1,.36,1);
+  }
+
+  .project-mini-card:hover .project-mini-image,
+  .project-mini-card.active .project-mini-image {
+    transform: scale(1.12);
+  }
+
+  .project-mini-body {
+    position: relative;
+    z-index: 2;
+    padding: 14px 8px 8px;
+  }
+
+  .project-mini-body h4 {
+    margin: 0 0 5px;
+    font-size: 1rem;
+    color: var(--neutral-900);
+  }
+
+  .project-mini-body p {
+    margin: 0;
+    font-size: .84rem;
+    line-height: 1.4;
+    color: var(--neutral-500);
+  }
+
+  .project-active-dot {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--success-500);
+    box-shadow: 0 0 0 7px rgba(16,185,129,.16), 0 0 20px rgba(16,185,129,.55);
+    opacity: 0;
+    transform: scale(.6);
+    transition: all .3s ease;
+    z-index: 3;
+  }
+
+  .project-mini-card.active .project-active-dot {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @media (max-width: 980px) {
+    .project-featured-card {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      border-radius: 32px;
+    }
+
+    .project-featured-image-area,
+    .project-browser-frame,
+    .project-featured-image {
+      min-height: 330px;
+    }
+
+    .project-featured-content {
+      text-align: center;
+      align-items: center;
+    }
+
+    .project-meta-row {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .project-featured-card { border-radius: 26px; }
+    .project-featured-image-area { padding: 10px; min-height: 245px; }
+    .project-browser-frame { border-radius: 20px; min-height: 235px; }
+    .project-featured-image { min-height: 193px; }
+    .project-featured-content { padding: 1.35rem; }
+    .project-featured-content h3 { font-size: clamp(1.75rem, 9vw, 2.35rem); }
+    .project-floating-chip { left: 20px; bottom: 20px; font-size: .82rem; padding: 9px 12px; }
+    .project-mini-card { width: 230px; }
+    .project-mini-card:hover,
+    .project-mini-card.active { transform: translateY(-8px) scale(1.06); }
+    .project-mini-image-wrap { height: 125px; }
+    .project-marquee-track { gap: 14px; animation-duration: 20s; }
+    .project-marquee-shell::before,
+    .project-marquee-shell::after { width: 48px; }
   }
 
   /* Why choose us centered premium cards */
@@ -2650,121 +2857,140 @@ const Home = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
               >
-                <Sparkles size={15} /> Our Projects
+                <Sparkles size={15} /> Featured Work
               </motion.div>
-              <AnimatedWords text="Our Latest Projects" className="mb-6" center direction="right" />
+              <AnimatedWords text="Latest Projects We Built" className="mb-6" center direction="right" />
               <p className="max-w-2xl mx-auto text-neutral-600">
-                Selected website projects crafted with responsive layouts, fast performance, and smooth customer experience.
+                Every project gets premium highlight visibility. The marquee keeps moving, the active project zooms forward, and after the timer completes it smoothly returns to normal while the next project becomes active.
               </p>
             </motion.div>
 
-            <div className="project-stage">
-              <div className="project-showcase" aria-label="Premium website project showcase">
-                <button
-                  type="button"
-                  className="project-nav-btn project-prev"
-                  onClick={prevProject}
-                  aria-label="Previous project"
+            <div className="project-perfect-wrap">
+              <AnimatePresence mode="wait">
+                <motion.a
+                  key={projects[activeProject].title}
+                  href={projects[activeProject].url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-featured-card"
+                  style={{ '--project-duration': `${PROJECT_DISPLAY_MS}ms` }}
+                  initial={{ opacity: 0, y: 38, rotateX: 7, scale: 0.94 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -28, rotateX: -5, scale: 0.96 }}
+                  transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ y: -10, scale: 1.012 }}
+                  whileTap={{ scale: 0.985 }}
                 >
-                  ❮
-                </button>
-
-                <button
-                  type="button"
-                  className="project-nav-btn project-next"
-                  onClick={nextProject}
-                  aria-label="Next project"
-                >
-                  ❯
-                </button>
-
-                <AnimatePresence mode="wait">
                   <motion.div
-                    key={`left-${activeProject}`}
-                    className="project-ghost-card left"
-                    initial={{ opacity: 0, x: -120, scale: 0.72 }}
-                    animate={{ opacity: 0.18, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: -120, scale: 0.72 }}
-                    transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+                    className="project-featured-image-area"
+                    initial={{ opacity: 0, x: -24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.45, delay: 0.05 }}
                   >
-                    <SmartImage
-                      localSrc={projects[(activeProject + projects.length - 1) % projects.length].image}
-                      fallbackSrc={projects[(activeProject + projects.length - 1) % projects.length].fallback}
-                      alt={`${projects[(activeProject + projects.length - 1) % projects.length].title} preview`}
-                      className=""
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    key={`right-${activeProject}`}
-                    className="project-ghost-card right"
-                    initial={{ opacity: 0, x: 120, scale: 0.72 }}
-                    animate={{ opacity: 0.18, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: 120, scale: 0.72 }}
-                    transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <SmartImage
-                      localSrc={projects[(activeProject + 1) % projects.length].image}
-                      fallbackSrc={projects[(activeProject + 1) % projects.length].fallback}
-                      alt={`${projects[(activeProject + 1) % projects.length].title} preview`}
-                      className=""
-                    />
-                  </motion.div>
-                </AnimatePresence>
-
-                <AnimatePresence mode="wait">
-                  <motion.a
-                    key={projects[activeProject].title}
-                    href={projects[activeProject].url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-main-card"
-                    initial={{ opacity: 0, x: activeProject % 2 === 0 ? -70 : 70, scale: 0.92 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: activeProject % 2 === 0 ? 70 : -70, scale: 0.92 }}
-                    transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
-                    whileHover={{ y: -8, scale: 1.012 }}
-                    whileTap={{ scale: 0.985 }}
-                  >
-                    <div className="project-main-image-shell">
+                    <div className="project-browser-frame">
+                      <div className="project-browser-top">
+                        <div className="project-dots">
+                          <span></span><span></span><span></span>
+                        </div>
+                        <div className="project-url-pill">{projects[activeProject].url.replace('https://www.', '')}</div>
+                      </div>
                       <SmartImage
                         localSrc={projects[activeProject].image}
                         fallbackSrc={projects[activeProject].fallback}
-                        alt={`${projects[activeProject].title} - SMYVISION TECHNOLOGIES`}
-                        className="project-main-image"
+                        alt={`${projects[activeProject].title} website preview`}
+                        className="project-featured-image"
                       />
-                      <div className="project-glass-label">
-                        <span>{projects[activeProject].category}</span>
-                      </div>
                     </div>
+                    <motion.div
+                      className="project-floating-chip"
+                      animate={{ y: [0, -8, 0], scale: [1, 1.03, 1] }}
+                      transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+                    >
+                      <Award size={16} /> Highlight Project
+                    </motion.div>
+                  </motion.div>
 
-                    <div className="project-content">
-                      <AnimatedWords
-                        text={projects[activeProject].title}
-                        as="h3"
-                        direction={activeProject % 2 === 0 ? 'left' : 'right'}
-                      />
-                      <motion.p
-                        initial={{ opacity: 0, y: 14 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.28, delay: 0.08 }}
+                  <motion.div
+                    className="project-featured-content"
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.45, delay: 0.1 }}
+                  >
+                  
+                    <motion.h3
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35, delay: 0.12 }}
+                    >
+                      {projects[activeProject].title}
+                    </motion.h3>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 14 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35, delay: 0.18 }}
+                    >
+                      {projects[activeProject].description}
+                    </motion.p>
+
+                    <motion.div
+                      className="project-meta-row"
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.32, delay: 0.24 }}
+                    >
+                      <span className="project-meta-pill"><Globe2 size={15} /> Live Website</span>
+                      <span className="project-meta-pill"><Smartphone size={15} /> Mobile Friendly</span>
+                      <span className="project-meta-pill"><Zap size={15} /> Fast UI</span>
+                    </motion.div>
+
+                    <motion.div
+                      className="project-action"
+                      initial={{ opacity: 0, scale: 0.88 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.25, delay: 0.3 }}
+                    >
+                      View Website <ArrowRight size={18} />
+                    </motion.div>
+                  </motion.div>
+
+                  <div className="project-timer" key={`timer-${activeProject}`}>
+                    <span></span>
+                  </div>
+                </motion.a>
+              </AnimatePresence>
+
+              <div className="project-marquee-shell" aria-label="All website projects marquee">
+                <div className="project-marquee-track">
+                  {[...projects, ...projects].map((project, index) => {
+                    const realIndex = index % projects.length;
+                    const isActive = realIndex === activeProject;
+                    return (
+                      <button
+                        type="button"
+                        key={`${project.title}-${index}`}
+                        className={`project-mini-card ${isActive ? 'active' : ''}`}
+                        onClick={() => setActiveProject(realIndex)}
+                        onMouseEnter={() => setActiveProject(realIndex)}
+                        aria-label={`Highlight ${project.title}`}
                       >
-                        {projects[activeProject].description}
-                      </motion.p>
-                      <motion.div
-                        className="project-action"
-                        initial={{ opacity: 0, scale: 0.88 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.24, delay: 0.16 }}
-                        whileHover={{ scale: 1.08 }}
-                        whileTap={{ scale: 0.96 }}
-                      >
-                        View Website <ArrowRight size={18} />
-                      </motion.div>
-                    </div>
-                  </motion.a>
-                </AnimatePresence>
-                <div className="project-hidden-switch-note" aria-hidden="true"></div>
+                        <span className="project-active-dot"></span>
+                        <div className="project-mini-image-wrap">
+                          <SmartImage
+                            localSrc={project.image}
+                            fallbackSrc={project.fallback}
+                            alt={`${project.title} preview`}
+                            className="project-mini-image"
+                          />
+                        </div>
+                        <div className="project-mini-body">
+                          <h4>{project.title}</h4>
+                          <p>{project.category}</p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
