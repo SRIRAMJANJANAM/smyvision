@@ -337,7 +337,7 @@ const reviews = [
     role: "Car Rental Business",
 
     review:
-      "The website looks professional, works smoothly across devices and presents our services clearly. We are very happy with the overall result.",
+      "I am extremely satisfied with the website design. The work was done neatly and exactly according to my requirements.Thank you so much SMYVISION TECHNOLOGIES entire team for the great support and service.",
   },
 
   {
@@ -355,7 +355,7 @@ const reviews = [
     role: "Home Services",
 
     review:
-      "The website design is modern and customer-friendly. Our services are now presented in a much more professional and organized way.",
+      "Super happy with the work. Highly recommend it!",
   },
 
   {
