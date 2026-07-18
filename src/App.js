@@ -1,5 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+import {
+  useEffect,
+  useState,
+} from "react";
 
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -12,19 +20,25 @@ import ChatbotWidget from "./components/ChatbotWidget";
 import ScrollToTop from "./components/ScrollToTop";
 import Preloader from "./components/Preloader";
 import Canonical from "./components/Canonical";
-import SEOManager from "./components/SEOManager";
 import WhatsAppFloating from "./components/WhatsAppFloating";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [loading, setLoading] =
+    useState(true);
+
+  const [
+    isChatbotOpen,
+    setIsChatbotOpen,
+  ] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2100);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   if (loading) {
@@ -33,25 +47,73 @@ function App() {
 
   return (
     <Router>
-      <Canonical />
+      {/* Scroll page to top after route change */}
       <ScrollToTop />
-      <SEOManager /> 
+
+      {/* Dynamic canonical URL */}
+      <Canonical />
+
+      {/* Main Navbar */}
       <Navbar />
-      
-      <WhatsAppFloating isChatbotOpen={isChatbotOpen} />
 
-      <div style={{ marginTop: "3.5vw", minHeight: "80vh", padding: "0.5rem" }}>
+      {/* Floating WhatsApp */}
+      <WhatsAppFloating
+        isChatbotOpen={isChatbotOpen}
+      />
+
+      {/* Main Page Content */}
+      <main className="app-main-content">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </div>
+          <Route
+            path="/"
+            element={<Home />}
+          />
 
+          <Route
+            path="/about"
+            element={<About />}
+          />
+
+          <Route
+            path="/services"
+            element={<Services />}
+          />
+
+          <Route
+            path="/careers"
+            element={<Careers />}
+          />
+
+          <Route
+            path="/contact"
+            element={<Contact />}
+          />
+        </Routes>
+      </main>
+
+      {/* Footer */}
       <Footer />
-      <ChatbotWidget setIsChatbotOpen={setIsChatbotOpen} />
+
+      {/* Chatbot */}
+      <ChatbotWidget
+        setIsChatbotOpen={
+          setIsChatbotOpen
+        }
+      />
+
+      <style>
+        {`
+          .app-main-content {
+            min-height: 80vh;
+          }
+
+          @media (max-width: 1120px) {
+            .app-main-content {
+              min-height: 80vh;
+            }
+          }
+        `}
+      </style>
     </Router>
   );
 }

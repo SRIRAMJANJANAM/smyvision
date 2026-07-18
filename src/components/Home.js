@@ -1,3257 +1,4565 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
-// Import Lucide React Icons
-import { 
-  Rocket, Zap, Globe, Search, TrendingUp, Award, Smartphone, 
-  BarChart3, Code2, Workflow, Bot, Building2, Target, Clock,
-  CheckCircle, Calendar, Phone, ArrowRight, Sparkles, Shield,
-  Cloud, Users, Cpu, Palette, Server, Lock, MessageSquare,
-  LineChart, ShieldCheck, ZapOff, Infinity as InfinityIcon,
-  DollarSign, Target as TargetIcon, Eye, Globe2
-} from 'lucide-react';
+/* =========================================================
+   FONT AWESOME ICONS
+========================================================= */
 
-// Import React Icons for variety
-import { 
-  FaLightbulb, FaChartLine, FaMobileAlt, FaRobot,
-  FaGoogle, FaRegClock, FaStar, FaCrown,
-  FaNetworkWired, FaDatabase, FaRocket, FaRegHandshake
-} from 'react-icons/fa';
+import {
+  FaArrowRight,
+  FaArrowLeft,
+  FaArrowUpRightFromSquare,
+  FaBarsProgress,
+  FaBolt,
+  FaBrain,
+  FaBriefcase,
+  FaBuilding,
+  FaBullseye,
+  FaCheck,
+  FaChevronDown,
+  FaChevronLeft,
+  FaChevronRight,
+  FaCircleCheck,
+  FaCloud,
+  FaCode,
+  FaComments,
+  FaComputer,
+  FaDatabase,
+  FaGlobe,
+  FaHeadset,
+  FaLaptopCode,
+  FaLightbulb,
+  FaMagnifyingGlass,
+  FaMobileScreenButton,
+  FaQuoteLeft,
+  FaRocket,
+  FaServer,
+  FaShieldHalved,
+  FaSitemap,
+  FaStar,
+  FaUsers,
+  FaWandMagicSparkles,
+  FaWhatsapp,
+} from "react-icons/fa6";
 
-const PROJECT_DISPLAY_MS = 10000;
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaReact,
+  FaPython,
+  FaNodeJs,
+} from "react-icons/fa";
 
-// SEO Structured Data Component (Hidden)
-const SEOStructuredData = () => {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebDevelopmentCompany",
-        "@id": "https://smyvisiontechnologies.vercel.app/#company",
-        "name": "SMYVISION TECHNOLOGIES",
-        "description": "Top web development company in Vijayawada, Hyderabad, and Bangalore offering professional website development, automation solutions, and chatbot development services.",
-        "url": "https://smyvisiontechnologies.vercel.app",
-        "logo": "https://smyvisiontechnologies.vercel.app/logo.png",
-        "founder": "Sri Ram Janjanam",
-        "foundingDate": "2026",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Vijayawada",
-          "addressRegion": "Andhra Pradesh",
-          "postalCode": "520001",
-          "addressCountry": "India",
-          "streetAddress": "Vijayawada"
-        },
-        "serviceArea": {
-          "@type": "Place",
-          "name": "Vijayawada, Hyderabad, Bangalore, Andhra Pradesh, Telangana, Karnataka"
-        },
-        "areaServed": [
-          {
-            "@type": "City",
-            "name": "Vijayawada"
-          },
-          {
-            "@type": "City",
-            "name": "Hyderabad"
-          },
-          {
-            "@type": "City",
-            "name": "Bangalore"
-          },
-          {
-            "@type": "State",
-            "name": "Andhra Pradesh"
-          },
-          {
-            "@type": "State",
-            "name": "Telangana"
-          },
-          {
-            "@type": "State",
-            "name": "Karnataka"
-          }
-        ],
-        "makesOffer": [
-          {
-            "@type": "Offer",
-            "name": "Website Development Services",
-            "description": "Professional website development for businesses in Vijayawada, Hyderabad, and Bangalore"
-          },
-          {
-            "@type": "Offer",
-            "name": "Automation Development",
-            "description": "Business automation solutions for companies in South India"
-          },
-          {
-            "@type": "Offer",
-            "name": "Chatbot Solutions",
-            "description": "AI-powered chatbot development for enterprises"
-          }
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+918500352005",
-          "contactType": "customer service",
-          "areaServed": ["IN"],
-          "availableLanguage": ["English", "Telugu", "Hindi"]
-        },
-        "sameAs": [
-          "https://www.linkedin.com/company/smyvisiontechnologies",
-          "https://twitter.com/smyvisiontech",
-          "https://www.facebook.com/share/1AAbW51BTs/"
-        ]
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://smyvisiontechnologies.vercel.app/#webpage",
-        "url": "https://smyvisiontechnologies.vercel.app",
-        "name": "Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION",
-        "description": "Professional web development services in Vijayawada, Hyderabad, and Bangalore. Custom website development, automation solutions, and chatbot development.",
-        "isPartOf": {
-          "@id": "https://smyvisiontechnologies.vercel.app/#website"
-        },
-        "inLanguage": "en-IN",
-        "potentialAction": [{
-          "@type": "ReadAction",
-          "target": ["https://smyvisiontechnologies.vercel.app"]
-        }]
-      },
-      {
-        "@type": "Service",
-        "name": "Website Development",
-        "serviceType": "WebDevelopment",
-        "provider": {
-          "@id": "https://smyvisiontechnologies.vercel.app/#company"
-        },
-        "areaServed": "Vijayawada, Hyderabad, Bangalore",
-        "description": "Professional website development services for businesses in Vijayawada, Hyderabad, and Bangalore"
-      },
-      {
-        "@type": "Service",
-        "name": "Automation Solutions",
-        "serviceType": "BusinessAutomation",
-        "provider": {
-          "@id": "https://smyvisiontechnologies.vercel.app/#company"
-        },
-        "areaServed": "Vijayawada, Hyderabad, Bangalore",
-        "description": "Business automation solutions for companies in South India"
-      },
-      {
-        "@type": "Service",
-        "name": "Chatbot Development",
-        "serviceType": "SoftwareDevelopment",
-        "provider": {
-          "@id": "https://smyvisiontechnologies.vercel.app/#company"
-        },
-        "areaServed": "Vijayawada, Hyderabad, Bangalore",
-        "description": "AI-powered chatbot development services"
-      }
-    ]
-  };
+import {
+  SiDjango,
+  SiJavascript,
+  SiMongodb,
+  SiMysql,
+  SiPostgresql,
+  SiFirebase,
+} from "react-icons/si";
 
-  return (
-    <script type="application/ld+json">
-      {JSON.stringify(structuredData)}
-    </script>
-  );
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const WEBSITE_URL = "https://smyvisiontechnologies.vercel.app";
+
+const PHONE_NUMBER = "8500352005";
+
+const PHONE_LINK = "+918500352005";
+
+const EMAIL = "smyvisiontechnologies@gmail.com";
+
+const PROJECT_CHANGE_TIME = 7000;
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+const services = [
+  {
+    icon: <FaLaptopCode />,
+
+    image: "/images/web.png",
+
+    title: "Website Development",
+
+    description:
+      "Professional websites built to establish trust, present your services clearly and help potential customers connect with your business.",
+
+    features: [
+      "Business Websites",
+      "Corporate Websites",
+      "Responsive Web Design",
+      "SEO-Ready Development",
+    ],
+  },
+
+  {
+    icon: <FaBarsProgress />,
+
+    image: "/images/auto.png",
+
+    title: "Business Automation",
+
+    description:
+      "Custom automation solutions designed to simplify repetitive operations, improve efficiency and create better digital workflows.",
+
+    features: [
+      "Workflow Automation",
+      "Custom Dashboards",
+      "Business Management Systems",
+      "Process Automation",
+    ],
+  },
+
+  {
+    icon: <FaBrain />,
+
+    image: "/images/chat.png",
+
+    title: "AI & Chatbot Solutions",
+
+    description:
+      "Smart AI-powered solutions that help businesses automate communication, manage enquiries and deliver faster customer experiences.",
+
+    features: [
+      "AI Chatbots",
+      "Customer Support",
+      "Lead Automation",
+      "Smart Business Tools",
+    ],
+  },
+];
+
+/* =========================================================
+   GENERAL MARQUEE
+========================================================= */
+
+const marqueeItems = [
+  "Professional Business Websites",
+  "Affordable Website Solutions",
+  "Responsive Web Development",
+  "SEO-Friendly Websites",
+  "Custom Web Applications",
+  "Business Automation",
+  "AI Chatbot Development",
+  "Website Redesign",
+  "E-commerce Development",
+  "Landing Page Development",
+  "Fast Loading Websites",
+  "Digital Business Solutions",
+];
+
+/* =========================================================
+   BENEFITS
+========================================================= */
+
+const benefits = [
+  {
+    icon: <FaMagnifyingGlass />,
+
+    title: "SEO-Ready Foundation",
+
+    description:
+      "Clean development, semantic structure, optimized headings and technical foundations that support better search visibility.",
+  },
+
+  {
+    icon: <FaMobileScreenButton />,
+
+    title: "Responsive Experience",
+
+    description:
+      "Every website is built to deliver a professional experience across smartphones, tablets, laptops and desktop devices.",
+  },
+
+  {
+    icon: <FaBolt />,
+
+    title: "Performance Focused",
+
+    description:
+      "Modern layouts and optimized development practices help create faster and smoother website experiences.",
+  },
+
+  {
+    icon: <FaBullseye />,
+
+    title: "Conversion Focused",
+
+    description:
+      "Clear content structure and strategic calls-to-action help guide visitors towards enquiries and business actions.",
+  },
+];
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+const projects = [
+  {
+    title: "NKR Car Rentals",
+
+    category: "Car Rental Website",
+
+    image: "/images/nkr.png",
+
+    url: "https://www.nkrselfdrivecarrentals.in/",
+
+    description:
+      "A modern car rental website designed to present services clearly, provide easy customer navigation and create a professional mobile experience.",
+  },
+
+  {
+    title: "Bindiya Beauty Salon",
+
+    category: "Beauty & Salon Website",
+
+    image: "/images/beauty.png",
+
+    url: "https://www.bindiyazbeautysalon.in/",
+
+    description:
+      "A premium salon website created to showcase services, strengthen brand identity and provide customers with a smooth digital experience.",
+  },
+
+  {
+    title: "Happy Organize",
+
+    category: "Home Services Website",
+
+    image: "/images/home.png",
+
+    url: "https://www.happyorganize.com/",
+
+    description:
+      "A professional home services website designed with clear service presentation, responsive layouts and customer-focused navigation.",
+  },
+
+  {
+    title: "Arvis Fertilizers",
+
+    category: "Agriculture Business Website",
+
+    image: "/images/arvis.png",
+
+    url: "https://www.arvisfertilizers.com/",
+
+    description:
+      "A modern agriculture-focused digital platform developed to strengthen business presentation and communicate products professionally.",
+  },
+];
+
+/* =========================================================
+   PROJECT MARQUEE ITEMS
+========================================================= */
+
+const projectMarqueeRowOne = [
+  {
+    title: "NKR Car Rentals",
+
+    image: "/images/nkr.png",
+
+    category: "Car Rental",
+  },
+
+  {
+    title: "Bindiya Beauty Salon",
+
+    image: "/images/beauty.png",
+
+    category: "Beauty & Salon",
+  },
+
+  {
+    title: "Happy Organize",
+
+    image: "/images/home.png",
+
+    category: "Home Services",
+  },
+
+  {
+    title: "Arvis Fertilizers",
+
+    image: "/images/arvis.png",
+
+    category: "Agriculture",
+  },
+];
+
+const projectMarqueeRowTwo = [
+  {
+    title: "Arvis Fertilizers",
+
+    image: "/images/arvis.png",
+
+    category: "Agriculture",
+  },
+
+  {
+    title: "Happy Organize",
+
+    image: "/images/home.png",
+
+    category: "Home Services",
+  },
+
+  {
+    title: "Bindiya Beauty Salon",
+
+    image: "/images/beauty.png",
+
+    category: "Beauty & Salon",
+  },
+
+  {
+    title: "NKR Car Rentals",
+
+    image: "/images/nkr.png",
+
+    category: "Car Rental",
+  },
+];
+
+/* =========================================================
+   REVIEWS
+========================================================= */
+
+const reviews = [
+  {
+    name: "NKR Car Rentals",
+
+    role: "Car Rental Business",
+
+    review:
+      "The website looks professional, works smoothly across devices and presents our services clearly. We are very happy with the overall result.",
+  },
+
+  {
+    name: "Bindiya Beauty Salon",
+
+    role: "Beauty & Salon",
+
+    review:
+      "SMYVISION TECHNOLOGIES understood our requirements and created a beautiful website that represents our salon professionally.",
+  },
+
+  {
+    name: "Happy Organize",
+
+    role: "Home Services",
+
+    review:
+      "The website design is modern and customer-friendly. Our services are now presented in a much more professional and organized way.",
+  },
+
+  {
+    name: "Arvis Fertilizers",
+
+    role: "Agriculture Business",
+
+    review:
+      "The team delivered a professional digital platform with a clean structure and responsive design that supports our business presentation.",
+  },
+];
+
+/* =========================================================
+   TECHNOLOGIES
+========================================================= */
+
+const technologies = [
+  {
+    icon: <FaReact />,
+
+    name: "React JS",
+
+    description: "Modern interactive user interfaces",
+  },
+
+  {
+    icon: <SiJavascript />,
+
+    name: "JavaScript",
+
+    description: "Dynamic frontend functionality",
+  },
+
+  {
+    icon: <FaHtml5 />,
+
+    name: "HTML5",
+
+    description: "Semantic modern web structure",
+  },
+
+  {
+    icon: <FaCss3Alt />,
+
+    name: "CSS3",
+
+    description: "Responsive modern styling",
+  },
+
+  {
+    icon: <FaPython />,
+
+    name: "Python",
+
+    description: "Powerful backend development",
+  },
+
+  {
+    icon: <SiDjango />,
+
+    name: "Django",
+
+    description: "Secure business applications",
+  },
+
+  {
+    icon: <FaNodeJs />,
+
+    name: "Node.js",
+
+    description: "Scalable backend applications",
+  },
+
+  {
+    icon: <SiMysql />,
+
+    name: "MySQL",
+
+    description: "Reliable structured databases",
+  },
+
+  {
+    icon: <SiPostgresql />,
+
+    name: "PostgreSQL",
+
+    description: "Advanced database solutions",
+  },
+
+  {
+    icon: <SiMongodb />,
+
+    name: "MongoDB",
+
+    description: "Flexible modern databases",
+  },
+
+  {
+    icon: <SiFirebase />,
+
+    name: "Firebase",
+
+    description: "Cloud-powered applications",
+  },
+
+  {
+    icon: <FaCloud />,
+
+    name: "Cloud Solutions",
+
+    description: "Modern scalable infrastructure",
+  },
+];
+
+/* =========================================================
+   PROCESS
+========================================================= */
+
+const processSteps = [
+  {
+    number: "01",
+
+    icon: <FaComments />,
+
+    title: "Discovery",
+
+    description:
+      "We begin by understanding your business, goals, customers and exact project requirements.",
+  },
+
+  {
+    number: "02",
+
+    icon: <FaSitemap />,
+
+    title: "Strategy",
+
+    description:
+      "We organize the project structure, user journey, pages and technical requirements.",
+  },
+
+  {
+    number: "03",
+
+    icon: <FaWandMagicSparkles />,
+
+    title: "Design",
+
+    description:
+      "We create a modern visual direction focused on professionalism, usability and your business identity.",
+  },
+
+  {
+    number: "04",
+
+    icon: <FaCode />,
+
+    title: "Development",
+
+    description:
+      "The approved design is transformed into a responsive and functional digital experience.",
+  },
+
+  {
+    number: "05",
+
+    icon: <FaShieldHalved />,
+
+    title: "Testing",
+
+    description:
+      "We carefully test responsiveness, usability and functionality across different screen sizes.",
+  },
+
+  {
+    number: "06",
+
+    icon: <FaRocket />,
+
+    title: "Launch",
+
+    description:
+      "Your completed digital solution is prepared and launched for your customers to experience.",
+  },
+];
+
+/* =========================================================
+   FAQ QUESTIONS
+========================================================= */
+
+const faqItems = [
+  {
+    question: "What types of websites do you develop?",
+
+    answer:
+      "We develop professional business websites, corporate websites, service websites, portfolio websites, e-commerce platforms, landing pages, custom portals and web applications according to business requirements.",
+  },
+
+  {
+    question: "Do you create mobile-responsive websites?",
+
+    answer:
+      "Yes. Every website we develop is designed to work smoothly across smartphones, tablets, laptops and desktop devices.",
+  },
+
+  {
+    question: "Will my website be SEO-friendly?",
+
+    answer:
+      "We build websites with SEO-friendly technical foundations including clean page structure, semantic HTML, heading hierarchy, metadata support, responsive design and performance-focused development.",
+  },
+
+  {
+    question: "Can you redesign my existing website?",
+
+    answer:
+      "Yes. We can redesign an existing website with a more modern interface, improved mobile responsiveness, better content structure and a stronger user experience.",
+  },
+
+  {
+    question: "How long does website development take?",
+
+    answer:
+      "Development time depends on the size and complexity of the project. A standard business website can usually be completed faster than a custom application or advanced business portal.",
+  },
+
+  {
+    question: "Do you provide custom web application development?",
+
+    answer:
+      "Yes. We can develop custom web-based systems including dashboards, management platforms, customer portals and business automation solutions.",
+  },
+
+  {
+    question: "Can you integrate WhatsApp into the website?",
+
+    answer:
+      "Yes. We can integrate WhatsApp buttons and direct enquiry options so customers can quickly communicate with your business.",
+  },
+
+  {
+    question: "Do you develop e-commerce websites?",
+
+    answer:
+      "Yes. We can build e-commerce solutions that allow businesses to display products, manage catalogues and provide online shopping experiences.",
+  },
+
+  {
+    question: "Can you develop AI chatbot solutions?",
+
+    answer:
+      "Yes. We provide chatbot and AI automation solutions for customer enquiries, lead generation, support and business communication.",
+  },
+
+  {
+    question: "Do you provide business automation solutions?",
+
+    answer:
+      "Yes. We can create custom digital workflows and management systems that reduce repetitive work and help businesses manage operations more efficiently.",
+  },
+
+  {
+    question: "Will I be able to update my website later?",
+
+    answer:
+      "The ability to update content depends on the type of website and management system selected. We can develop solutions with administrative features when required.",
+  },
+
+  {
+    question: "Do you provide support after website development?",
+
+    answer:
+      "We provide technical guidance and support based on the project requirements and agreed service scope.",
+  },
+
+  {
+    question: "Can you help businesses build a complete digital presence?",
+
+    answer:
+      "Yes. Along with website development, we can help businesses implement automation, chatbot solutions and other digital systems required for their operations.",
+  },
+
+  {
+    question: "How can I get a quotation for my project?",
+
+    answer:
+      "You can contact us through the website, WhatsApp or phone and share your requirements. We will understand your project and provide a suitable quotation.",
+  },
+
+  {
+    question: "How do I start a project with SMYVISION TECHNOLOGIES?",
+
+    answer:
+      "Simply contact our team and tell us about your business and project idea. We will discuss your requirements, understand your goals and recommend the right solution.",
+  },
+];
+
+/* =========================================================
+   WHY CHOOSE US
+========================================================= */
+
+const reasons = [
+  {
+    icon: <FaBullseye />,
+
+    title: "Business-First Thinking",
+
+    description:
+      "We understand your business objectives before deciding how technology should solve the problem.",
+  },
+
+  {
+    icon: <FaRocket />,
+
+    title: "Modern Technologies",
+
+    description:
+      "We use reliable modern technologies to build scalable and professional digital solutions.",
+  },
+
+  {
+    icon: <FaHeadset />,
+
+    title: "Clear Communication",
+
+    description:
+      "We keep project communication simple so you can understand each important stage of development.",
+  },
+
+  {
+    icon: <FaShieldHalved />,
+
+    title: "Quality Focus",
+
+    description:
+      "Our development process focuses on responsiveness, usability and professional presentation.",
+  },
+
+  {
+    icon: <FaBolt />,
+
+    title: "Performance Mindset",
+
+    description:
+      "We focus on smooth user experiences and efficient development practices.",
+  },
+
+  {
+    icon: <FaUsers />,
+
+    title: "Built Around Your Needs",
+
+    description:
+      "Every project is developed according to the actual requirements and goals of the business.",
+  },
+];
+
+/* =========================================================
+   INDUSTRIES
+========================================================= */
+
+const industries = [
+  "Healthcare",
+  "Education",
+  "Real Estate",
+  "Restaurants",
+  "Agriculture",
+  "Beauty & Salons",
+  "Travel & Rentals",
+  "Home Services",
+  "Startups",
+  "Retail Businesses",
+];
+
+/* =========================================================
+   FAQ SCHEMA
+========================================================= */
+
+const faqSchema = {
+  "@context": "https://schema.org",
+
+  "@type": "FAQPage",
+
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+
+    name: item.question,
+
+    acceptedAnswer: {
+      "@type": "Answer",
+
+      text: item.answer,
+    },
+  })),
 };
 
-// Hidden SEO Text Component for Home Page
-const HiddenSEOText = () => {
-  return (
-    <div style={{
-      position: 'absolute',
-      left: '-9999px',
-      top: '-9999px',
-      height: '1px',
-      width: '1px',
-      overflow: 'hidden',
-      opacity: '0',
-      pointerEvents: 'none'
-    }}>
-      <p>SMYVISION TECHNOLOGIES - Top Web Development Company in Vijayawada, Hyderabad, Bangalore</p>
-      <h2>Best Website Development Services | Web Developers in South India</h2>
-      
-      <p>SMYVISION TECHNOLOGIES is the leading web development company serving businesses in Vijayawada, Hyderabad, and Bangalore. We provide comprehensive digital solutions including professional website development, business automation, and AI chatbot development.</p>
-      
-      <h3>Web Development Services in Vijayawada</h3>
-      <p>As one of the top web development companies in Vijayawada, we offer customized website solutions for local businesses. Our expert team in Vijayawada specializes in responsive web design, e-commerce development, and SEO-optimized websites that drive results.</p>
-      
-      <h3>Website Development Company in Hyderabad</h3>
-      <p>Our Hyderabad-based web development team provides cutting-edge digital solutions for businesses across Telangana. We are recognized as a premier website development company in Hyderabad for our innovative approach and proven results.</p>
-      
-      <h3>Best Web Developers in Bangalore</h3>
-      <p>With a strong presence in Bangalore, we deliver world-class web development services for startups and enterprises. Our Bangalore team excels in creating scalable web applications, automation systems, and intelligent chatbot solutions.</p>
-      
-      <h3>Our Core Services:</h3>
-      <ul>
-        <li>Custom Website Development in Vijayawada</li>
-        <li>Professional Web Development Services in Hyderabad</li>
-        <li>Enterprise Web Solutions in Bangalore</li>
-        <li>E-commerce Website Development</li>
-        <li>Business Process Automation</li>
-        <li>AI Chatbot Development</li>
-        <li>Mobile Responsive Web Design</li>
-        <li>SEO-Optimized Websites</li>
-        <li>Digital Transformation Solutions</li>
-      </ul>
-      
-      <h3>Why Choose Our Web Development Company?</h3>
-      <p>We stand out as the best web development company for businesses in Vijayawada, Hyderabad, and Bangalore because we offer:</p>
-      <ul>
-        <li>Expert web developers with years of experience</li>
-        <li>Affordable web development packages</li>
-        <li>Timely project delivery and 24/7 support</li>
-        <li>Cutting-edge technology stack</li>
-        <li>Client-centric approach and transparent communication</li>
-        <li>Proven track record across multiple industries</li>
-      </ul>
-      
-      <h3>Industries We Serve:</h3>
-      <p>Our web development services cater to various industries including healthcare, education, retail, manufacturing, hospitality, technology startups, and more across Vijayawada, Hyderabad, and Bangalore.</p>
-      
-      <h3>Contact Information:</h3>
-      <p>For professional web development services in Vijayawada, Hyderabad, or Bangalore, contact us today:</p>
-      <ul>
-        <li>Phone: 8500352005</li>
-        <li>Email: smyvisiontechnologies@gmail.com</li>
-        <li>Service Areas: Vijayawada, Hyderabad, Bangalore, Andhra Pradesh, Telangana, Karnataka</li>
-      </ul>
-      
-      <h4>Keywords: top web development companies in vijayawada, website development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, affordable web development vijayawada, professional website developers hyderabad, custom web development bangalore, e-commerce website development south india, web development company vijayawada, hyderabad website developers, bangalore web development services, responsive web design vijayawada, digital solutions hyderabad, software development bangalore</h4>
-    </div>
-  );
+/* =========================================================
+   SEO SCHEMA
+   LOCATION TERMS ONLY INSIDE SEO
+========================================================= */
+
+const structuredData = {
+  "@context": "https://schema.org",
+
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+
+      "@id": `${WEBSITE_URL}/#organization`,
+
+      name: "SMYVISION TECHNOLOGIES",
+
+      alternateName: "SMYVISION",
+
+      url: WEBSITE_URL,
+
+      logo: `${WEBSITE_URL}/logo.png`,
+
+      image: `${WEBSITE_URL}/logo.png`,
+
+      description:
+        "SMYVISION TECHNOLOGIES is a professional web development company in Vijayawada providing website development, responsive web design, SEO-friendly websites, custom web applications, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
+
+      telephone: PHONE_LINK,
+
+      email: EMAIL,
+
+      address: {
+        "@type": "PostalAddress",
+
+        addressLocality: "Vijayawada",
+
+        addressRegion: "Andhra Pradesh",
+
+        addressCountry: "IN",
+      },
+
+      areaServed: [
+        {
+          "@type": "City",
+
+          name: "Vijayawada",
+        },
+
+        {
+          "@type": "State",
+
+          name: "Andhra Pradesh",
+        },
+      ],
+
+      contactPoint: {
+        "@type": "ContactPoint",
+
+        telephone: PHONE_LINK,
+
+        contactType: "customer service",
+
+        areaServed: "IN",
+
+        availableLanguage: ["English", "Telugu"],
+      },
+    },
+
+    {
+      "@type": "WebSite",
+
+      "@id": `${WEBSITE_URL}/#website`,
+
+      name: "SMYVISION TECHNOLOGIES",
+
+      url: WEBSITE_URL,
+
+      publisher: {
+        "@id": `${WEBSITE_URL}/#organization`,
+      },
+
+      inLanguage: "en-IN",
+    },
+
+    {
+      "@type": "WebPage",
+
+      "@id": `${WEBSITE_URL}/#webpage`,
+
+      url: WEBSITE_URL,
+
+      name:
+        "Web Development Services in Vijayawada | Best Website Development Company",
+
+      description:
+        "Professional web development services in Vijayawada by SMYVISION TECHNOLOGIES. Get responsive websites, custom web applications, SEO-friendly website development, AI solutions and business automation services across Andhra Pradesh.",
+
+      isPartOf: {
+        "@id": `${WEBSITE_URL}/#website`,
+      },
+
+      about: {
+        "@id": `${WEBSITE_URL}/#organization`,
+      },
+
+      inLanguage: "en-IN",
+    },
+
+    {
+      "@type": "Service",
+
+      name: "Web Development Services in Vijayawada",
+
+      serviceType: "Web Development",
+
+      description:
+        "Professional web development services including business websites, responsive web design, custom web applications and SEO-friendly website development in Vijayawada and Andhra Pradesh.",
+
+      provider: {
+        "@id": `${WEBSITE_URL}/#organization`,
+      },
+
+      areaServed: [
+        {
+          "@type": "City",
+
+          name: "Vijayawada",
+        },
+
+        {
+          "@type": "State",
+
+          name: "Andhra Pradesh",
+        },
+      ],
+    },
+  ],
 };
 
-// Extract CSS to a separate constant for better organization
-const globalStyles = `
-  /* Enhanced 3D Animations & Effects - Refined */
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-
-  .preserve-3d {
-    transform-style: preserve-3d;
-  }
-
-  /* Floating particles background - Subtler */
-  .particles-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .particle {
-    position: absolute;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-300), var(--secondary-300));
-    opacity: 0.05;
-    animation: float-particle 25s infinite linear;
-  }
-
-  @keyframes float-particle {
-    0% {
-      transform: translateY(100vh) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.05;
-    }
-    90% {
-      opacity: 0.05;
-    }
-    100% {
-      transform: translateY(-100px) translateX(100px) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
-  /* Subtle 3D Card Hover Effect */
-  .card-3d {
-    transform-style: preserve-3d;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  .card-3d:hover {
-    transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
-  }
-
-  /* Icon Animation Classes */
-  .icon-float {
-    animation: icon-float 3s ease-in-out infinite;
-  }
-
-  .icon-spin {
-    animation: icon-spin 20s linear infinite;
-  }
-
-  .icon-pulse {
-    animation: icon-pulse 2s ease-in-out infinite;
-  }
-
-  .icon-bounce {
-    animation: icon-bounce 2s ease infinite;
-  }
-
-  .icon-wave {
-    animation: icon-wave 1.5s ease-in-out infinite;
-  }
-
-  @keyframes icon-float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes icon-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes icon-pulse {
-    0%, 100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.1);
-      opacity: 0.8;
-    }
-  }
-
-  @keyframes icon-bounce {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-5px);
-    }
-  }
-
-  @keyframes icon-wave {
-    0%, 100% {
-      transform: translateY(0) rotate(0deg);
-    }
-    25% {
-      transform: translateY(-5px) rotate(5deg);
-    }
-    75% {
-      transform: translateY(-5px) rotate(-5deg);
-    }
-  }
-
-  /* Icon Container Styles */
-  .icon-container {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .icon-glow {
-    filter: drop-shadow(0 0 8px currentColor);
-  }
-
-  .icon-gradient {
-    background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Enhanced Icon Backgrounds */
-  .icon-bg-primary {
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(168, 85, 247, 0.1));
-  }
-
-  .icon-bg-success {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
-  }
-
-  .icon-bg-warning {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(249, 115, 22, 0.1));
-  }
-
-  .icon-bg-danger {
-    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(244, 63, 94, 0.1));
-  }
-
-  .icon-bg-purple {
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1));
-  }
-
-  .icon-bg-pink {
-    background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(244, 114, 182, 0.1));
-  }
-
-  .icon-bg-indigo {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(129, 140, 248, 0.1));
-  }
-
-  /* Subtle Glow Effects */
-  .glow {
-    position: relative;
-  }
-
-  .glow::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: inherit;
-    background: linear-gradient(45deg, var(--primary-400), var(--secondary-400));
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    filter: blur(8px);
-  }
-
-  .glow:hover::after {
-    opacity: 0.15;
-  }
-
-  /* Color Variables - Professional Palette */
-  :root {
-    /* Primary Color Palette - More Professional */
-    --primary-50: #f0f9ff;
-    --primary-100: #e0f2fe;
-    --primary-200: #bae6fd;
-    --primary-300: #7dd3fc;
-    --primary-400: #38bdf8;
-    --primary-500: #0ea5e9;
-    --primary-600: #0284c7;
-    --primary-700: #0369a1;
-    --primary-800: #075985;
-    --primary-900: #0c4a6e;
-    
-    /* Secondary Color Palette */
-    --secondary-50: #faf5ff;
-    --secondary-100: #f3e8ff;
-    --secondary-200: #e9d5ff;
-    --secondary-300: #d8b4fe;
-    --secondary-400: #c084fc;
-    --secondary-500: #a855f7;
-    --secondary-600: #9333ea;
-    --secondary-700: #7e22ce;
-    --secondary-800: #6b21a8;
-    --secondary-900: #581c87;
-    
-    /* Neutral Colors */
-    --neutral-50: #f8fafc;
-    --neutral-100: #f1f5f9;
-    --neutral-200: #e2e8f0;
-    --neutral-300: #cbd5e1;
-    --neutral-400: #94a3b8;
-    --neutral-500: #64748b;
-    --neutral-600: #475569;
-    --neutral-700: #334155;
-    --neutral-800: #1e293b;
-    --neutral-900: #0f172a;
-    
-    /* Semantic Colors */
-    --success-500: #10b981;
-    --warning-500: #f59e0b;
-    --danger-500: #ef4444;
-    
-    /* Typography */
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    --font-weight-normal: 400;
-    --font-weight-medium: 500;
-    --font-weight-semibold: 600;
-    --font-weight-bold: 700;
-    
-    /* Spacing - Consistent scale */
-    --spacing-0: 0rem;
-    --spacing-1: 0.25rem;
-    --spacing-2: 0.5rem;
-    --spacing-3: 0.75rem;
-    --spacing-4: 1rem;
-    --spacing-5: 1.25rem;
-    --spacing-6: 1.5rem;
-    --spacing-8: 2rem;
-    --spacing-10: 2.5rem;
-    --spacing-12: 3rem;
-    --spacing-16: 4rem;
-    --spacing-20: 5rem;
-    --spacing-24: 6rem;
-    --spacing-32: 8rem;
-    
-    /* Border Radius */
-    --radius-sm: 0.25rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
-    --radius-2xl: 1.5rem;
-    --radius-3xl: 2rem;
-    --radius-full: 9999px;
-    
-    /* Shadows - Subtler */
-    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-    
-    /* Transitions */
-    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
-    
-    /* Z-indices */
-    --z-base: 0;
-    --z-elevated: 10;
-    --z-sticky: 100;
-    --z-modal: 1000;
-    --z-max: 9999;
-  }
-
-  /* Base Styles */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-    -webkit-text-size-adjust: 100%;
-  }
-
-  body {
-    font-family: var(--font-sans);
-    color: var(--neutral-800);
-    background-color: var(--neutral-50);
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
-  }
-
-  /* Typography Scale */
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: var(--font-weight-bold);
-    line-height: 1.2;
-    color: var(--neutral-900);
-    letter-spacing: -0.025em;
-  }
-
-  h1 {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    margin-bottom: var(--spacing-6);
-    letter-spacing: -0.05em;
-  }
-
-  h2 {
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    margin-bottom: var(--spacing-5);
-    letter-spacing: -0.025em;
-  }
-
-  h3 {
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
-    margin-bottom: var(--spacing-4);
-    letter-spacing: -0.01em;
-  }
-
-  p {
-    font-size: clamp(1rem, 1.5vw, 1.125rem);
-    color: var(--neutral-600);
-    margin-bottom: var(--spacing-6);
-    line-height: 1.7;
-  }
-
-  .text-lead {
-    font-size: clamp(1.125rem, 2vw, 1.25rem);
-    color: var(--neutral-600);
-    line-height: 1.8;
-  }
-
-  /* Layout Components */
-  .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-4);
-  }
-
-  .section {
-    padding: var(--spacing-24) 0;
-    position: relative;
-  }
-
-  .section-tight {
-    padding: var(--spacing-16) 0;
-  }
-
-  /* Enhanced Hero Section */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, var(--neutral-50) 0%, var(--neutral-100) 100%);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 20% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-2);
-    padding: var(--spacing-2) var(--spacing-4);
-    border-radius: var(--radius-full);
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(168, 85, 247, 0.1));
-    color: var(--primary-700);
-    font-size: 0.875rem;
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--spacing-6);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(14, 165, 233, 0.2);
-    transition: all var(--transition-normal);
-  }
-
-  .hero-badge:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-  }
-
-  /* Enhanced Stats Section */
-  .stats-container {
-    margin-top: calc(-1 * var(--spacing-16));
-    position: relative;
-    z-index: var(--z-sticky);
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-6);
-    background: white;
-    backdrop-filter: blur(12px);
-    border-radius: var(--radius-2xl);
-    padding: var(--spacing-10);
-    box-shadow: var(--shadow-xl);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-
-  .stat-item {
-    text-align: center;
-    perspective: 1000px;
-  }
-
-  .stat-icon {
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: var(--radius-xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    margin: 0 auto var(--spacing-6);
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(168, 85, 247, 0.1));
-    color: var(--primary-600);
-    transform-style: preserve-3d;
-    transition: all var(--transition-normal);
-  }
-
-  .stat-number {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    font-weight: var(--font-weight-bold);
-    color: var(--neutral-900);
-    margin-bottom: var(--spacing-2);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.9375rem;
-    color: var(--neutral-600);
-    font-weight: var(--font-weight-medium);
-  }
-
-  /* Enhanced Benefits Section */
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-8);
-  }
-
-  .benefit-card {
-    background: white;
-    backdrop-filter: blur(12px);
-    border-radius: var(--radius-xl);
-    padding: var(--spacing-8);
-    box-shadow: var(--shadow-lg);
-    transition: all var(--transition-normal);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    height: 100%;
-    transform-style: preserve-3d;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .benefit-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--transition-normal);
-  }
-
-  .benefit-card:hover::before {
-    transform: scaleX(1);
-  }
-
-  .benefit-card:hover {
-    border-color: transparent;
-    box-shadow: var(--shadow-xl);
-    transform: translateY(-4px);
-  }
-
-  .benefit-icon {
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: var(--radius-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: var(--spacing-6);
-    transform-style: preserve-3d;
-    transition: all var(--transition-normal);
-  }
-
-  .benefit-stat {
-    display: inline-block;
-    padding: var(--spacing-1) var(--spacing-3);
-    border-radius: var(--radius-full);
-    font-size: 0.8125rem;
-    font-weight: var(--font-weight-semibold);
-    margin: var(--spacing-4) 0;
-    backdrop-filter: blur(8px);
-    letter-spacing: 0.02em;
-  }
-
-  /* Enhanced Services Section */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-8);
-  }
-
-  .service-card {
-    background: white;
-    backdrop-filter: blur(12px);
-    border-radius: var(--radius-xl);
-    padding: var(--spacing-8);
-    text-align: center;
-    box-shadow: var(--shadow-lg);
-    transition: all var(--transition-normal);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    height: 100%;
-    transform-style: preserve-3d;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .service-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.03), rgba(168, 85, 247, 0.03));
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-    pointer-events: none;
-  }
-
-  .service-card:hover::after {
-    opacity: 1;
-  }
-
-  .service-card:hover {
-    border-color: transparent;
-    box-shadow: var(--shadow-xl);
-    transform: translateY(-4px);
-  }
-
-  .service-icon {
-    width: 4.5rem;
-    height: 4.5rem;
-    border-radius: var(--radius-xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    margin: 0 auto var(--spacing-6);
-    background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
-    color: white;
-    transform-style: preserve-3d;
-    transition: all var(--transition-normal);
-  }
-
-  .features-list {
-    margin-top: var(--spacing-6);
-  }
-
-  .feature-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-2);
-    margin-bottom: var(--spacing-3);
-    font-size: 0.9375rem;
-    color: var(--neutral-600);
-  }
-
-  /* Enhanced Buttons */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.875rem 2rem;
-    border-radius: var(--radius-lg);
-    font-weight: var(--font-weight-semibold);
-    font-size: 1rem;
-    text-decoration: none;
-    transition: all var(--transition-normal);
-    cursor: pointer;
-    border: 1px solid transparent;
-    outline: none;
-    position: relative;
-    overflow: hidden;
-    min-height: 3rem;
-    letter-spacing: 0.01em;
-  }
-
-  .btn::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-  }
-
-  .btn:hover::after {
-    transform: translateX(100%);
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
-    color: white;
-    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.2);
-  }
-
-  .btn-primary:hover {
-    background: linear-gradient(135deg, var(--primary-700), var(--primary-800));
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.3);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--primary-600);
-    border-color: var(--primary-300);
-  }
-
-  .btn-secondary:hover {
-    background: var(--primary-50);
-    border-color: var(--primary-600);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.1);
-  }
-
-  .btn-white {
-    background: white;
-    color: var(--neutral-900);
-    border-color: var(--neutral-200);
-  }
-
-  .btn-white:hover {
-    background: var(--neutral-50);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  }
-
-  .btn-group {
-    display: flex;
-    gap: var(--spacing-4);
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  /* Enhanced CTA Sections */
-  .cta-section {
-    background: linear-gradient(135deg, #929292 0%, #203a43 50%, #929292 100%);
-    color: white;
-    text-align: center;
-    padding: var(--spacing-24) 0;
-    position: relative;
-    overflow: hidden;
-    border-radius: 2rem;
-  }
-
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  .cta-content {
-    position: relative;
-    z-index: 1;
-  }
-
-  .cta-section h2,
-  .cta-section p {
-    color: white;
-  }
-
-  .price-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-2);
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--primary-700);
-    padding: var(--spacing-4) var(--spacing-8);
-    border-radius: var(--radius-full);
-    font-size: clamp(1.5rem, 3vw, 1.75rem);
-    font-weight: var(--font-weight-bold);
-    margin: var(--spacing-8) 0;
-    box-shadow: var(--shadow-xl);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all var(--transition-normal);
-  }
-
-  .price-tag:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: var(--shadow-2xl);
-  }
-
-  /* Enhanced Final CTA */
-  .final-cta {
-    background: linear-gradient(135deg, #929292 0%, #203a43 50%, #929292 100%);
-    color: white;
-    text-align: center;
-    padding: var(--spacing-24) 0;
-    position: relative;
-    overflow: hidden;
-    border-radius: 2rem;
-    margin-top: 1rem;
-  }
-
-  .final-cta::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 20% 30%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  .final-cta h2,
-  .final-cta p {
-    color: white;
-  }
-
-  .consultation-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-8);
-    max-width: 800px;
-    margin: var(--spacing-12) auto;
-  }
-
-  .consultation-card {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    border-radius: var(--radius-xl);
-    padding: var(--spacing-8);
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: all var(--transition-normal);
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-  }
-
-  .consultation-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  }
-
-  .consultation-card:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.25);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Enhanced Divider */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--neutral-300), transparent);
-    margin: var(--spacing-12) auto;
-    max-width: 800px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .divider::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, var(--primary-500), transparent);
-    animation: shimmer 3s infinite;
-  }
-
-  @keyframes shimmer {
-    0% {
-      left: -100%;
-    }
-    100% {
-      left: 100%;
-    }
-  }
-
-  /* Animations */
-  @keyframes float {
-    0%, 100% { 
-      transform: translateY(0px); 
-    }
-    50% { 
-      transform: translateY(-10px); 
-    }
-  }
-
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  /* Utility Classes */
-  .text-center { text-align: center; }
-  .text-left { text-align: left; }
-  .text-right { text-align: right; }
-
-  .mx-auto {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .max-w-xs { max-width: 20rem; }
-  .max-w-sm { max-width: 24rem; }
-  .max-w-md { max-width: 28rem; }
-  .max-w-lg { max-width: 32rem; }
-  .max-w-xl { max-width: 36rem; }
-  .max-w-2xl { max-width: 42rem; }
-  .max-w-3xl { max-width: 48rem; }
-  .max-w-4xl { max-width: 56rem; }
-  .max-w-5xl { max-width: 64rem; }
-  .max-w-6xl { max-width: 72rem; }
-  .max-w-7xl { max-width: 80rem; }
-  .max-w-full { max-width: 100%; }
-
-  .mt-0 { margin-top: 0; }
-  .mt-2 { margin-top: var(--spacing-2); }
-  .mt-4 { margin-top: var(--spacing-4); }
-  .mt-6 { margin-top: var(--spacing-6); }
-  .mt-8 { margin-top: var(--spacing-8); }
-  .mt-12 { margin-top: var(--spacing-12); }
-
-  .mb-0 { margin-bottom: 0; }
-  .mb-2 { margin-bottom: var(--spacing-2); }
-  .mb-4 { margin-bottom: var(--spacing-4); }
-  .mb-6 { margin-bottom: var(--spacing-6); }
-  .mb-8 { margin-bottom: var(--spacing-8); }
-  .mb-12 { margin-bottom: var(--spacing-12); }
-
-  .flex { display: flex; }
-  .flex-col { flex-direction: column; }
-  .items-center { align-items: center; }
-  .justify-center { justify-content: center; }
-  .justify-between { justify-content: space-between; }
-  .gap-2 { gap: var(--spacing-2); }
-  .gap-4 { gap: var(--spacing-4); }
-  .gap-6 { gap: var(--spacing-6); }
-  .gap-8 { gap: var(--spacing-8); }
-
-  /* Accessibility */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--primary-500);
-    outline-offset: 2px;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .section {
-      padding: var(--spacing-16) 0;
-    }
-    
-    .section-tight {
-      padding: var(--spacing-12) 0;
-    }
-
-    .stats-grid {
-      grid-template-columns: repeat(2, 1fr);
-      padding: var(--spacing-8);
-      gap: var(--spacing-4);
-    }
-
-    .stats-container {
-      margin-top: calc(-1 * var(--spacing-19));
-    }
-
-    .benefits-grid,
-    .services-grid,
-    .consultation-grid {
-      gap: var(--spacing-6);
-    }
-
-    .benefit-card,
-    .service-card,
-    .consultation-card {
-      padding: var(--spacing-6);
-    }
-
-    .btn-group {
-      flex-direction: column;
-    }
-
-    .btn {
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .container {
-      padding: 0 var(--spacing-4);
-    }
-
-    .stats-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero {
-      min-height: 90vh;
-    }
-
-    h1 {
-      font-size: clamp(2rem, 4vw, 2.5rem);
-    }
-
-    h2 {
-      font-size: clamp(1.75rem, 3vw, 2rem);
-    }
-  }
-
-
-  /* Smooth word-by-word heading animation */
-  .animated-words {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    line-height: 1.15;
-  }
-
-  .animated-word {
-    display: inline-block;
-    will-change: transform, opacity;
-  }
-
-  .words-left {
-    justify-content: flex-start;
-    text-align: left;
-  }
-
-  .words-center {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .section-heading-left {
-    text-align: left;
-  }
-
-  /* Premium button zoom animation */
-  .btn {
-    transform-origin: center;
-    will-change: transform;
-  }
-
-  .btn:hover {
-    transform: scale(1.07) translateY(-3px);
-  }
-
-  /* Services with real images */
-  .service-image-wrap {
-    width: 100%;
-    height: 190px;
-    border-radius: 24px;
-    overflow: hidden;
-    margin: 0 auto var(--spacing-6);
-    background: linear-gradient(135deg, var(--primary-100), var(--secondary-100));
-    box-shadow: 0 18px 36px rgba(2, 132, 199, 0.12);
-    position: relative;
-  }
-
-  .service-image-wrap::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(14,165,233,.12), rgba(168,85,247,.12));
-    pointer-events: none;
-  }
-
-  .service-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .service-card {
-    text-align: left;
-  }
-
-  .service-card h3,
-  .service-card p {
-    text-align: left;
-  }
-
-  .feature-item {
-    justify-content: flex-start;
-  }
-
-  /* Perfect Latest Projects Marquee Showcase */
-  .project-section {
-    background:
-      radial-gradient(circle at 12% 18%, rgba(14,165,233,.20), transparent 34%),
-      radial-gradient(circle at 86% 20%, rgba(168,85,247,.18), transparent 30%),
-      radial-gradient(circle at 50% 92%, rgba(16,185,129,.13), transparent 36%),
-      linear-gradient(135deg, #f8fbff 0%, #ffffff 42%, #faf7ff 100%);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .project-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(14,165,233,.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(168,85,247,.06) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
-    pointer-events: none;
-  }
-
-  .project-section::after {
-    content: '';
-    position: absolute;
-    width: 560px;
-    height: 560px;
-    border-radius: 50%;
-    left: 50%;
-    top: 44%;
-    transform: translate(-50%, -50%);
-    background: conic-gradient(from 180deg, rgba(14,165,233,.22), rgba(168,85,247,.20), rgba(16,185,129,.14), rgba(14,165,233,.22));
-    filter: blur(60px);
-    opacity: .45;
-    animation: projectAuraSpin 12s linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes projectAuraSpin {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-  }
-
-  .project-heading-center {
-    text-align: center;
-    max-width: 860px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    z-index: 2;
-  }
-
-  .project-kicker {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-    padding: 10px 20px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.72);
-    color: var(--primary-700);
-    font-weight: 950;
-    letter-spacing: .16em;
-    font-size: .78rem;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-    border: 1px solid rgba(14,165,233,.18);
-    box-shadow: 0 16px 40px rgba(15,23,42,.08);
-    backdrop-filter: blur(14px);
-  }
-
-  .project-perfect-wrap {
-    position: relative;
-    z-index: 2;
-    max-width: 1180px;
-    margin: 0 auto;
-  }
-
-  .project-featured-card {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1.1fr .9fr;
-    gap: 0;
-    min-height: 500px;
-    border-radius: 42px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    background: rgba(255,255,255,.88);
-    border: 1px solid rgba(255,255,255,.78);
-    box-shadow: 0 38px 110px rgba(15,23,42,.18);
-    backdrop-filter: blur(24px);
-    transform-style: preserve-3d;
-  }
-
-  .project-featured-card::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    padding: 2px;
-    background: linear-gradient(120deg, rgba(14,165,233,.75), rgba(168,85,247,.75), rgba(16,185,129,.55), rgba(14,165,233,.75));
-    background-size: 260% 260%;
-    animation: projectBorderFlow 4.5s ease infinite;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-
-  @keyframes projectBorderFlow {
-    0%,100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  .project-featured-image-area {
-    position: relative;
-    min-height: 500px;
-    padding: 18px;
-    overflow: hidden;
-  }
-
-  .project-browser-frame {
-    height: 100%;
-    min-height: 464px;
-    border-radius: 32px;
-    overflow: hidden;
-    background: #0f172a;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.18), 0 28px 70px rgba(15,23,42,.24);
-    position: relative;
-  }
-
-  .project-browser-top {
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-  }
-
-  .project-dots {
-    display: flex;
-    gap: 7px;
-  }
-
-  .project-dots span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.42);
-  }
-
-  .project-url-pill {
-    max-width: 58%;
-    padding: 6px 12px;
-    border-radius: 999px;
-    color: rgba(255,255,255,.82);
-    background: rgba(255,255,255,.10);
-    font-size: .76rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .project-featured-image {
-    width: 100%;
-    height: calc(100% - 42px);
-    min-height: 422px;
-    object-fit: cover;
-    display: block;
-    transform: scale(1.02);
-    transition: transform .65s cubic-bezier(.22,1,.36,1), filter .65s ease;
-  }
-
-  .project-featured-card:hover .project-featured-image {
-    transform: scale(1.085);
-    filter: saturate(1.08) contrast(1.03);
-  }
-
-  .project-floating-chip {
-    position: absolute;
-    left: 34px;
-    bottom: 34px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 18px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.88);
-    color: var(--primary-800);
-    font-weight: 950;
-    box-shadow: 0 16px 36px rgba(15,23,42,.16);
-    backdrop-filter: blur(16px);
-  }
-
-  .project-featured-content {
-    padding: clamp(2rem, 4vw, 3.5rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .project-featured-content::before {
-    content: '';
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    right: -70px;
-    top: -55px;
-    background: radial-gradient(circle, rgba(14,165,233,.18), transparent 68%);
-  }
-
-  .project-count-badge {
-    width: fit-content;
-    padding: 9px 14px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, rgba(14,165,233,.12), rgba(168,85,247,.12));
-    color: var(--primary-700);
-    font-weight: 950;
-    font-size: .82rem;
-    margin-bottom: 18px;
-  }
-
-  .project-featured-content h3 {
-    font-size: clamp(2rem, 4.6vw, 3.65rem);
-    line-height: 1.02;
-    margin-bottom: 18px;
-    color: var(--neutral-900);
-  }
-
-  .project-featured-content p {
-    margin-bottom: 26px;
-    color: var(--neutral-600);
-  }
-
-  .project-meta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
-  }
-
-  .project-meta-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 10px 13px;
-    border-radius: 999px;
-    background: white;
-    color: var(--neutral-700);
-    font-weight: 800;
-    font-size: .85rem;
-    border: 1px solid rgba(14,165,233,.12);
-    box-shadow: 0 10px 24px rgba(15,23,42,.07);
-  }
-
-  .project-action {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    width: fit-content;
-    padding: 15px 22px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
-    color: white;
-    font-weight: 950;
-    box-shadow: 0 16px 34px rgba(14,165,233,.28);
-    transition: transform .22s ease, box-shadow .22s ease;
-  }
-
-  .project-featured-card:hover .project-action {
-    transform: scale(1.07) translateY(-2px);
-    box-shadow: 0 22px 44px rgba(14,165,233,.35);
-  }
-
-  .project-timer {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 5px;
-    background: rgba(15,23,42,.08);
-    overflow: hidden;
-  }
-
-  .project-timer span {
-    display: block;
-    height: 100%;
-    width: 100%;
-    transform-origin: left;
-    background: linear-gradient(90deg, var(--primary-500), var(--secondary-500), var(--success-500));
-    animation: projectTimer var(--project-duration, 10000ms) linear forwards;
-  }
-
-  @keyframes projectTimer {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-  }
-
-  .project-marquee-shell {
-    margin-top: 42px;
-    position: relative;
-    overflow: hidden;
-    padding: 24px 0;
-  }
-
-  .project-marquee-shell::before,
-  .project-marquee-shell::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 120px;
-    z-index: 4;
-    pointer-events: none;
-  }
-
-  .project-marquee-shell::before {
-    left: 0;
-    background: linear-gradient(90deg, #f8fbff, transparent);
-  }
-
-  .project-marquee-shell::after {
-    right: 0;
-    background: linear-gradient(270deg, #faf7ff, transparent);
-  }
-
-  .project-marquee-track {
-    display: flex;
-    gap: 22px;
-    width: max-content;
-    animation: projectMarquee 24s linear infinite;
-    will-change: transform;
-  }
-
-  .project-marquee-shell:hover .project-marquee-track {
-    animation-play-state: paused;
-  }
-
-  @keyframes projectMarquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .project-mini-card {
-    width: 285px;
-    flex: 0 0 auto;
-    border: 0;
-    text-align: left;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 28px;
-    background: rgba(255,255,255,.72);
-    border: 1px solid rgba(255,255,255,.8);
-    box-shadow: 0 18px 46px rgba(15,23,42,.10);
-    backdrop-filter: blur(14px);
-    transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, background .35s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .project-mini-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(14,165,233,.12), rgba(168,85,247,.10));
-    opacity: 0;
-    transition: opacity .3s ease;
-  }
-
-  .project-mini-card:hover,
-  .project-mini-card.active {
-    transform: translateY(-12px) scale(1.12);
-    background: rgba(255,255,255,.95);
-    box-shadow: 0 30px 70px rgba(15,23,42,.20);
-    z-index: 5;
-  }
-
-  .project-mini-card.active::before {
-    opacity: 1;
-  }
-
-  .project-mini-image-wrap {
-    height: 150px;
-    border-radius: 22px;
-    overflow: hidden;
-    position: relative;
-    background: linear-gradient(135deg, var(--primary-100), var(--secondary-100));
-  }
-
-  .project-mini-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform .45s cubic-bezier(.22,1,.36,1);
-  }
-
-  .project-mini-card:hover .project-mini-image,
-  .project-mini-card.active .project-mini-image {
-    transform: scale(1.12);
-  }
-
-  .project-mini-body {
-    position: relative;
-    z-index: 2;
-    padding: 14px 8px 8px;
-  }
-
-  .project-mini-body h4 {
-    margin: 0 0 5px;
-    font-size: 1rem;
-    color: var(--neutral-900);
-  }
-
-  .project-mini-body p {
-    margin: 0;
-    font-size: .84rem;
-    line-height: 1.4;
-    color: var(--neutral-500);
-  }
-
-  .project-active-dot {
-    position: absolute;
-    right: 18px;
-    top: 18px;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background: var(--success-500);
-    box-shadow: 0 0 0 7px rgba(16,185,129,.16), 0 0 20px rgba(16,185,129,.55);
-    opacity: 0;
-    transform: scale(.6);
-    transition: all .3s ease;
-    z-index: 3;
-  }
-
-  .project-mini-card.active .project-active-dot {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  @media (max-width: 980px) {
-    .project-featured-card {
-      grid-template-columns: 1fr;
-      min-height: auto;
-      border-radius: 32px;
-    }
-
-    .project-featured-image-area,
-    .project-browser-frame,
-    .project-featured-image {
-      min-height: 330px;
-    }
-
-    .project-featured-content {
-      text-align: center;
-      align-items: center;
-    }
-
-    .project-meta-row {
-      justify-content: center;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .project-featured-card { border-radius: 26px; }
-    .project-featured-image-area { padding: 10px; min-height: 245px; }
-    .project-browser-frame { border-radius: 20px; min-height: 235px; }
-    .project-featured-image { min-height: 193px; }
-    .project-featured-content { padding: 1.35rem; }
-    .project-featured-content h3 { font-size: clamp(1.75rem, 9vw, 2.35rem); }
-    .project-floating-chip { left: 20px; bottom: 20px; font-size: .82rem; padding: 9px 12px; }
-    .project-mini-card { width: 230px; }
-    .project-mini-card:hover,
-    .project-mini-card.active { transform: translateY(-8px) scale(1.06); }
-    .project-mini-image-wrap { height: 125px; }
-    .project-marquee-track { gap: 14px; animation-duration: 20s; }
-    .project-marquee-shell::before,
-    .project-marquee-shell::after { width: 48px; }
-  }
-
-  /* Why choose us centered premium cards */
-  .why-section {
-    background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
-  }
-
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-8);
-  }
-
-  .why-card {
-    text-align: center;
-    padding: var(--spacing-8);
-    background: rgba(255,255,255,.9);
-    border: 1px solid rgba(14,165,233,.12);
-    border-radius: 28px;
-    box-shadow: 0 20px 50px rgba(15,23,42,.08);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .why-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 70%;
-    height: 4px;
-    transform: translateX(-50%);
-    border-radius: 999px;
-    background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
-  }
-
-  .why-icon {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto var(--spacing-6);
-    border-radius: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
-    box-shadow: 0 16px 34px rgba(14,165,233,.26);
-  }
-
-  .why-card p {
-    margin-bottom: 0;
-  }
-
-  /* Changed CTA colors */
-  .cta-section,
-  .final-cta {
-    background:
-      radial-gradient(circle at 15% 20%, rgba(14,165,233,.18), transparent 35%),
-      radial-gradient(circle at 85% 75%, rgba(168,85,247,.18), transparent 35%),
-      linear-gradient(135deg, #eff8ff 0%, #ffffff 48%, #f5efff 100%);
-    color: var(--neutral-900);
-    border: 1px solid rgba(14,165,233,.12);
-    box-shadow: 0 24px 70px rgba(15,23,42,.08);
-  }
-
-  .cta-section h2,
-  .cta-section p,
-  .final-cta h2,
-  .final-cta p {
-    color: var(--neutral-900);
-  }
-
-  .price-tag {
-    background: linear-gradient(135deg, #ffffff, #eff8ff);
-    color: var(--primary-700);
-    border: 1px solid rgba(14,165,233,.18);
-  }
-
-  .consultation-card {
-    background: rgba(255,255,255,.86);
-    border: 1px solid rgba(14,165,233,.14);
-    box-shadow: 0 20px 50px rgba(15,23,42,.08);
-  }
-
-  .consultation-card h3,
-  .consultation-card p {
-    color: var(--neutral-900);
-  }
-
-  .trust-pill {
-    color: var(--neutral-700) !important;
-  }
-
-
-  @media (max-width: 900px) {
-    .project-stage {
-      min-height: 720px;
-    }
-
-    .project-orbit {
-      height: 700px;
-    }
-
-    .project-globe-card {
-      grid-template-columns: 1fr;
-      width: min(94vw, 620px);
-      min-height: auto;
-      border-radius: 30px;
-    }
-
-    .project-globe-image-shell,
-    .project-main-image {
-      min-height: 300px;
-    }
-
-    .orbit-preview-card {
-      width: 125px;
-      height: 86px;
-      border-radius: 18px;
-    }
-
-    .why-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .section-heading-left,
-    .words-left {
-      text-align: center;
-      justify-content: center;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .service-image-wrap {
-      height: 170px;
-      border-radius: 20px;
-    }
-
-    .project-stage {
-      min-height: 650px;
-    }
-
-    .project-orbit {
-      height: 630px;
-    }
-
-    .project-content {
-      padding: 1.45rem;
-    }
-
-    .project-globe-image-shell,
-    .project-main-image {
-      min-height: 230px;
-    }
-
-    .project-globe-card {
-      border-radius: 24px;
-    }
-
-    .orbit-preview-card {
-      width: 102px;
-      height: 72px;
-      border-radius: 16px;
-    }
-  }
-
-
-
-  @media (max-width: 900px) {
-    .project-stage { min-height: 760px; }
-    .project-showcase { min-height: 720px; }
-    .project-main-card {
-      grid-template-columns: 1fr;
-      width: min(94vw, 640px);
-      min-height: auto;
-      border-radius: 30px;
-    }
-    .project-main-image-shell,
-    .project-main-image { min-height: 300px; }
-    .project-ghost-card { width: min(78vw, 460px); height: 300px; }
-    .project-ghost-card.left { transform: translate(-86px, -88px) rotate(-7deg) scale(.72); }
-    .project-ghost-card.right { transform: translate(86px, 90px) rotate(7deg) scale(.72); }
-  }
-
-  @media (max-width: 640px) {
-    .project-stage { min-height: 730px; }
-    .project-showcase { min-height: 700px; }
-    .project-content { padding: 1.45rem; text-align: center; align-items: center; }
-    .project-content .animated-words { justify-content: center; text-align: center; }
-    .project-main-image-shell,
-    .project-main-image { min-height: 225px; }
-    .project-main-card { border-radius: 24px; }
-    .project-main-image-shell { border-radius: 20px; margin: 10px; }
-    .project-ghost-card { display: none; }
-
-    .project-nav-btn {
-      width: 46px;
-      height: 46px;
-      font-size: 24px;
-    }
-
-    .project-prev {
-      left: 2px;
-    }
-
-    .project-next {
-      right: 2px;
-    }
-  }
-
-  /* Print Styles */
-  @media print {
-    .btn::after,
-    .hero::before,
-    .cta-section::before,
-    .final-cta::before,
-    .divider::after,
-    .particles-container {
-      display: none;
-    }
-
-    .benefit-card,
-    .service-card,
-    .consultation-card {
-      break-inside: avoid;
-      box-shadow: none;
-      border: 1px solid var(--neutral-300);
-    }
-
-    .cta-section,
-    .final-cta {
-      background: white !important;
-      color: var(--neutral-900) !important;
-    }
-  }
-`;
-
-// Animated Icon Components
-const AnimatedRocket = () => (
-  <motion.div
-    initial={{ y: 0 }}
-    animate={{ y: [0, -8, 0] }}
-    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-  >
-    <Rocket className="icon-glow" color="var(--primary-500)" size={24} />
-  </motion.div>
-);
-
-const AnimatedSparkle = () => (
-  <motion.div
-    initial={{ scale: 0.8, rotate: 0 }}
-    animate={{ scale: [0.8, 1.2, 0.8], rotate: 360 }}
-    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-  >
-    <Sparkles className="icon-glow" color="var(--secondary-500)" size={20} />
-  </motion.div>
-);
-
-const AnimatedShield = () => (
-  <motion.div
-    animate={{
-      scale: [1, 1.1, 1],
-      rotate: [0, 5, 0, -5, 0]
-    }}
-    transition={{ duration: 3, repeat: Infinity }}
-  >
-    <ShieldCheck className="icon-glow" color="var(--success-500)" size={22} />
-  </motion.div>
-);
-
-
-const smoothTextContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.022, delayChildren: 0.01 }
-  }
-};
-
-const createSmoothWord = (direction = 'left') => ({
+/* =========================================================
+   ANIMATION VARIANTS
+========================================================= */
+
+const fadeUp = {
   hidden: {
     opacity: 0,
-    x: direction === 'right' ? 22 : direction === 'center' ? 0 : -22,
-    y: direction === 'center' ? 14 : 6,
-    scale: 0.96,
+
+    y: 35,
   },
+
   visible: {
     opacity: 1,
-    x: 0,
+
     y: 0,
-    scale: 1,
-    transition: { duration: 0.26, ease: [0.22, 1, 0.36, 1] }
-  }
-});
 
-const AnimatedWords = ({ text, className = '', as = 'h2', center = false, direction = 'left' }) => {
-  const Tag = motion[as] || motion.h2;
-  const wordVariant = createSmoothWord(direction);
+    transition: {
+      duration: 0.65,
 
-  return (
-    <Tag
-      className={`${className} animated-words ${center ? 'words-center' : 'words-left'}`}
-      variants={smoothTextContainer}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.55 }}
-    >
-      {text.split(' ').map((word, index) => (
-        <motion.span key={`${word}-${index}`} variants={wordVariant} className="animated-word">
-          {word}&nbsp;
-        </motion.span>
-      ))}
-    </Tag>
-  );
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
 
-const SmartImage = ({ localSrc, fallbackSrc, alt, className }) => {
-  const [src, setSrc] = useState(localSrc);
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={className}
-      loading="lazy"
-      onError={() => setSrc(fallbackSrc)}
-    />
-  );
+const stagger = {
+  hidden: {},
+
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
 };
+
+/* =========================================================
+   HOME
+========================================================= */
 
 const Home = () => {
-  const [stats, setStats] = useState({ projects: 0, industries: 0 });
-  const [hoveredCard, setHoveredCard] = useState(null);
-  const [activeProject, setActiveProject] = useState(0);
-  const [particles, setParticles] = useState([]);
   const navigate = useNavigate();
-  
-  const heroRef = useRef(null);
-  const statsRef = useRef(null);
-  const benefitsRef = useRef(null);
-  const servicesRef = useRef(null);
 
-  // Set up SEO meta tags on component mount
-  useEffect(() => {
-    // Set page title with SEO keywords
-    document.title = 'Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION';
-    
-    // Set meta description
-    const metaDescription = document.createElement('meta');
-    metaDescription.name = 'description';
-    metaDescription.content = 'SMYVISION TECHNOLOGIES - Top web development company in Vijayawada, Hyderabad, Bangalore offering professional website development, automation solutions, and chatbot development services.';
-    document.head.appendChild(metaDescription);
-    
-    // Set keywords meta
-    const metaKeywords = document.createElement('meta');
-    metaKeywords.name = 'keywords';
-    metaKeywords.content = 'top web development companies in vijayawada, website development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, affordable web development vijayawada, professional website developers hyderabad, custom web development bangalore, e-commerce website development south india, web development company vijayawada, hyderabad website developers, bangalore web development services';
-    document.head.appendChild(metaKeywords);
-    
-    // Set location meta tags
-    const metaRegion = document.createElement('meta');
-    metaRegion.name = 'geo.region';
-    metaRegion.content = 'IN-AP, IN-TG, IN-KA';
-    document.head.appendChild(metaRegion);
-    
-    const metaPlacename = document.createElement('meta');
-    metaPlacename.name = 'geo.placename';
-    metaPlacename.content = 'Vijayawada, Hyderabad, Bangalore';
-    document.head.appendChild(metaPlacename);
-    
-    // Open Graph tags
-    const ogTitle = document.createElement('meta');
-    ogTitle.setAttribute('property', 'og:title');
-    ogTitle.content = 'Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION';
-    document.head.appendChild(ogTitle);
-    
-    const ogDescription = document.createElement('meta');
-    ogDescription.setAttribute('property', 'og:description');
-    ogDescription.content = 'Professional web development services in Vijayawada, Hyderabad, and Bangalore. Custom website development, automation solutions, and chatbot development.';
-    document.head.appendChild(ogDescription);
-    
+  const [activeProject, setActiveProject] = useState(0);
 
-    
-    return () => {
-      // Clean up meta tags on unmount
-      document.querySelectorAll('[name="description"], [name="keywords"], [name="geo.region"], [name="geo.placename"], [property="og:title"], [property="og:description"]').forEach(el => el.remove());
-    };
-  }, []);
+  const [activeFaq, setActiveFaq] = useState(null);
 
-  // Animation controls
-  const heroControls = useAnimation();
-  const statsControls = useAnimation();
-  const benefitsControls = useAnimation();
-  const servicesControls = useAnimation();
-
-  // Initialize particles for background
-  useEffect(() => {
-    const newParticles = [];
-    for (let i = 0; i < 15; i++) {
-      newParticles.push({
-        id: i,
-        size: Math.random() * 8 + 3,
-        left: Math.random() * 100,
-        delay: Math.random() * 20,
-        duration: Math.random() * 25 + 15,
-      });
-    }
-    setParticles(newParticles);
-  }, []);
-
-  // Premium project showcase auto switch
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveProject((prev) => (prev + 1) % projects.length);
-    }, PROJECT_DISPLAY_MS);
+      setActiveProject((current) => (current + 1) % projects.length);
+    }, PROJECT_CHANGE_TIME);
 
     return () => clearInterval(timer);
   }, []);
 
-  // Animate stats counter
-  useEffect(() => {
-    const animateStats = () => {
-      let projects = 0;
-      let industries = 0;
-      const duration = 650;
-      const steps = 32;
-      const interval = duration / steps;
-      
-      const projectStep = 15 / steps;
-      const industryStep = 3 / steps;
-      
-      let currentStep = 0;
-      const timer = setInterval(() => {
-        projects += projectStep;
-        industries += industryStep;
-        currentStep++;
-        
-        if (currentStep >= steps) {
-          projects = 15;
-          industries = 3;
-          clearInterval(timer);
-        }
-        
-        setStats({ 
-          projects: Math.floor(projects), 
-          industries: Math.floor(industries) 
-        });
-      }, interval);
-    };
+  const goToContact = () => {
+    navigate("/contact");
 
-    const timer = setTimeout(animateStats, 120);
-    return () => clearTimeout(timer);
-  }, []);
+    window.scrollTo({
+      top: 0,
 
-  // Button click handlers
-  const handleStartJourney = () => navigate('/contact');
-  const handleExploreServices = () => navigate('/services');
-  const handleGetFreeQuote = () => navigate('/contact');
-  const handleViewPortfolio = () => navigate('/about');
-  const handleBookNow = () => navigate('/contact');
-  const handleCallToday = () => window.location.href = 'tel:8500352005';
-
-  const nextProject = () => {
-    setActiveProject((prev) => (prev + 1) % projects.length);
+      behavior: "smooth",
+    });
   };
 
-  const prevProject = () => {
-    setActiveProject((prev) => (prev + projects.length - 1) % projects.length);
+  const goToProjects = () => {
+    document.getElementById("our-work")?.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
-  // Updated Benefits with better icons and animations
-  const benefits = [
-    {
-      icon: <Globe2 className="icon-wave" size={24} />,
-      title: "24/7 Availability",
-      description: "Your website works around the clock, allowing customers to discover and purchase anytime.",
-      stat: "+247% sales increase",
-      color: "#0ea5e9",
-      bgClass: "icon-bg-primary",
-      animation: "icon-pulse"
-    },
-    {
-      icon: <Search className="icon-float" size={24} />,
-      title: "Search Engine Visibility",
-      description: "81% of consumers research online before purchasing. SEO optimization puts you on Google's first page.",
-      stat: "93% search traffic",
-      color: "#10b981",
-      bgClass: "icon-bg-success",
-      animation: "icon-bounce"
-    },
-    {
-      icon: (
-        <motion.div
-          className="flex items-center justify-center"
-          animate={{
-            y: [0, -5, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <span 
-            style={{ 
-              fontSize: '26px', 
-              fontWeight: 'bold',
-              color: '#a855f7',
-              fontFamily: 'system-ui, -apple-system, sans-serif',
-              display: 'inline-block'
-            }}
-          >
-            ₹
-          </span>
-        </motion.div>
-      ),
-      title: "Cost-Effective",
-      description: "Websites cost 60% less than traditional ads while reaching 10x more customers.",
-      stat: "62% lower costs",
-      color: "#a855f7",
-      bgClass: "icon-bg-purple",
-      animation: "icon-float"
-    },
-    {
-      icon: <Award className="icon-float" size={24} />,
-      title: "Professional Presence",
-      description: "75% of consumers judge credibility by website design. Professional sites increase trust.",
-      stat: "88% higher trust",
-      color: "#f59e0b",
-      bgClass: "icon-bg-warning",
-      animation: "icon-float"
-    },
-    {
-      icon: <Smartphone className="icon-bounce" size={24} />,
-      title: "Mobile Responsive",
-      description: "Break geographical barriers. 68% of traffic comes from mobile devices.",
-      stat: "68% mobile traffic",
-      color: "#ec4899",
-      bgClass: "icon-bg-pink",
-      animation: "icon-pulse"
-    },
-    {
-      icon: <BarChart3 className="icon-float" size={24} />,
-      title: "Data-Driven",
-      description: "Track every visitor with analytics. Data-driven optimization leads to higher conversion rates.",
-      stat: "64% higher conversions",
-      color: "#6366f1",
-      bgClass: "icon-bg-indigo",
-      animation: "icon-wave"
-    }
-  ];
-
-  // Updated Services with better icons
-  const services = [
-    {
-      image: '/images/web.png',
-      fallback: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80',
-      title: "Website Development",
-      description: "Premium, responsive, SEO-friendly websites built for business growth and better customer trust.",
-      features: ["Responsive Design", "SEO Optimized", "Fast Loading"],
-    },
-    {
-      image: '/images/auto.png',
-      fallback: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
-      title: "Business Automation",
-      description: "Smart workflows that reduce manual work, save time, and keep your business running smoothly.",
-      features: ["Workflow Automation", "Easy Management", "Time Saving"],
-    },
-    {
-      image: '/images/chat.png',
-      fallback: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=900&q=80',
-      title: "Chatbot Solutions",
-      description: "Instant support systems that help visitors, capture leads, and improve customer experience.",
-      features: ["24/7 Support", "Lead Capture", "Instant Replies"],
-    }
-  ];
-
-  const projects = [
-    {
-      title: 'NKR Car Rentals',
-      category: 'Car Rental Website',
-      image: '/images/nkr.png',
-      fallback: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80',
-      url: 'https://www.nkrselfdrivecarrentals.in/',
-      description: 'A clean and responsive website experience for car rental bookings, customer trust, and quick access.'
-    },
-    {
-      title: 'Bindiya Beauty Salon',
-      category: 'Salon & Academy Website',
-      image: '/images/beauty.png',
-      fallback: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80',
-      url: 'https://www.bindiyazbeautysalon.in/',
-      description: 'A premium beauty salon website designed with elegant visuals, services, academy details, and mobile-first layout.'
-    },
-    {
-      title: 'Happy Organize',
-      category: 'Home Organizers',
-      image: '/images/home.png',
-      fallback: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
-      url: 'https://www.happyorganize.com/',
-      description: 'A modern organizing and event-focused website with simple navigation, beautiful sections, and smooth actions.'
-    },
-    {
-      title: 'Arvis Fertilizers',
-      category: 'Business Website',
-      image: '/images/arvis.png',
-      fallback: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80',
-      url: 'https://www.arvisfertilizers.com/',
-      description: 'A professional business website presentation for products, brand trust, customer reach, and digital visibility.'
-    }
-  ];
-
-  const whyChooseUs = [
-    {
-      icon: <Users size={26} />,
-      title: 'Expert Team',
-      description: 'Our skilled developers, designers, and digital experts work together to deliver reliable solutions tailored to your business needs.'
-    },
-    {
-      icon: <Sparkles size={26} />,
-      title: 'Cutting-Edge Strategies',
-      description: 'SMYVISION TECHNOLOGIES uses modern trends and smart technologies to improve visibility, engagement, and conversions.'
-    },
-    {
-      icon: <Clock size={26} />,
-      title: 'Timely Delivery',
-      description: 'We value your deadlines. Our process keeps every project smooth, organized, and delivered on time.'
-    }
-  ];
-
-  // Animation variants
-  const fadeIn = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { 
-        duration: 0.6,
-        ease: "easeOut" 
-      }
-    }
+  const handlePreviousProject = () => {
+    setActiveProject(
+      (current) => (current - 1 + projects.length) % projects.length
+    );
   };
 
-  const slideUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.6, 
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
+  const handleNextProject = () => {
+    setActiveProject((current) => (current + 1) % projects.length);
   };
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.05
-      }
-    }
+  const openWhatsApp = () => {
+    const message = encodeURIComponent(
+      "Hi SMYVISION TECHNOLOGIES, I would like to discuss a website or digital solution for my business. Please share more details."
+    );
+
+    window.open(
+      `https://wa.me/91${PHONE_NUMBER}?text=${message}`,
+
+      "_blank",
+
+      "noopener,noreferrer"
+    );
   };
 
-  const cardHover = {
-    rest: {
-      scale: 1,
-      rotateX: 0,
-      rotateY: 0,
-      transition: {
-        type: "spring",
-        stiffness: 420,
-        damping: 24
-      }
-    },
-    hover: {
-      scale: 1.02,
-      rotateX: 2,
-      rotateY: 2,
-      transition: {
-        type: "spring",
-        stiffness: 420,
-        damping: 24
-      }
-    }
+  const callNow = () => {
+    window.location.href = `tel:${PHONE_LINK}`;
   };
 
-  const buttonHover = {
-    rest: {
-      scale: 1,
-      y: 0,
-    },
-    hover: {
-      scale: 1.07,
-      y: -3,
-      transition: {
-        type: "spring",
-        stiffness: 620,
-        damping: 28
-      }
-    },
-    tap: {
-      scale: 0.98,
-      y: 1
-    }
-  };
-
-  const floatAnimation = {
-    animate: {
-      y: [0, -10, 0],
-      transition: {
-        duration: 3,
-        ease: "easeInOut",
-        repeat: Infinity
-      }
-    }
+  const toggleFaq = (index) => {
+    setActiveFaq((current) => (current === index ? null : index));
   };
 
   return (
     <>
-      {/* SEO Meta Tags and Structured Data */}
-      <Helmet>
-        <html lang="en" prefix="og: https://ogp.me/ns#" />
-        <title>Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION</title>
-        <meta name="description" content="SMYVISION TECHNOLOGIES - Top web development company in Vijayawada, Hyderabad, Bangalore offering professional website development, automation solutions, and chatbot development services." />
-        <meta name="keywords" content="top web development companies in vijayawada, website development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, affordable web development vijayawada, professional website developers hyderabad, custom web development bangalore, e-commerce website development south india" />
-        <meta name="author" content="SMYVISION TECHNOLOGIES" />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        
-        {/* Location Meta Tags */}
-        <meta name="geo.region" content="IN-AP, IN-TG, IN-KA" />
-        <meta name="geo.placename" content="Vijayawada, Hyderabad, Bangalore" />
-        <meta name="geo.position" content="16.5062;80.6480" />
-        <meta name="ICBM" content="16.5062, 80.6480" />
-        <meta name="location" content="Vijayawada, Hyderabad, Bangalore, India" />
-        
-        {/* Open Graph Tags */}
-        <meta property="og:title" content="Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION" />
-        <meta property="og:description" content="Professional web development services in Vijayawada, Hyderabad, and Bangalore. Custom website development, automation solutions, and chatbot development." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://smyvisiontechnologies.vercel.app" />
-        <meta property="og:locale" content="en_IN" />
-        <meta property="og:locale:alternate" content="te_IN" />
-        
-        {/* Twitter Card Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Top Web Development Company | Vijayawada Hyderabad Bangalore" />
-        <meta name="twitter:description" content="Best web development services in Vijayawada, Hyderabad, Bangalore. Professional website solutions for businesses." />
-        
-        {/*  Alternate Links */}
-        <link rel="alternate" hrefLang="en-in" href="https://smyvisiontechnologies.vercel.app" />
-        <link rel="alternate" hrefLang="te-in" href="https://smyvisiontechnologies.vercel.app/te" />
-        
-        {/* Additional Meta Tags */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta charSet="utf-8" />
-      </Helmet>
-      
-      {/* Hidden SEO Structured Data */}
-      <SEOStructuredData />
-      
-      <style jsx global>{globalStyles}</style>
-      
-      <div className="home">
-        {/* Hidden SEO Text (for search engines only) */}
-        <HiddenSEOText />
-        
-        {/* Floating Particles Background - Subtle */}
-        <div className="particles-container">
-          {particles.map((particle) => (
-            <div
-              key={particle.id}
-              className="particle"
-              style={{
-                width: `${particle.size}px`,
-                height: `${particle.size}px`,
-                left: `${particle.left}%`,
-                animationDelay: `${particle.delay}s`,
-                animationDuration: `${particle.duration}s`
-              }}
-            />
-          ))}
-        </div>
+      {/* =====================================================
+          ADVANCED SEO
+      ====================================================== */}
 
-        {/* Hero Section */}
-        <section className="hero" ref={heroRef} itemScope itemType="https://schema.org/WebPage">
-          <div className="container">
-            <motion.div 
-              className="hero-content max-w-3xl mx-auto text-center"
+      <Helmet>
+        <html lang="en-IN" />
+
+        <title>
+          Web Development Services in Vijayawada | Best Website Development
+          Company
+        </title>
+
+        <meta
+          name="description"
+          content="Looking for professional web development services in Vijayawada? SMYVISION TECHNOLOGIES provides responsive website development, custom web applications, SEO-friendly websites, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh."
+        />
+
+        <meta
+          name="keywords"
+          content="web development services in Vijayawada, web development company in Vijayawada, best web development company Vijayawada, website development services Vijayawada, website development company Vijayawada, best website developers Vijayawada, professional website development Vijayawada, affordable web development Vijayawada, website designers Vijayawada, software company Vijayawada, web developers Andhra Pradesh, website development Andhra Pradesh, SEO friendly website development Vijayawada, AI development company Vijayawada, business automation Vijayawada"
+        />
+
+        <meta name="author" content="SMYVISION TECHNOLOGIES" />
+
+        <meta name="publisher" content="SMYVISION TECHNOLOGIES" />
+
+        <meta name="robots" content="index, follow" />
+
+        <meta
+          name="googlebot"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+
+        <meta
+          name="bingbot"
+          content="index, follow, max-image-preview:large"
+        />
+
+        <meta
+          name="application-name"
+          content="SMYVISION TECHNOLOGIES"
+        />
+
+        <meta name="geo.region" content="IN-AP" />
+
+        <meta name="geo.placename" content="Vijayawada" />
+
+        <link rel="canonical" href={WEBSITE_URL} />
+
+        {/* OPEN GRAPH */}
+
+        <meta property="og:type" content="website" />
+
+        <meta property="og:url" content={WEBSITE_URL} />
+
+        <meta
+          property="og:title"
+          content="Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES"
+        />
+
+        <meta
+          property="og:description"
+          content="Professional website development, responsive web design, custom web applications, business automation and AI solutions in Vijayawada and Andhra Pradesh."
+        />
+
+        <meta
+          property="og:site_name"
+          content="SMYVISION TECHNOLOGIES"
+        />
+
+        <meta property="og:locale" content="en_IN" />
+
+        {/* TWITTER / SOCIAL */}
+
+        <meta
+          name="twitter:card"
+          content="summary_large_image"
+        />
+
+        <meta
+          name="twitter:title"
+          content="Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES"
+        />
+
+        <meta
+          name="twitter:description"
+          content="Professional and SEO-friendly website development services in Vijayawada and Andhra Pradesh."
+        />
+
+        {/* AI SEARCH / ENTITY CONTEXT */}
+
+        <meta
+          name="subject"
+          content="Website Development, Web Development, AI Solutions and Business Automation"
+        />
+
+        <meta
+          name="classification"
+          content="Web Development Company"
+        />
+
+        <meta
+          name="coverage"
+          content="Vijayawada, Andhra Pradesh, India"
+        />
+
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
+
+      <style>{styles}</style>
+
+      <main className="smy-home">
+        {/* =====================================================
+            HERO
+        ====================================================== */}
+
+        <section className="hero-section">
+          <div className="hero-grid" />
+
+          <motion.div
+            className="hero-orb orb-one"
+            animate={{
+              x: [0, 40, 0],
+
+              y: [0, -30, 0],
+            }}
+            transition={{
+              duration: 10,
+
+              repeat: Infinity,
+
+              ease: "easeInOut",
+            }}
+          />
+
+          <motion.div
+            className="hero-orb orb-two"
+            animate={{
+              x: [0, -35, 0],
+
+              y: [0, 30, 0],
+            }}
+            transition={{
+              duration: 12,
+
+              repeat: Infinity,
+
+              ease: "easeInOut",
+            }}
+          />
+
+          <div className="container hero-layout">
+            <motion.div
+              className="hero-content"
               initial="hidden"
               animate="visible"
-              variants={staggerContainer}
-            >
-              <motion.div variants={slideUp}>
-                <div className="mb-6">
-                  <motion.span 
-                    className="hero-badge"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <AnimatedRocket />
-                    <span className="ml-2">Transform Your Digital Presence</span>
-                  </motion.span>
-                </div>
-                
-                <AnimatedWords
-                  text="Intelligent Digital Solutions for Modern Businesses"
-                  as="h1"
-                  className="mb-6"
-                  center
-                  direction="left"
-                />
-                
-                <motion.p 
-                  className="text-lead mb-8 text-neutral-600"
-                  variants={fadeIn}
-                >
-                  SMYVISION TECHNOLOGIES builds intelligent digital platforms that streamline business operations, enhance customer engagement, and automate processes to drive growth and efficiency..
-                </motion.p>
-              </motion.div>
-              
-              <motion.div 
-                className="btn-group"
-                variants={staggerContainer}
-              >
-                <motion.button 
-                  className="btn btn-primary"
-                  variants={buttonHover}
-                  initial="rest"
-                  whileHover="hover"
-                  whileTap="tap"
-                  onClick={handleStartJourney}
-                >
-                  Start Your Journey 
-                  <ArrowRight className="ml-2" size={18} />
-                </motion.button>
-                <motion.button 
-                  className="btn btn-secondary"
-                  variants={buttonHover}
-                  initial="rest"
-                  whileHover="hover"
-                  whileTap="tap"
-                  onClick={handleExploreServices}
-                >
-                  Explore Services
-                </motion.button>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Stats Section */}
-        <div className="container stats-container" ref={statsRef}>
-          <motion.div 
-            className="stats-grid"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={staggerContainer}
-          >
-            <motion.div 
-              className="stat-item card-3d"
-              variants={slideUp}
-              whileHover="hover"
-            >
-              <motion.div 
-                className="stat-icon icon-bg-primary"
-                variants={floatAnimation}
-                animate="animate"
-              >
-                <Building2 size={24} color="var(--primary-600)" />
-              </motion.div>
-              <motion.div 
-                className="stat-number"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                {stats.projects}+
-              </motion.div>
-              <div className="stat-label">Industries Serving</div>
-            </motion.div>
-            
-            <motion.div 
-              className="stat-item card-3d"
-              variants={slideUp}
-              whileHover="hover"
-            >
-              <motion.div 
-                className="stat-icon icon-bg-purple"
-                variants={floatAnimation}
-                animate="animate"
-              >
-                <TargetIcon size={24} color="var(--secondary-600)" />
-              </motion.div>
-              <motion.div 
-                className="stat-number"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                {stats.industries}+
-              </motion.div>
-              <div className="stat-label">Services We Offer</div>
-            </motion.div>
-            
-            <motion.div 
-              className="stat-item card-3d"
-              variants={slideUp}
-              whileHover="hover"
-            >
-              <motion.div 
-                className="stat-icon icon-bg-success"
-                variants={floatAnimation}
-                animate="animate"
-              >
-                <Clock size={24} color="var(--success-500)" />
-              </motion.div>
-              <motion.div 
-                className="stat-number"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6 }}
-              >
-                24/7
-              </motion.div>
-              <div className="stat-label">Support Available</div>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Benefits Section */}
-        <section className="section bg-neutral-50" ref={benefitsRef}>
-          <div className="container">
-            <motion.div 
-              className="text-center mb-12"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideUp}
-            >
-              <AnimatedWords text="Why Your Business Needs a Digital Presence" className="mb-6" center direction="right" />
-              <p className="max-w-2xl mx-auto text-neutral-600">
-                In today's digital-first world, your online presence is your most valuable asset
-              </p>
-            </motion.div>
-            
-            <motion.div 
-              className="benefits-grid"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={staggerContainer}
-            >
-              {benefits.map((benefit, index) => (
-                <motion.div 
-                  key={index} 
-                  className="benefit-card"
-                  variants={cardHover}
-                  initial="rest"
-                  whileHover="hover"
-                  onHoverStart={() => setHoveredCard(index)}
-                  onHoverEnd={() => setHoveredCard(null)}
-                >
-                  <motion.div 
-                    className={`benefit-icon ${benefit.bgClass} ${benefit.animation}`}
-                    style={{color: benefit.color}}
-                    animate={{
-                      scale: hoveredCard === index ? 1.1 : 1,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {benefit.icon}
-                  </motion.div>
-                  
-                  <AnimatedWords text={benefit.title} as="h3" className="mb-4" direction={index % 2 === 0 ? 'left' : 'right'} />
-                  
-                  <motion.div 
-                    className="benefit-stat"
-                    style={{background: `${benefit.color}10`, color: benefit.color}}
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                  >
-                    {benefit.stat}
-                  </motion.div>
-                  
-                  <p className="text-neutral-600">{benefit.description}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        <div className="divider"></div>
-
-        {/* Services Section */}
-        <section className="section" ref={servicesRef}>
-          <div className="container">
-            <motion.div 
-              className="text-center mb-12"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideUp}
-            >
-              <AnimatedWords text="Our Core Services" className="mb-6" center direction="left" />
-              <p className="max-w-2xl mx-auto text-neutral-600">
-                Comprehensive solutions designed to elevate your business to new heights
-              </p>
-            </motion.div>
-            
-            <motion.div 
-              className="services-grid"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={staggerContainer}
-            >
-              {services.map((service, index) => (
-                <motion.div 
-                  key={index} 
-                  className="service-card"
-                  variants={cardHover}
-                  initial="rest"
-                  whileHover="hover"
-                >
-                  <motion.div 
-                    className="service-image-wrap"
-                    whileHover={{ scale: 1.08, rotate: index % 2 === 0 ? -2 : 2 }}
-                    transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <SmartImage
-                      localSrc={service.image}
-                      fallbackSrc={service.fallback}
-                      alt={`${service.title} - SMYVISION TECHNOLOGIES`}
-                      className="service-photo"
-                    />
-                  </motion.div>
-                  
-                  <AnimatedWords text={service.title} as="h3" className="mb-4" direction={index % 2 === 0 ? 'left' : 'right'} />
-                  
-                  <p className="mb-6 text-neutral-600">{service.description}</p>
-                  
-                  <div className="features-list">
-                    {service.features.map((feature, idx) => (
-                      <motion.div 
-                        key={idx} 
-                        className="feature-item"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.05 * idx }}
-                      >
-                        <CheckCircle className="text-success-500 mr-2" size={16} />
-                        <span>{feature}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-
-        {/* Latest Website Projects Section */}
-        <section className="section project-section">
-          <div className="container">
-            <motion.div
-              className="project-heading-center mb-12"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideUp}
+              variants={stagger}
             >
               <motion.div
-                className="project-kicker"
-                initial={{ opacity: 0, y: 12, scale: 0.94 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="hero-badge"
+                variants={fadeUp}
               >
-                <Sparkles size={15} /> Featured Work
+                <FaWandMagicSparkles />
+
+                <span>
+                  Building Digital Experiences That Drive Business Forward
+                </span>
               </motion.div>
-              <AnimatedWords text="Latest Projects We Built" className="mb-6" center direction="right" />
-              <p className="max-w-2xl mx-auto text-neutral-600">
-                Every project gets premium highlight visibility. The marquee keeps moving, the active project zooms forward, and after the timer completes it smoothly returns to normal while the next project becomes active.
-              </p>
+
+              <motion.h1 variants={fadeUp}>
+                Turning Business Ideas Into
+                <span> Powerful Digital Experiences.</span>
+              </motion.h1>
+
+              <motion.p
+                className="hero-description"
+                variants={fadeUp}
+              >
+                We combine modern technology, thoughtful design and smart
+                digital solutions to help businesses build stronger brands,
+                simplify operations and create better customer experiences.
+              </motion.p>
+
+              <motion.div
+                className="hero-actions"
+                variants={fadeUp}
+              >
+                <button
+                  type="button"
+                  className="primary-button"
+                  onClick={goToContact}
+                >
+                  Get a Free Quote
+
+                  <FaArrowRight />
+                </button>
+
+                <button
+                  type="button"
+                  className="secondary-button"
+                  onClick={goToProjects}
+                >
+                  Explore Our Work
+
+                  <FaArrowUpRightFromSquare />
+                </button>
+              </motion.div>
+
+              <motion.div
+                className="hero-features"
+                variants={fadeUp}
+              >
+                <span>
+                  <FaCircleCheck />
+
+                  Professional Development
+                </span>
+
+                <span>
+                  <FaCircleCheck />
+
+                  Smart Digital Solutions
+                </span>
+
+                <span>
+                  <FaCircleCheck />
+
+                  Growth-Focused Approach
+                </span>
+              </motion.div>
             </motion.div>
 
-            <div className="project-perfect-wrap">
-              <AnimatePresence mode="wait">
-                <motion.a
-                  key={projects[activeProject].title}
-                  href={projects[activeProject].url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-featured-card"
-                  style={{ '--project-duration': `${PROJECT_DISPLAY_MS}ms` }}
-                  initial={{ opacity: 0, y: 38, rotateX: 7, scale: 0.94 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -28, rotateX: -5, scale: 0.96 }}
-                  transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ y: -10, scale: 1.012 }}
-                  whileTap={{ scale: 0.985 }}
-                >
-                  <motion.div
-                    className="project-featured-image-area"
-                    initial={{ opacity: 0, x: -24 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.45, delay: 0.05 }}
-                  >
-                    <div className="project-browser-frame">
-                      <div className="project-browser-top">
-                        <div className="project-dots">
-                          <span></span><span></span><span></span>
-                        </div>
-                        <div className="project-url-pill">{projects[activeProject].url.replace('https://www.', '')}</div>
-                      </div>
-                      <SmartImage
-                        localSrc={projects[activeProject].image}
-                        fallbackSrc={projects[activeProject].fallback}
-                        alt={`${projects[activeProject].title} website preview`}
-                        className="project-featured-image"
-                      />
-                    </div>
-                    <motion.div
-                      className="project-floating-chip"
-                      animate={{ y: [0, -8, 0], scale: [1, 1.03, 1] }}
-                      transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
-                    >
-                      <Award size={16} /> Highlight Project
-                    </motion.div>
-                  </motion.div>
+            {/* HERO VISUAL */}
 
-                  <motion.div
-                    className="project-featured-content"
-                    initial={{ opacity: 0, x: 24 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.45, delay: 0.1 }}
-                  >
-                  
-                    <motion.h3
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.35, delay: 0.12 }}
-                    >
-                      {projects[activeProject].title}
-                    </motion.h3>
+            <motion.div
+              className="hero-visual"
+              initial={{
+                opacity: 0,
 
-                    <motion.p
-                      initial={{ opacity: 0, y: 14 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.35, delay: 0.18 }}
-                    >
-                      {projects[activeProject].description}
-                    </motion.p>
+                scale: 0.9,
 
-                    <motion.div
-                      className="project-meta-row"
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.32, delay: 0.24 }}
-                    >
-                      <span className="project-meta-pill"><Globe2 size={15} /> Live Website</span>
-                      <span className="project-meta-pill"><Smartphone size={15} /> Mobile Friendly</span>
-                      <span className="project-meta-pill"><Zap size={15} /> Fast UI</span>
-                    </motion.div>
+                rotateY: 8,
+              }}
+              animate={{
+                opacity: 1,
 
-                    <motion.div
-                      className="project-action"
-                      initial={{ opacity: 0, scale: 0.88 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.25, delay: 0.3 }}
-                    >
-                      View Website <ArrowRight size={18} />
-                    </motion.div>
-                  </motion.div>
+                scale: 1,
 
-                  <div className="project-timer" key={`timer-${activeProject}`}>
-                    <span></span>
+                rotateY: 0,
+              }}
+              transition={{
+                duration: 0.9,
+
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <div className="browser-card">
+                <div className="browser-top">
+                  <div className="browser-dots">
+                    <span />
+
+                    <span />
+
+                    <span />
                   </div>
-                </motion.a>
-              </AnimatePresence>
 
-              <div className="project-marquee-shell" aria-label="All website projects marquee">
-                <div className="project-marquee-track">
-                  {[...projects, ...projects].map((project, index) => {
-                    const realIndex = index % projects.length;
-                    const isActive = realIndex === activeProject;
-                    return (
-                      <button
-                        type="button"
-                        key={`${project.title}-${index}`}
-                        className={`project-mini-card ${isActive ? 'active' : ''}`}
-                        onClick={() => setActiveProject(realIndex)}
-                        onMouseEnter={() => setActiveProject(realIndex)}
-                        aria-label={`Highlight ${project.title}`}
+                  <div className="browser-url">
+                    smyvisiontechnologies.vercel.app
+                  </div>
+                </div>
+
+                <div className="browser-content">
+                  <div className="browser-brand">
+                    <FaCode />
+
+                    <span>SMYVISION</span>
+                  </div>
+
+                  <div className="browser-main-content">
+                    <span>DIGITAL INNOVATION</span>
+
+                    <h2>
+                      Create.
+                      <br />
+                      Transform.
+                      <br />
+                      Grow.
+                    </h2>
+
+                    <p>
+                      Digital solutions designed around real business goals.
+                    </p>
+
+                    <div className="fake-button">
+                      Start Your Project
+                    </div>
+                  </div>
+
+                  <motion.div
+                    className="browser-widget widget-one"
+                    animate={{
+                      y: [0, -10, 0],
+                    }}
+                    transition={{
+                      duration: 3.5,
+
+                      repeat: Infinity,
+                    }}
+                  >
+                    <FaRocket />
+
+                    <div>
+                      <strong>Growth Ready</strong>
+
+                      <span>Built for business</span>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    className="browser-widget widget-two"
+                    animate={{
+                      y: [0, 10, 0],
+                    }}
+                    transition={{
+                      duration: 4,
+
+                      repeat: Infinity,
+                    }}
+                  >
+                    <FaBolt />
+
+                    <div>
+                      <strong>Fast Experience</strong>
+
+                      <span>Modern performance</span>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+
+              <motion.div
+                className="floating-card floating-one"
+                animate={{
+                  y: [0, -13, 0],
+
+                  rotate: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 4,
+
+                  repeat: Infinity,
+                }}
+              >
+                <FaMagnifyingGlass />
+
+                <div>
+                  <strong>SEO Ready</strong>
+
+                  <small>Search-friendly foundation</small>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="floating-card floating-two"
+                animate={{
+                  y: [0, 12, 0],
+
+                  rotate: [0, -1, 0],
+                }}
+                transition={{
+                  duration: 5,
+
+                  repeat: Infinity,
+                }}
+              >
+                <FaMobileScreenButton />
+
+                <div>
+                  <strong>Responsive</strong>
+
+                  <small>Built for every device</small>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            STATS
+        ====================================================== */}
+
+        <section className="stats-section">
+          <div className="container">
+            <div className="stats-grid">
+              <div>
+                <strong>15+</strong>
+
+                <span>Projects Worked On</span>
+              </div>
+
+              <div>
+                <strong>100%</strong>
+
+                <span>Responsive Development</span>
+              </div>
+
+              <div>
+                <strong>3+</strong>
+
+                <span>Core Digital Solutions</span>
+              </div>
+
+              <div>
+                <strong>24/7</strong>
+
+                <span>Your Digital Presence</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            MAIN MARQUEE
+        ====================================================== */}
+
+        <section className="services-marquee-section">
+          <p>
+            Digital solutions created for modern business growth
+          </p>
+
+          <div className="services-marquee">
+            <div className="services-marquee-track">
+              {[...marqueeItems, ...marqueeItems].map(
+                (item, index) => (
+                  <div
+                    className="services-marquee-item"
+                    key={`${item}-${index}`}
+                  >
+                    <FaWandMagicSparkles />
+
+                    {item}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            INTRODUCTION
+        ====================================================== */}
+
+        <section className="section intro-section">
+          <div className="container intro-layout">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+              }}
+              variants={stagger}
+            >
+              <motion.span
+                className="eyebrow"
+                variants={fadeUp}
+              >
+                BUILD A STRONGER DIGITAL BUSINESS
+              </motion.span>
+
+              <motion.h2 variants={fadeUp}>
+                Technology Should Help Your Business Move Faster, Work Smarter
+                and Connect Better.
+              </motion.h2>
+
+              <motion.p variants={fadeUp}>
+                A digital presence should do more than simply display
+                information. It should clearly communicate what your business
+                offers and make it easy for potential customers to take the
+                next step.
+              </motion.p>
+
+              <motion.p variants={fadeUp}>
+                At <strong>SMYVISION TECHNOLOGIES</strong>, we create
+                professional digital solutions that combine design,
+                development, automation and intelligent technology.
+              </motion.p>
+
+              <motion.p variants={fadeUp}>
+                Whether you need a professional website, a custom business
+                platform or an intelligent automation system, we focus on
+                creating practical solutions designed around your business.
+              </motion.p>
+
+              <motion.button
+                variants={fadeUp}
+                type="button"
+                className="primary-button intro-button"
+                onClick={goToContact}
+              >
+                Discuss Your Project
+
+                <FaArrowRight />
+              </motion.button>
+            </motion.div>
+
+            <motion.div
+              className="intro-visual-card"
+              initial={{
+                opacity: 0,
+
+                rotateY: 12,
+
+                scale: 0.94,
+              }}
+              whileInView={{
+                opacity: 1,
+
+                rotateY: 0,
+
+                scale: 1,
+              }}
+              viewport={{
+                once: true,
+              }}
+            >
+              <div className="intro-icon">
+                <FaGlobe />
+              </div>
+
+              <span>ONE DIGITAL PARTNER</span>
+
+              <h3>
+                From Your First Idea to a Complete Digital Solution.
+              </h3>
+
+              <div className="intro-points">
+                {[
+                  "Professional brand presentation",
+                  "Responsive customer experiences",
+                  "Smart business automation",
+                  "Modern technology stack",
+                  "SEO-ready development",
+                  "AI-powered solutions",
+                  "Clear customer journeys",
+                  "Scalable digital systems",
+                ].map((item) => (
+                  <div key={item}>
+                    <FaCheck />
+
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            CTA STRIP
+        ====================================================== */}
+
+        <section className="quote-strip-section">
+          <div className="container">
+            <motion.div
+              className="quote-strip"
+              whileInView={{
+                opacity: [0, 1],
+
+                y: [30, 0],
+              }}
+              viewport={{
+                once: true,
+              }}
+            >
+              <div className="quote-strip-icon">
+                <FaLightbulb />
+              </div>
+
+              <div>
+                <span>HAVE AN IDEA?</span>
+
+                <h2>
+                  Let's Explore the Right Digital Solution for Your Business.
+                </h2>
+
+                <p>
+                  Share your requirements and get a free initial project
+                  consultation.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={goToContact}
+              >
+                Get a Free Quote
+
+                <FaArrowRight />
+              </button>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            SERVICES
+        ====================================================== */}
+
+        <section className="section services-section">
+          <div className="container">
+            <SectionHeader
+              eyebrow="OUR DIGITAL SERVICES"
+              title="Technology Solutions Built to Support Real Business Growth"
+              text="We combine strategy, modern design and technology to create digital solutions that solve practical business challenges."
+            />
+
+            <div className="services-grid">
+              {services.map((service, index) => (
+                <motion.article
+                  className="service-card"
+                  key={service.title}
+                  initial={{
+                    opacity: 0,
+
+                    y: 40,
+
+                    rotateX: 5,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+
+                    y: 0,
+
+                    rotateX: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    delay: index * 0.1,
+                  }}
+                >
+                  <div className="service-image-wrap">
+                    <img
+                      src={service.image}
+                      alt={`${service.title} by SMYVISION TECHNOLOGIES`}
+                    />
+
+                    <div className="service-icon">
+                      {service.icon}
+                    </div>
+                  </div>
+
+                  <div className="service-body">
+                    <span className="service-count">
+                      0{index + 1}
+                    </span>
+
+                    <h3>{service.title}</h3>
+
+                    <p>{service.description}</p>
+
+                    <div className="service-features">
+                      {service.features.map((feature) => (
+                        <span key={feature}>
+                          <FaCircleCheck />
+
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={goToContact}
+                    >
+                      Explore This Service
+
+                      <FaArrowRight />
+                    </button>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            BENEFITS
+        ====================================================== */}
+
+        <section className="section benefits-section">
+          <div className="container benefits-layout">
+            <div>
+              <span className="eyebrow">
+                CREATED FOR BETTER RESULTS
+              </span>
+
+              <h2>
+                Every Detail of Your Digital Experience Matters.
+              </h2>
+
+              <p>
+                We focus on creating websites and digital solutions that are
+                professional, practical and easy for customers to use.
+              </p>
+
+              <button
+                type="button"
+                className="primary-button"
+                onClick={goToContact}
+              >
+                Start Your Project
+
+                <FaArrowRight />
+              </button>
+            </div>
+
+            <div className="benefits-grid">
+              {benefits.map((benefit, index) => (
+                <motion.div
+                  className="benefit-card"
+                  key={benefit.title}
+                  whileInView={{
+                    opacity: [0, 1],
+
+                    y: [25, 0],
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    delay: index * 0.08,
+                  }}
+                  whileHover={{
+                    y: -8,
+                  }}
+                >
+                  <div>{benefit.icon}</div>
+
+                  <h3>{benefit.title}</h3>
+
+                  <p>{benefit.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            PROJECTS
+        ====================================================== */}
+
+        <section
+          className="section projects-section"
+          id="our-work"
+        >
+          <div className="container">
+            <SectionHeader
+              eyebrow="OUR SELECTED WORK"
+              title="Digital Experiences Created for Real Businesses"
+              text="Explore some of the websites we have designed and developed across different business industries."
+            />
+
+            <div className="project-showcase">
+              <button
+                className="project-arrow left"
+                type="button"
+                onClick={handlePreviousProject}
+              >
+                <FaChevronLeft />
+              </button>
+
+              <div className="project-main-card">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeProject}
+                    className="project-main-layout"
+                    initial={{
+                      opacity: 0,
+
+                      scale: 0.97,
+
+                      x: 25,
+                    }}
+                    animate={{
+                      opacity: 1,
+
+                      scale: 1,
+
+                      x: 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+
+                      x: -25,
+                    }}
+                  >
+                    <div className="project-image-side">
+                      <div className="project-browser">
+                        <div className="project-browser-top">
+                          <div>
+                            <span />
+
+                            <span />
+
+                            <span />
+                          </div>
+
+                          <p>
+                            {projects[activeProject].url}
+                          </p>
+                        </div>
+
+                        <img
+                          src={projects[activeProject].image}
+                          alt={projects[activeProject].title}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="project-info">
+                      <span>
+                        {projects[activeProject].category}
+                      </span>
+
+                      <h3>
+                        {projects[activeProject].title}
+                      </h3>
+
+                      <p>
+                        {projects[activeProject].description}
+                      </p>
+
+                      <a
+                        href={projects[activeProject].url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        <span className="project-active-dot"></span>
-                        <div className="project-mini-image-wrap">
-                          <SmartImage
-                            localSrc={project.image}
-                            fallbackSrc={project.fallback}
-                            alt={`${project.title} preview`}
-                            className="project-mini-image"
-                          />
-                        </div>
-                        <div className="project-mini-body">
-                          <h4>{project.title}</h4>
-                          <p>{project.category}</p>
-                        </div>
-                      </button>
-                    );
-                  })}
+                        Visit Live Website
+
+                        <FaArrowUpRightFromSquare />
+                      </a>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                <div className="project-progress">
+                  <motion.div
+                    key={activeProject}
+                    initial={{
+                      scaleX: 0,
+                    }}
+                    animate={{
+                      scaleX: 1,
+                    }}
+                    transition={{
+                      duration:
+                        PROJECT_CHANGE_TIME / 1000,
+
+                      ease: "linear",
+                    }}
+                  />
+                </div>
+              </div>
+
+              <button
+                className="project-arrow right"
+                type="button"
+                onClick={handleNextProject}
+              >
+                <FaChevronRight />
+              </button>
+            </div>
+
+            {/* PROJECT MARQUEE ROW ONE */}
+
+            <div className="project-marquee-area">
+              <div className="project-marquee marquee-left-right">
+                <div className="project-marquee-track">
+                  {[
+                    ...projectMarqueeRowOne,
+                    ...projectMarqueeRowOne,
+                    ...projectMarqueeRowOne,
+                  ].map((project, index) => (
+                    <ProjectMarqueeCard
+                      project={project}
+                      key={`${project.title}-row1-${index}`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* PROJECT MARQUEE ROW TWO */}
+
+              <div className="project-marquee marquee-right-left">
+                <div className="project-marquee-track">
+                  {[
+                    ...projectMarqueeRowTwo,
+                    ...projectMarqueeRowTwo,
+                    ...projectMarqueeRowTwo,
+                  ].map((project, index) => (
+                    <ProjectMarqueeCard
+                      project={project}
+                      key={`${project.title}-row2-${index}`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Why Choose Us Section */}
-        <section className="section why-section">
-          <div className="container">
-            <motion.div
-              className="text-center mb-12"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideUp}
-            >
-              <AnimatedWords text="Why Choose SMYVISION TECHNOLOGIES" className="mb-6" center direction="right" />
-              <p className="max-w-3xl mx-auto text-neutral-600">
-                At SMYVISION TECHNOLOGIES, we prioritize innovation, result-driven strategies, and exceptional customer support. Our expertise in web development, automation, and digital solutions helps your brand stand out in the competitive online space.
-              </p>
-            </motion.div>
+        {/* =====================================================
+            TECHNOLOGY
+        ====================================================== */}
 
-            <motion.div
-              className="why-grid"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={staggerContainer}
-            >
-              {whyChooseUs.map((item, index) => (
+        <section className="section technology-section">
+          <div className="container">
+            <SectionHeader
+              eyebrow="OUR TECHNOLOGY STACK"
+              title="Modern Technologies Behind Powerful Digital Solutions"
+              text="We choose technologies according to the actual requirements of each project, focusing on performance, scalability and maintainability."
+            />
+
+            <div className="technology-grid">
+              {technologies.map((technology, index) => (
                 <motion.div
-                  key={item.title}
-                  className="why-card"
-                  variants={slideUp}
-                  whileHover={{ y: -8, scale: 1.025 }}
-                  transition={{ duration: 0.22 }}
+                  key={technology.name}
+                  className="technology-card"
+                  initial={{
+                    opacity: 0,
+
+                    scale: 0.9,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+
+                    scale: 1,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    delay: index * 0.04,
+                  }}
+                  whileHover={{
+                    y: -8,
+
+                    scale: 1.03,
+                  }}
                 >
-                  <motion.div
-                    className="why-icon"
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 2 + index * 0.2, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    {item.icon}
-                  </motion.div>
-                  <AnimatedWords text={item.title} as="h3" center direction={index % 2 === 0 ? 'left' : 'right'} />
-                  <p>{item.description}</p>
+                  <div>
+                    {technology.icon}
+                  </div>
+
+                  <h3>{technology.name}</h3>
+
+                  <p>{technology.description}</p>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="cta-section">
+        {/* =====================================================
+            HOW WE WORK PATH
+        ====================================================== */}
+
+        <section className="section process-section">
           <div className="container">
-            <motion.div 
-              className="cta-content max-w-2xl mx-auto text-center"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
+            <SectionHeader
+              eyebrow="HOW WE WORK"
+              title="A Clear Path From Your Business Idea to a Digital Solution"
+              text="Our structured process keeps every stage organized while giving each project the flexibility it needs."
+            />
+
+            <div className="process-path">
+              <div className="process-path-line" />
+
+              {processSteps.map((step, index) => (
+                <motion.div
+                  className={`process-path-item ${
+                    index % 2 === 0 ? "left-side" : "right-side"
+                  }`}
+                  key={step.number}
+                  initial={{
+                    opacity: 0,
+
+                    x:
+                      index % 2 === 0
+                        ? -50
+                        : 50,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+
+                    x: 0,
+                  }}
+                  viewport={{
+                    once: true,
+
+                    amount: 0.35,
+                  }}
+                >
+                  <div className="process-content">
+                    <span>
+                      STEP {step.number}
+                    </span>
+
+                    <h3>{step.title}</h3>
+
+                    <p>{step.description}</p>
+                  </div>
+
+                  <motion.div
+                    className="process-center-icon"
+                    whileInView={{
+                      scale: [0.6, 1.15, 1],
+                    }}
+                    viewport={{
+                      once: true,
+                    }}
+                  >
+                    {step.icon}
+                  </motion.div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            WHY US
+        ====================================================== */}
+
+        <section className="section why-section">
+          <div className="container">
+            <SectionHeader
+              eyebrow="WHY SMYVISION"
+              title="A Digital Partner Focused on Your Business Goals"
+              text="Our goal is to combine technology and practical thinking to create solutions that genuinely support your business."
+            />
+
+            <div className="why-grid">
+              {reasons.map((reason, index) => (
+                <motion.div
+                  className="why-card"
+                  key={reason.title}
+                  initial={{
+                    opacity: 0,
+
+                    y: 30,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+
+                    y: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    delay: index * 0.06,
+                  }}
+                  whileHover={{
+                    y: -10,
+                  }}
+                >
+                  <div>
+                    {reason.icon}
+                  </div>
+
+                  <h3>{reason.title}</h3>
+
+                  <p>{reason.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            INDUSTRIES
+        ====================================================== */}
+
+        <section className="industries-section">
+          <div className="container industries-layout">
+            <div>
+              <span className="eyebrow">
+                INDUSTRIES WE SUPPORT
+              </span>
+
+              <h2>
+                Digital Solutions Adapted to Different Business Industries.
+              </h2>
+
+              <p>
+                Different industries have different customers, workflows and
+                challenges. Our approach is built around understanding those
+                differences.
+              </p>
+            </div>
+
+            <div className="industry-tags">
+              {industries.map((industry) => (
+                <motion.span
+                  key={industry}
+                  whileHover={{
+                    scale: 1.07,
+
+                    y: -3,
+                  }}
+                >
+                  <FaWandMagicSparkles />
+
+                  {industry}
+                </motion.span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            REVIEWS
+        ====================================================== */}
+
+        <section className="section reviews-section">
+          <div className="container">
+            <SectionHeader
+              eyebrow="CLIENT EXPERIENCES"
+              title="What Businesses Say About Working With Us"
+              text="Every project begins with understanding the business and ends with creating a digital experience designed around its requirements."
+            />
+
+            <div className="reviews-grid">
+              {reviews.map((review, index) => (
+                <motion.article
+                  className="review-card"
+                  key={review.name}
+                  initial={{
+                    opacity: 0,
+
+                    rotateY: 8,
+
+                    y: 30,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+
+                    rotateY: 0,
+
+                    y: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    delay: index * 0.1,
+                  }}
+                >
+                  <div className="review-header">
+                    <div className="quote-icon">
+                      <FaQuoteLeft />
+                    </div>
+
+                    <div className="stars">
+                      {[1, 2, 3, 4, 5].map(
+                        (star) => (
+                          <FaStar key={star} />
+                        )
+                      )}
+                    </div>
+                  </div>
+
+                  <p>
+                    "{review.review}"
+                  </p>
+
+                  <div className="review-user">
+                    <div>
+                      {review.name.charAt(0)}
+                    </div>
+
+                    <span>
+                      <strong>{review.name}</strong>
+
+                      <small>{review.role}</small>
+                    </span>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            MORE CONTENT
+        ====================================================== */}
+
+        <section className="section digital-growth-section">
+          <div className="container digital-growth-layout">
+            <div>
+              <span className="eyebrow">
+                YOUR DIGITAL BUSINESS FOUNDATION
+              </span>
+
+              <h2>
+                Create a Digital Presence That Continues Working for Your
+                Business.
+              </h2>
+
+              <p>
+                Your digital presence gives customers a place to understand who
+                you are, explore your services and communicate with your
+                business whenever they need you.
+              </p>
+
+              <p>
+                A professional website also creates the foundation for future
+                opportunities such as online marketing, customer automation,
+                digital lead generation and business management systems.
+              </p>
+
+              <p>
+                We focus on developing solutions that can support your business
+                today while remaining flexible enough for future improvements
+                and expansion.
+              </p>
+
+              <button
+                type="button"
+                className="primary-button"
+                onClick={goToContact}
+              >
+                Build Your Digital Presence
+
+                <FaArrowRight />
+              </button>
+            </div>
+
+            <div className="growth-cards">
+              <motion.div
+                whileHover={{
+                  y: -8,
+                }}
+              >
+                <FaBuilding />
+
+                <h3>For Growing Businesses</h3>
+
+                <p>
+                  Build a professional digital foundation that strengthens your
+                  business presence.
+                </p>
+              </motion.div>
+
+              <motion.div
+                whileHover={{
+                  y: -8,
+                }}
+              >
+                <FaBriefcase />
+
+                <h3>For Established Companies</h3>
+
+                <p>
+                  Modernize existing processes and digital experiences with
+                  smarter solutions.
+                </p>
+              </motion.div>
+
+              <motion.div
+                whileHover={{
+                  y: -8,
+                }}
+              >
+                <FaLightbulb />
+
+                <h3>For New Ideas</h3>
+
+                <p>
+                  Turn an idea into a functional website, platform or digital
+                  business solution.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            FAQ
+        ====================================================== */}
+
+        <section className="section faq-section">
+          <div className="container faq-layout">
+            <div className="faq-heading">
+              <span className="eyebrow">
+                FREQUENTLY ASKED QUESTIONS
+              </span>
+
+              <h2>
+                Questions About Working With Us?
+              </h2>
+
+              <p>
+                Find answers to common questions about our website development,
+                digital solutions and project process.
+              </p>
+
+              <button
+                type="button"
+                className="faq-whatsapp-button"
+                onClick={openWhatsApp}
+              >
+                <FaWhatsapp />
+
+                Ask Us on WhatsApp
+              </button>
+            </div>
+
+            <div className="faq-list">
+              {faqItems.map((faq, index) => {
+                const isOpen =
+                  activeFaq === index;
+
+                return (
+                  <motion.div
+                    className={`faq-item ${
+                      isOpen ? "active" : ""
+                    }`}
+                    key={faq.question}
+                    initial={{
+                      opacity: 0,
+
+                      y: 15,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+
+                      y: 0,
+                    }}
+                    viewport={{
+                      once: true,
+                    }}
+                  >
+                    <button
+                      type="button"
+                      className="faq-question"
+                      onClick={() =>
+                        toggleFaq(index)
+                      }
+                      aria-expanded={isOpen}
+                    >
+                      <span>
+                        <small>
+                          {String(
+                            index + 1
+                          ).padStart(2, "0")}
+                        </small>
+
+                        {faq.question}
+                      </span>
+
+                      <motion.div
+                        animate={{
+                          rotate:
+                            isOpen
+                              ? 180
+                              : 0,
+                        }}
+                      >
+                        <FaChevronDown />
+                      </motion.div>
+                    </button>
+
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          className="faq-answer"
+                          initial={{
+                            height: 0,
+
+                            opacity: 0,
+                          }}
+                          animate={{
+                            height: "auto",
+
+                            opacity: 1,
+                          }}
+                          exit={{
+                            height: 0,
+
+                            opacity: 0,
+                          }}
+                          transition={{
+                            duration: 0.3,
+                          }}
+                        >
+                          <p>{faq.answer}</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            FREE QUOTE
+        ====================================================== */}
+
+        <section className="big-quote-section">
+          <div className="container big-quote-layout">
+            <motion.div
+              initial={{
+                opacity: 0,
+
+                x: -40,
+              }}
+              whileInView={{
+                opacity: 1,
+
+                x: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
             >
-              <AnimatedWords text="Ready to Build Your Digital Presence?" className="mb-6" center direction="left" />
-              
-              <motion.p 
-                className="mb-8 opacity-90"
-                variants={slideUp}
+              <span>
+                READY TO START?
+              </span>
+
+              <h2>
+                Let's Turn Your Next Business Idea Into Something Powerful.
+              </h2>
+
+              <p>
+                Tell us what you want to build. We will understand your
+                requirements and help you explore the right solution.
+              </p>
+
+              <div className="quote-checks">
+                <span>
+                  <FaCircleCheck />
+
+                  Free initial discussion
+                </span>
+
+                <span>
+                  <FaCircleCheck />
+
+                  Requirement analysis
+                </span>
+
+                <span>
+                  <FaCircleCheck />
+
+                  Suitable solution recommendation
+                </span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="quote-action-card"
+              initial={{
+                opacity: 0,
+
+                scale: 0.9,
+              }}
+              whileInView={{
+                opacity: 1,
+
+                scale: 1,
+              }}
+              viewport={{
+                once: true,
+              }}
+            >
+              <div>
+                <FaRocket />
+              </div>
+
+              <h3>
+                Start Your Project Today
+              </h3>
+
+              <p>
+                Share your business requirements and get started with a free
+                project discussion.
+              </p>
+
+              <button
+                type="button"
+                className="white-button"
+                onClick={goToContact}
               >
-                Get a professional, high-converting website that grows with your business
-              </motion.p>
-              
-              <motion.div 
-                className="price-tag"
-                variants={slideUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
+                Get a Free Quote
+
+                <FaArrowRight />
+              </button>
+
+              <button
+                type="button"
+                className="whatsapp-button"
+                onClick={openWhatsApp}
               >
-                <Sparkles className="mr-2" size={20} />
-                Starting from ₹2,999/-
-              </motion.div>
-              
-              <motion.div 
-                className="btn-group"
-                variants={staggerContainer}
-              >
-                <motion.button 
-                  className="btn btn-white"
-                  variants={buttonHover}
-                  initial="rest"
-                  whileHover="hover"
-                  whileTap="tap"
-                  onClick={handleGetFreeQuote}
-                >
-                  Get Free Quote
-                </motion.button>
-                <motion.button 
-                  className="btn btn-secondary"
-                  style={{background: 'white', borderColor: 'rgba(2,132,199,0.22)', color: 'var(--primary-700)'}}
-                  variants={buttonHover}
-                  initial="rest"
-                  whileHover="hover"
-                  whileTap="tap"
-                  onClick={handleViewPortfolio}
-                >
-                  View Portfolio
-                </motion.button>
-              </motion.div>
+                <FaWhatsapp />
+
+                WhatsApp Us
+              </button>
             </motion.div>
           </div>
         </section>
 
-        {/* Final CTA */}
+        {/* =====================================================
+            FINAL CTA
+        ====================================================== */}
+
         <section className="final-cta">
           <div className="container">
-            <motion.div 
-              className="max-w-3xl mx-auto text-center"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
+            <motion.div
+              className="final-cta-content"
+              whileInView={{
+                opacity: [0, 1],
+
+                y: [35, 0],
+              }}
+              viewport={{
+                once: true,
+              }}
             >
-              <AnimatedWords text="Transform Your Business Today" className="mb-6" center direction="right" />
-              
-              <motion.p 
-                className="mb-12 opacity-90"
-                variants={slideUp}
+              <motion.div
+                className="final-icon"
+                animate={{
+                  y: [0, -8, 0],
+
+                  rotate: [0, 4, 0, -4, 0],
+                }}
+                transition={{
+                  duration: 4,
+
+                  repeat: Infinity,
+                }}
               >
-                Let's create something extraordinary together. Schedule a consultation with our experts.
-              </motion.p>
-              
-              <motion.div 
-                className="consultation-grid"
-                variants={staggerContainer}
-              >
-                <motion.div 
-                  className="consultation-card glow"
-                  variants={cardHover}
-                  initial="rest"
-                  whileHover="hover"
-                >
-                  <div className="mb-6">
-                    <motion.div
-                      className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-primary-500/20 to-secondary-500/20"
-                      animate={{
-                        scale: [1, 1.1, 1],
-                        rotate: [0, 5, 0, -5, 0]
-                      }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                    >
-                      <Calendar size={40} className="text-primary-300" />
-                    </motion.div>
-                  </div>
-                  <AnimatedWords text="Schedule Consultation" as="h3" className="mb-4" center direction="left" />
-                  <p className="mb-6 opacity-90">Free 30-minute strategy session</p>
-                  <motion.button 
-                    className="btn btn-primary flex items-center justify-center gap-3 mx-auto min-w-[180px]"
-                    whileHover={{ 
-                      scale: 1.05,
-                      boxShadow: "0 12px 28px rgba(2, 132, 199, 0.4)"
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={handleBookNow}
-                  >
-                    <div className="bg-white/20 p-1.5 rounded-lg">
-                      <Calendar size={18} className="text-white" />
-                    </div>
-                    <span>Book Now</span>
-                  </motion.button>
-                </motion.div>
-                
-                <motion.div 
-                  className="consultation-card glow"
-                  variants={cardHover}
-                  initial="rest"
-                  whileHover="hover"
-                >
-                  <div className="mb-6">
-                    <motion.div
-                      className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-success-500/20 to-emerald-500/20"
-                      animate={{
-                        y: [0, -8, 0],
-                        scale: [1, 1.1, 1]
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      <Phone size={40} className="text-success-300" />
-                    </motion.div>
-                  </div>
-                  <AnimatedWords text="Call Now" as="h3" className="mb-4" center direction="right" />
-                  <p className="mb-6 opacity-90">Speak directly with our experts</p>
-                  <motion.button 
-                    className="btn btn-primary flex items-center justify-center gap-3 mx-auto min-w-[180px]"
-                    style={{ 
-                      background: 'linear-gradient(135deg, #10b981, #059669)',
-                      boxShadow: '0 8px 20px rgba(16, 185, 129, 0.4)'
-                    }}
-                    whileHover={{ 
-                      scale: 1.05,
-                      boxShadow: '0 12px 28px rgba(16, 185, 129, 0.6)'
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={handleCallToday}
-                  >
-                    <motion.div
-                      className="bg-white/20 p-1.5 rounded-lg"
-                      animate={{
-                        rotate: [0, 15, 0, -15, 0]
-                      }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <Phone size={18} className="text-white" />
-                    </motion.div>
-                    <span>Call Today</span>
-                  </motion.button>
-                </motion.div>
+                <FaRocket />
               </motion.div>
-              
-              <motion.div 
-                className="flex flex-wrap justify-center gap-8 mt-16 text-sm"
-                variants={fadeIn}
-              >
-                {[
-                  { 
-                    icon: <Shield size={20} />, 
-                    text: 'End-to-End Solutions',
-                    color: 'var(--primary-300)',
-                    bg: 'from-primary-500/10 to-blue-500/10'
-                  },
-                  { 
-                    icon: <TrendingUp size={20} />, 
-                    text: 'Proven Results',
-                    color: 'var(--success-300)',
-                    bg: 'from-success-500/10 to-emerald-500/10'
-                  },
-                  { 
-                    icon: <Users size={20} />, 
-                    text: 'Strategic Guidance',
-                    color: 'var(--secondary-300)',
-                    bg: 'from-secondary-500/10 to-purple-500/10'
-                  }
-                ].map((item, idx) => (
-                  <motion.div 
-                    key={idx}
-                    className="flex flex-col items-center gap-3"
-                    whileHover={{ y: -5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <div className={`p-3 rounded-xl bg-gradient-to-br ${item.bg} backdrop-blur-sm`}>
-                      <div style={{ color: item.color }}>
-                        {item.icon}
-                      </div>
-                    </div>
-                    <span className="trust-pill font-medium text-base">{item.text}</span>
-                  </motion.div>
-                ))}
-              </motion.div>
+
+              <span>
+                LET'S BUILD SOMETHING GREAT
+              </span>
+
+              <h2>
+                Ready to Build the Next Stage of Your Digital Business?
+              </h2>
+
+              <p>
+                Let's create a professional digital experience designed around
+                your business, your customers and your future goals.
+              </p>
+
+              <div className="final-buttons">
+                <button
+                  type="button"
+                  className="white-button"
+                  onClick={goToContact}
+                >
+                  Get Your Free Quote
+
+                  <FaArrowRight />
+                </button>
+
+                <button
+                  type="button"
+                  className="whatsapp-button"
+                  onClick={openWhatsApp}
+                >
+                  <FaWhatsapp />
+
+                  WhatsApp Us
+                </button>
+
+                <button
+                  type="button"
+                  className="call-button"
+                  onClick={callNow}
+                >
+                  Call {PHONE_NUMBER}
+                </button>
+              </div>
             </motion.div>
           </div>
         </section>
-      </div>
+      </main>
     </>
   );
 };
+
+/* =========================================================
+   SECTION HEADER COMPONENT
+========================================================= */
+
+const SectionHeader = ({
+  eyebrow,
+
+  title,
+
+  text,
+}) => {
+  return (
+    <motion.div
+      className="section-header"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{
+        once: true,
+      }}
+      variants={stagger}
+    >
+      <motion.span
+        variants={fadeUp}
+      >
+        {eyebrow}
+      </motion.span>
+
+      <motion.h2
+        variants={fadeUp}
+      >
+        {title}
+      </motion.h2>
+
+      <motion.p
+        variants={fadeUp}
+      >
+        {text}
+      </motion.p>
+    </motion.div>
+  );
+};
+
+/* =========================================================
+   PROJECT MARQUEE CARD
+========================================================= */
+
+const ProjectMarqueeCard = ({
+  project,
+}) => {
+  return (
+    <div className="project-marquee-card">
+      <img
+        src={project.image}
+        alt={`${project.title} project`}
+      />
+
+      <div>
+        <strong>
+          {project.title}
+        </strong>
+
+        <span>
+          {project.category}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+/* =========================================================
+   CSS
+========================================================= */
+
+const styles = `
+  :root {
+    --primary: #0758e8;
+    --secondary: #6d28d9;
+    --heading: #07162d;
+    --text: #607086;
+    --light: #f7f9fd;
+    --border: #e2e8f2;
+    --green: #13a976;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    background: white;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  a {
+    font: inherit;
+  }
+
+  button {
+    border: 0;
+  }
+
+  .smy-home {
+    overflow: hidden;
+  }
+
+  .container {
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+  }
+
+  .section {
+    padding: 110px 0;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: .15em;
+  }
+
+  /* =========================================================
+     COMMON
+  ========================================================= */
+
+  .section-header {
+    max-width: 780px;
+    margin: 0 auto 60px;
+    text-align: center;
+  }
+
+  .section-header > span {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: .15em;
+  }
+
+  .section-header h2,
+  .intro-layout h2,
+  .benefits-layout > div:first-child h2,
+  .digital-growth-layout h2,
+  .faq-heading h2 {
+    margin: 0 0 18px;
+    color: var(--heading);
+    font-size: clamp(2.1rem, 4vw, 3.5rem);
+    line-height: 1.07;
+    letter-spacing: -.045em;
+  }
+
+  .section-header p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .primary-button,
+  .secondary-button {
+    min-height: 54px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 0 24px;
+    border-radius: 13px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: .3s;
+  }
+
+  .primary-button {
+    color: white;
+    background: linear-gradient(135deg, #0758e8, #6338db);
+    box-shadow: 0 14px 30px rgba(7,88,232,.25);
+  }
+
+  .secondary-button {
+    color: var(--heading);
+    background: white;
+    border: 1px solid #dce4ef;
+  }
+
+  .primary-button:hover,
+  .secondary-button:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  /* =========================================================
+     HERO
+  ========================================================= */
+
+  .hero-section {
+    min-height: 790px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 120px 0 140px;
+    background: linear-gradient(180deg,#fcfdff,#f2f6ff);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(7,88,232,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(7,88,232,.035) 1px,transparent 1px);
+    background-size: 46px 46px;
+    mask-image: linear-gradient(to bottom,black,transparent 95%);
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+  }
+
+  .orb-one {
+    width: 430px;
+    height: 430px;
+    left: -180px;
+    top: -120px;
+    background: rgba(29,110,255,.16);
+  }
+
+  .orb-two {
+    width: 480px;
+    height: 480px;
+    right: -160px;
+    bottom: -180px;
+    background: rgba(109,40,217,.14);
+  }
+
+  .hero-layout {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .hero-badge {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    margin-bottom: 25px;
+    color: var(--primary);
+    background: rgba(255,255,255,.9);
+    border: 1px solid rgba(7,88,232,.14);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 750;
+  }
+
+  .hero-content h1 {
+    margin: 0 0 25px;
+    color: var(--heading);
+    font-size: clamp(3rem,5.3vw,5.2rem);
+    line-height: 1.01;
+    letter-spacing: -.06em;
+  }
+
+  .hero-content h1 span {
+    color: transparent;
+    background: linear-gradient(95deg,#0758e8,#7035df);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .hero-description {
+    max-width: 650px;
+    margin: 0 0 32px;
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+  }
+
+  .hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .hero-features span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 650;
+  }
+
+  .hero-features svg {
+    color: #13a976;
+  }
+
+  /* =========================================================
+     HERO VISUAL
+  ========================================================= */
+
+  .hero-visual {
+    position: relative;
+    perspective: 1000px;
+  }
+
+  .browser-card {
+    padding: 10px;
+    background: rgba(255,255,255,.9);
+    border-radius: 28px;
+    box-shadow: 0 35px 100px rgba(8,31,72,.16);
+  }
+
+  .browser-top {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 15px;
+  }
+
+  .browser-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .browser-dots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #cbd5e3;
+  }
+
+  .browser-url {
+    padding: 7px 15px;
+    color: #8692a4;
+    background: #f1f4f8;
+    border-radius: 30px;
+    font-size: 9px;
+  }
+
+  .browser-content {
+    min-height: 430px;
+    position: relative;
+    overflow: hidden;
+    padding: 32px;
+    color: white;
+    background:
+      radial-gradient(circle at 85% 15%,rgba(57,125,255,.24),transparent 30%),
+      linear-gradient(145deg,#06172f,#0d2854);
+    border-radius: 21px;
+  }
+
+  .browser-brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 850;
+  }
+
+  .browser-main-content {
+    padding-top: 65px;
+  }
+
+  .browser-main-content > span {
+    color: #75a8ff;
+    font-size: 9px;
+    font-weight: 850;
+    letter-spacing: .15em;
+  }
+
+  .browser-main-content h2 {
+    margin: 14px 0;
+    color: white;
+    font-size: clamp(2.4rem,4vw,3.6rem);
+    line-height: .95;
+  }
+
+  .browser-main-content p {
+    max-width: 280px;
+    color: #b3c4df;
+    font-size: 12px;
+  }
+
+  .fake-button {
+    width: fit-content;
+    margin-top: 22px;
+    padding: 11px 16px;
+    background: #1768f5;
+    border-radius: 9px;
+    font-size: 10px;
+    font-weight: 750;
+  }
+
+  .browser-widget {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 13px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+  }
+
+  .browser-widget div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .browser-widget strong {
+    font-size: 9px;
+  }
+
+  .browser-widget span {
+    color: #abbcd6;
+    font-size: 7px;
+  }
+
+  .widget-one {
+    top: 90px;
+    right: 24px;
+  }
+
+  .widget-two {
+    right: 30px;
+    bottom: 35px;
+  }
+
+  .floating-card {
+    position: absolute;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,.95);
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(10,31,67,.16);
+  }
+
+  .floating-card > svg {
+    color: var(--primary);
+  }
+
+  .floating-card div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .floating-card strong {
+    color: var(--heading);
+    font-size: 11px;
+  }
+
+  .floating-card small {
+    font-size: 8px;
+  }
+
+  .floating-one {
+    left: -45px;
+    bottom: 70px;
+  }
+
+  .floating-two {
+    right: -35px;
+    top: 65px;
+  }
+
+  /* =========================================================
+     STATS
+  ========================================================= */
+
+  .stats-section {
+    position: relative;
+    z-index: 3;
+    margin-top: -50px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    padding: 8px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: 0 22px 60px rgba(8,33,73,.09);
+  }
+
+  .stats-grid div {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .stats-grid strong {
+    display: block;
+    color: var(--heading);
+    font-size: 27px;
+  }
+
+  .stats-grid span {
+    font-size: 11px;
+  }
+
+  /* =========================================================
+     SERVICES MARQUEE
+  ========================================================= */
+
+  .services-marquee-section {
+    padding: 70px 0 20px;
+    text-align: center;
+  }
+
+  .services-marquee-section > p {
+    margin-bottom: 18px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+
+  .services-marquee {
+    overflow: hidden;
+  }
+
+  .services-marquee-track {
+    width: max-content;
+    display: flex;
+    gap: 15px;
+    animation: serviceMarquee 30s linear infinite;
+  }
+
+  .services-marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 20px;
+    color: #233754;
+    background: #f7f9fd;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .services-marquee-item svg {
+    color: var(--primary);
+  }
+
+  @keyframes serviceMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* =========================================================
+     INTRO
+  ========================================================= */
+
+  .intro-layout {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .intro-layout p {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .intro-button {
+    margin-top: 15px;
+  }
+
+  .intro-visual-card {
+    padding: 38px;
+    background:
+      radial-gradient(circle at 85% 10%,rgba(109,40,217,.1),transparent 35%),
+      linear-gradient(145deg,#f3f7ff,#fff);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    box-shadow: 0 25px 70px rgba(10,39,82,.08);
+  }
+
+  .intro-icon {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 22px;
+    color: white;
+    background: linear-gradient(135deg,var(--primary),var(--secondary));
+    border-radius: 16px;
+    font-size: 24px;
+  }
+
+  .intro-visual-card > span {
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .15em;
+  }
+
+  .intro-visual-card h3 {
+    color: var(--heading);
+    font-size: 25px;
+  }
+
+  .intro-points {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+  }
+
+  .intro-points div {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .intro-points svg {
+    color: var(--green);
+  }
+
+  /* =========================================================
+     QUOTE STRIP
+  ========================================================= */
+
+  .quote-strip-section {
+    padding-bottom: 100px;
+  }
+
+  .quote-strip {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 25px;
+    align-items: center;
+    padding: 32px 38px;
+    color: white;
+    background: linear-gradient(120deg,#07182f,#0e376f);
+    border-radius: 25px;
+  }
+
+  .quote-strip-icon {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    background: rgba(255,255,255,.1);
+    border-radius: 17px;
+    font-size: 25px;
+  }
+
+  .quote-strip span {
+    color: #78adff;
+    font-size: 9px;
+    font-weight: 850;
+    letter-spacing: .14em;
+  }
+
+  .quote-strip h2 {
+    margin: 7px 0;
+    color: white;
+    font-size: 24px;
+  }
+
+  .quote-strip p {
+    margin: 0;
+    color: #b5c5dc;
+    font-size: 12px;
+  }
+
+  .quote-strip button {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    color: var(--heading);
+    background: white;
+    border-radius: 12px;
+    font-weight: 750;
+    cursor: pointer;
+  }
+
+  /* =========================================================
+     SERVICES
+  ========================================================= */
+
+  .services-section {
+    background: #f7f9fd;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    overflow: hidden;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    box-shadow: 0 15px 50px rgba(9,35,77,.05);
+    transition: .3s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 70px rgba(9,35,77,.12);
+  }
+
+  .service-image-wrap {
+    height: 220px;
+    position: relative;
+  }
+
+  .service-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .service-icon {
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    left: 23px;
+    bottom: 20px;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: linear-gradient(135deg,var(--primary),var(--secondary));
+    border-radius: 16px;
+    font-size: 24px;
+  }
+
+  .service-body {
+    position: relative;
+    padding: 30px;
+  }
+
+  .service-count {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    color: #dce4f1;
+    font-size: 30px;
+    font-weight: 850;
+  }
+
+  .service-body h3 {
+    color: var(--heading);
+  }
+
+  .service-body p {
+    min-height: 105px;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .service-features {
+    display: grid;
+    gap: 10px;
+  }
+
+  .service-features span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .service-features svg {
+    color: var(--green);
+  }
+
+  .service-body button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 25px;
+    padding: 0;
+    color: var(--primary);
+    background: transparent;
+    font-weight: 750;
+    cursor: pointer;
+  }
+
+  /* =========================================================
+     BENEFITS
+  ========================================================= */
+
+  .benefits-layout {
+    display: grid;
+    grid-template-columns: .78fr 1.22fr;
+    gap: 70px;
+  }
+
+  .benefits-layout > div:first-child p {
+    line-height: 1.8;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+  }
+
+  .benefit-card {
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: white;
+    transition: .3s;
+  }
+
+  .benefit-card > div {
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    color: var(--primary);
+    background: rgba(7,88,232,.08);
+    border-radius: 14px;
+    font-size: 21px;
+  }
+
+  .benefit-card h3 {
+    color: var(--heading);
+  }
+
+  .benefit-card p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* =========================================================
+     PROJECTS
+  ========================================================= */
+
+  .projects-section {
+    background:
+      radial-gradient(circle at 10% 15%,rgba(7,88,232,.08),transparent 30%),
+      #f6f9fe;
+  }
+
+  .project-showcase {
+    position: relative;
+  }
+
+  .project-main-card {
+    overflow: hidden;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    box-shadow: 0 30px 90px rgba(7,31,72,.13);
+  }
+
+  .project-main-layout {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+  }
+
+  .project-image-side {
+    padding: 18px;
+    background: linear-gradient(145deg,#edf4ff,#f4efff);
+  }
+
+  .project-browser {
+    overflow: hidden;
+    border-radius: 20px;
+    background: #111d32;
+  }
+
+  .project-browser-top {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .project-browser-top div {
+    display: flex;
+    gap: 6px;
+  }
+
+  .project-browser-top span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.4);
+  }
+
+  .project-browser-top p {
+    color: #9eabc0;
+    font-size: 8px;
+  }
+
+  .project-browser img {
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 50px;
+  }
+
+  .project-info > span {
+    padding: 7px 11px;
+    color: var(--primary);
+    background: rgba(7,88,232,.08);
+    border-radius: 50px;
+    font-size: 9px;
+    font-weight: 850;
+  }
+
+  .project-info h3 {
+    margin: 18px 0;
+    color: var(--heading);
+    font-size: clamp(2rem,4vw,3.4rem);
+    line-height: 1;
+  }
+
+  .project-info p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .project-info a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 13px 18px;
+    color: white;
+    background: linear-gradient(135deg,var(--primary),var(--secondary));
+    border-radius: 11px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 750;
+  }
+
+  .project-progress {
+    height: 4px;
+    background: #e8edf5;
+  }
+
+  .project-progress div {
+    width: 100%;
+    height: 100%;
+    transform-origin: left;
+    background: linear-gradient(90deg,var(--primary),var(--secondary));
+  }
+
+  .project-arrow {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 12px 35px rgba(8,30,66,.15);
+    cursor: pointer;
+  }
+
+  .project-arrow.left {
+    left: -24px;
+  }
+
+  .project-arrow.right {
+    right: -24px;
+  }
+
+  /* =========================================================
+     PROJECT DUAL MARQUEE
+  ========================================================= */
+
+  .project-marquee-area {
+    margin-top: 55px;
+    display: grid;
+    gap: 18px;
+  }
+
+  .project-marquee {
+    overflow: hidden;
+    padding: 5px 0;
+  }
+
+  .project-marquee-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+  }
+
+  .marquee-left-right .project-marquee-track {
+    animation: projectsLeftRight 28s linear infinite;
+  }
+
+  .marquee-right-left .project-marquee-track {
+    animation: projectsRightLeft 28s linear infinite;
+  }
+
+  .project-marquee:hover .project-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .project-marquee-card {
+    width: 275px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    box-shadow: 0 10px 35px rgba(8,31,72,.07);
+  }
+
+  .project-marquee-card img {
+    width: 95px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 11px;
+  }
+
+  .project-marquee-card div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-marquee-card strong {
+    color: var(--heading);
+    font-size: 12px;
+  }
+
+  .project-marquee-card span {
+    margin-top: 4px;
+    font-size: 9px;
+  }
+
+  @keyframes projectsLeftRight {
+    from {
+      transform: translateX(-33.333%);
+    }
+
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes projectsRightLeft {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-33.333%);
+    }
+  }
+
+  /* =========================================================
+     TECHNOLOGY
+  ========================================================= */
+
+  .technology-section {
+    background: white;
+  }
+
+  .technology-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 18px;
+  }
+
+  .technology-card {
+    padding: 25px;
+    text-align: center;
+    background: #fbfcff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    transition: .3s;
+  }
+
+  .technology-card > div {
+    width: 55px;
+    height: 55px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 17px;
+    color: var(--primary);
+    background: rgba(7,88,232,.08);
+    border-radius: 16px;
+    font-size: 27px;
+  }
+
+  .technology-card h3 {
+    margin: 0 0 7px;
+    color: var(--heading);
+    font-size: 15px;
+  }
+
+  .technology-card p {
+    margin: 0;
+    font-size: 11px;
+  }
+
+  /* =========================================================
+     PROCESS PATH
+  ========================================================= */
+
+  .process-section {
+    background: #f7f9fd;
+  }
+
+  .process-path {
+    max-width: 950px;
+    position: relative;
+    margin: 30px auto 0;
+  }
+
+  .process-path-line {
+    width: 4px;
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(
+      to bottom,
+      var(--primary),
+      var(--secondary),
+      var(--primary)
+    );
+    border-radius: 50px;
+  }
+
+  .process-path-item {
+    min-height: 190px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 90px 1fr;
+    align-items: center;
+  }
+
+  .process-content {
+    padding: 28px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: 0 15px 45px rgba(8,31,72,.06);
+  }
+
+  .left-side .process-content {
+    grid-column: 1;
+    text-align: right;
+  }
+
+  .right-side .process-content {
+    grid-column: 3;
+  }
+
+  .process-content span {
+    color: var(--primary);
+    font-size: 9px;
+    font-weight: 850;
+    letter-spacing: .12em;
+  }
+
+  .process-content h3 {
+    margin: 8px 0;
+    color: var(--heading);
+    font-size: 20px;
+  }
+
+  .process-content p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .process-center-icon {
+    width: 58px;
+    height: 58px;
+    position: absolute;
+    left: 50%;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    transform: translateX(-50%);
+    color: white;
+    background: linear-gradient(135deg,var(--primary),var(--secondary));
+    border: 7px solid #f7f9fd;
+    border-radius: 50%;
+    font-size: 19px;
+  }
+
+  /* =========================================================
+     WHY
+  ========================================================= */
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 22px;
+  }
+
+  .why-card {
+    padding: 34px;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    transition: .3s;
+  }
+
+  .why-card > div {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 20px;
+    color: white;
+    background: linear-gradient(135deg,var(--primary),var(--secondary));
+    border-radius: 17px;
+    font-size: 23px;
+  }
+
+  .why-card h3 {
+    color: var(--heading);
+  }
+
+  .why-card p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* =========================================================
+     INDUSTRIES
+  ========================================================= */
+
+  .industries-section {
+    padding: 80px 0;
+    color: white;
+    background: #08172f;
+  }
+
+  .industries-layout {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .industries-layout h2 {
+    color: white;
+    font-size: clamp(2rem,4vw,3.2rem);
+  }
+
+  .industries-layout p {
+    color: #a9b9d0;
+    line-height: 1.8;
+  }
+
+  .industry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+  }
+
+  .industry-tags span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 999px;
+    font-size: 11px;
+  }
+
+  /* =========================================================
+     REVIEWS
+  ========================================================= */
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 23px;
+  }
+
+  .review-card {
+    padding: 34px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: 0 15px 50px rgba(8,31,72,.05);
+  }
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .quote-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    color: var(--primary);
+    background: rgba(7,88,232,.08);
+    border-radius: 14px;
+  }
+
+  .stars {
+    display: flex;
+    gap: 3px;
+    color: #f3aa16;
+  }
+
+  .review-card > p {
+    min-height: 105px;
+    margin: 24px 0;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .review-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .review-user > div {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: linear-gradient(135deg,var(--primary),var(--secondary));
+    border-radius: 50%;
+    font-weight: 850;
+  }
+
+  .review-user span {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review-user strong {
+    color: var(--heading);
+    font-size: 13px;
+  }
+
+  .review-user small {
+    font-size: 10px;
+  }
+
+  /* =========================================================
+     DIGITAL GROWTH
+  ========================================================= */
+
+  .digital-growth-section {
+    background: #f7f9fd;
+  }
+
+  .digital-growth-layout {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .digital-growth-layout p {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .growth-cards {
+    display: grid;
+    gap: 15px;
+  }
+
+  .growth-cards > div {
+    padding: 25px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+
+  .growth-cards svg {
+    color: var(--primary);
+    font-size: 23px;
+  }
+
+  .growth-cards h3 {
+    color: var(--heading);
+  }
+
+  .growth-cards p {
+    margin: 0;
+    font-size: 12px;
+  }
+
+  /* =========================================================
+     FAQ
+  ========================================================= */
+
+  .faq-section {
+    background: white;
+  }
+
+  .faq-layout {
+    display: grid;
+    grid-template-columns: .7fr 1.3fr;
+    gap: 70px;
+    align-items: start;
+  }
+
+  .faq-heading {
+    position: sticky;
+    top: 110px;
+  }
+
+  .faq-heading p {
+    line-height: 1.8;
+  }
+
+  .faq-whatsapp-button {
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 20px;
+    padding: 0 20px;
+    color: white;
+    background: #16a66f;
+    border-radius: 13px;
+    font-weight: 750;
+    cursor: pointer;
+  }
+
+  .faq-whatsapp-button svg {
+    font-size: 21px;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .faq-item {
+    overflow: hidden;
+    background: #fafcff;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    transition: .3s;
+  }
+
+  .faq-item.active {
+    background: white;
+    border-color: rgba(7,88,232,.28);
+    box-shadow: 0 15px 40px rgba(8,31,72,.07);
+  }
+
+  .faq-question {
+    width: 100%;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 21px;
+    text-align: left;
+    color: var(--heading);
+    background: transparent;
+    font-weight: 750;
+    cursor: pointer;
+  }
+
+  .faq-question > span {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .faq-question small {
+    color: var(--primary);
+    font-size: 9px;
+  }
+
+  .faq-question svg {
+    color: var(--primary);
+  }
+
+  .faq-answer {
+    overflow: hidden;
+  }
+
+  .faq-answer p {
+    margin: 0;
+    padding: 0 55px 22px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* =========================================================
+     BIG QUOTE
+  ========================================================= */
+
+  .big-quote-section {
+    padding: 100px 0;
+    color: white;
+    background:
+      radial-gradient(circle at 10% 20%,rgba(27,104,255,.25),transparent 30%),
+      linear-gradient(135deg,#07172e,#0b2854);
+  }
+
+  .big-quote-layout {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .big-quote-layout > div:first-child > span {
+    color: #75a8ff;
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .15em;
+  }
+
+  .big-quote-layout h2 {
+    color: white;
+    font-size: clamp(2.4rem,4.5vw,4rem);
+    line-height: 1.04;
+  }
+
+  .big-quote-layout p {
+    color: #b3c4dc;
+    line-height: 1.8;
+  }
+
+  .quote-checks {
+    display: grid;
+    gap: 11px;
+    margin-top: 25px;
+  }
+
+  .quote-checks span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .quote-checks svg {
+    color: #70a8ff;
+  }
+
+  .quote-action-card {
+    padding: 36px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 25px;
+  }
+
+  .quote-action-card > div {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg,#2278ff,#7651e6);
+    border-radius: 17px;
+    font-size: 25px;
+  }
+
+  .quote-action-card h3 {
+    color: white;
+  }
+
+  .white-button,
+  .whatsapp-button,
+  .call-button {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 0 20px;
+    border-radius: 12px;
+    font-weight: 750;
+    cursor: pointer;
+  }
+
+  .white-button {
+    width: 100%;
+    color: var(--heading);
+    background: white;
+  }
+
+  .whatsapp-button {
+    width: 100%;
+    margin-top: 10px;
+    color: white;
+    background: #15a66f;
+  }
+
+  .whatsapp-button svg {
+    font-size: 20px;
+  }
+
+  /* =========================================================
+     FINAL CTA
+  ========================================================= */
+
+  .final-cta {
+    padding: 110px 0;
+    text-align: center;
+    color: white;
+    background: #06152c;
+  }
+
+  .final-cta-content {
+    max-width: 850px;
+    margin: auto;
+  }
+
+  .final-icon {
+    width: 65px;
+    height: 65px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg,#2778ff,#7652e8);
+    border-radius: 19px;
+    font-size: 27px;
+  }
+
+  .final-cta-content > span {
+    color: #76a9ff;
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .15em;
+  }
+
+  .final-cta h2 {
+    margin: 15px 0;
+    color: white;
+    font-size: clamp(2.5rem,5vw,4.2rem);
+    line-height: 1.04;
+  }
+
+  .final-cta p {
+    color: #afc0d8;
+    line-height: 1.8;
+  }
+
+  .final-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 11px;
+    margin-top: 30px;
+  }
+
+  .final-buttons .white-button,
+  .final-buttons .whatsapp-button,
+  .final-buttons .call-button {
+    width: auto;
+    margin: 0;
+  }
+
+  .call-button {
+    color: white;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+  }
+
+  /* =========================================================
+     TABLET
+  ========================================================= */
+
+  @media (max-width: 1024px) {
+    .hero-layout,
+    .intro-layout,
+    .benefits-layout,
+    .digital-growth-layout,
+    .faq-layout,
+    .big-quote-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+      max-width: 680px;
+      margin: auto;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(2,1fr);
+    }
+
+    .technology-grid {
+      grid-template-columns: repeat(3,1fr);
+    }
+
+    .project-main-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .why-grid {
+      grid-template-columns: repeat(2,1fr);
+    }
+
+    .industries-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .faq-heading {
+      position: static;
+    }
+  }
+
+  /* =========================================================
+     MOBILE
+  ========================================================= */
+
+  @media (max-width: 768px) {
+    .container {
+      width: min(100% - 28px,1180px);
+    }
+
+    .section {
+      padding: 75px 0;
+    }
+
+    .hero-section {
+      min-height: auto;
+      padding: 90px 0 110px;
+    }
+
+    .hero-content {
+      text-align: center;
+    }
+
+    .hero-badge {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.7rem,13vw,4.2rem);
+    }
+
+    .hero-description {
+      font-size: 15px;
+    }
+
+    .hero-actions,
+    .hero-features {
+      justify-content: center;
+    }
+
+    .hero-actions button {
+      width: 100%;
+    }
+
+    .floating-card {
+      display: none;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2,1fr);
+    }
+
+    .quote-strip {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .quote-strip-icon {
+      margin: auto;
+    }
+
+    .quote-strip button {
+      justify-content: center;
+    }
+
+    .services-grid,
+    .benefits-grid,
+    .reviews-grid,
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .technology-grid {
+      grid-template-columns: repeat(2,1fr);
+    }
+
+    .project-browser img {
+      height: 270px;
+    }
+
+    .project-info {
+      padding: 30px 24px;
+    }
+
+    .project-arrow.left {
+      left: -5px;
+    }
+
+    .project-arrow.right {
+      right: -5px;
+    }
+
+    .process-path-line {
+      left: 29px;
+    }
+
+    .process-path-item {
+      min-height: auto;
+      display: block;
+      margin-bottom: 25px;
+      padding-left: 70px;
+    }
+
+    .process-content {
+      text-align: left !important;
+    }
+
+    .process-center-icon {
+      left: 29px;
+      top: 28px;
+    }
+
+    .industries-layout {
+      text-align: center;
+    }
+
+    .industry-tags {
+      justify-content: center;
+    }
+
+    .faq-answer p {
+      padding: 0 20px 20px;
+    }
+
+    .final-buttons {
+      flex-direction: column;
+    }
+
+    .final-buttons .white-button,
+    .final-buttons .whatsapp-button,
+    .final-buttons .call-button {
+      width: 100%;
+    }
+  }
+
+  /* =========================================================
+     SMALL MOBILE
+  ========================================================= */
+
+  @media (max-width: 480px) {
+    .hero-content h1 {
+      font-size: 2.65rem;
+    }
+
+    .browser-content {
+      min-height: 350px;
+      padding: 23px;
+    }
+
+    .browser-widget {
+      display: none;
+    }
+
+    .stats-grid div {
+      padding: 20px 8px;
+    }
+
+    .intro-points {
+      grid-template-columns: 1fr;
+    }
+
+    .technology-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .technology-card {
+      padding: 20px 10px;
+    }
+
+    .technology-card p {
+      display: none;
+    }
+
+    .project-marquee-card {
+      width: 220px;
+    }
+
+    .project-marquee-card img {
+      width: 75px;
+      height: 58px;
+    }
+
+    .service-image-wrap {
+      height: 190px;
+    }
+
+    .review-card,
+    .why-card,
+    .benefit-card {
+      padding: 25px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+`;
 
 export default Home;

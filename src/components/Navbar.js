@@ -1,1363 +1,2792 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-function Navbar() {
+import {
+  FaArrowRight,
+  FaBars,
+  FaBriefcase,
+  FaChevronDown,
+  FaCode,
+  FaEnvelope,
+  FaGlobe,
+  FaHouse,
+  FaPhone,
+  FaRobot,
+  FaUsers,
+  FaWandMagicSparkles,
+  FaWhatsapp,
+  FaXmark,
+  FaGears,
+} from "react-icons/fa6";
+
+/* =========================================================
+   CONFIG
+========================================================= */
+
+const PHONE_NUMBER = "8500352005";
+
+const PHONE_LINK = "+918500352005";
+
+/* =========================================================
+   NAVIGATION DATA
+========================================================= */
+
+const navLinks = [
+  {
+    name: "Home",
+    path: "/",
+    icon: <FaHouse />,
+  },
+
+  {
+    name: "About",
+    path: "/about",
+    icon: <FaUsers />,
+  },
+
+  {
+    name: "Careers",
+    path: "/careers",
+    icon: <FaBriefcase />,
+  },
+];
+
+const services = [
+  {
+    title: "Website Development",
+
+    description:
+      "Professional, responsive and conversion-focused websites built for modern businesses.",
+
+    icon: <FaGlobe />,
+
+    path: "/services",
+  },
+
+  {
+    title: "Business Automation",
+
+    description:
+      "Smart automation systems designed to simplify workflows and improve business efficiency.",
+
+    icon: <FaGears />,
+
+    path: "/services",
+  },
+
+  {
+    title: "AI Chatbot Solutions",
+
+    description:
+      "Intelligent chatbot solutions for customer communication, enquiries and lead generation.",
+
+    icon: <FaRobot />,
+
+    path: "/services",
+  },
+
+  {
+    title: "Custom Digital Solutions",
+
+    description:
+      "Explore scalable digital solutions created around your unique business requirements.",
+
+    icon: <FaWandMagicSparkles />,
+
+    path: "/services",
+  },
+];
+
+/* =========================================================
+   NAVBAR COMPONENT
+========================================================= */
+
+const Navbar = () => {
+  const location = useLocation();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+
+  const [isMobileServicesOpen, setIsMobileServicesOpen] =
+    useState(false);
+
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const location = useLocation();
-  const navbarRef = useRef(null);
-  const servicesRef = useRef(null);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1024);
-      if (window.innerWidth <= 1024 && !isMenuOpen) {
-        setIsServicesOpen(false);
-      }
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, [isMenuOpen]);
+  /* =========================================================
+     SCROLL EFFECT
+  ========================================================= */
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 8);
+      setIsScrolled(window.scrollY > 20);
     };
 
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
     handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
+  /* =========================================================
+     CLOSE MENUS WHEN ROUTE CHANGES
+  ========================================================= */
+
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+    setIsMenuOpen(false);
+
+    setIsServicesOpen(false);
+
+    setIsMobileServicesOpen(false);
+  }, [location.pathname]);
+
+  /* =========================================================
+     LOCK BODY WHEN MOBILE MENU OPENS
+  ========================================================= */
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (navbarRef.current && !navbarRef.current.contains(e.target)) {
-        setIsMenuOpen(false);
-        setIsServicesOpen(false);
-      }
-    };
+  /* =========================================================
+     ACTIVE LINK
+  ========================================================= */
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const isActive = (path) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
 
-  useEffect(() => {
-    setIsServicesOpen(false);
-    if (isMobile) setIsMenuOpen(false);
-  }, [location.pathname, isMobile]);
-
-  const logoUrl = "/Logo.png";
-
-  const IconHome = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
-  );
-
-  const IconCode = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="16 18 22 12 16 6" />
-      <polyline points="8 6 2 12 8 18" />
-    </svg>
-  );
-
-  const IconUsers = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  );
-
-  const IconBriefcase = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-    </svg>
-  );
-
-  const IconMail = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-      <polyline points="22,6 12,13 2,6" />
-    </svg>
-  );
-
-  const IconGlobe = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <line x1="2" y1="12" x2="22" y2="12" />
-      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    </svg>
-  );
-
-  const IconCog = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="3" />
-      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-    </svg>
-  );
-
-  const IconSparkles = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 18l6-6-6-6" />
-    </svg>
-  );
-
-  const servicesItems = [
-    {
-      name: "Websites",
-      path: "/services",
-      icon: <IconGlobe />,
-      description: "Custom responsive website development & design services",
-    },
-    {
-      name: "Automation",
-      path: "/services",
-      icon: <IconCog />,
-      description: "Business process automation solutions for efficiency",
-    },
-    {
-      name: "Explore All Services",
-      path: "/services",
-      icon: <IconSparkles />,
-      description: "View all our technology and digital services",
-    },
-  ];
-
-  const navLinks = [
-    {
-      name: "Home",
-      path: "/",
-      title: "Home | SMYVISION Technologies",
-      icon: <IconHome />,
-    },
-    {
-      name: "About",
-      path: "/about",
-      title: "About Us | SMYVISION Technologies",
-      icon: <IconUsers />,
-    },
-    {
-      name: "Careers",
-      path: "/careers",
-      title: "Careers | Join SMYVISION",
-      icon: <IconBriefcase />,
-    },
-  ];
-
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
+    return location.pathname.startsWith(path);
   };
 
-  const toggleServices = (e) => {
-    e.stopPropagation();
-    setIsServicesOpen((prev) => !prev);
+  /* =========================================================
+     WHATSAPP
+  ========================================================= */
+
+  const openWhatsApp = () => {
+    const message = encodeURIComponent(
+      "Hi SMYVISION TECHNOLOGIES, I would like to discuss a website or digital solution for my business."
+    );
+
+    window.open(
+      `https://wa.me/91${PHONE_NUMBER}?text=${message}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   return (
-    <header
-      ref={navbarRef}
-      className={`navbar-container ${isScrolled ? "scrolled" : ""}`}
-      itemScope
-      itemType="https://schema.org/Organization"
-    >
-      <meta itemProp="name" content="SMYVISION Technologies" />
-      <link itemProp="url" href="https://smyvisiontechnologies.vercel.app" />
+    <>
+      <style>{navbarStyles}</style>
 
-      <nav
-        className="navbar"
-        aria-label="Main Navigation"
-        itemScope
-        itemType="https://schema.org/SiteNavigationElement"
+      {/* =====================================================
+          MAIN NAVBAR
+      ====================================================== */}
+
+      <header
+        className={`smy-navbar-wrapper ${
+          isScrolled ? "navbar-scrolled" : ""
+        }`}
       >
-        <Link
-          to="/"
-          className="logo-link"
-          aria-label="SMYVISION Technologies Home"
-          itemProp="url"
-        >
-          <div className="logo-wrapper" itemScope itemType="https://schema.org/ImageObject">
-            <div className="logo-image-container">
-              <img
-                src={logoUrl}
-                alt="SMYVISION Technologies Logo"
-                className="logo-image"
-                width="40"
-                height="40"
-                loading="lazy"
-                itemProp="contentUrl"
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  e.target.nextElementSibling.style.display = "block";
-                }}
-              />
-              <div className="logo-fallback" style={{ display: "none" }}>
-                <div className="logo-icon">SV</div>
-              </div>
-            </div>
+        <nav className="smy-navbar">
+          {/* =================================================
+              MOBILE LEFT CALL BUTTON
+          ================================================= */}
 
-            <div className="logo-text-container">
-              <h1 className="logo-main" itemProp="name">SMYVISION</h1>
-              <span className="logo-tagline" itemProp="description">TECHNOLOGIES</span>
-            </div>
-
-            {isMobile && (
-              <div className="mobile-company-name">
-                <div className="mobile-company-main">SMYVISION</div>
-                <div className="mobile-company-sub">TECHNOLOGIES</div>
-              </div>
-            )}
-          </div>
-        </Link>
-
-        <div className="desktop-nav">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              label={link.name}
-              title={link.title}
-              current={location.pathname === link.path}
-              icon={link.icon}
-            />
-          ))}
-
-          <div
-            ref={servicesRef}
-            className="services-container"
-            onMouseEnter={() => !isMobile && setIsServicesOpen(true)}
-            onMouseLeave={() => !isMobile && setIsServicesOpen(false)}
-            itemScope
-            itemType="https://schema.org/Service"
+          <a
+            href={`tel:${PHONE_LINK}`}
+            className="mobile-call-button"
+            aria-label="Call SMYVISION TECHNOLOGIES"
           >
-            <button
-              className={`services-trigger ${isServicesOpen ? "active" : ""} ${
-                location.pathname.startsWith("/services") ? "current" : ""
-              }`}
-              onClick={toggleServices}
-              aria-expanded={isServicesOpen}
-              aria-haspopup="true"
-              aria-label="Our Services"
-              itemProp="name"
-            >
-              <span className="nav-icon desktop-icon" aria-hidden="true">
-                <IconCode />
-              </span>
-              Services
-              <svg className={`dropdown-arrow ${isServicesOpen ? "open" : ""}`} width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
-                <path d="M2 4.5L6 8.5L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            <FaPhone />
+          </a>
 
-            <div className={`services-dropdown ${isServicesOpen ? "open" : ""}`} aria-label="Our Services Menu" role="menu">
-              {servicesItems.map((item, index) => (
-                <Link
-                  key={index}
-                  to={item.path}
-                  className="service-item"
-                  onClick={() => setIsServicesOpen(false)}
-                  role="menuitem"
-                  aria-label={item.description}
-                  itemProp="hasOfferCatalog"
-                  itemScope
-                  itemType="https://schema.org/OfferCatalog"
-                >
-                  <span className="service-icon" aria-hidden="true">{item.icon}</span>
-                  <div className="service-content">
-                    <div className="service-name" itemProp="name">{item.name}</div>
-                    <div className="service-description" itemProp="description">{item.description}</div>
-                  </div>
-                  <svg className="arrow-right" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </Link>
-              ))}
-            </div>
-          </div>
+          {/* =================================================
+              BRAND
+          ================================================= */}
 
           <Link
-            to="/contact"
-            className="contact-button"
-            aria-label="Contact SMYVISION Technologies"
-            title="Contact Us for Technology Solutions"
-            itemProp="contactPoint"
-            itemScope
-            itemType="https://schema.org/ContactPoint"
+            to="/"
+            className="smy-brand"
+            aria-label="SMYVISION TECHNOLOGIES Home"
           >
-            <span className="button-icon" aria-hidden="true"><IconMail /></span>
-            Get In Touch
-            <svg className="button-arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M8 0L16 8L8 16L6.8 14.8L13.6 8L6.8 1.2L8 0Z" fill="currentColor" />
-            </svg>
+            <img
+              src="/Logo.png"
+              alt="SMYVISION TECHNOLOGIES"
+              className="smy-logo"
+            />
+
+            <div className="smy-brand-content">
+              <strong>SMYVISION</strong>
+
+              <span>TECHNOLOGIES</span>
+            </div>
           </Link>
-        </div>
 
-        <button
-          className={`hamburger ${isMenuOpen ? "open" : ""}`}
-          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={isMenuOpen}
-          onClick={toggleMenu}
-          aria-controls="mobile-menu"
-        >
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-        </button>
+          {/* =================================================
+              DESKTOP NAVIGATION
+          ================================================= */}
 
-        <div
-          className={`mobile-menu ${isMenuOpen ? "open" : ""}`}
-          id="mobile-menu"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile Navigation Menu"
-        >
-          <div className="mobile-menu-content">
-            <div className="mobile-nav-links">
-              {navLinks.map((link) => (
-                <MobileNavLink
-                  key={link.path}
-                  to={link.path}
-                  label={link.name}
-                  onClick={toggleMenu}
-                  current={location.pathname === link.path}
-                  icon={link.icon}
-                  description={link.title}
-                />
-              ))}
-
-              <div className="mobile-services-container">
-                <button
-                  className={`mobile-services-trigger ${isServicesOpen ? "open" : ""}`}
-                  onClick={toggleServices}
-                  aria-expanded={isServicesOpen}
-                  aria-label="Our Services"
+          <div className="smy-desktop-navigation">
+            <div className="smy-nav-links">
+              {navLinks.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`smy-nav-link ${
+                    isActive(item.path) ? "active" : ""
+                  }`}
                 >
-                  <span className="mobile-service-left">
-                    <span className="mobile-nav-icon" aria-hidden="true">
-                      <IconCode />
-                    </span>
-                    Services
+                  <span className="smy-nav-icon">
+                    {item.icon}
                   </span>
 
-                  <svg className={`mobile-dropdown-arrow ${isServicesOpen ? "open" : ""}`} width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
-                    <path d="M2 4.5L6 8.5L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
+                  <span>{item.name}</span>
+                </Link>
+              ))}
 
-                <div className={`mobile-services-dropdown ${isServicesOpen ? "open" : ""}`} role="menu">
-                  {servicesItems.map((item, index) => (
-                    <MobileNavLink
-                      key={index}
-                      to={item.path}
-                      label={item.name}
-                      onClick={toggleMenu}
-                      current={location.pathname === item.path}
-                      icon={item.icon}
-                      description={item.description}
+              {/* =================================================
+                  SERVICES
+              ================================================= */}
+
+              <div
+                className="smy-services-wrapper"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
+              >
+                <div
+                  className={`smy-services-main ${
+                    isActive("/services") ? "active" : ""
+                  }`}
+                >
+                  {/* CLICK SERVICES TEXT -> SERVICES PAGE */}
+
+                  <Link
+                    to="/services"
+                    className="smy-services-link"
+                  >
+                    <FaCode />
+
+                    <span>Services</span>
+                  </Link>
+
+                  {/* ARROW ONLY OPENS DROPDOWN */}
+
+                  <button
+                    type="button"
+                    className="smy-services-arrow-button"
+                    onClick={() =>
+                      setIsServicesOpen((current) => !current)
+                    }
+                    aria-label="Open services menu"
+                    aria-expanded={isServicesOpen}
+                  >
+                    <FaChevronDown
+                      className={
+                        isServicesOpen ? "rotate" : ""
+                      }
                     />
-                  ))}
+                  </button>
+                </div>
+
+                {/* =================================================
+                    SERVICES DROPDOWN
+                ================================================= */}
+
+                <div
+                  className={`smy-services-dropdown ${
+                    isServicesOpen ? "show" : ""
+                  }`}
+                >
+                  <div className="smy-dropdown-feature">
+                    <span className="smy-dropdown-label">
+                      OUR EXPERTISE
+                    </span>
+
+                    <h3>
+                      Smart Digital Solutions Built for Modern Businesses.
+                    </h3>
+
+                    <p>
+                      We help businesses build stronger digital
+                      foundations through professional websites,
+                      automation systems, AI-powered solutions and
+                      custom digital experiences.
+                    </p>
+
+                    <div className="dropdown-feature-points">
+                      <span>
+                        <FaArrowRight />
+
+                        Business-focused development
+                      </span>
+
+                      <span>
+                        <FaArrowRight />
+
+                        Responsive digital experiences
+                      </span>
+
+                      <span>
+                        <FaArrowRight />
+
+                        Scalable technology solutions
+                      </span>
+                    </div>
+
+                    <Link
+                      to="/services"
+                      className="smy-dropdown-explore"
+                    >
+                      Explore All Services
+
+                      <FaArrowRight />
+                    </Link>
+                  </div>
+
+                  <div className="smy-dropdown-services">
+                    {services.map((service) => (
+                      <Link
+                        key={service.title}
+                        to={service.path}
+                        className="smy-service-card"
+                      >
+                        <div className="smy-service-icon">
+                          {service.icon}
+                        </div>
+
+                        <div className="service-card-content">
+                          <strong>
+                            {service.title}
+                          </strong>
+
+                          <p>
+                            {service.description}
+                          </p>
+                        </div>
+
+                        <FaArrowRight className="smy-service-arrow" />
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
+            </div>
+
+            {/* =================================================
+                DESKTOP ACTIONS
+            ================================================= */}
+
+            <div className="smy-nav-actions">
+              <a
+                href={`tel:${PHONE_LINK}`}
+                className="desktop-call-button"
+              >
+                <FaPhone />
+
+                <span>Call Us</span>
+              </a>
+
+              <button
+                type="button"
+                className="smy-whatsapp"
+                onClick={openWhatsApp}
+                aria-label="Contact us on WhatsApp"
+              >
+                <FaWhatsapp />
+              </button>
 
               <Link
                 to="/contact"
-                className="mobile-contact-button"
-                onClick={toggleMenu}
-                aria-label="Contact SMYVISION Technologies"
-                title="Get in touch with our team"
+                className="smy-contact-button"
               >
-                <span className="button-icon" aria-hidden="true"><IconMail /></span>
-                Get In Touch
-                <svg className="mobile-button-arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-                  <path d="M8 0L16 8L8 16L6.8 14.8L13.6 8L6.8 1.2L8 0Z" fill="currentColor" />
-                </svg>
+                <span>Get Free Quote</span>
+
+                <FaArrowRight />
               </Link>
             </div>
+          </div>
 
-            <div className="mobile-menu-footer">
-              <div className="company-info">
-                <div className="company-name" itemProp="name">SMYVISION TECHNOLOGIES</div>
-                <div className="company-tagline" itemProp="description">Innovating for a better tomorrow</div>
-                <div className="company-contact" itemProp="contactPoint" itemScope itemType="https://schema.org/ContactPoint">
-                  <meta itemProp="contactType" content="customer service" />
-                  <div className="contact-info">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "4px" }}>
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                      <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                    <span itemProp="email">smyvisiontechnologies@gmail.com</span>
-                  </div>
-                </div>
+          {/* =================================================
+              MOBILE RIGHT MENU BUTTON
+          ================================================= */}
+
+          <button
+            type="button"
+            className={`smy-mobile-toggle ${
+              isMenuOpen ? "active" : ""
+            }`}
+            onClick={() =>
+              setIsMenuOpen((current) => !current)
+            }
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+          >
+            {isMenuOpen ? (
+              <FaXmark />
+            ) : (
+              <FaBars />
+            )}
+          </button>
+        </nav>
+      </header>
+
+      {/* =====================================================
+          MOBILE OVERLAY
+      ====================================================== */}
+
+      <div
+        className={`smy-mobile-overlay ${
+          isMenuOpen ? "show" : ""
+        }`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+
+      {/* =====================================================
+          MOBILE MENU
+      ====================================================== */}
+
+      <aside
+        className={`smy-mobile-menu ${
+          isMenuOpen ? "show" : ""
+        }`}
+      >
+        {/* =================================================
+            MOBILE MENU HEADER
+        ================================================= */}
+
+        <div className="smy-mobile-header">
+          <a
+            href={`tel:${PHONE_LINK}`}
+            className="mobile-menu-call"
+            aria-label="Call SMYVISION TECHNOLOGIES"
+          >
+            <FaPhone />
+          </a>
+
+          <Link
+            to="/"
+            className="smy-mobile-brand"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <img
+              src="/Logo.png"
+              alt="SMYVISION TECHNOLOGIES"
+            />
+
+            <div>
+              <strong>SMYVISION</strong>
+
+              <span>TECHNOLOGIES</span>
+            </div>
+          </Link>
+
+          <button
+            type="button"
+            className="smy-mobile-close"
+            onClick={() => setIsMenuOpen(false)}
+            aria-label="Close navigation menu"
+          >
+            <FaXmark />
+          </button>
+        </div>
+
+        {/* =================================================
+            MOBILE MENU CONTENT
+        ================================================= */}
+
+        <div className="smy-mobile-content">
+          <span className="smy-mobile-label">
+            NAVIGATION
+          </span>
+
+          {navLinks.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`smy-mobile-link ${
+                isActive(item.path) ? "active" : ""
+              }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <div>
+                <span className="smy-mobile-link-icon">
+                  {item.icon}
+                </span>
+
+                <strong>
+                  {item.name}
+                </strong>
               </div>
+
+              <FaArrowRight />
+            </Link>
+          ))}
+
+          {/* =================================================
+              MOBILE SERVICES
+          ================================================= */}
+
+          <div
+            className={`mobile-services-main-row ${
+              isActive("/services") ? "active" : ""
+            }`}
+          >
+            <Link
+              to="/services"
+              className="mobile-services-direct-link"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <div>
+                <span className="smy-mobile-link-icon">
+                  <FaCode />
+                </span>
+
+                <strong>
+                  Services
+                </strong>
+              </div>
+            </Link>
+
+            <button
+              type="button"
+              className="mobile-services-toggle"
+              onClick={() =>
+                setIsMobileServicesOpen((current) => !current)
+              }
+              aria-label="Open mobile services list"
+              aria-expanded={isMobileServicesOpen}
+            >
+              <FaChevronDown
+                className={
+                  isMobileServicesOpen ? "rotate" : ""
+                }
+              />
+            </button>
+          </div>
+
+          {/* =================================================
+              MOBILE SERVICES LIST
+          ================================================= */}
+
+          <div
+            className={`smy-mobile-services ${
+              isMobileServicesOpen ? "show" : ""
+            }`}
+          >
+            {services.map((service) => (
+              <Link
+                key={service.title}
+                to={service.path}
+                className="smy-mobile-service"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span>
+                  {service.icon}
+                </span>
+
+                <div>
+                  <strong>
+                    {service.title}
+                  </strong>
+
+                  <p>
+                    {service.description}
+                  </p>
+                </div>
+
+                <FaArrowRight />
+              </Link>
+            ))}
+          </div>
+
+          {/* =================================================
+              MOBILE CONTACT BOX
+          ================================================= */}
+
+          <div className="mobile-contact-box">
+            <span>
+              READY TO START?
+            </span>
+
+            <h3>
+              Let's Discuss Your Next Digital Project.
+            </h3>
+
+            <p>
+              Tell us what you are planning and let's explore
+              the right digital solution for your business.
+            </p>
+
+            <div className="smy-mobile-actions">
+              <a
+                href={`tel:${PHONE_LINK}`}
+                className="smy-mobile-call-action"
+              >
+                <FaPhone />
+
+                Call {PHONE_NUMBER}
+              </a>
+
+              <Link
+                to="/contact"
+                className="smy-mobile-quote"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <FaEnvelope />
+
+                Get a Free Quote
+
+                <FaArrowRight />
+              </Link>
+
+              <button
+                type="button"
+                className="smy-mobile-whatsapp"
+                onClick={openWhatsApp}
+              >
+                <FaWhatsapp />
+
+                Chat on WhatsApp
+              </button>
             </div>
           </div>
         </div>
-      </nav>
-
-      <style jsx>{`
-        .navbar-container {
-          position: fixed;
-          top: 14px;
-          left: 50%;
-          right: auto;
-          width: min(1180px, calc(100% - 36px));
-          transform: translateX(-50%);
-          z-index: 1000;
-          box-sizing: border-box;
-          max-width: calc(100vw - 36px);
-          background: linear-gradient(90deg, rgba(255,255,255,0.92), rgba(187,211,255,0.92));
-          backdrop-filter: blur(18px);
-          -webkit-backdrop-filter: blur(18px);
-          border: none;
-          border-radius: 999px;
-          box-shadow: 0 14px 45px rgba(26, 72, 172, 0.16);
-          will-change: width, top, border-radius, transform;
-          transition:
-            width 0.26s cubic-bezier(0.16, 1, 0.3, 1),
-            top 0.26s cubic-bezier(0.16, 1, 0.3, 1),
-            border-radius 0.26s cubic-bezier(0.16, 1, 0.3, 1),
-            background 0.22s ease,
-            box-shadow 0.22s ease,
-            border-color 0.22s ease;
-        }
-
-        .navbar-container.scrolled {
-          top: 0;
-          width: 100%;
-          max-width: 100vw;
-          border-radius: 0;
-          border: none;
-          background: linear-gradient(90deg, #bbd3ff, #ffffff);
-          box-shadow: 0 4px 30px rgba(26, 72, 172, 0.25);
-        }
-
-        .navbar {
-          max-width: 1280px;
-          margin: 0 auto;
-          padding: 0 24px;
-          display: flex;
-          justify-content: space-between;
-          box-sizing: border-box;
-          align-items: center;
-          height: 78px;
-          will-change: height, padding;
-          transition: height 0.22s cubic-bezier(0.16, 1, 0.3, 1), padding 0.22s ease;
-        }
-
-        .navbar-container.scrolled .navbar {
-          height: 74px;
-        }
-
-        .logo-link {
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-          transition: transform 0.18s ease;
-        }
-
-        .logo-link:hover {
-          transform: translateY(-1px);
-        }
-
-        .logo-wrapper {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .logo-image-container {
-          position: relative;
-          width: 50px;
-          height: 50px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: width 0.18s ease, height 0.18s ease;
-        }
-
-        .navbar-container.scrolled .logo-image-container {
-          width: 46px;
-          height: 46px;
-        }
-
-        .logo-image {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          border-top-left-radius: 10px;
-          border-bottom-right-radius: 10px;
-          transition: transform 0.18s ease, filter 0.18s ease;
-        }
-
-        .logo-link:hover .logo-image {
-          transform: scale(1.06) rotate(-1deg);
-        }
-
-        .logo-fallback {
-          width: 50px;
-          height: 50px;
-          background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .logo-icon {
-          color: white;
-          font-weight: 800;
-          font-size: 1.2rem;
-          letter-spacing: 1px;
-        }
-
-        .logo-text-container {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .logo-main {
-          font-size: 1.8rem;
-          font-weight: 800;
-          background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          letter-spacing: -0.5px;
-          line-height: 1;
-          margin: 0;
-        }
-
-        .logo-tagline {
-          font-size: 0.75rem;
-          font-weight: 600;
-          color: #64748b;
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-          margin-top: 4px;
-        }
-
-        .mobile-company-name {
-          display: none;
-          flex-direction: column;
-          margin-left: 8px;
-          line-height: 1.1;
-        }
-
-        .mobile-company-main {
-          font-size: 1.1rem;
-          font-weight: 800;
-          background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          letter-spacing: -0.3px;
-          white-space: nowrap;
-        }
-
-        .mobile-company-sub {
-          font-size: 0.65rem;
-          font-weight: 600;
-          color: #64748b;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          margin-top: 2px;
-          white-space: nowrap;
-        }
-
-        .desktop-nav {
-          display: flex;
-          align-items: center;
-          gap: 22px;
-        }
-
-        .nav-icon,
-        .button-icon {
-          margin-right: 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0.85;
-          transition: opacity 0.16s ease, transform 0.16s ease;
-        }
-
-        .services-container {
-          position: relative;
-        }
-
-        .services-trigger {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          background: rgba(255,255,255,0.45);
-          border: none;
-          font-size: 1rem;
-          font-weight: 700;
-          color: #475569;
-          cursor: pointer;
-          padding: 10px 14px;
-          border-radius: 999px;
-          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-          position: relative;
-        }
-
-        .services-trigger:hover,
-        .services-trigger.active,
-        .services-trigger.current {
-          color: #2563eb;
-          background: rgba(59, 130, 246, 0.09);
-          transform: translateY(-2px);
-          box-shadow: 0 10px 24px rgba(59, 130, 246, 0.14);
-        }
-
-        .dropdown-arrow {
-          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-          margin-left: 2px;
-        }
-
-        .dropdown-arrow.open {
-          transform: rotate(180deg);
-        }
-
-        .services-dropdown {
-          position: absolute;
-          top: calc(100% + 12px);
-          left: 50%;
-          width: min(560px, calc(100vw - 32px));
-          max-width: calc(100vw - 32px);
-          transform: translate(-50%, 10px) scale(0.98);
-          background: rgba(255,255,255,0.98);
-          backdrop-filter: blur(18px);
-          -webkit-backdrop-filter: blur(18px);
-          border-radius: 22px;
-          box-shadow: 0 18px 50px rgba(15, 23, 42, 0.14);
-          padding: 10px;
-          opacity: 0;
-          visibility: hidden;
-          pointer-events: none;
-          will-change: opacity, transform;
-          transition:
-            opacity 0.16s ease,
-            visibility 0.16s ease,
-            transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-          z-index: 1000;
-          border: none;
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 10px;
-          box-sizing: border-box;
-          overflow: hidden;
-        }
-
-        .services-dropdown::before {
-          content: "";
-          position: absolute;
-          top: -6px;
-          left: 50%;
-          width: 14px;
-          height: 14px;
-          transform: translateX(-50%) rotate(45deg);
-          background: rgba(255,255,255,0.98);
-          border: none;
-        }
-
-        .services-dropdown.open {
-          opacity: 1;
-          visibility: visible;
-          pointer-events: auto;
-          transform: translate(-50%, 0) scale(1);
-        }
-
-        .service-item {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 9px;
-          padding: 12px;
-          min-height: 128px;
-          border-radius: 18px;
-          text-decoration: none;
-          color: #334155;
-          transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-          position: relative;
-          overflow: hidden;
-          background: linear-gradient(135deg, #ffffff, #f8fbff);
-          border: none;
-          box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.09);
-          box-sizing: border-box;
-        }
-
-        .service-item::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at top left, rgba(59,130,246,0.14), transparent 45%);
-          opacity: 0;
-          transition: opacity 0.16s ease;
-        }
-
-        .service-item:hover {
-          transform: translateY(-3px);
-          color: #2563eb;
-          box-shadow:
-            inset 0 0 0 1px rgba(59, 130, 246, 0.18),
-            0 12px 24px rgba(59, 130, 246, 0.13);
-        }
-
-        .service-item:hover::before {
-          opacity: 1;
-        }
-
-        .service-icon {
-          width: 38px;
-          height: 38px;
-          border-radius: 14px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          color: #2563eb;
-          background: linear-gradient(135deg, rgba(59,130,246,0.14), rgba(139,92,246,0.14));
-          transition: transform 0.16s ease, background 0.16s ease;
-          position: relative;
-          z-index: 1;
-        }
-
-        .service-item:hover .service-icon {
-          transform: rotate(-4deg) scale(1.06);
-        }
-
-        .service-content {
-          position: relative;
-          z-index: 1;
-        }
-
-        .service-name {
-          font-weight: 800;
-          font-size: 0.92rem;
-          margin-bottom: 4px;
-        }
-
-        .service-description {
-          font-size: 0.74rem;
-          color: #64748b;
-          line-height: 1.28;
-        }
-
-        .arrow-right {
-          position: absolute;
-          right: 12px;
-          top: 14px;
-          opacity: 0;
-          transform: translateX(-6px);
-          transition: all 0.16s ease;
-          flex-shrink: 0;
-          z-index: 1;
-        }
-
-        .service-item:hover .arrow-right {
-          opacity: 1;
-          transform: translateX(0);
-        }
-
-        .contact-button {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-          color: white;
-          padding: 12px 24px;
-          border-radius: 999px;
-          text-decoration: none;
-          font-weight: 700;
-          font-size: 1rem;
-          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-          box-shadow: 0 8px 24px rgba(59, 130, 246, 0.24);
-          position: relative;
-          overflow: hidden;
-          white-space: nowrap;
-        }
-
-        .contact-button::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: -120%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-          transition: left 0.38s ease;
-        }
-
-        .contact-button:hover::before {
-          left: 120%;
-        }
-
-        .contact-button:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 14px 34px rgba(59, 130, 246, 0.34);
-        }
-
-        .button-arrow {
-          transition: transform 0.18s ease;
-        }
-
-        .contact-button:hover .button-arrow {
-          transform: translateX(4px);
-        }
-
-        .hamburger {
-          display: none;
-          flex-direction: column;
-          justify-content: space-between;
-          width: 32px;
-          height: 24px;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          z-index: 1001;
-        }
-
-        .hamburger-line {
-          width: 100%;
-          height: 3px;
-          background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-          border-radius: 3px;
-          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-          transform-origin: left center;
-        }
-
-        .hamburger.open .hamburger-line:nth-child(1) {
-          transform: rotate(45deg) translate(0px, -1px);
-        }
-
-        .hamburger.open .hamburger-line:nth-child(2) {
-          opacity: 0;
-          transform: translateX(-10px);
-        }
-
-        .hamburger.open .hamburger-line:nth-child(3) {
-          transform: rotate(-45deg) translate(0px, 1px);
-        }
-
-        .mobile-menu {
-          display: none;
-          position: fixed;
-          top: 0;
-          right: 0;
-          width: 100vw;
-          max-width: 400px;
-          height: 100dvh;
-          background: rgba(255,255,255,0.98);
-          backdrop-filter: blur(18px);
-          -webkit-backdrop-filter: blur(18px);
-          box-shadow: -10px 0 35px rgba(0, 0, 0, 0.08);
-          z-index: 1000;
-          transform: translateX(100%);
-          will-change: transform;
-          transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-          overflow-y: auto;
-          overflow-x: hidden;
-          box-sizing: border-box;
-        }
-
-        .mobile-menu.open {
-          transform: translateX(0);
-        }
-
-        .mobile-menu-content {
-          min-height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        .mobile-nav-links {
-          padding: 100px 32px 40px;
-        }
-
-        .mobile-services-container {
-          border-bottom: none;
-          margin-bottom: 20px;
-        }
-
-        .mobile-services-trigger {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 20px 0;
-          background: none;
-          border: none;
-          font-size: 1.1rem;
-          font-weight: 700;
-          color: #334155;
-          cursor: pointer;
-          transition: color 0.16s ease;
-        }
-
-        .mobile-service-left {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-        }
-
-        .mobile-services-trigger.open {
-          color: #3b82f6;
-        }
-
-        .mobile-dropdown-arrow {
-          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .mobile-dropdown-arrow.open {
-          transform: rotate(180deg);
-        }
-
-        .mobile-services-dropdown {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.24s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .mobile-services-dropdown.open {
-          max-height: 460px;
-        }
-
-        .mobile-contact-button {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-          color: white;
-          padding: 18px 32px;
-          border-radius: 18px;
-          text-decoration: none;
-          font-weight: 700;
-          font-size: 1.1rem;
-          margin-top: 40px;
-          transition: transform 0.18s ease, box-shadow 0.18s ease;
-          box-shadow: 0 14px 30px rgba(59, 130, 246, 0.22);
-        }
-
-        .mobile-contact-button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 18px 36px rgba(59, 130, 246, 0.3);
-        }
-
-        .mobile-button-arrow {
-          transition: transform 0.18s ease;
-        }
-
-        .mobile-contact-button:hover .mobile-button-arrow {
-          transform: translateX(6px);
-        }
-
-        .mobile-menu-footer {
-          padding: 32px;
-          border-top: 1px solid #f1f5f9;
-          background: #f8fafc;
-        }
-
-        .company-info {
-          text-align: center;
-        }
-
-        .company-name {
-          font-size: 1.2rem;
-          font-weight: 700;
-          background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          margin-bottom: 8px;
-        }
-
-        .company-tagline {
-          font-size: 0.875rem;
-          color: #64748b;
-          font-weight: 500;
-          margin-bottom: 12px;
-        }
-
-        .contact-info {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          font-size: 0.8rem;
-          color: #475569;
-        }
-
-        @media (max-width: 1024px) {
-          .navbar-container {
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100vw;
-            max-width: 100vw;
-            transform: none;
-            border-radius: 0;
-            border: none;
-          }
-
-          .navbar-container.scrolled {
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100vw;
-            max-width: 100vw;
-            transform: none;
-            border-radius: 0;
-            border: none;
-          }
-
-          .desktop-nav {
-            display: none;
-          }
-
-          .hamburger {
-            display: flex;
-          }
-
-          .mobile-menu {
-            display: block;
-          }
-
-          .navbar {
-            padding: 0 14px;
-            height: 70px;
-          }
-
-          .logo-main {
-            font-size: 1.6rem;
-          }
-
-          .logo-image-container {
-            width: 45px;
-            height: 45px;
-          }
-
-          .mobile-company-name {
-            display: flex;
-          }
-
-          .logo-text-container {
-            display: none;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .mobile-menu {
-            max-width: 100vw;
-            width: 100vw;
-          }
-
-          .mobile-nav-links {
-            padding: 90px 24px 32px;
-          }
-
-          .navbar {
-            padding: 0 12px;
-          }
-
-          .logo-image-container {
-            width: 40px;
-            height: 40px;
-          }
-
-          .mobile-company-main {
-            font-size: 0.95rem;
-          }
-
-          .mobile-company-sub {
-            font-size: 0.55rem;
-            letter-spacing: 0.7px;
-          }
-        }
-
-        @media (max-width: 400px) {
-          .mobile-company-main {
-            font-size: 0.85rem;
-          }
-
-          .mobile-company-sub {
-            font-size: 0.45rem;
-          }
-
-          .mobile-company-name {
-            margin-left: 4px;
-          }
-        }
-
-
-        @media (max-width: 768px) {
-          .services-dropdown {
-            left: 50%;
-            width: calc(100vw - 24px);
-            max-width: calc(100vw - 24px);
-            grid-template-columns: 1fr;
-            padding: 10px;
-            border-radius: 22px;
-          }
-
-          .service-item {
-            min-height: auto;
-            flex-direction: row;
-            align-items: center;
-            padding: 12px;
-          }
-
-          .service-icon {
-            width: 42px;
-            height: 42px;
-          }
-
-          .arrow-right {
-            position: static;
-            margin-left: auto;
-          }
-        }
-
-        @media print {
-          .navbar-container {
-            position: static;
-            box-shadow: none;
-            background: white !important;
-          }
-
-          .contact-button,
-          .mobile-contact-button,
-          .hamburger,
-          .dropdown-arrow,
-          .mobile-dropdown-arrow,
-          .nav-icon,
-          .button-icon {
-            display: none;
-          }
-
-          .desktop-nav {
-            display: flex !important;
-            gap: 20px;
-          }
-
-          .services-dropdown {
-            display: none;
-          }
-
-          .logo-image {
-            filter: grayscale(100%);
-          }
-
-          .mobile-company-name {
-            display: none !important;
-          }
-        }
-      `}</style>
-    </header>
+      </aside>
+    </>
   );
-}
+};
 
-function NavLink({ to, label, current, title, icon }) {
-  return (
-    <Link
-      to={to}
-      className={`nav-link ${current ? "active" : ""}`}
-      aria-current={current ? "page" : undefined}
-      title={title}
-      itemProp="url"
-    >
-      <span className="nav-icon" aria-hidden="true">{icon}</span>
-      <span itemProp="name">{label}</span>
-      {current && <span className="nav-indicator"></span>}
-    </Link>
-  );
-}
+/* =========================================================
+   COMPLETE NAVBAR CSS
+========================================================= */
 
-function MobileNavLink({ to, label, onClick, current, icon, description }) {
-  return (
-    <Link
-      to={to}
-      className={`mobile-nav-link ${current ? "active" : ""}`}
-      onClick={onClick}
-      aria-current={current ? "page" : undefined}
-      title={description || label}
-      itemProp="url"
-    >
-      {icon && <span className="mobile-nav-icon" aria-hidden="true">{icon}</span>}
-      <div>
-        <span itemProp="name">{label}</span>
-        {description && (
-          <div className="mobile-nav-description" itemProp="description">
-            {description}
-          </div>
-        )}
-      </div>
-      {current && <span className="mobile-nav-indicator"></span>}
-    </Link>
-  );
-}
-
-const styles = `
-  html,
-  body,
-  #root {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
+const navbarStyles = `
+  :root {
+    --smy-blue: #0758e8;
+    --smy-purple: #6938dc;
+    --smy-dark: #07162d;
+    --smy-text: #5f6d82;
+    --smy-border: #e5eaf2;
+    --smy-whatsapp: #16a875;
   }
 
-  *,
-  *::before,
-  *::after {
+  .smy-navbar-wrapper,
+  .smy-navbar-wrapper *,
+  .smy-mobile-menu,
+  .smy-mobile-menu * {
     box-sizing: border-box;
   }
 
-  .nav-link {
-    position: relative;
-    color: #475569;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 1rem;
-    padding: 10px 14px;
-    border-radius: 999px;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  /* =========================================================
+     MAIN NAVBAR WRAPPER
+  ========================================================= */
+
+  .smy-navbar-wrapper {
+    position: fixed;
+    z-index: 5000;
+
+    top: 18px;
+    left: 50%;
+
+    width: min(
+      1320px,
+      calc(100% - 40px)
+    );
+
+    transform: translateX(-50%);
+
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.96
+      );
+
+    border:
+      1px solid
+      rgba(
+        220,
+        228,
+        239,
+        0.95
+      );
+
+    border-radius: 24px;
+
+    box-shadow:
+      0 20px 65px
+      rgba(
+        8,
+        30,
+        65,
+        0.11
+      );
+
+    backdrop-filter:
+      blur(22px);
+
+    -webkit-backdrop-filter:
+      blur(22px);
+
+    transition:
+      top 0.3s ease,
+      width 0.3s ease,
+      border-radius 0.3s ease,
+      background 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .smy-navbar-wrapper.navbar-scrolled {
+    top: 0;
+
+    width: 100%;
+
+    border-radius: 0;
+
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.985
+      );
+
+    box-shadow:
+      0 12px 40px
+      rgba(
+        8,
+        30,
+        65,
+        0.1
+      );
+  }
+
+  /* =========================================================
+     NAVBAR
+  ========================================================= */
+
+  .smy-navbar {
+    width:
+      min(
+        1320px,
+        100%
+      );
+
+    min-height: 88px;
+
+    margin: auto;
+
+    padding:
+      0 28px;
+
     display: flex;
+
     align-items: center;
-    background: transparent;
-    border: none;
+
+    justify-content:
+      space-between;
+
+    gap: 30px;
   }
 
-  .nav-link:hover {
-    color: #2563eb;
-    background: rgba(59, 130, 246, 0.08);
-    transform: translateY(-2px);
+  .navbar-scrolled
+  .smy-navbar {
+    min-height: 80px;
   }
 
-  .nav-link:hover .nav-icon {
-    opacity: 1;
-    transform: scale(1.08);
-  }
+  /* =========================================================
+     BRAND
+  ========================================================= */
 
-  .nav-link.active {
-    color: #3b82f6;
-    background: rgba(59, 130, 246, 0.08);
-  }
+  .smy-brand {
+    min-width: fit-content;
 
-  .nav-indicator {
-    display: none;
-  }
-
-  .mobile-nav-link {
     display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 18px 0;
-    color: #334155;
+
+    align-items: center;
+
+    gap: 13px;
+
+    color: inherit;
+
     text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-bottom: none;
-    transition: all 0.16s ease;
+  }
+
+  .smy-logo {
+    width: 58px;
+
+    height: 58px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+
+    transition:
+      transform 0.3s ease;
+  }
+
+  .smy-brand:hover
+  .smy-logo {
+    transform:
+      scale(1.06)
+      rotate(-3deg);
+  }
+
+  .smy-brand-content {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+  }
+
+  .smy-brand-content
+  strong {
+    color:
+      var(--smy-dark);
+
+    font-size: 23px;
+
+    font-weight: 900;
+
+    letter-spacing:
+      -0.045em;
+
+    line-height: 1;
+  }
+
+  .smy-brand-content
+  span {
+    margin-top: 4px;
+
+    color: #76849a;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing:
+      0.24em;
+
+    line-height: 1;
+  }
+
+  /* =========================================================
+     DESKTOP
+  ========================================================= */
+
+  .smy-desktop-navigation {
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content:
+      flex-end;
+
+    gap: 27px;
+  }
+
+  .smy-nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+  }
+
+  .smy-nav-link {
+    min-height: 50px;
+
+    padding:
+      0 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #526176;
+
+    border-radius: 13px;
+
+    font-size: 14px;
+
+    font-weight: 720;
+
+    text-decoration: none;
+
+    transition:
+      color 0.25s ease,
+      background 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .smy-nav-link:hover,
+  .smy-nav-link.active {
+    color:
+      var(--smy-blue);
+
+    background:
+      rgba(
+        7,
+        88,
+        232,
+        0.075
+      );
+
+    transform:
+      translateY(-2px);
+  }
+
+  .smy-nav-icon {
+    display: flex;
+
+    font-size: 14px;
+  }
+
+  /* =========================================================
+     SERVICES MAIN LINK
+  ========================================================= */
+
+  .smy-services-wrapper {
     position: relative;
   }
 
-  .mobile-nav-link:hover {
-    color: #2563eb;
-    transform: translateX(4px);
-  }
+  .smy-services-main {
+    min-height: 50px;
 
-  .mobile-nav-link.active {
-    color: #3b82f6;
-  }
-
-  .mobile-nav-icon {
-    width: 24px;
     display: flex;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
-    opacity: 0.85;
-    transition: opacity 0.16s ease, transform 0.16s ease;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    border-radius: 13px;
+
+    transition:
+      background 0.25s ease;
   }
 
-  .mobile-nav-link:hover .mobile-nav-icon {
+  .smy-services-main:hover,
+  .smy-services-main.active {
+    background:
+      rgba(
+        7,
+        88,
+        232,
+        0.075
+      );
+  }
+
+  .smy-services-link {
+    min-height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+      0 8px
+      0 16px;
+
+    color: #526176;
+
+    font-size: 14px;
+
+    font-weight: 720;
+
+    text-decoration: none;
+  }
+
+  .smy-services-main:hover
+  .smy-services-link,
+  .smy-services-main.active
+  .smy-services-link {
+    color:
+      var(--smy-blue);
+  }
+
+  .smy-services-arrow-button {
+    width: 38px;
+
+    min-height: 50px;
+
+    display: grid;
+
+    place-items: center;
+
+    color: #7d899a;
+
+    background: transparent;
+
+    border: 0;
+
+    cursor: pointer;
+  }
+
+  .smy-services-arrow-button
+  svg {
+    font-size: 11px;
+
+    transition:
+      transform 0.25s ease;
+  }
+
+  .rotate {
+    transform:
+      rotate(180deg);
+  }
+
+  /* =========================================================
+     SERVICES DROPDOWN
+  ========================================================= */
+
+  .smy-services-dropdown {
+    position: absolute;
+
+    top:
+      calc(
+        100% + 20px
+      );
+
+    left: 50%;
+
+    width: 840px;
+
+    padding: 22px;
+
+    display: grid;
+
+    grid-template-columns:
+      0.82fr
+      1.18fr;
+
+    gap: 22px;
+
+    visibility: hidden;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform:
+      translate(
+        -50%,
+        14px
+      )
+      scale(0.98);
+
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.995
+      );
+
+    border:
+      1px solid
+      var(--smy-border);
+
+    border-radius: 26px;
+
+    box-shadow:
+      0 35px 100px
+      rgba(
+        8,
+        30,
+        65,
+        0.18
+      );
+
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0.25s ease;
+  }
+
+  .smy-services-dropdown.show {
+    visibility: visible;
+
     opacity: 1;
-    transform: scale(1.08);
+
+    pointer-events: auto;
+
+    transform:
+      translate(
+        -50%,
+        0
+      )
+      scale(1);
   }
 
-  .mobile-nav-description {
-    font-size: 0.8rem;
-    color: #64748b;
-    margin-top: 4px;
-    line-height: 1.3;
+  .smy-dropdown-feature {
+    padding: 32px;
+
+    border-radius: 21px;
+
+    background:
+      radial-gradient(
+        circle at 90% 10%,
+        rgba(
+          68,
+          134,
+          255,
+          0.32
+        ),
+        transparent 35%
+      ),
+      linear-gradient(
+        145deg,
+        #06162c,
+        #0d346d
+      );
   }
 
-  .mobile-nav-indicator {
+  .smy-dropdown-label {
+    color: #76a8ff;
+
+    font-size: 9px;
+
+    font-weight: 850;
+
+    letter-spacing:
+      0.17em;
+  }
+
+  .smy-dropdown-feature
+  h3 {
+    margin:
+      15px 0
+      13px;
+
+    color: white;
+
+    font-size: 27px;
+
+    line-height: 1.15;
+
+    letter-spacing:
+      -0.04em;
+  }
+
+  .smy-dropdown-feature
+  > p {
+    margin: 0;
+
+    color: #b4c4da;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+  }
+
+  .dropdown-feature-points {
+    display: grid;
+
+    gap: 9px;
+
+    margin-top: 21px;
+  }
+
+  .dropdown-feature-points
+  span {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #c5d2e4;
+
+    font-size: 10px;
+  }
+
+  .dropdown-feature-points
+  svg {
+    color: #6fa7ff;
+
+    font-size: 9px;
+  }
+
+  .smy-dropdown-explore {
+    margin-top: 24px;
+
+    display:
+      inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    text-decoration: none;
+  }
+
+  .smy-dropdown-services {
+    display: grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 12px;
+  }
+
+  .smy-service-card {
+    position: relative;
+
+    min-height: 145px;
+
+    padding: 19px;
+
+    display: flex;
+
+    align-items:
+      flex-start;
+
+    gap: 13px;
+
+    color: inherit;
+
+    background:
+      #fafcff;
+
+    border:
+      1px solid
+      #e5eaf2;
+
+    border-radius: 17px;
+
+    text-decoration: none;
+
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .smy-service-card:hover {
+    transform:
+      translateY(-5px);
+
+    border-color:
+      rgba(
+        7,
+        88,
+        232,
+        0.22
+      );
+
+    box-shadow:
+      0 16px 40px
+      rgba(
+        8,
+        30,
+        65,
+        0.1
+      );
+  }
+
+  .smy-service-icon {
+    width: 48px;
+
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    color:
+      var(--smy-blue);
+
+    background:
+      rgba(
+        7,
+        88,
+        232,
+        0.08
+      );
+
+    border-radius: 13px;
+
+    font-size: 19px;
+  }
+
+  .service-card-content {
+    min-width: 0;
+  }
+
+  .smy-service-card
+  strong {
+    display: block;
+
+    padding-right: 14px;
+
+    color:
+      var(--smy-dark);
+
+    font-size: 13px;
+  }
+
+  .smy-service-card
+  p {
+    margin:
+      7px 0
+      0;
+
+    color: #758297;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+  }
+
+  .smy-service-arrow {
+    position: absolute;
+
+    top: 20px;
+
+    right: 14px;
+
+    color: #9da8b7;
+
+    font-size: 9px;
+  }
+
+  /* =========================================================
+     DESKTOP ACTIONS
+  ========================================================= */
+
+  .smy-nav-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+  }
+
+  .desktop-call-button {
+    min-height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+      0 14px;
+
+    color:
+      var(--smy-dark);
+
+    background:
+      #f6f8fc;
+
+    border:
+      1px solid
+      var(--smy-border);
+
+    border-radius: 13px;
+
+    font-size: 12px;
+
+    font-weight: 720;
+
+    text-decoration: none;
+
+    transition:
+      color 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .desktop-call-button:hover {
+    color:
+      var(--smy-blue);
+
+    transform:
+      translateY(-2px);
+  }
+
+  .smy-whatsapp {
+    width: 48px;
+
+    height: 48px;
+
+    display: grid;
+
+    place-items: center;
+
+    color:
+      var(--smy-whatsapp);
+
+    background:
+      rgba(
+        22,
+        168,
+        117,
+        0.08
+      );
+
+    border:
+      1px solid
+      rgba(
+        22,
+        168,
+        117,
+        0.13
+      );
+
+    border-radius: 13px;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+      color 0.25s ease,
+      background 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .smy-whatsapp:hover {
+    color: white;
+
+    background:
+      var(--smy-whatsapp);
+
+    transform:
+      translateY(-3px);
+  }
+
+  .smy-contact-button {
+    min-height: 48px;
+
+    padding:
+      0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: white;
+
+    background:
+      linear-gradient(
+        135deg,
+        var(--smy-blue),
+        var(--smy-purple)
+      );
+
+    border-radius: 13px;
+
+    box-shadow:
+      0 12px 28px
+      rgba(
+        7,
+        88,
+        232,
+        0.24
+      );
+
+    font-size: 12px;
+
+    font-weight: 780;
+
+    text-decoration: none;
+
+    transition:
+      transform 0.25s ease;
+  }
+
+  .smy-contact-button:hover {
+    transform:
+      translateY(-3px);
+  }
+
+  /* =========================================================
+     MOBILE TOP BUTTONS
+  ========================================================= */
+
+  .mobile-call-button,
+  .smy-mobile-toggle {
     display: none;
   }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
+  /* =========================================================
+     MOBILE OVERLAY
+  ========================================================= */
+
+  .smy-mobile-overlay {
+    position: fixed;
+
+    z-index: 4998;
+
+    inset: 0;
+
+    visibility: hidden;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    background:
+      rgba(
+        3,
+        12,
+        28,
+        0.58
+      );
+
+    backdrop-filter:
+      blur(5px);
+
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  .smy-mobile-overlay.show {
+    visibility: visible;
+
+    opacity: 1;
+
+    pointer-events: auto;
+  }
+
+  /* =========================================================
+     MOBILE MENU
+  ========================================================= */
+
+  .smy-mobile-menu {
+    position: fixed;
+
+    z-index: 5001;
+
+    top: 0;
+
+    right: 0;
+
+    width:
+      min(
+        440px,
+        100%
+      );
+
+    height: 100dvh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    box-shadow:
+      -25px 0 80px
+      rgba(
+        3,
+        15,
+        36,
+        0.22
+      );
+
+    transform:
+      translateX(105%);
+
+    transition:
+      transform 0.35s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+  }
+
+  .smy-mobile-menu.show {
+    transform:
+      translateX(0);
+  }
+
+  /* =========================================================
+     MOBILE MENU HEADER
+  ========================================================= */
+
+  .smy-mobile-header {
+    min-height: 100px;
+
+    padding:
+      14px 20px;
+
+    display: grid;
+
+    grid-template-columns:
+      60px
+      1fr
+      60px;
+
+    align-items: center;
+
+    gap: 10px;
+
+    border-bottom:
+      1px solid
+      #e9edf3;
+  }
+
+  .mobile-menu-call,
+  .smy-mobile-close {
+    width: 56px;
+
+    height: 56px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 16px;
+
+    text-decoration: none;
+
+    font-size: 21px;
+  }
+
+  .mobile-menu-call {
+    color:
+      var(--smy-blue);
+
+    background:
+      rgba(
+        7,
+        88,
+        232,
+        0.08
+      );
+
+    border:
+      1px solid
+      rgba(
+        7,
+        88,
+        232,
+        0.11
+      );
+  }
+
+  .smy-mobile-close {
+    color: white;
+
+    background:
+      linear-gradient(
+        135deg,
+        var(--smy-blue),
+        var(--smy-purple)
+      );
+
     border: 0;
+
+    cursor: pointer;
   }
 
-  .nav-link:focus,
-  .services-trigger:focus,
-  .contact-button:focus,
-  .mobile-nav-link:focus,
-  .mobile-services-trigger:focus {
-    outline: 2px solid #3b82f6;
-    outline-offset: 2px;
+  .smy-mobile-brand {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 11px;
+
+    text-decoration: none;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .navbar-container,
-    .services-dropdown,
-    .mobile-menu,
-    .hamburger-line,
-    .service-item,
-    .contact-button,
-    .nav-link,
-    .mobile-nav-link {
-      transition: none !important;
-      animation: none !important;
+  .smy-mobile-brand
+  img {
+    width: 58px;
+
+    height: 58px;
+
+    object-fit: contain;
+  }
+
+  .smy-mobile-brand
+  div {
+    display: flex;
+
+    flex-direction: column;
+  }
+
+  .smy-mobile-brand
+  strong {
+    color:
+      var(--smy-dark);
+
+    font-size: 21px;
+
+    font-weight: 900;
+
+    letter-spacing:
+      -0.04em;
+
+    line-height: 1;
+  }
+
+  .smy-mobile-brand
+  span {
+    margin-top: 4px;
+
+    color: #7c8898;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing:
+      0.21em;
+  }
+
+  /* =========================================================
+     MOBILE CONTENT
+  ========================================================= */
+
+  .smy-mobile-content {
+    padding:
+      32px 24px;
+  }
+
+  .smy-mobile-label {
+    display: block;
+
+    margin-bottom: 14px;
+
+    color: #8c98a9;
+
+    font-size: 9px;
+
+    font-weight: 850;
+
+    letter-spacing:
+      0.17em;
+  }
+
+  .smy-mobile-link {
+    width: 100%;
+
+    min-height: 68px;
+
+    padding:
+      11px 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content:
+      space-between;
+
+    color: #46546a;
+
+    border:
+      1px solid
+      transparent;
+
+    border-radius: 16px;
+
+    text-decoration: none;
+
+    transition:
+      color 0.25s ease,
+      background 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .smy-mobile-link:hover,
+  .smy-mobile-link.active {
+    color:
+      var(--smy-blue);
+
+    background:
+      rgba(
+        7,
+        88,
+        232,
+        0.06
+      );
+
+    transform:
+      translateX(3px);
+  }
+
+  .smy-mobile-link
+  > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+  }
+
+  .smy-mobile-link-icon {
+    width: 44px;
+
+    height: 44px;
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    color:
+      var(--smy-blue);
+
+    background:
+      rgba(
+        7,
+        88,
+        232,
+        0.08
+      );
+
+    border-radius: 12px;
+
+    font-size: 17px;
+  }
+
+  .smy-mobile-link
+  strong {
+    font-size: 14px;
+  }
+
+  .smy-mobile-link
+  > svg {
+    color: #9ca8b8;
+
+    font-size: 11px;
+  }
+
+  /* =========================================================
+     MOBILE SERVICES MAIN ROW
+  ========================================================= */
+
+  .mobile-services-main-row {
+    min-height: 68px;
+
+    display: grid;
+
+    grid-template-columns:
+      1fr
+      58px;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    border:
+      1px solid
+      transparent;
+
+    border-radius: 16px;
+
+    transition:
+      background 0.25s ease;
+  }
+
+  .mobile-services-main-row:hover,
+  .mobile-services-main-row.active {
+    background:
+      rgba(
+        7,
+        88,
+        232,
+        0.05
+      );
+  }
+
+  .mobile-services-direct-link {
+    min-height: 68px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+      11px 15px;
+
+    color: #46546a;
+
+    text-decoration: none;
+  }
+
+  .mobile-services-direct-link
+  > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+  }
+
+  .mobile-services-direct-link
+  strong {
+    font-size: 14px;
+  }
+
+  .mobile-services-main-row.active
+  .mobile-services-direct-link {
+    color:
+      var(--smy-blue);
+  }
+
+  .mobile-services-toggle {
+    height: 58px;
+
+    display: grid;
+
+    place-items: center;
+
+    color: #8995a6;
+
+    background: transparent;
+
+    border: 0;
+
+    cursor: pointer;
+  }
+
+  .mobile-services-toggle
+  svg {
+    font-size: 13px;
+
+    transition:
+      transform 0.25s ease;
+  }
+
+  /* =========================================================
+     MOBILE SERVICES LIST
+  ========================================================= */
+
+  .smy-mobile-services {
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease,
+      padding 0.3s ease;
+  }
+
+  .smy-mobile-services.show {
+    max-height: 760px;
+
+    padding:
+      11px 0;
+
+    opacity: 1;
+  }
+
+  .smy-mobile-service {
+    position: relative;
+
+    margin:
+      7px 0
+      7px 10px;
+
+    padding: 15px;
+
+    display: grid;
+
+    grid-template-columns:
+      46px
+      1fr
+      auto;
+
+    align-items: start;
+
+    gap: 12px;
+
+    color: inherit;
+
+    background:
+      #f8fafd;
+
+    border:
+      1px solid
+      #e7ebf2;
+
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .smy-mobile-service:hover {
+    transform:
+      translateX(3px);
+
+    border-color:
+      rgba(
+        7,
+        88,
+        232,
+        0.2
+      );
+  }
+
+  .smy-mobile-service
+  > span {
+    width: 46px;
+
+    height: 46px;
+
+    display: grid;
+
+    place-items: center;
+
+    color:
+      var(--smy-blue);
+
+    background:
+      rgba(
+        7,
+        88,
+        232,
+        0.08
+      );
+
+    border-radius: 12px;
+
+    font-size: 18px;
+  }
+
+  .smy-mobile-service
+  strong {
+    color:
+      var(--smy-dark);
+
+    font-size: 13px;
+  }
+
+  .smy-mobile-service
+  p {
+    margin:
+      6px 0
+      0;
+
+    color: #7b8798;
+
+    font-size: 10px;
+
+    line-height: 1.55;
+  }
+
+  .smy-mobile-service
+  > svg {
+    margin-top: 5px;
+
+    color: #a2adbb;
+
+    font-size: 10px;
+  }
+
+  /* =========================================================
+     MOBILE CONTACT BOX
+  ========================================================= */
+
+  .mobile-contact-box {
+    margin-top: 32px;
+
+    padding: 27px;
+
+    color: white;
+
+    background:
+      radial-gradient(
+        circle at 90% 10%,
+        rgba(
+          70,
+          135,
+          255,
+          0.25
+        ),
+        transparent 35%
+      ),
+      linear-gradient(
+        145deg,
+        #07182f,
+        #0d346d
+      );
+
+    border-radius: 22px;
+  }
+
+  .mobile-contact-box
+  > span {
+    color: #76a8ff;
+
+    font-size: 9px;
+
+    font-weight: 850;
+
+    letter-spacing:
+      0.16em;
+  }
+
+  .mobile-contact-box
+  h3 {
+    margin:
+      11px 0;
+
+    color: white;
+
+    font-size: 23px;
+
+    line-height: 1.25;
+  }
+
+  .mobile-contact-box
+  p {
+    margin: 0;
+
+    color: #afc0d8;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+  }
+
+  .smy-mobile-actions {
+    display: grid;
+
+    gap: 10px;
+
+    margin-top: 22px;
+  }
+
+  .smy-mobile-call-action,
+  .smy-mobile-quote,
+  .smy-mobile-whatsapp {
+    min-height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    padding:
+      0 17px;
+
+    border-radius: 14px;
+
+    font-size: 12px;
+
+    font-weight: 750;
+
+    text-decoration: none;
+  }
+
+  .smy-mobile-call-action {
+    color:
+      var(--smy-dark);
+
+    background: white;
+  }
+
+  .smy-mobile-quote {
+    color: white;
+
+    background:
+      linear-gradient(
+        135deg,
+        #1670ff,
+        #7350e4
+      );
+  }
+
+  .smy-mobile-whatsapp {
+    color: white;
+
+    background:
+      var(--smy-whatsapp);
+
+    border: 0;
+
+    cursor: pointer;
+  }
+
+  .smy-mobile-whatsapp
+  svg {
+    font-size: 19px;
+  }
+
+  /* =========================================================
+     LARGE MOBILE / TABLET NAVBAR
+  ========================================================= */
+
+  @media (max-width: 1120px) {
+    .smy-desktop-navigation {
+      display: none;
+    }
+
+    .smy-navbar-wrapper {
+      top: 12px;
+
+      width:
+        calc(
+          100% - 20px
+        );
+
+      border-radius: 22px;
+
+      box-shadow:
+        0 16px 45px
+        rgba(
+          8,
+          30,
+          65,
+          0.14
+        );
+    }
+
+    .smy-navbar-wrapper.navbar-scrolled {
+      top: 0;
+
+      width: 100%;
+
+      border-radius: 0;
+    }
+
+    /* BIG MOBILE NAVBAR */
+
+    .smy-navbar {
+      min-height: 100px;
+
+      position: relative;
+
+      display: grid;
+
+      grid-template-columns:
+        68px
+        minmax(
+          0,
+          1fr
+        )
+        68px;
+
+      align-items: center;
+
+      gap: 10px;
+
+      padding:
+        0 20px;
+    }
+
+    .navbar-scrolled
+    .smy-navbar {
+      min-height: 92px;
+    }
+
+    /* LEFT CALL */
+
+    .mobile-call-button {
+      width: 60px;
+
+      height: 60px;
+
+      display: grid;
+
+      place-items: center;
+
+      justify-self: start;
+
+      color:
+        var(--smy-blue);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(
+            7,
+            88,
+            232,
+            0.12
+          ),
+          rgba(
+            7,
+            88,
+            232,
+            0.05
+          )
+        );
+
+      border:
+        1px solid
+        rgba(
+          7,
+          88,
+          232,
+          0.15
+        );
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 8px 22px
+        rgba(
+          7,
+          88,
+          232,
+          0.1
+        );
+
+      text-decoration: none;
+
+      font-size: 23px;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .mobile-call-button:active {
+      transform:
+        scale(0.94);
+    }
+
+    /* CENTER BRAND */
+
+    .smy-brand {
+      min-width: 0;
+
+      justify-self: center;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 12px;
+    }
+
+    .smy-logo {
+      width: 64px;
+
+      height: 64px;
+
+      flex-shrink: 0;
+    }
+
+    .smy-brand-content {
+      min-width: 0;
+    }
+
+    .smy-brand-content
+    strong {
+      font-size: 23px;
+
+      white-space: nowrap;
+    }
+
+    .smy-brand-content
+    span {
+      margin-top: 5px;
+
+      font-size: 8px;
+
+      letter-spacing:
+        0.22em;
+
+      white-space: nowrap;
+    }
+
+    /* RIGHT MENU */
+
+    .smy-mobile-toggle {
+      width: 60px;
+
+      height: 60px;
+
+      display: grid;
+
+      place-items: center;
+
+      justify-self: end;
+
+      color:
+        var(--smy-dark);
+
+      background:
+        linear-gradient(
+          145deg,
+          #f8faff,
+          #f1f5fb
+        );
+
+      border:
+        1px solid
+        var(--smy-border);
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 8px 22px
+        rgba(
+          8,
+          30,
+          65,
+          0.07
+        );
+
+      font-size: 25px;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.25s ease,
+        color 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .smy-mobile-toggle.active {
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--smy-blue),
+          var(--smy-purple)
+        );
+    }
+
+    .smy-mobile-toggle:active {
+      transform:
+        scale(0.94);
+    }
+  }
+
+  /* =========================================================
+     NORMAL MOBILE
+  ========================================================= */
+
+  @media (max-width: 600px) {
+    .smy-navbar-wrapper {
+      width:
+        calc(
+          100% - 16px
+        );
+
+      top: 8px;
+
+      border-radius: 20px;
+    }
+
+    .smy-navbar-wrapper.navbar-scrolled {
+      width: 100%;
+
+      top: 0;
+
+      border-radius: 0;
+    }
+
+    .smy-navbar {
+      min-height: 94px;
+
+      grid-template-columns:
+        62px
+        minmax(
+          0,
+          1fr
+        )
+        62px;
+
+      gap: 8px;
+
+      padding:
+        0 14px;
+    }
+
+    .navbar-scrolled
+    .smy-navbar {
+      min-height: 88px;
+    }
+
+    .mobile-call-button {
+      width: 56px;
+
+      height: 56px;
+
+      border-radius: 17px;
+
+      font-size: 21px;
+    }
+
+    .smy-brand {
+      gap: 9px;
+    }
+
+    .smy-logo {
+      width: 58px;
+
+      height: 58px;
+    }
+
+    .smy-brand-content
+    strong {
+      font-size: 20px;
+    }
+
+    .smy-brand-content
+    span {
+      margin-top: 4px;
+
+      font-size: 7px;
+
+      letter-spacing:
+        0.18em;
+    }
+
+    .smy-mobile-toggle {
+      width: 56px;
+
+      height: 56px;
+
+      border-radius: 17px;
+
+      font-size: 23px;
+    }
+  }
+
+  /* =========================================================
+     SMALL MOBILE
+  ========================================================= */
+
+  @media (max-width: 480px) {
+    .smy-navbar {
+      min-height: 90px;
+
+      grid-template-columns:
+        58px
+        minmax(
+          0,
+          1fr
+        )
+        58px;
+
+      gap: 6px;
+
+      padding:
+        0 11px;
+    }
+
+    .mobile-call-button,
+    .smy-mobile-toggle {
+      width: 53px;
+
+      height: 53px;
+
+      border-radius: 16px;
+    }
+
+    .mobile-call-button {
+      font-size: 20px;
+    }
+
+    .smy-mobile-toggle {
+      font-size: 22px;
+    }
+
+    .smy-brand {
+      gap: 7px;
+    }
+
+    .smy-logo {
+      width: 54px;
+
+      height: 54px;
+    }
+
+    .smy-brand-content
+    strong {
+      font-size: 18px;
+
+      letter-spacing:
+        -0.04em;
+    }
+
+    .smy-brand-content
+    span {
+      font-size: 6.5px;
+
+      letter-spacing:
+        0.15em;
+    }
+
+    .smy-mobile-header {
+      min-height: 92px;
+
+      grid-template-columns:
+        54px
+        1fr
+        54px;
+
+      padding:
+        12px 14px;
+    }
+
+    .mobile-menu-call,
+    .smy-mobile-close {
+      width: 50px;
+
+      height: 50px;
+    }
+
+    .smy-mobile-brand
+    img {
+      width: 51px;
+
+      height: 51px;
+    }
+
+    .smy-mobile-brand
+    strong {
+      font-size: 18px;
+    }
+
+    .smy-mobile-brand
+    span {
+      font-size: 6px;
+    }
+  }
+
+  /* =========================================================
+     VERY SMALL MOBILE
+  ========================================================= */
+
+  @media (max-width: 390px) {
+    .smy-navbar {
+      min-height: 86px;
+
+      grid-template-columns:
+        53px
+        minmax(
+          0,
+          1fr
+        )
+        53px;
+
+      gap: 4px;
+
+      padding:
+        0 8px;
+    }
+
+    .mobile-call-button,
+    .smy-mobile-toggle {
+      width: 49px;
+
+      height: 49px;
+
+      border-radius: 14px;
+    }
+
+    .mobile-call-button {
+      font-size: 18px;
+    }
+
+    .smy-mobile-toggle {
+      font-size: 20px;
+    }
+
+    .smy-brand {
+      gap: 5px;
+    }
+
+    .smy-logo {
+      width: 48px;
+
+      height: 48px;
+    }
+
+    .smy-brand-content
+    strong {
+      font-size: 16px;
+    }
+
+    .smy-brand-content
+    span {
+      margin-top: 3px;
+
+      font-size: 5.5px;
+
+      letter-spacing:
+        0.12em;
+    }
+  }
+
+  /* =========================================================
+     REDUCED MOTION
+  ========================================================= */
+
+  @media (
+    prefers-reduced-motion:
+    reduce
+  ) {
+    .smy-navbar-wrapper,
+    .smy-nav-link,
+    .smy-services-dropdown,
+    .smy-service-card,
+    .smy-mobile-menu,
+    .smy-mobile-overlay,
+    .smy-mobile-services,
+    .smy-mobile-link,
+    .mobile-call-button,
+    .smy-mobile-toggle {
+      transition:
+        none !important;
     }
   }
 `;
-
-if (typeof document !== "undefined") {
-  const oldStyle = document.getElementById("navbar-extra-styles");
-  if (oldStyle) oldStyle.remove();
-
-  const styleSheet = document.createElement("style");
-  styleSheet.id = "navbar-extra-styles";
-  styleSheet.innerText = styles;
-  document.head.appendChild(styleSheet);
-}
 
 export default Navbar;
