@@ -24,7 +24,7 @@ import {
 ========================================================= */
 
 const WEBSITE_URL =
-  "https://smyvisiontechnologies.vercel.app";
+  "https://smyvisiontechnologies.com";
 
 const PHONE_NUMBER =
   "8500352005";

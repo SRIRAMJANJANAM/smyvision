@@ -29,7 +29,7 @@ import {
 ========================================================= */
 
 const WEBSITE_URL =
-  "https://smyvisiontechnologies.vercel.app";
+  "https://smyvisiontechnologies.com";
 
 const ABOUT_URL =
   `${WEBSITE_URL}/about`;

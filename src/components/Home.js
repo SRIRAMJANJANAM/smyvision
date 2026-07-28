@@ -65,7 +65,7 @@ import {
    CONFIGURATION
 ========================================================= */
 
-const WEBSITE_URL = "https://smyvisiontechnologies.vercel.app";
+const WEBSITE_URL = "https://smyvisiontechnologies.com";
 
 const PHONE_NUMBER = "8500352005";
 
@@ -1267,7 +1267,7 @@ const Home = () => {
                   </div>
 
                   <div className="browser-url">
-                    smyvisiontechnologies.vercel.app
+                    smyvisiontechnologies.com
                   </div>
                 </div>
 

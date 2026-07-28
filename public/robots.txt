@@ -2,6 +2,6 @@ User-agent: *
 
 Allow: /
 
-Sitemap: https://smyvisiontechnologies.vercel.app/sitemap.xml
+Sitemap: https://smyvisiontechnologies.com/sitemap.xml
 
-Host: https://smyvisiontechnologies.vercel.app
+Host: https://smyvisiontechnologies.com
