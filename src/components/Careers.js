@@ -181,7 +181,7 @@ function Careers() {
       location: 'Remote',
       experience: 'Fresher',
       type: 'Internship',
-      posted: '12 Jan, 2026',
+      posted: '20 June, 2026',
       overview: 'We are looking for a motivated Business Development Executive to help grow our company by finding new clients, building strong relationships, and promoting our digital services. This role is ideal for someone who enjoys communication, sales, and business growth.',
       responsibilities: [
         'Identify and approach potential clients through calls, emails, and online platforms',

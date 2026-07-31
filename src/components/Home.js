@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 /* =========================================================
-   FONT AWESOME ICONS
+   FONT AWESOME ICONS (UNCHANGED)
 ========================================================= */
 
 import {
@@ -62,7 +62,7 @@ import {
 } from "react-icons/si";
 
 /* =========================================================
-   CONFIGURATION
+   CONFIGURATION (UNCHANGED)
 ========================================================= */
 
 const WEBSITE_URL = "https://smyvisiontechnologies.com";
@@ -76,20 +76,16 @@ const EMAIL = "smyvisiontechnologies@gmail.com";
 const PROJECT_CHANGE_TIME = 7000;
 
 /* =========================================================
-   SERVICES
+   SERVICES (UNCHANGED)
 ========================================================= */
 
 const services = [
   {
     icon: <FaLaptopCode />,
-
     image: "/images/web.png",
-
     title: "Website Development",
-
     description:
       "Professional websites built to establish trust, present your services clearly and help potential customers connect with your business.",
-
     features: [
       "Business Websites",
       "Corporate Websites",
@@ -97,17 +93,12 @@ const services = [
       "SEO-Ready Development",
     ],
   },
-
   {
     icon: <FaBarsProgress />,
-
     image: "/images/auto.png",
-
     title: "Business Automation",
-
     description:
       "Custom automation solutions designed to simplify repetitive operations, improve efficiency and create better digital workflows.",
-
     features: [
       "Workflow Automation",
       "Custom Dashboards",
@@ -115,17 +106,12 @@ const services = [
       "Process Automation",
     ],
   },
-
   {
     icon: <FaBrain />,
-
     image: "/images/chat.png",
-
     title: "AI & Chatbot Solutions",
-
     description:
       "Smart AI-powered solutions that help businesses automate communication, manage enquiries and deliver faster customer experiences.",
-
     features: [
       "AI Chatbots",
       "Customer Support",
@@ -136,7 +122,7 @@ const services = [
 ];
 
 /* =========================================================
-   GENERAL MARQUEE
+   GENERAL MARQUEE (UNCHANGED)
 ========================================================= */
 
 const marqueeItems = [
@@ -155,815 +141,438 @@ const marqueeItems = [
 ];
 
 /* =========================================================
-   BENEFITS
+   BENEFITS (UNCHANGED)
 ========================================================= */
 
 const benefits = [
   {
     icon: <FaMagnifyingGlass />,
-
     title: "SEO-Ready Foundation",
-
     description:
       "Clean development, semantic structure, optimized headings and technical foundations that support better search visibility.",
   },
-
   {
     icon: <FaMobileScreenButton />,
-
     title: "Responsive Experience",
-
     description:
       "Every website is built to deliver a professional experience across smartphones, tablets, laptops and desktop devices.",
   },
-
   {
     icon: <FaBolt />,
-
     title: "Performance Focused",
-
     description:
       "Modern layouts and optimized development practices help create faster and smoother website experiences.",
   },
-
   {
     icon: <FaBullseye />,
-
     title: "Conversion Focused",
-
     description:
       "Clear content structure and strategic calls-to-action help guide visitors towards enquiries and business actions.",
   },
 ];
 
 /* =========================================================
-   PROJECTS
+   PROJECTS (UNCHANGED)
 ========================================================= */
 
 const projects = [
   {
     title: "NKR Car Rentals",
-
     category: "Car Rental Website",
-
     image: "/images/nkr.png",
-
     url: "https://www.nkrselfdrivecarrentals.in/",
-
     description:
       "A modern car rental website designed to present services clearly, provide easy customer navigation and create a professional mobile experience.",
   },
-
   {
     title: "Bindiya Beauty Salon",
-
     category: "Beauty & Salon Website",
-
     image: "/images/beauty.png",
-
     url: "https://www.bindiyazbeautysalon.in/",
-
     description:
       "A premium salon website created to showcase services, strengthen brand identity and provide customers with a smooth digital experience.",
   },
-
   {
     title: "Happy Organize",
-
     category: "Home Services Website",
-
     image: "/images/home.png",
-
     url: "https://www.happyorganize.com/",
-
     description:
       "A professional home services website designed with clear service presentation, responsive layouts and customer-focused navigation.",
   },
-
   {
     title: "Arvis Fertilizers",
-
     category: "Agriculture Business Website",
-
     image: "/images/arvis.png",
-
     url: "https://www.arvisfertilizers.com/",
-
     description:
       "A modern agriculture-focused digital platform developed to strengthen business presentation and communicate products professionally.",
   },
 ];
 
 /* =========================================================
-   PROJECT MARQUEE ITEMS
+   PROJECT MARQUEE ITEMS (UNCHANGED)
 ========================================================= */
 
 const projectMarqueeRowOne = [
-  {
-    title: "NKR Car Rentals",
-
-    image: "/images/nkr.png",
-
-    category: "Car Rental",
-  },
-
-  {
-    title: "Bindiya Beauty Salon",
-
-    image: "/images/beauty.png",
-
-    category: "Beauty & Salon",
-  },
-
-  {
-    title: "Happy Organize",
-
-    image: "/images/home.png",
-
-    category: "Home Services",
-  },
-
-  {
-    title: "Arvis Fertilizers",
-
-    image: "/images/arvis.png",
-
-    category: "Agriculture",
-  },
+  { title: "NKR Car Rentals", image: "/images/nkr.png", category: "Car Rental" },
+  { title: "Bindiya Beauty Salon", image: "/images/beauty.png", category: "Beauty & Salon" },
+  { title: "Happy Organize", image: "/images/home.png", category: "Home Services" },
+  { title: "Arvis Fertilizers", image: "/images/arvis.png", category: "Agriculture" },
 ];
 
 const projectMarqueeRowTwo = [
-  {
-    title: "Arvis Fertilizers",
-
-    image: "/images/arvis.png",
-
-    category: "Agriculture",
-  },
-
-  {
-    title: "Happy Organize",
-
-    image: "/images/home.png",
-
-    category: "Home Services",
-  },
-
-  {
-    title: "Bindiya Beauty Salon",
-
-    image: "/images/beauty.png",
-
-    category: "Beauty & Salon",
-  },
-
-  {
-    title: "NKR Car Rentals",
-
-    image: "/images/nkr.png",
-
-    category: "Car Rental",
-  },
+  { title: "Arvis Fertilizers", image: "/images/arvis.png", category: "Agriculture" },
+  { title: "Happy Organize", image: "/images/home.png", category: "Home Services" },
+  { title: "Bindiya Beauty Salon", image: "/images/beauty.png", category: "Beauty & Salon" },
+  { title: "NKR Car Rentals", image: "/images/nkr.png", category: "Car Rental" },
 ];
 
 /* =========================================================
-   REVIEWS
+   REVIEWS (UNCHANGED)
 ========================================================= */
 
 const reviews = [
   {
     name: "NKR Car Rentals",
-
     role: "Car Rental Business",
-
     review:
       "I am extremely satisfied with the website design. The work was done neatly and exactly according to my requirements.Thank you so much SMYVISION TECHNOLOGIES entire team for the great support and service.",
   },
-
   {
     name: "Bindiya Beauty Salon",
-
     role: "Beauty & Salon",
-
     review:
       "SMYVISION TECHNOLOGIES understood our requirements and created a beautiful website that represents our salon professionally.",
   },
-
   {
     name: "Happy Organize",
-
     role: "Home Services",
-
-    review:
-      "Super happy with the work. Highly recommend it!",
+    review: "Super happy with the work. Highly recommend it!",
   },
-
   {
     name: "Arvis Fertilizers",
-
     role: "Agriculture Business",
-
     review:
       "The team delivered a professional digital platform with a clean structure and responsive design that supports our business presentation.",
   },
 ];
 
 /* =========================================================
-   TECHNOLOGIES
+   TECHNOLOGIES (UNCHANGED)
 ========================================================= */
 
 const technologies = [
-  {
-    icon: <FaReact />,
-
-    name: "React JS",
-
-    description: "Modern interactive user interfaces",
-  },
-
-  {
-    icon: <SiJavascript />,
-
-    name: "JavaScript",
-
-    description: "Dynamic frontend functionality",
-  },
-
-  {
-    icon: <FaHtml5 />,
-
-    name: "HTML5",
-
-    description: "Semantic modern web structure",
-  },
-
-  {
-    icon: <FaCss3Alt />,
-
-    name: "CSS3",
-
-    description: "Responsive modern styling",
-  },
-
-  {
-    icon: <FaPython />,
-
-    name: "Python",
-
-    description: "Powerful backend development",
-  },
-
-  {
-    icon: <SiDjango />,
-
-    name: "Django",
-
-    description: "Secure business applications",
-  },
-
-  {
-    icon: <FaNodeJs />,
-
-    name: "Node.js",
-
-    description: "Scalable backend applications",
-  },
-
-  {
-    icon: <SiMysql />,
-
-    name: "MySQL",
-
-    description: "Reliable structured databases",
-  },
-
-  {
-    icon: <SiPostgresql />,
-
-    name: "PostgreSQL",
-
-    description: "Advanced database solutions",
-  },
-
-  {
-    icon: <SiMongodb />,
-
-    name: "MongoDB",
-
-    description: "Flexible modern databases",
-  },
-
-  {
-    icon: <SiFirebase />,
-
-    name: "Firebase",
-
-    description: "Cloud-powered applications",
-  },
-
-  {
-    icon: <FaCloud />,
-
-    name: "Cloud Solutions",
-
-    description: "Modern scalable infrastructure",
-  },
+  { icon: <FaReact />, name: "React JS", description: "Modern interactive user interfaces" },
+  { icon: <SiJavascript />, name: "JavaScript", description: "Dynamic frontend functionality" },
+  { icon: <FaHtml5 />, name: "HTML5", description: "Semantic modern web structure" },
+  { icon: <FaCss3Alt />, name: "CSS3", description: "Responsive modern styling" },
+  { icon: <FaPython />, name: "Python", description: "Powerful backend development" },
+  { icon: <SiDjango />, name: "Django", description: "Secure business applications" },
+  { icon: <FaNodeJs />, name: "Node.js", description: "Scalable backend applications" },
+  { icon: <SiMysql />, name: "MySQL", description: "Reliable structured databases" },
+  { icon: <SiPostgresql />, name: "PostgreSQL", description: "Advanced database solutions" },
+  { icon: <SiMongodb />, name: "MongoDB", description: "Flexible modern databases" },
+  { icon: <SiFirebase />, name: "Firebase", description: "Cloud-powered applications" },
+  { icon: <FaCloud />, name: "Cloud Solutions", description: "Modern scalable infrastructure" },
 ];
 
 /* =========================================================
-   PROCESS
+   PROCESS (UNCHANGED)
 ========================================================= */
 
 const processSteps = [
-  {
-    number: "01",
-
-    icon: <FaComments />,
-
-    title: "Discovery",
-
-    description:
-      "We begin by understanding your business, goals, customers and exact project requirements.",
-  },
-
-  {
-    number: "02",
-
-    icon: <FaSitemap />,
-
-    title: "Strategy",
-
-    description:
-      "We organize the project structure, user journey, pages and technical requirements.",
-  },
-
-  {
-    number: "03",
-
-    icon: <FaWandMagicSparkles />,
-
-    title: "Design",
-
-    description:
-      "We create a modern visual direction focused on professionalism, usability and your business identity.",
-  },
-
-  {
-    number: "04",
-
-    icon: <FaCode />,
-
-    title: "Development",
-
-    description:
-      "The approved design is transformed into a responsive and functional digital experience.",
-  },
-
-  {
-    number: "05",
-
-    icon: <FaShieldHalved />,
-
-    title: "Testing",
-
-    description:
-      "We carefully test responsiveness, usability and functionality across different screen sizes.",
-  },
-
-  {
-    number: "06",
-
-    icon: <FaRocket />,
-
-    title: "Launch",
-
-    description:
-      "Your completed digital solution is prepared and launched for your customers to experience.",
-  },
+  { number: "01", icon: <FaComments />, title: "Discovery", description: "We begin by understanding your business, goals, customers and exact project requirements." },
+  { number: "02", icon: <FaSitemap />, title: "Strategy", description: "We organize the project structure, user journey, pages and technical requirements." },
+  { number: "03", icon: <FaWandMagicSparkles />, title: "Design", description: "We create a modern visual direction focused on professionalism, usability and your business identity." },
+  { number: "04", icon: <FaCode />, title: "Development", description: "The approved design is transformed into a responsive and functional digital experience." },
+  { number: "05", icon: <FaShieldHalved />, title: "Testing", description: "We carefully test responsiveness, usability and functionality across different screen sizes." },
+  { number: "06", icon: <FaRocket />, title: "Launch", description: "Your completed digital solution is prepared and launched for your customers to experience." },
 ];
 
 /* =========================================================
-   FAQ QUESTIONS
+   FAQ QUESTIONS (UNCHANGED)
 ========================================================= */
 
 const faqItems = [
   {
     question: "What types of websites do you develop?",
-
-    answer:
-      "We develop professional business websites, corporate websites, service websites, portfolio websites, e-commerce platforms, landing pages, custom portals and web applications according to business requirements.",
+    answer: "We develop professional business websites, corporate websites, service websites, portfolio websites, e-commerce platforms, landing pages, custom portals and web applications according to business requirements.",
   },
-
   {
     question: "Do you create mobile-responsive websites?",
-
-    answer:
-      "Yes. Every website we develop is designed to work smoothly across smartphones, tablets, laptops and desktop devices.",
+    answer: "Yes. Every website we develop is designed to work smoothly across smartphones, tablets, laptops and desktop devices.",
   },
-
   {
     question: "Will my website be SEO-friendly?",
-
-    answer:
-      "We build websites with SEO-friendly technical foundations including clean page structure, semantic HTML, heading hierarchy, metadata support, responsive design and performance-focused development.",
+    answer: "We build websites with SEO-friendly technical foundations including clean page structure, semantic HTML, heading hierarchy, metadata support, responsive design and performance-focused development.",
   },
-
   {
     question: "Can you redesign my existing website?",
-
-    answer:
-      "Yes. We can redesign an existing website with a more modern interface, improved mobile responsiveness, better content structure and a stronger user experience.",
+    answer: "Yes. We can redesign an existing website with a more modern interface, improved mobile responsiveness, better content structure and a stronger user experience.",
   },
-
   {
     question: "How long does website development take?",
-
-    answer:
-      "Development time depends on the size and complexity of the project. A standard business website can usually be completed faster than a custom application or advanced business portal.",
+    answer: "Development time depends on the size and complexity of the project. A standard business website can usually be completed faster than a custom application or advanced business portal.",
   },
-
   {
     question: "Do you provide custom web application development?",
-
-    answer:
-      "Yes. We can develop custom web-based systems including dashboards, management platforms, customer portals and business automation solutions.",
+    answer: "Yes. We can develop custom web-based systems including dashboards, management platforms, customer portals and business automation solutions.",
   },
-
   {
     question: "Can you integrate WhatsApp into the website?",
-
-    answer:
-      "Yes. We can integrate WhatsApp buttons and direct enquiry options so customers can quickly communicate with your business.",
+    answer: "Yes. We can integrate WhatsApp buttons and direct enquiry options so customers can quickly communicate with your business.",
   },
-
   {
     question: "Do you develop e-commerce websites?",
-
-    answer:
-      "Yes. We can build e-commerce solutions that allow businesses to display products, manage catalogues and provide online shopping experiences.",
+    answer: "Yes. We can build e-commerce solutions that allow businesses to display products, manage catalogues and provide online shopping experiences.",
   },
-
   {
     question: "Can you develop AI chatbot solutions?",
-
-    answer:
-      "Yes. We provide chatbot and AI automation solutions for customer enquiries, lead generation, support and business communication.",
+    answer: "Yes. We provide chatbot and AI automation solutions for customer enquiries, lead generation, support and business communication.",
   },
-
   {
     question: "Do you provide business automation solutions?",
-
-    answer:
-      "Yes. We can create custom digital workflows and management systems that reduce repetitive work and help businesses manage operations more efficiently.",
+    answer: "Yes. We can create custom digital workflows and management systems that reduce repetitive work and help businesses manage operations more efficiently.",
   },
-
   {
     question: "Will I be able to update my website later?",
-
-    answer:
-      "The ability to update content depends on the type of website and management system selected. We can develop solutions with administrative features when required.",
+    answer: "The ability to update content depends on the type of website and management system selected. We can develop solutions with administrative features when required.",
   },
-
   {
     question: "Do you provide support after website development?",
-
-    answer:
-      "We provide technical guidance and support based on the project requirements and agreed service scope.",
+    answer: "We provide technical guidance and support based on the project requirements and agreed service scope.",
   },
-
   {
     question: "Can you help businesses build a complete digital presence?",
-
-    answer:
-      "Yes. Along with website development, we can help businesses implement automation, chatbot solutions and other digital systems required for their operations.",
+    answer: "Yes. Along with website development, we can help businesses implement automation, chatbot solutions and other digital systems required for their operations.",
   },
-
   {
     question: "How can I get a quotation for my project?",
-
-    answer:
-      "You can contact us through the website, WhatsApp or phone and share your requirements. We will understand your project and provide a suitable quotation.",
+    answer: "You can contact us through the website, WhatsApp or phone and share your requirements. We will understand your project and provide a suitable quotation.",
   },
-
   {
     question: "How do I start a project with SMYVISION TECHNOLOGIES?",
-
-    answer:
-      "Simply contact our team and tell us about your business and project idea. We will discuss your requirements, understand your goals and recommend the right solution.",
+    answer: "Simply contact our team and tell us about your business and project idea. We will discuss your requirements, understand your goals and recommend the right solution.",
   },
 ];
 
 /* =========================================================
-   WHY CHOOSE US
+   WHY CHOOSE US (UNCHANGED)
 ========================================================= */
 
 const reasons = [
-  {
-    icon: <FaBullseye />,
-
-    title: "Business-First Thinking",
-
-    description:
-      "We understand your business objectives before deciding how technology should solve the problem.",
-  },
-
-  {
-    icon: <FaRocket />,
-
-    title: "Modern Technologies",
-
-    description:
-      "We use reliable modern technologies to build scalable and professional digital solutions.",
-  },
-
-  {
-    icon: <FaHeadset />,
-
-    title: "Clear Communication",
-
-    description:
-      "We keep project communication simple so you can understand each important stage of development.",
-  },
-
-  {
-    icon: <FaShieldHalved />,
-
-    title: "Quality Focus",
-
-    description:
-      "Our development process focuses on responsiveness, usability and professional presentation.",
-  },
-
-  {
-    icon: <FaBolt />,
-
-    title: "Performance Mindset",
-
-    description:
-      "We focus on smooth user experiences and efficient development practices.",
-  },
-
-  {
-    icon: <FaUsers />,
-
-    title: "Built Around Your Needs",
-
-    description:
-      "Every project is developed according to the actual requirements and goals of the business.",
-  },
+  { icon: <FaBullseye />, title: "Business-First Thinking", description: "We understand your business objectives before deciding how technology should solve the problem." },
+  { icon: <FaRocket />, title: "Modern Technologies", description: "We use reliable modern technologies to build scalable and professional digital solutions." },
+  { icon: <FaHeadset />, title: "Clear Communication", description: "We keep project communication simple so you can understand each important stage of development." },
+  { icon: <FaShieldHalved />, title: "Quality Focus", description: "Our development process focuses on responsiveness, usability and professional presentation." },
+  { icon: <FaBolt />, title: "Performance Mindset", description: "We focus on smooth user experiences and efficient development practices." },
+  { icon: <FaUsers />, title: "Built Around Your Needs", description: "Every project is developed according to the actual requirements and goals of the business." },
 ];
 
 /* =========================================================
-   INDUSTRIES
+   INDUSTRIES (UNCHANGED)
 ========================================================= */
 
 const industries = [
-  "Healthcare",
-  "Education",
-  "Real Estate",
-  "Restaurants",
-  "Agriculture",
-  "Beauty & Salons",
-  "Travel & Rentals",
-  "Home Services",
-  "Startups",
-  "Retail Businesses",
+  "Healthcare", "Education", "Real Estate", "Restaurants", "Agriculture",
+  "Beauty & Salons", "Travel & Rentals", "Home Services", "Startups", "Retail Businesses",
 ];
 
 /* =========================================================
-   FAQ SCHEMA
+   ✅ SEO OPTIMIZED - FAQ SCHEMA
 ========================================================= */
 
 const faqSchema = {
   "@context": "https://schema.org",
-
   "@type": "FAQPage",
-
   mainEntity: faqItems.map((item) => ({
     "@type": "Question",
-
     name: item.question,
-
     acceptedAnswer: {
       "@type": "Answer",
-
       text: item.answer,
     },
   })),
 };
 
 /* =========================================================
-   SEO SCHEMA
-   LOCATION TERMS ONLY INSIDE SEO
+   ✅ SEO OPTIMIZED - STRUCTURED DATA
+   AGGRESSIVE VIJAYAWADA + CUSTOM WEB APPLICATION TARGETING
 ========================================================= */
 
 const structuredData = {
   "@context": "https://schema.org",
-
   "@graph": [
     {
-      "@type": "ProfessionalService",
-
+      "@type": ["ProfessionalService", "LocalBusiness", "Organization"],
       "@id": `${WEBSITE_URL}/#organization`,
-
-      name: "SMYVISION TECHNOLOGIES",
-
-      alternateName: "SMYVISION",
-
-      url: WEBSITE_URL,
-
-      logo: `${WEBSITE_URL}/logo.png`,
-
-      image: `${WEBSITE_URL}/logo.png`,
-
-      description:
-        "SMYVISION TECHNOLOGIES is a professional web development company in Vijayawada providing website development, responsive web design, SEO-friendly websites, custom web applications, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
-
-      telephone: PHONE_LINK,
-
-      email: EMAIL,
-
-      address: {
+      "name": "SMYVISION TECHNOLOGIES",
+      "alternateName": ["SMYVISION", "Best Web Development Company Vijayawada", "SMYVISION Tech"],
+      "url": WEBSITE_URL,
+      "logo": `${WEBSITE_URL}/logo.png`,
+      "image": `${WEBSITE_URL}/logo.png`,
+      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada, trusted for professional website development, custom web application development, responsive web design, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
+      "telephone": PHONE_LINK,
+      "email": EMAIL,
+      "foundingDate": "2026",
+      "address": {
         "@type": "PostalAddress",
-
-        addressLocality: "Vijayawada",
-
-        addressRegion: "Andhra Pradesh",
-
-        addressCountry: "IN",
+        "addressLocality": "Vijayawada",
+        "addressRegion": "Andhra Pradesh",
+        "addressCountry": "IN",
       },
-
-      areaServed: [
-        {
-          "@type": "City",
-
-          name: "Vijayawada",
-        },
-
-        {
-          "@type": "State",
-
-          name: "Andhra Pradesh",
-        },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "16.5062",
+        "longitude": "80.6480",
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Vijayawada" },
+        { "@type": "State", "name": "Andhra Pradesh" },
+        { "@type": "Country", "name": "India" },
       ],
-
-      contactPoint: {
+      "contactPoint": {
         "@type": "ContactPoint",
-
-        telephone: PHONE_LINK,
-
-        contactType: "customer service",
-
-        areaServed: "IN",
-
-        availableLanguage: ["English", "Telugu"],
+        "telephone": PHONE_LINK,
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Telugu", "Hindi"],
+      },
+      "sameAs": [
+        "https://www.facebook.com/share/1AAbW51BTs/",
+        "https://linkedin.com/company/smyvisiontechnologies",
+        "https://instagram.com/smyvisiontechnologies",
+        "https://youtube.com/@smyvisiontechnologies",
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "SMYVISION TECHNOLOGIES - Best Web Development Services Vijayawada",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Website Development Vijayawada",
+              "description": "Professional business websites and responsive web design for companies in Vijayawada.",
+            },
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Custom Web Application Development",
+              "description": "Scalable custom web applications, management dashboards and business portals developed for Vijayawada businesses.",
+            },
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Automation Vijayawada",
+              "description": "Workflow automation and business management systems for companies in Vijayawada and Andhra Pradesh.",
+            },
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Chatbot Development Vijayawada",
+              "description": "Intelligent AI chatbot solutions for lead generation and customer support automation in Vijayawada.",
+            },
+          },
+        ],
       },
     },
-
     {
       "@type": "WebSite",
-
       "@id": `${WEBSITE_URL}/#website`,
-
-      name: "SMYVISION TECHNOLOGIES",
-
-      url: WEBSITE_URL,
-
-      publisher: {
-        "@id": `${WEBSITE_URL}/#organization`,
-      },
-
-      inLanguage: "en-IN",
+      "name": "SMYVISION TECHNOLOGIES - Best Web Development Company Vijayawada",
+      "url": WEBSITE_URL,
+      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada offering website development, custom web applications, business automation and AI chatbot solutions.",
+      "publisher": { "@id": `${WEBSITE_URL}/#organization` },
+      "inLanguage": "en-IN",
     },
-
     {
       "@type": "WebPage",
-
       "@id": `${WEBSITE_URL}/#webpage`,
-
-      url: WEBSITE_URL,
-
-      name:
-        "Web Development Services in Vijayawada | Best Website Development Company",
-
-      description:
-        "Professional web development services in Vijayawada by SMYVISION TECHNOLOGIES. Get responsive websites, custom web applications, SEO-friendly website development, AI solutions and business automation services across Andhra Pradesh.",
-
-      isPartOf: {
-        "@id": `${WEBSITE_URL}/#website`,
-      },
-
-      about: {
-        "@id": `${WEBSITE_URL}/#organization`,
-      },
-
-      inLanguage: "en-IN",
+      "url": WEBSITE_URL,
+      "name": "Best Web Development Company in Vijayawada | Custom Web Applications | SMYVISION TECHNOLOGIES",
+      "headline": "Best Website Development & Custom Web Application Company in Vijayawada",
+      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada. We provide responsive websites, custom web applications, SEO-friendly development, business automation and AI chatbot solutions. Top-rated web developers in Vijayawada and Andhra Pradesh.",
+      "isPartOf": { "@id": `${WEBSITE_URL}/#website` },
+      "about": { "@id": `${WEBSITE_URL}/#organization` },
+      "primaryImageOfPage": { "@type": "ImageObject", "url": `${WEBSITE_URL}/logo.png` },
+      "inLanguage": "en-IN",
     },
-
     {
       "@type": "Service",
-
-      name: "Web Development Services in Vijayawada",
-
-      serviceType: "Web Development",
-
-      description:
-        "Professional web development services including business websites, responsive web design, custom web applications and SEO-friendly website development in Vijayawada and Andhra Pradesh.",
-
-      provider: {
-        "@id": `${WEBSITE_URL}/#organization`,
-      },
-
-      areaServed: [
-        {
-          "@type": "City",
-
-          name: "Vijayawada",
-        },
-
-        {
-          "@type": "State",
-
-          name: "Andhra Pradesh",
-        },
+      "@id": `${WEBSITE_URL}/#web-development-service`,
+      "name": "Best Web Development Services in Vijayawada",
+      "serviceType": "Web Development",
+      "description": "Professional website development services in Vijayawada including business websites, responsive web design, custom web applications and SEO-friendly development by the best web development company in Vijayawada and Andhra Pradesh.",
+      "provider": { "@id": `${WEBSITE_URL}/#organization` },
+      "areaServed": [
+        { "@type": "City", "name": "Vijayawada" },
+        { "@type": "State", "name": "Andhra Pradesh" },
+      ],
+    },
+    {
+      "@type": "Service",
+      "@id": `${WEBSITE_URL}/#custom-web-app-service`,
+      "name": "Custom Web Application Development in Vijayawada",
+      "serviceType": "Custom Web Application Development",
+      "description": "Expert custom web application development services in Vijayawada. We build scalable business dashboards, management portals and custom digital platforms for businesses in Vijayawada and across Andhra Pradesh.",
+      "provider": { "@id": `${WEBSITE_URL}/#organization` },
+      "areaServed": [
+        { "@type": "City", "name": "Vijayawada" },
+        { "@type": "State", "name": "Andhra Pradesh" },
       ],
     },
   ],
 };
 
 /* =========================================================
-   ANIMATION VARIANTS
+   ANIMATION VARIANTS (UNCHANGED)
 ========================================================= */
 
 const fadeUp = {
-  hidden: {
-    opacity: 0,
-
-    y: 35,
-  },
-
-  visible: {
-    opacity: 1,
-
-    y: 0,
-
-    transition: {
-      duration: 0.65,
-
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
+  hidden: { opacity: 0, y: 35 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const stagger = {
   hidden: {},
-
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 /* =========================================================
-   HOME
+   HOME COMPONENT
 ========================================================= */
 
 const Home = () => {
   const navigate = useNavigate();
-
   const [activeProject, setActiveProject] = useState(0);
-
   const [activeFaq, setActiveFaq] = useState(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveProject((current) => (current + 1) % projects.length);
     }, PROJECT_CHANGE_TIME);
-
     return () => clearInterval(timer);
   }, []);
 
   const goToContact = () => {
     navigate("/contact");
-
-    window.scrollTo({
-      top: 0,
-
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const goToProjects = () => {
-    document.getElementById("our-work")?.scrollIntoView({
-      behavior: "smooth",
-    });
+    document.getElementById("our-work")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handlePreviousProject = () => {
-    setActiveProject(
-      (current) => (current - 1 + projects.length) % projects.length
-    );
+    setActiveProject((current) => (current - 1 + projects.length) % projects.length);
   };
 
   const handleNextProject = () => {
@@ -974,14 +583,7 @@ const Home = () => {
     const message = encodeURIComponent(
       "Hi SMYVISION TECHNOLOGIES, I would like to discuss a website or digital solution for my business. Please share more details."
     );
-
-    window.open(
-      `https://wa.me/91${PHONE_NUMBER}?text=${message}`,
-
-      "_blank",
-
-      "noopener,noreferrer"
-    );
+    window.open(`https://wa.me/91${PHONE_NUMBER}?text=${message}`, "_blank", "noopener,noreferrer");
   };
 
   const callNow = () => {
@@ -995,690 +597,239 @@ const Home = () => {
   return (
     <>
       {/* =====================================================
-          ADVANCED SEO
+          ✅ SEO OPTIMIZED HELMET
+          AGGRESSIVE VIJAYAWADA + CUSTOM WEB APP KEYWORDS
+          INCLUDES COMMON MISSPELLINGS FOR MAXIMUM CAPTURE
       ====================================================== */}
 
       <Helmet>
         <html lang="en-IN" />
 
+        {/* ✅ PRIMARY TITLE - Front-loaded with "Best" + "Custom Web Application" */}
         <title>
-          Web Development Services in Vijayawada | Best Website Development
-          Company
+          Best Web Development Company in Vijayawada | Custom Web Applications | SMYVISION TECHNOLOGIES
         </title>
 
+        {/* ✅ META DESCRIPTION - High CTR, includes all target keywords */}
         <meta
           name="description"
-          content="Looking for professional web development services in Vijayawada? SMYVISION TECHNOLOGIES provides responsive website development, custom web applications, SEO-friendly websites, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh."
+          content="SMYVISION TECHNOLOGIES is the best web development company in Vijayawada. We build responsive websites, custom web applications, business automation & AI chatbots. Top web developers in Vijayawada, Andhra Pradesh. Free consultation available."
         />
 
+        {/* ✅ KEYWORDS - Expanded with misspellings, "best", "top", service-specific terms */}
         <meta
           name="keywords"
-          content="web development services in Vijayawada, web development company in Vijayawada, best web development company Vijayawada, website development services Vijayawada, website development company Vijayawada, best website developers Vijayawada, professional website development Vijayawada, affordable web development Vijayawada, website designers Vijayawada, software company Vijayawada, web developers Andhra Pradesh, website development Andhra Pradesh, SEO friendly website development Vijayawada, AI development company Vijayawada, business automation Vijayawada"
+          content="best web development company in vijayawada, website development company vijayawada, web development services vijayawada, custom web application development vijayawada, web company in vijayawada, web developers vijayawada, web designing company vijayawada, responsive website design vijayawada, software company vijayawada, ai chatbot development vijayawada, business automation vijayawada, best web development company vijayawda, web company in vijaywaa, top web development agency vijayawada, professional web services vijayawada, website redesign vijayawada, affordable web development vijayawada, seo friendly website development vijayawada, web development andhra pradesh, smyvision technologies, best website developers vijayawada, custom web application company vijayawada"
         />
 
         <meta name="author" content="SMYVISION TECHNOLOGIES" />
-
         <meta name="publisher" content="SMYVISION TECHNOLOGIES" />
 
-        <meta name="robots" content="index, follow" />
+        {/* ✅ ROBOTS - Full indexing directives */}
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
-        <meta
-          name="googlebot"
-          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-        />
+        <meta name="application-name" content="SMYVISION TECHNOLOGIES" />
 
-        <meta
-          name="bingbot"
-          content="index, follow, max-image-preview:large"
-        />
-
-        <meta
-          name="application-name"
-          content="SMYVISION TECHNOLOGIES"
-        />
-
+        {/* ✅ LOCAL SEO - Precise geo-targeting with coordinates */}
         <meta name="geo.region" content="IN-AP" />
-
         <meta name="geo.placename" content="Vijayawada" />
+        <meta name="ICBM" content="16.5062, 80.6480" />
+        <meta name="geo.position" content="16.5062;80.6480" />
 
         <link rel="canonical" href={WEBSITE_URL} />
 
-        {/* OPEN GRAPH */}
-
+        {/* ✅ OPEN GRAPH - Social sharing optimized */}
         <meta property="og:type" content="website" />
-
         <meta property="og:url" content={WEBSITE_URL} />
-
-        <meta
-          property="og:title"
-          content="Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES"
-        />
-
-        <meta
-          property="og:description"
-          content="Professional website development, responsive web design, custom web applications, business automation and AI solutions in Vijayawada and Andhra Pradesh."
-        />
-
-        <meta
-          property="og:site_name"
-          content="SMYVISION TECHNOLOGIES"
-        />
-
+        <meta property="og:title" content="Best Web Development Company in Vijayawada | Custom Web Applications | SMYVISION TECHNOLOGIES" />
+        <meta property="og:description" content="SMYVISION TECHNOLOGIES is the best web development company in Vijayawada. Professional websites, custom web applications, business automation & AI chatbots. Top-rated web developers in Vijayawada." />
+        <meta property="og:site_name" content="SMYVISION TECHNOLOGIES" />
         <meta property="og:locale" content="en_IN" />
+        <meta property="og:image" content={`${WEBSITE_URL}/logo.png`} />
+        <meta property="og:image:alt" content="SMYVISION TECHNOLOGIES - Best Web Development Company in Vijayawada" />
 
-        {/* TWITTER / SOCIAL */}
+        {/* ✅ TWITTER CARD */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Best Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES" />
+        <meta name="twitter:description" content="Professional website development, custom web applications, business automation & AI chatbot solutions in Vijayawada and Andhra Pradesh." />
+        <meta name="twitter:image" content={`${WEBSITE_URL}/logo.png`} />
+        <meta name="twitter:image:alt" content="SMYVISION TECHNOLOGIES - Web Development Company" />
 
-        <meta
-          name="twitter:card"
-          content="summary_large_image"
-        />
+        {/* ✅ AI SEARCH / ENTITY CONTEXT */}
+        <meta name="subject" content="Best Website Development, Custom Web Applications, Business Automation & AI Solutions in Vijayawada" />
+        <meta name="classification" content="Web Development Company" />
+        <meta name="coverage" content="Vijayawada, Andhra Pradesh, India" />
+        <meta name="distribution" content="global" />
+        <meta name="rating" content="general" />
 
-        <meta
-          name="twitter:title"
-          content="Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES"
-        />
-
-        <meta
-          name="twitter:description"
-          content="Professional and SEO-friendly website development services in Vijayawada and Andhra Pradesh."
-        />
-
-        {/* AI SEARCH / ENTITY CONTEXT */}
-
-        <meta
-          name="subject"
-          content="Website Development, Web Development, AI Solutions and Business Automation"
-        />
-
-        <meta
-          name="classification"
-          content="Web Development Company"
-        />
-
-        <meta
-          name="coverage"
-          content="Vijayawada, Andhra Pradesh, India"
-        />
-
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
+        {/* ✅ STRUCTURED DATA SCRIPTS */}
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
       <style>{styles}</style>
 
-      <main className="smy-home">
-        {/* =====================================================
-            HERO
-        ====================================================== */}
+      {/* =====================================================
+          ALL UI REMAINS 100% UNCHANGED BELOW
+      ====================================================== */}
 
+      <main className="smy-home">
+        {/* HERO SECTION - UNCHANGED */}
         <section className="hero-section">
           <div className="hero-grid" />
-
-          <motion.div
-            className="hero-orb orb-one"
-            animate={{
-              x: [0, 40, 0],
-
-              y: [0, -30, 0],
-            }}
-            transition={{
-              duration: 10,
-
-              repeat: Infinity,
-
-              ease: "easeInOut",
-            }}
-          />
-
-          <motion.div
-            className="hero-orb orb-two"
-            animate={{
-              x: [0, -35, 0],
-
-              y: [0, 30, 0],
-            }}
-            transition={{
-              duration: 12,
-
-              repeat: Infinity,
-
-              ease: "easeInOut",
-            }}
-          />
-
+          <motion.div className="hero-orb orb-one" animate={{ x: [0, 40, 0], y: [0, -30, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} />
+          <motion.div className="hero-orb orb-two" animate={{ x: [0, -35, 0], y: [0, 30, 0] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }} />
           <div className="container hero-layout">
-            <motion.div
-              className="hero-content"
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
-            >
-              <motion.div
-                className="hero-badge"
-                variants={fadeUp}
-              >
+            <motion.div className="hero-content" initial="hidden" animate="visible" variants={stagger}>
+              <motion.div className="hero-badge" variants={fadeUp}>
                 <FaWandMagicSparkles />
-
-                <span>
-                  Building Digital Experiences That Drive Business Forward
-                </span>
+                <span>Building Digital Experiences That Drive Business Forward</span>
               </motion.div>
-
               <motion.h1 variants={fadeUp}>
                 Turning Business Ideas Into
                 <span> Powerful Digital Experiences.</span>
               </motion.h1>
-
-              <motion.p
-                className="hero-description"
-                variants={fadeUp}
-              >
-                We combine modern technology, thoughtful design and smart
-                digital solutions to help businesses build stronger brands,
-                simplify operations and create better customer experiences.
+              <motion.p className="hero-description" variants={fadeUp}>
+                We combine modern technology, thoughtful design and smart digital solutions to help businesses build stronger brands, simplify operations and create better customer experiences.
               </motion.p>
-
-              <motion.div
-                className="hero-actions"
-                variants={fadeUp}
-              >
-                <button
-                  type="button"
-                  className="primary-button"
-                  onClick={goToContact}
-                >
+              <motion.div className="hero-actions" variants={fadeUp}>
+                <button type="button" className="primary-button" onClick={goToContact}>
                   Get a Free Quote
-
                   <FaArrowRight />
                 </button>
-
-                <button
-                  type="button"
-                  className="secondary-button"
-                  onClick={goToProjects}
-                >
+                <button type="button" className="secondary-button" onClick={goToProjects}>
                   Explore Our Work
-
                   <FaArrowUpRightFromSquare />
                 </button>
               </motion.div>
-
-              <motion.div
-                className="hero-features"
-                variants={fadeUp}
-              >
-                <span>
-                  <FaCircleCheck />
-
-                  Professional Development
-                </span>
-
-                <span>
-                  <FaCircleCheck />
-
-                  Smart Digital Solutions
-                </span>
-
-                <span>
-                  <FaCircleCheck />
-
-                  Growth-Focused Approach
-                </span>
+              <motion.div className="hero-features" variants={fadeUp}>
+                <span><FaCircleCheck />Professional Development</span>
+                <span><FaCircleCheck />Smart Digital Solutions</span>
+                <span><FaCircleCheck />Growth-Focused Approach</span>
               </motion.div>
             </motion.div>
-
-            {/* HERO VISUAL */}
-
-            <motion.div
-              className="hero-visual"
-              initial={{
-                opacity: 0,
-
-                scale: 0.9,
-
-                rotateY: 8,
-              }}
-              animate={{
-                opacity: 1,
-
-                scale: 1,
-
-                rotateY: 0,
-              }}
-              transition={{
-                duration: 0.9,
-
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
+            <motion.div className="hero-visual" initial={{ opacity: 0, scale: 0.9, rotateY: 8 }} animate={{ opacity: 1, scale: 1, rotateY: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
               <div className="browser-card">
                 <div className="browser-top">
-                  <div className="browser-dots">
-                    <span />
-
-                    <span />
-
-                    <span />
-                  </div>
-
-                  <div className="browser-url">
-                    smyvisiontechnologies.com
-                  </div>
+                  <div className="browser-dots"><span /><span /><span /></div>
+                  <div className="browser-url">smyvisiontechnologies.com</div>
                 </div>
-
                 <div className="browser-content">
-                  <div className="browser-brand">
-                    <FaCode />
-
-                    <span>SMYVISION</span>
-                  </div>
-
+                  <div className="browser-brand"><FaCode /><span>SMYVISION</span></div>
                   <div className="browser-main-content">
                     <span>DIGITAL INNOVATION</span>
-
-                    <h2>
-                      Create.
-                      <br />
-                      Transform.
-                      <br />
-                      Grow.
-                    </h2>
-
-                    <p>
-                      Digital solutions designed around real business goals.
-                    </p>
-
-                    <div className="fake-button">
-                      Start Your Project
-                    </div>
+                    <h2>Create.<br />Transform.<br />Grow.</h2>
+                    <p>Digital solutions designed around real business goals.</p>
+                    <div className="fake-button">Start Your Project</div>
                   </div>
-
-                  <motion.div
-                    className="browser-widget widget-one"
-                    animate={{
-                      y: [0, -10, 0],
-                    }}
-                    transition={{
-                      duration: 3.5,
-
-                      repeat: Infinity,
-                    }}
-                  >
-                    <FaRocket />
-
-                    <div>
-                      <strong>Growth Ready</strong>
-
-                      <span>Built for business</span>
-                    </div>
+                  <motion.div className="browser-widget widget-one" animate={{ y: [0, -10, 0] }} transition={{ duration: 3.5, repeat: Infinity }}>
+                    <FaRocket /><div><strong>Growth Ready</strong><span>Built for business</span></div>
                   </motion.div>
-
-                  <motion.div
-                    className="browser-widget widget-two"
-                    animate={{
-                      y: [0, 10, 0],
-                    }}
-                    transition={{
-                      duration: 4,
-
-                      repeat: Infinity,
-                    }}
-                  >
-                    <FaBolt />
-
-                    <div>
-                      <strong>Fast Experience</strong>
-
-                      <span>Modern performance</span>
-                    </div>
+                  <motion.div className="browser-widget widget-two" animate={{ y: [0, 10, 0] }} transition={{ duration: 4, repeat: Infinity }}>
+                    <FaBolt /><div><strong>Fast Experience</strong><span>Modern performance</span></div>
                   </motion.div>
                 </div>
               </div>
-
-              <motion.div
-                className="floating-card floating-one"
-                animate={{
-                  y: [0, -13, 0],
-
-                  rotate: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 4,
-
-                  repeat: Infinity,
-                }}
-              >
-                <FaMagnifyingGlass />
-
-                <div>
-                  <strong>SEO Ready</strong>
-
-                  <small>Search-friendly foundation</small>
-                </div>
+              <motion.div className="floating-card floating-one" animate={{ y: [0, -13, 0], rotate: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity }}>
+                <FaMagnifyingGlass /><div><strong>SEO Ready</strong><small>Search-friendly foundation</small></div>
               </motion.div>
-
-              <motion.div
-                className="floating-card floating-two"
-                animate={{
-                  y: [0, 12, 0],
-
-                  rotate: [0, -1, 0],
-                }}
-                transition={{
-                  duration: 5,
-
-                  repeat: Infinity,
-                }}
-              >
-                <FaMobileScreenButton />
-
-                <div>
-                  <strong>Responsive</strong>
-
-                  <small>Built for every device</small>
-                </div>
+              <motion.div className="floating-card floating-two" animate={{ y: [0, 12, 0], rotate: [0, -1, 0] }} transition={{ duration: 5, repeat: Infinity }}>
+                <FaMobileScreenButton /><div><strong>Responsive</strong><small>Built for every device</small></div>
               </motion.div>
             </motion.div>
           </div>
         </section>
 
-        {/* =====================================================
-            STATS
-        ====================================================== */}
-
+        {/* STATS SECTION - UNCHANGED */}
         <section className="stats-section">
           <div className="container">
             <div className="stats-grid">
-              <div>
-                <strong>15+</strong>
-
-                <span>Projects Worked On</span>
-              </div>
-
-              <div>
-                <strong>100%</strong>
-
-                <span>Responsive Development</span>
-              </div>
-
-              <div>
-                <strong>3+</strong>
-
-                <span>Core Digital Solutions</span>
-              </div>
-
-              <div>
-                <strong>24/7</strong>
-
-                <span>Your Digital Presence</span>
-              </div>
+              <div><strong>15+</strong><span>Projects Worked On</span></div>
+              <div><strong>100%</strong><span>Responsive Development</span></div>
+              <div><strong>3+</strong><span>Core Digital Solutions</span></div>
+              <div><strong>24/7</strong><span>Your Digital Presence</span></div>
             </div>
           </div>
         </section>
 
-        {/* =====================================================
-            MAIN MARQUEE
-        ====================================================== */}
-
+        {/* MAIN MARQUEE - UNCHANGED */}
         <section className="services-marquee-section">
-          <p>
-            Digital solutions created for modern business growth
-          </p>
-
+          <p>Digital solutions created for modern business growth</p>
           <div className="services-marquee">
             <div className="services-marquee-track">
-              {[...marqueeItems, ...marqueeItems].map(
-                (item, index) => (
-                  <div
-                    className="services-marquee-item"
-                    key={`${item}-${index}`}
-                  >
-                    <FaWandMagicSparkles />
-
-                    {item}
-                  </div>
-                )
-              )}
+              {[...marqueeItems, ...marqueeItems].map((item, index) => (
+                <div className="services-marquee-item" key={`${item}-${index}`}>
+                  <FaWandMagicSparkles />{item}
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* =====================================================
-            INTRODUCTION
-        ====================================================== */}
-
+        {/* INTRODUCTION - UNCHANGED */}
         <section className="section intro-section">
           <div className="container intro-layout">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-              }}
-              variants={stagger}
-            >
-              <motion.span
-                className="eyebrow"
-                variants={fadeUp}
-              >
-                BUILD A STRONGER DIGITAL BUSINESS
-              </motion.span>
-
-              <motion.h2 variants={fadeUp}>
-                Technology Should Help Your Business Move Faster, Work Smarter
-                and Connect Better.
-              </motion.h2>
-
-              <motion.p variants={fadeUp}>
-                A digital presence should do more than simply display
-                information. It should clearly communicate what your business
-                offers and make it easy for potential customers to take the
-                next step.
-              </motion.p>
-
-              <motion.p variants={fadeUp}>
-                At <strong>SMYVISION TECHNOLOGIES</strong>, we create
-                professional digital solutions that combine design,
-                development, automation and intelligent technology.
-              </motion.p>
-
-              <motion.p variants={fadeUp}>
-                Whether you need a professional website, a custom business
-                platform or an intelligent automation system, we focus on
-                creating practical solutions designed around your business.
-              </motion.p>
-
-              <motion.button
-                variants={fadeUp}
-                type="button"
-                className="primary-button intro-button"
-                onClick={goToContact}
-              >
-                Discuss Your Project
-
-                <FaArrowRight />
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+              <motion.span className="eyebrow" variants={fadeUp}>BUILD A STRONGER DIGITAL BUSINESS</motion.span>
+              <motion.h2 variants={fadeUp}>Technology Should Help Your Business Move Faster, Work Smarter and Connect Better.</motion.h2>
+              <motion.p variants={fadeUp}>A digital presence should do more than simply display information. It should clearly communicate what your business offers and make it easy for potential customers to take the next step.</motion.p>
+              <motion.p variants={fadeUp}>At <strong>SMYVISION TECHNOLOGIES</strong>, we create professional digital solutions that combine design, development, automation and intelligent technology.</motion.p>
+              <motion.p variants={fadeUp}>Whether you need a professional website, a custom business platform or an intelligent automation system, we focus on creating practical solutions designed around your business.</motion.p>
+              <motion.button variants={fadeUp} type="button" className="primary-button intro-button" onClick={goToContact}>
+                Discuss Your Project<FaArrowRight />
               </motion.button>
             </motion.div>
-
-            <motion.div
-              className="intro-visual-card"
-              initial={{
-                opacity: 0,
-
-                rotateY: 12,
-
-                scale: 0.94,
-              }}
-              whileInView={{
-                opacity: 1,
-
-                rotateY: 0,
-
-                scale: 1,
-              }}
-              viewport={{
-                once: true,
-              }}
-            >
-              <div className="intro-icon">
-                <FaGlobe />
-              </div>
-
+            <motion.div className="intro-visual-card" initial={{ opacity: 0, rotateY: 12, scale: 0.94 }} whileInView={{ opacity: 1, rotateY: 0, scale: 1 }} viewport={{ once: true }}>
+              <div className="intro-icon"><FaGlobe /></div>
               <span>ONE DIGITAL PARTNER</span>
-
-              <h3>
-                From Your First Idea to a Complete Digital Solution.
-              </h3>
-
+              <h3>From Your First Idea to a Complete Digital Solution.</h3>
               <div className="intro-points">
-                {[
-                  "Professional brand presentation",
-                  "Responsive customer experiences",
-                  "Smart business automation",
-                  "Modern technology stack",
-                  "SEO-ready development",
-                  "AI-powered solutions",
-                  "Clear customer journeys",
-                  "Scalable digital systems",
-                ].map((item) => (
-                  <div key={item}>
-                    <FaCheck />
-
-                    {item}
-                  </div>
+                {["Professional brand presentation", "Responsive customer experiences", "Smart business automation", "Modern technology stack", "SEO-ready development", "AI-powered solutions", "Clear customer journeys", "Scalable digital systems"].map((item) => (
+                  <div key={item}><FaCheck />{item}</div>
                 ))}
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* =====================================================
-            CTA STRIP
-        ====================================================== */}
-
+        {/* CTA STRIP - UNCHANGED */}
         <section className="quote-strip-section">
           <div className="container">
-            <motion.div
-              className="quote-strip"
-              whileInView={{
-                opacity: [0, 1],
-
-                y: [30, 0],
-              }}
-              viewport={{
-                once: true,
-              }}
-            >
-              <div className="quote-strip-icon">
-                <FaLightbulb />
-              </div>
-
+            <motion.div className="quote-strip" whileInView={{ opacity: [0, 1], y: [30, 0] }} viewport={{ once: true }}>
+              <div className="quote-strip-icon"><FaLightbulb /></div>
               <div>
                 <span>HAVE AN IDEA?</span>
-
-                <h2>
-                  Let's Explore the Right Digital Solution for Your Business.
-                </h2>
-
-                <p>
-                  Share your requirements and get a free initial project
-                  consultation.
-                </p>
+                <h2>Let's Explore the Right Digital Solution for Your Business.</h2>
+                <p>Share your requirements and get a free initial project consultation.</p>
               </div>
-
-              <button
-                type="button"
-                onClick={goToContact}
-              >
-                Get a Free Quote
-
-                <FaArrowRight />
-              </button>
+              <button type="button" onClick={goToContact}>Get a Free Quote<FaArrowRight /></button>
             </motion.div>
           </div>
         </section>
 
-        {/* =====================================================
-            SERVICES
-        ====================================================== */}
-
+        {/* SERVICES - UNCHANGED */}
         <section className="section services-section">
           <div className="container">
-            <SectionHeader
-              eyebrow="OUR DIGITAL SERVICES"
-              title="Technology Solutions Built to Support Real Business Growth"
-              text="We combine strategy, modern design and technology to create digital solutions that solve practical business challenges."
-            />
-
+            <SectionHeader eyebrow="OUR DIGITAL SERVICES" title="Technology Solutions Built to Support Real Business Growth" text="We combine strategy, modern design and technology to create digital solutions that solve practical business challenges." />
             <div className="services-grid">
               {services.map((service, index) => (
-                <motion.article
-                  className="service-card"
-                  key={service.title}
-                  initial={{
-                    opacity: 0,
-
-                    y: 40,
-
-                    rotateX: 5,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-
-                    y: 0,
-
-                    rotateX: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                  }}
-                  transition={{
-                    delay: index * 0.1,
-                  }}
-                >
+                <motion.article className="service-card" key={service.title} initial={{ opacity: 0, y: 40, rotateX: 5 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
                   <div className="service-image-wrap">
-                    <img
-                      src={service.image}
-                      alt={`${service.title} by SMYVISION TECHNOLOGIES`}
-                    />
-
-                    <div className="service-icon">
-                      {service.icon}
-                    </div>
+                    <img src={service.image} alt={`${service.title} by SMYVISION TECHNOLOGIES`} />
+                    <div className="service-icon">{service.icon}</div>
                   </div>
-
                   <div className="service-body">
-                    <span className="service-count">
-                      0{index + 1}
-                    </span>
-
+                    <span className="service-count">0{index + 1}</span>
                     <h3>{service.title}</h3>
-
                     <p>{service.description}</p>
-
                     <div className="service-features">
                       {service.features.map((feature) => (
-                        <span key={feature}>
-                          <FaCircleCheck />
-
-                          {feature}
-                        </span>
+                        <span key={feature}><FaCircleCheck />{feature}</span>
                       ))}
                     </div>
-
-                    <button
-                      type="button"
-                      onClick={goToContact}
-                    >
-                      Explore This Service
-
-                      <FaArrowRight />
-                    </button>
+                    <button type="button" onClick={goToContact}>Explore This Service<FaArrowRight /></button>
                   </div>
                 </motion.article>
               ))}
@@ -1686,61 +837,20 @@ const Home = () => {
           </div>
         </section>
 
-        {/* =====================================================
-            BENEFITS
-        ====================================================== */}
-
+        {/* BENEFITS - UNCHANGED */}
         <section className="section benefits-section">
           <div className="container benefits-layout">
             <div>
-              <span className="eyebrow">
-                CREATED FOR BETTER RESULTS
-              </span>
-
-              <h2>
-                Every Detail of Your Digital Experience Matters.
-              </h2>
-
-              <p>
-                We focus on creating websites and digital solutions that are
-                professional, practical and easy for customers to use.
-              </p>
-
-              <button
-                type="button"
-                className="primary-button"
-                onClick={goToContact}
-              >
-                Start Your Project
-
-                <FaArrowRight />
-              </button>
+              <span className="eyebrow">CREATED FOR BETTER RESULTS</span>
+              <h2>Every Detail of Your Digital Experience Matters.</h2>
+              <p>We focus on creating websites and digital solutions that are professional, practical and easy for customers to use.</p>
+              <button type="button" className="primary-button" onClick={goToContact}>Start Your Project<FaArrowRight /></button>
             </div>
-
             <div className="benefits-grid">
               {benefits.map((benefit, index) => (
-                <motion.div
-                  className="benefit-card"
-                  key={benefit.title}
-                  whileInView={{
-                    opacity: [0, 1],
-
-                    y: [25, 0],
-                  }}
-                  viewport={{
-                    once: true,
-                  }}
-                  transition={{
-                    delay: index * 0.08,
-                  }}
-                  whileHover={{
-                    y: -8,
-                  }}
-                >
+                <motion.div className="benefit-card" key={benefit.title} whileInView={{ opacity: [0, 1], y: [25, 0] }} viewport={{ once: true }} transition={{ delay: index * 0.08 }} whileHover={{ y: -8 }}>
                   <div>{benefit.icon}</div>
-
                   <h3>{benefit.title}</h3>
-
                   <p>{benefit.description}</p>
                 </motion.div>
               ))}
@@ -1748,163 +858,50 @@ const Home = () => {
           </div>
         </section>
 
-        {/* =====================================================
-            PROJECTS
-        ====================================================== */}
-
-        <section
-          className="section projects-section"
-          id="our-work"
-        >
+        {/* PROJECTS - UNCHANGED */}
+        <section className="section projects-section" id="our-work">
           <div className="container">
-            <SectionHeader
-              eyebrow="OUR SELECTED WORK"
-              title="Digital Experiences Created for Real Businesses"
-              text="Explore some of the websites we have designed and developed across different business industries."
-            />
-
+            <SectionHeader eyebrow="OUR SELECTED WORK" title="Digital Experiences Created for Real Businesses" text="Explore some of the websites we have designed and developed across different business industries." />
             <div className="project-showcase">
-              <button
-                className="project-arrow left"
-                type="button"
-                onClick={handlePreviousProject}
-              >
-                <FaChevronLeft />
-              </button>
-
+              <button className="project-arrow left" type="button" onClick={handlePreviousProject}><FaChevronLeft /></button>
               <div className="project-main-card">
                 <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeProject}
-                    className="project-main-layout"
-                    initial={{
-                      opacity: 0,
-
-                      scale: 0.97,
-
-                      x: 25,
-                    }}
-                    animate={{
-                      opacity: 1,
-
-                      scale: 1,
-
-                      x: 0,
-                    }}
-                    exit={{
-                      opacity: 0,
-
-                      x: -25,
-                    }}
-                  >
+                  <motion.div key={activeProject} className="project-main-layout" initial={{ opacity: 0, scale: 0.97, x: 25 }} animate={{ opacity: 1, scale: 1, x: 0 }} exit={{ opacity: 0, x: -25 }}>
                     <div className="project-image-side">
                       <div className="project-browser">
                         <div className="project-browser-top">
-                          <div>
-                            <span />
-
-                            <span />
-
-                            <span />
-                          </div>
-
-                          <p>
-                            {projects[activeProject].url}
-                          </p>
+                          <div><span /><span /><span /></div>
+                          <p>{projects[activeProject].url}</p>
                         </div>
-
-                        <img
-                          src={projects[activeProject].image}
-                          alt={projects[activeProject].title}
-                        />
+                        <img src={projects[activeProject].image} alt={projects[activeProject].title} />
                       </div>
                     </div>
-
                     <div className="project-info">
-                      <span>
-                        {projects[activeProject].category}
-                      </span>
-
-                      <h3>
-                        {projects[activeProject].title}
-                      </h3>
-
-                      <p>
-                        {projects[activeProject].description}
-                      </p>
-
-                      <a
-                        href={projects[activeProject].url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Visit Live Website
-
-                        <FaArrowUpRightFromSquare />
-                      </a>
+                      <span>{projects[activeProject].category}</span>
+                      <h3>{projects[activeProject].title}</h3>
+                      <p>{projects[activeProject].description}</p>
+                      <a href={projects[activeProject].url} target="_blank" rel="noopener noreferrer">Visit Live Website<FaArrowUpRightFromSquare /></a>
                     </div>
                   </motion.div>
                 </AnimatePresence>
-
                 <div className="project-progress">
-                  <motion.div
-                    key={activeProject}
-                    initial={{
-                      scaleX: 0,
-                    }}
-                    animate={{
-                      scaleX: 1,
-                    }}
-                    transition={{
-                      duration:
-                        PROJECT_CHANGE_TIME / 1000,
-
-                      ease: "linear",
-                    }}
-                  />
+                  <motion.div key={activeProject} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: PROJECT_CHANGE_TIME / 1000, ease: "linear" }} />
                 </div>
               </div>
-
-              <button
-                className="project-arrow right"
-                type="button"
-                onClick={handleNextProject}
-              >
-                <FaChevronRight />
-              </button>
+              <button className="project-arrow right" type="button" onClick={handleNextProject}><FaChevronRight /></button>
             </div>
-
-            {/* PROJECT MARQUEE ROW ONE */}
-
             <div className="project-marquee-area">
               <div className="project-marquee marquee-left-right">
                 <div className="project-marquee-track">
-                  {[
-                    ...projectMarqueeRowOne,
-                    ...projectMarqueeRowOne,
-                    ...projectMarqueeRowOne,
-                  ].map((project, index) => (
-                    <ProjectMarqueeCard
-                      project={project}
-                      key={`${project.title}-row1-${index}`}
-                    />
+                  {[...projectMarqueeRowOne, ...projectMarqueeRowOne, ...projectMarqueeRowOne].map((project, index) => (
+                    <ProjectMarqueeCard project={project} key={`${project.title}-row1-${index}`} />
                   ))}
                 </div>
               </div>
-
-              {/* PROJECT MARQUEE ROW TWO */}
-
               <div className="project-marquee marquee-right-left">
                 <div className="project-marquee-track">
-                  {[
-                    ...projectMarqueeRowTwo,
-                    ...projectMarqueeRowTwo,
-                    ...projectMarqueeRowTwo,
-                  ].map((project, index) => (
-                    <ProjectMarqueeCard
-                      project={project}
-                      key={`${project.title}-row2-${index}`}
-                    />
+                  {[...projectMarqueeRowTwo, ...projectMarqueeRowTwo, ...projectMarqueeRowTwo].map((project, index) => (
+                    <ProjectMarqueeCard project={project} key={`${project.title}-row2-${index}`} />
                   ))}
                 </div>
               </div>
@@ -1912,51 +909,15 @@ const Home = () => {
           </div>
         </section>
 
-        {/* =====================================================
-            TECHNOLOGY
-        ====================================================== */}
-
+        {/* TECHNOLOGY - UNCHANGED */}
         <section className="section technology-section">
           <div className="container">
-            <SectionHeader
-              eyebrow="OUR TECHNOLOGY STACK"
-              title="Modern Technologies Behind Powerful Digital Solutions"
-              text="We choose technologies according to the actual requirements of each project, focusing on performance, scalability and maintainability."
-            />
-
+            <SectionHeader eyebrow="OUR TECHNOLOGY STACK" title="Modern Technologies Behind Powerful Digital Solutions" text="We choose technologies according to the actual requirements of each project, focusing on performance, scalability and maintainability." />
             <div className="technology-grid">
               {technologies.map((technology, index) => (
-                <motion.div
-                  key={technology.name}
-                  className="technology-card"
-                  initial={{
-                    opacity: 0,
-
-                    scale: 0.9,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-
-                    scale: 1,
-                  }}
-                  viewport={{
-                    once: true,
-                  }}
-                  transition={{
-                    delay: index * 0.04,
-                  }}
-                  whileHover={{
-                    y: -8,
-
-                    scale: 1.03,
-                  }}
-                >
-                  <div>
-                    {technology.icon}
-                  </div>
-
+                <motion.div key={technology.name} className="technology-card" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.04 }} whileHover={{ y: -8, scale: 1.03 }}>
+                  <div>{technology.icon}</div>
                   <h3>{technology.name}</h3>
-
                   <p>{technology.description}</p>
                 </motion.div>
               ))}
@@ -1964,116 +925,35 @@ const Home = () => {
           </div>
         </section>
 
-        {/* =====================================================
-            HOW WE WORK PATH
-        ====================================================== */}
-
+        {/* HOW WE WORK - UNCHANGED */}
         <section className="section process-section">
           <div className="container">
-            <SectionHeader
-              eyebrow="HOW WE WORK"
-              title="A Clear Path From Your Business Idea to a Digital Solution"
-              text="Our structured process keeps every stage organized while giving each project the flexibility it needs."
-            />
-
+            <SectionHeader eyebrow="HOW WE WORK" title="A Clear Path From Your Business Idea to a Digital Solution" text="Our structured process keeps every stage organized while giving each project the flexibility it needs." />
             <div className="process-path">
               <div className="process-path-line" />
-
               {processSteps.map((step, index) => (
-                <motion.div
-                  className={`process-path-item ${
-                    index % 2 === 0 ? "left-side" : "right-side"
-                  }`}
-                  key={step.number}
-                  initial={{
-                    opacity: 0,
-
-                    x:
-                      index % 2 === 0
-                        ? -50
-                        : 50,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-
-                    x: 0,
-                  }}
-                  viewport={{
-                    once: true,
-
-                    amount: 0.35,
-                  }}
-                >
+                <motion.div className={`process-path-item ${index % 2 === 0 ? "left-side" : "right-side"}`} key={step.number} initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }}>
                   <div className="process-content">
-                    <span>
-                      STEP {step.number}
-                    </span>
-
+                    <span>STEP {step.number}</span>
                     <h3>{step.title}</h3>
-
                     <p>{step.description}</p>
                   </div>
-
-                  <motion.div
-                    className="process-center-icon"
-                    whileInView={{
-                      scale: [0.6, 1.15, 1],
-                    }}
-                    viewport={{
-                      once: true,
-                    }}
-                  >
-                    {step.icon}
-                  </motion.div>
+                  <motion.div className="process-center-icon" whileInView={{ scale: [0.6, 1.15, 1] }} viewport={{ once: true }}>{step.icon}</motion.div>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* =====================================================
-            WHY US
-        ====================================================== */}
-
+        {/* WHY US - UNCHANGED */}
         <section className="section why-section">
           <div className="container">
-            <SectionHeader
-              eyebrow="WHY SMYVISION"
-              title="A Digital Partner Focused on Your Business Goals"
-              text="Our goal is to combine technology and practical thinking to create solutions that genuinely support your business."
-            />
-
+            <SectionHeader eyebrow="WHY SMYVISION" title="A Digital Partner Focused on Your Business Goals" text="Our goal is to combine technology and practical thinking to create solutions that genuinely support your business." />
             <div className="why-grid">
               {reasons.map((reason, index) => (
-                <motion.div
-                  className="why-card"
-                  key={reason.title}
-                  initial={{
-                    opacity: 0,
-
-                    y: 30,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                  }}
-                  transition={{
-                    delay: index * 0.06,
-                  }}
-                  whileHover={{
-                    y: -10,
-                  }}
-                >
-                  <div>
-                    {reason.icon}
-                  </div>
-
+                <motion.div className="why-card" key={reason.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }} whileHover={{ y: -10 }}>
+                  <div>{reason.icon}</div>
                   <h3>{reason.title}</h3>
-
                   <p>{reason.description}</p>
                 </motion.div>
               ))}
@@ -2081,113 +961,37 @@ const Home = () => {
           </div>
         </section>
 
-        {/* =====================================================
-            INDUSTRIES
-        ====================================================== */}
-
+        {/* INDUSTRIES - UNCHANGED */}
         <section className="industries-section">
           <div className="container industries-layout">
             <div>
-              <span className="eyebrow">
-                INDUSTRIES WE SUPPORT
-              </span>
-
-              <h2>
-                Digital Solutions Adapted to Different Business Industries.
-              </h2>
-
-              <p>
-                Different industries have different customers, workflows and
-                challenges. Our approach is built around understanding those
-                differences.
-              </p>
+              <span className="eyebrow">INDUSTRIES WE SUPPORT</span>
+              <h2>Digital Solutions Adapted to Different Business Industries.</h2>
+              <p>Different industries have different customers, workflows and challenges. Our approach is built around understanding those differences.</p>
             </div>
-
             <div className="industry-tags">
               {industries.map((industry) => (
-                <motion.span
-                  key={industry}
-                  whileHover={{
-                    scale: 1.07,
-
-                    y: -3,
-                  }}
-                >
-                  <FaWandMagicSparkles />
-
-                  {industry}
-                </motion.span>
+                <motion.span key={industry} whileHover={{ scale: 1.07, y: -3 }}><FaWandMagicSparkles />{industry}</motion.span>
               ))}
             </div>
           </div>
         </section>
 
-        {/* =====================================================
-            REVIEWS
-        ====================================================== */}
-
+        {/* REVIEWS - UNCHANGED */}
         <section className="section reviews-section">
           <div className="container">
-            <SectionHeader
-              eyebrow="CLIENT EXPERIENCES"
-              title="What Businesses Say About Working With Us"
-              text="Every project begins with understanding the business and ends with creating a digital experience designed around its requirements."
-            />
-
+            <SectionHeader eyebrow="CLIENT EXPERIENCES" title="What Businesses Say About Working With Us" text="Every project begins with understanding the business and ends with creating a digital experience designed around its requirements." />
             <div className="reviews-grid">
               {reviews.map((review, index) => (
-                <motion.article
-                  className="review-card"
-                  key={review.name}
-                  initial={{
-                    opacity: 0,
-
-                    rotateY: 8,
-
-                    y: 30,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-
-                    rotateY: 0,
-
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                  }}
-                  transition={{
-                    delay: index * 0.1,
-                  }}
-                >
+                <motion.article className="review-card" key={review.name} initial={{ opacity: 0, rotateY: 8, y: 30 }} whileInView={{ opacity: 1, rotateY: 0, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
                   <div className="review-header">
-                    <div className="quote-icon">
-                      <FaQuoteLeft />
-                    </div>
-
-                    <div className="stars">
-                      {[1, 2, 3, 4, 5].map(
-                        (star) => (
-                          <FaStar key={star} />
-                        )
-                      )}
-                    </div>
+                    <div className="quote-icon"><FaQuoteLeft /></div>
+                    <div className="stars">{[1, 2, 3, 4, 5].map((star) => (<FaStar key={star} />))}</div>
                   </div>
-
-                  <p>
-                    "{review.review}"
-                  </p>
-
+                  <p>"{review.review}"</p>
                   <div className="review-user">
-                    <div>
-                      {review.name.charAt(0)}
-                    </div>
-
-                    <span>
-                      <strong>{review.name}</strong>
-
-                      <small>{review.role}</small>
-                    </span>
+                    <div>{review.name.charAt(0)}</div>
+                    <span><strong>{review.name}</strong><small>{review.role}</small></span>
                   </div>
                 </motion.article>
               ))}
@@ -2195,209 +999,46 @@ const Home = () => {
           </div>
         </section>
 
-        {/* =====================================================
-            MORE CONTENT
-        ====================================================== */}
-
+        {/* MORE CONTENT - UNCHANGED */}
         <section className="section digital-growth-section">
           <div className="container digital-growth-layout">
             <div>
-              <span className="eyebrow">
-                YOUR DIGITAL BUSINESS FOUNDATION
-              </span>
-
-              <h2>
-                Create a Digital Presence That Continues Working for Your
-                Business.
-              </h2>
-
-              <p>
-                Your digital presence gives customers a place to understand who
-                you are, explore your services and communicate with your
-                business whenever they need you.
-              </p>
-
-              <p>
-                A professional website also creates the foundation for future
-                opportunities such as online marketing, customer automation,
-                digital lead generation and business management systems.
-              </p>
-
-              <p>
-                We focus on developing solutions that can support your business
-                today while remaining flexible enough for future improvements
-                and expansion.
-              </p>
-
-              <button
-                type="button"
-                className="primary-button"
-                onClick={goToContact}
-              >
-                Build Your Digital Presence
-
-                <FaArrowRight />
-              </button>
+              <span className="eyebrow">YOUR DIGITAL BUSINESS FOUNDATION</span>
+              <h2>Create a Digital Presence That Continues Working for Your Business.</h2>
+              <p>Your digital presence gives customers a place to understand who you are, explore your services and communicate with your business whenever they need you.</p>
+              <p>A professional website also creates the foundation for future opportunities such as online marketing, customer automation, digital lead generation and business management systems.</p>
+              <p>We focus on developing solutions that can support your business today while remaining flexible enough for future improvements and expansion.</p>
+              <button type="button" className="primary-button" onClick={goToContact}>Build Your Digital Presence<FaArrowRight /></button>
             </div>
-
             <div className="growth-cards">
-              <motion.div
-                whileHover={{
-                  y: -8,
-                }}
-              >
-                <FaBuilding />
-
-                <h3>For Growing Businesses</h3>
-
-                <p>
-                  Build a professional digital foundation that strengthens your
-                  business presence.
-                </p>
-              </motion.div>
-
-              <motion.div
-                whileHover={{
-                  y: -8,
-                }}
-              >
-                <FaBriefcase />
-
-                <h3>For Established Companies</h3>
-
-                <p>
-                  Modernize existing processes and digital experiences with
-                  smarter solutions.
-                </p>
-              </motion.div>
-
-              <motion.div
-                whileHover={{
-                  y: -8,
-                }}
-              >
-                <FaLightbulb />
-
-                <h3>For New Ideas</h3>
-
-                <p>
-                  Turn an idea into a functional website, platform or digital
-                  business solution.
-                </p>
-              </motion.div>
+              <motion.div whileHover={{ y: -8 }}><FaBuilding /><h3>For Growing Businesses</h3><p>Build a professional digital foundation that strengthens your business presence.</p></motion.div>
+              <motion.div whileHover={{ y: -8 }}><FaBriefcase /><h3>For Established Companies</h3><p>Modernize existing processes and digital experiences with smarter solutions.</p></motion.div>
+              <motion.div whileHover={{ y: -8 }}><FaLightbulb /><h3>For New Ideas</h3><p>Turn an idea into a functional website, platform or digital business solution.</p></motion.div>
             </div>
           </div>
         </section>
 
-        {/* =====================================================
-            FAQ
-        ====================================================== */}
-
+        {/* FAQ - UNCHANGED */}
         <section className="section faq-section">
           <div className="container faq-layout">
             <div className="faq-heading">
-              <span className="eyebrow">
-                FREQUENTLY ASKED QUESTIONS
-              </span>
-
-              <h2>
-                Questions About Working With Us?
-              </h2>
-
-              <p>
-                Find answers to common questions about our website development,
-                digital solutions and project process.
-              </p>
-
-              <button
-                type="button"
-                className="faq-whatsapp-button"
-                onClick={openWhatsApp}
-              >
-                <FaWhatsapp />
-
-                Ask Us on WhatsApp
-              </button>
+              <span className="eyebrow">FREQUENTLY ASKED QUESTIONS</span>
+              <h2>Questions About Working With Us?</h2>
+              <p>Find answers to common questions about our website development, digital solutions and project process.</p>
+              <button type="button" className="faq-whatsapp-button" onClick={openWhatsApp}><FaWhatsapp />Ask Us on WhatsApp</button>
             </div>
-
             <div className="faq-list">
               {faqItems.map((faq, index) => {
-                const isOpen =
-                  activeFaq === index;
-
+                const isOpen = activeFaq === index;
                 return (
-                  <motion.div
-                    className={`faq-item ${
-                      isOpen ? "active" : ""
-                    }`}
-                    key={faq.question}
-                    initial={{
-                      opacity: 0,
-
-                      y: 15,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-
-                      y: 0,
-                    }}
-                    viewport={{
-                      once: true,
-                    }}
-                  >
-                    <button
-                      type="button"
-                      className="faq-question"
-                      onClick={() =>
-                        toggleFaq(index)
-                      }
-                      aria-expanded={isOpen}
-                    >
-                      <span>
-                        <small>
-                          {String(
-                            index + 1
-                          ).padStart(2, "0")}
-                        </small>
-
-                        {faq.question}
-                      </span>
-
-                      <motion.div
-                        animate={{
-                          rotate:
-                            isOpen
-                              ? 180
-                              : 0,
-                        }}
-                      >
-                        <FaChevronDown />
-                      </motion.div>
+                  <motion.div className={`faq-item ${isOpen ? "active" : ""}`} key={faq.question} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                    <button type="button" className="faq-question" onClick={() => toggleFaq(index)} aria-expanded={isOpen}>
+                      <span><small>{String(index + 1).padStart(2, "0")}</small>{faq.question}</span>
+                      <motion.div animate={{ rotate: isOpen ? 180 : 0 }}><FaChevronDown /></motion.div>
                     </button>
-
                     <AnimatePresence>
                       {isOpen && (
-                        <motion.div
-                          className="faq-answer"
-                          initial={{
-                            height: 0,
-
-                            opacity: 0,
-                          }}
-                          animate={{
-                            height: "auto",
-
-                            opacity: 1,
-                          }}
-                          exit={{
-                            height: 0,
-
-                            opacity: 0,
-                          }}
-                          transition={{
-                            duration: 0.3,
-                          }}
-                        >
+                        <motion.div className="faq-answer" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
                           <p>{faq.answer}</p>
                         </motion.div>
                       )}
@@ -2409,187 +1050,41 @@ const Home = () => {
           </div>
         </section>
 
-        {/* =====================================================
-            FREE QUOTE
-        ====================================================== */}
-
+        {/* FREE QUOTE - UNCHANGED */}
         <section className="big-quote-section">
           <div className="container big-quote-layout">
-            <motion.div
-              initial={{
-                opacity: 0,
-
-                x: -40,
-              }}
-              whileInView={{
-                opacity: 1,
-
-                x: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
-            >
-              <span>
-                READY TO START?
-              </span>
-
-              <h2>
-                Let's Turn Your Next Business Idea Into Something Powerful.
-              </h2>
-
-              <p>
-                Tell us what you want to build. We will understand your
-                requirements and help you explore the right solution.
-              </p>
-
+            <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <span>READY TO START?</span>
+              <h2>Let's Turn Your Next Business Idea Into Something Powerful.</h2>
+              <p>Tell us what you want to build. We will understand your requirements and help you explore the right solution.</p>
               <div className="quote-checks">
-                <span>
-                  <FaCircleCheck />
-
-                  Free initial discussion
-                </span>
-
-                <span>
-                  <FaCircleCheck />
-
-                  Requirement analysis
-                </span>
-
-                <span>
-                  <FaCircleCheck />
-
-                  Suitable solution recommendation
-                </span>
+                <span><FaCircleCheck />Free initial discussion</span>
+                <span><FaCircleCheck />Requirement analysis</span>
+                <span><FaCircleCheck />Suitable solution recommendation</span>
               </div>
             </motion.div>
-
-            <motion.div
-              className="quote-action-card"
-              initial={{
-                opacity: 0,
-
-                scale: 0.9,
-              }}
-              whileInView={{
-                opacity: 1,
-
-                scale: 1,
-              }}
-              viewport={{
-                once: true,
-              }}
-            >
-              <div>
-                <FaRocket />
-              </div>
-
-              <h3>
-                Start Your Project Today
-              </h3>
-
-              <p>
-                Share your business requirements and get started with a free
-                project discussion.
-              </p>
-
-              <button
-                type="button"
-                className="white-button"
-                onClick={goToContact}
-              >
-                Get a Free Quote
-
-                <FaArrowRight />
-              </button>
-
-              <button
-                type="button"
-                className="whatsapp-button"
-                onClick={openWhatsApp}
-              >
-                <FaWhatsapp />
-
-                WhatsApp Us
-              </button>
+            <motion.div className="quote-action-card" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
+              <div><FaRocket /></div>
+              <h3>Start Your Project Today</h3>
+              <p>Share your business requirements and get started with a free project discussion.</p>
+              <button type="button" className="white-button" onClick={goToContact}>Get a Free Quote<FaArrowRight /></button>
+              <button type="button" className="whatsapp-button" onClick={openWhatsApp}><FaWhatsapp />WhatsApp Us</button>
             </motion.div>
           </div>
         </section>
 
-        {/* =====================================================
-            FINAL CTA
-        ====================================================== */}
-
+        {/* FINAL CTA - UNCHANGED */}
         <section className="final-cta">
           <div className="container">
-            <motion.div
-              className="final-cta-content"
-              whileInView={{
-                opacity: [0, 1],
-
-                y: [35, 0],
-              }}
-              viewport={{
-                once: true,
-              }}
-            >
-              <motion.div
-                className="final-icon"
-                animate={{
-                  y: [0, -8, 0],
-
-                  rotate: [0, 4, 0, -4, 0],
-                }}
-                transition={{
-                  duration: 4,
-
-                  repeat: Infinity,
-                }}
-              >
-                <FaRocket />
-              </motion.div>
-
-              <span>
-                LET'S BUILD SOMETHING GREAT
-              </span>
-
-              <h2>
-                Ready to Build the Next Stage of Your Digital Business?
-              </h2>
-
-              <p>
-                Let's create a professional digital experience designed around
-                your business, your customers and your future goals.
-              </p>
-
+            <motion.div className="final-cta-content" whileInView={{ opacity: [0, 1], y: [35, 0] }} viewport={{ once: true }}>
+              <motion.div className="final-icon" animate={{ y: [0, -8, 0], rotate: [0, 4, 0, -4, 0] }} transition={{ duration: 4, repeat: Infinity }}><FaRocket /></motion.div>
+              <span>LET'S BUILD SOMETHING GREAT</span>
+              <h2>Ready to Build the Next Stage of Your Digital Business?</h2>
+              <p>Let's create a professional digital experience designed around your business, your customers and your future goals.</p>
               <div className="final-buttons">
-                <button
-                  type="button"
-                  className="white-button"
-                  onClick={goToContact}
-                >
-                  Get Your Free Quote
-
-                  <FaArrowRight />
-                </button>
-
-                <button
-                  type="button"
-                  className="whatsapp-button"
-                  onClick={openWhatsApp}
-                >
-                  <FaWhatsapp />
-
-                  WhatsApp Us
-                </button>
-
-                <button
-                  type="button"
-                  className="call-button"
-                  onClick={callNow}
-                >
-                  Call {PHONE_NUMBER}
-                </button>
+                <button type="button" className="white-button" onClick={goToContact}>Get Your Free Quote<FaArrowRight /></button>
+                <button type="button" className="whatsapp-button" onClick={openWhatsApp}><FaWhatsapp />WhatsApp Us</button>
+                <button type="button" className="call-button" onClick={callNow}>Call {PHONE_NUMBER}</button>
               </div>
             </motion.div>
           </div>
@@ -2600,76 +1095,37 @@ const Home = () => {
 };
 
 /* =========================================================
-   SECTION HEADER COMPONENT
+   SECTION HEADER COMPONENT (UNCHANGED)
 ========================================================= */
 
-const SectionHeader = ({
-  eyebrow,
-
-  title,
-
-  text,
-}) => {
+const SectionHeader = ({ eyebrow, title, text }) => {
   return (
-    <motion.div
-      className="section-header"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{
-        once: true,
-      }}
-      variants={stagger}
-    >
-      <motion.span
-        variants={fadeUp}
-      >
-        {eyebrow}
-      </motion.span>
-
-      <motion.h2
-        variants={fadeUp}
-      >
-        {title}
-      </motion.h2>
-
-      <motion.p
-        variants={fadeUp}
-      >
-        {text}
-      </motion.p>
+    <motion.div className="section-header" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+      <motion.span variants={fadeUp}>{eyebrow}</motion.span>
+      <motion.h2 variants={fadeUp}>{title}</motion.h2>
+      <motion.p variants={fadeUp}>{text}</motion.p>
     </motion.div>
   );
 };
 
 /* =========================================================
-   PROJECT MARQUEE CARD
+   PROJECT MARQUEE CARD (UNCHANGED)
 ========================================================= */
 
-const ProjectMarqueeCard = ({
-  project,
-}) => {
+const ProjectMarqueeCard = ({ project }) => {
   return (
     <div className="project-marquee-card">
-      <img
-        src={project.image}
-        alt={`${project.title} project`}
-      />
-
+      <img src={project.image} alt={`${project.title} project`} />
       <div>
-        <strong>
-          {project.title}
-        </strong>
-
-        <span>
-          {project.category}
-        </span>
+        <strong>{project.title}</strong>
+        <span>{project.category}</span>
       </div>
     </div>
   );
 };
 
 /* =========================================================
-   CSS
+   CSS (UNCHANGED)
 ========================================================= */
 
 const styles = `
@@ -3675,23 +2131,13 @@ const styles = `
   }
 
   @keyframes projectsLeftRight {
-    from {
-      transform: translateX(-33.333%);
-    }
-
-    to {
-      transform: translateX(0);
-    }
+    from { transform: translateX(-33.333%); }
+    to { transform: translateX(0); }
   }
 
   @keyframes projectsRightLeft {
-    from {
-      transform: translateX(0);
-    }
-
-    to {
-      transform: translateX(-33.333%);
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(-33.333%); }
   }
 
   /* =========================================================

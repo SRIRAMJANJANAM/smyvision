@@ -1,6 +1,152 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { FaWhatsapp } from 'react-icons/fa';
+
+/* =========================================================
+   ✅ SEO CONFIGURATION
+========================================================= */
+
+const WEBSITE_URL = "https://smyvisiontechnologies.com";
+const CONTACT_URL = `${WEBSITE_URL}/contact`;
+const PHONE_NUMBER = "8500352005";
+const PHONE_LINK = "+918500352005";
+const EMAIL = "smyvisiontechnologies@gmail.com";
+
+/* =========================================================
+   ✅ SEO STRUCTURED DATA - CONTACT PAGE
+========================================================= */
+
+const contactStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": `${CONTACT_URL}#webpage`,
+      "url": CONTACT_URL,
+      "name": "Contact Best Web Development Company in Vijayawada | Custom Web Applications | SMYVISION TECHNOLOGIES",
+      "headline": "Contact the Best Web Development Company in Vijayawada for Custom Web Applications",
+      "description": "Contact SMYVISION TECHNOLOGIES, the best web development company in Vijayawada. Get a free quote for website development, custom web applications, business automation, and AI chatbot solutions. Call +91 8500352005 or WhatsApp us today.",
+      "isPartOf": { "@id": `${WEBSITE_URL}/#website` },
+      "about": { "@id": `${WEBSITE_URL}/#organization` },
+      "inLanguage": "en-IN",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", ".contact-subtitle"],
+      },
+    },
+    {
+      "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+      "@id": `${WEBSITE_URL}/#organization`,
+      "name": "SMYVISION TECHNOLOGIES",
+      "alternateName": ["SMYVISION", "Best Web Development Company Vijayawada", "Best Web Developers Vijayawada"],
+      "url": WEBSITE_URL,
+      "logo": `${WEBSITE_URL}/Logo.png`,
+      "image": `${WEBSITE_URL}/Logo.png`,
+      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada, trusted for professional website development, custom web application development, responsive web design, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
+      "email": EMAIL,
+      "telephone": PHONE_LINK,
+      "foundingDate": "2026",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Vijayawada",
+        "addressRegion": "Andhra Pradesh",
+        "addressCountry": "IN",
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "16.5062",
+        "longitude": "80.6480",
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Vijayawada" },
+        { "@type": "State", "name": "Andhra Pradesh" },
+        { "@type": "Country", "name": "India" },
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": PHONE_LINK,
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Telugu", "Hindi"],
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": PHONE_LINK,
+          "contactType": "sales",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Telugu"],
+        },
+        {
+          "@type": "ContactPoint",
+          "email": EMAIL,
+          "contactType": "customer service",
+          "areaServed": "IN",
+        },
+      ],
+      "sameAs": [
+        "https://www.facebook.com/share/1AAbW51BTs/",
+        "https://linkedin.com/company/smyvisiontechnologies",
+        "https://instagram.com/smyvisiontechnologies",
+        "https://youtube.com/@smyvisiontechnologies",
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How quickly will you respond to my inquiry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We pride ourselves on quick response times. You'll typically receive an initial response within 2-4 business hours. For urgent matters, we offer priority support via phone at +91 8500352005."
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "What information do you need to start my project?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To provide an accurate proposal, we typically need your project goals, target audience, functional requirements, technical preferences, timeline, budget range, and reference examples."
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a typical project take to complete?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Project timelines vary based on complexity: Simple Websites take 2-4 weeks, Web Applications take 6-12 weeks, Mobile Apps take 8-16 weeks, and Enterprise Solutions take 3-6+ months."
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "What is your pricing model?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We offer flexible pricing options including Fixed Price for clear requirements, Time & Material for evolving projects, and Dedicated Team for long-term collaboration. Our pricing starts from ₹4,999 for basic websites."
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide ongoing support after project completion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we offer comprehensive post-launch support including 24/7 technical support for critical issues, regular security updates, performance monitoring, team training, and customizable maintenance plans."
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "What technologies do you work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We work with modern technologies including React.js, Vue.js, Angular, Next.js for frontend; Node.js, Python/Django, PHP/Laravel for backend; React Native, Flutter for mobile; PostgreSQL, MySQL, MongoDB for databases; and AWS, Azure, Google Cloud for cloud infrastructure."
+          },
+        },
+      ],
+    },
+  ],
+};
 
 // Enhanced SVG Icons with light theme colors
 const LightIcons = {
@@ -46,7 +192,7 @@ const LightIcons = {
   ),
   CheckCircle: () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M22 11.08V12a10 10 0 1 1 пятеро-5.93-9.14"></path>
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
       <polyline points="22 4 12 14.01 9 11.01"></polyline>
     </svg>
   ),
@@ -126,21 +272,13 @@ const LightIcons = {
       <polyline points="10 9 9 9 8 9"></polyline>
     </svg>
   ),
-  // Social Media Icons
   Facebook: () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
       <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
     </svg>
   ),
   Instagram: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="url(#instagram-gradient)">
-      <defs>
-        <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="50%" stopColor="#ffffff" />
-          <stop offset="100%" stopColor="#ffffff" />
-        </linearGradient>
-      </defs>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
     </svg>
   ),
@@ -263,7 +401,7 @@ function Contact() {
   };
 
   const validateIndianPhone = (phone) => {
-    if (!phone) return true; // Phone is optional
+    if (!phone) return true;
     const indianPhoneRegex = /^(\+91[-\s]?)?[6-9]\d{9}$/;
     return indianPhoneRegex.test(phone.trim());
   };
@@ -271,26 +409,22 @@ function Contact() {
   const validateForm = () => {
     const newErrors = {};
 
-    // Name validation
     if (!formData.fullName.trim()) {
       newErrors.fullName = 'Name is required';
     } else if (!validateName(formData.fullName)) {
       newErrors.fullName = 'Please enter a valid name (letters and spaces only, 2-50 characters)';
     }
 
-    // Email validation
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!validateEmail(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
 
-    // Phone validation
     if (formData.phone && !validateIndianPhone(formData.phone)) {
       newErrors.phone = 'Please enter a valid Indian phone number (10 digits starting with 6-9)';
     }
 
-    // Requirements validation
     if (!formData.requirements.trim()) {
       newErrors.requirements = 'Project requirements are required';
     } else if (formData.requirements.trim().length < 10) {
@@ -308,7 +442,6 @@ function Contact() {
       [name]: value
     }));
     
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -325,22 +458,19 @@ function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Your Google Apps Script Web App URL
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby1pdBXYPHeBeO1xwBxDVSSONCRYOJQVxigGpHW6tzoVNIEe4wezhDWESqgRZbBpVhr/exec'; // Replace with your URL
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby1pdBXYPHeBeO1xwBxDVSSONCRYOJQVxigGpHW6tzoVNIEe4wezhDWESqgRZbBpVhr/exec';
       
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', // Important for Google Apps Script
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
       
-      // Show success message
       setSubmitMessage('Thank you! Your message has been sent successfully. We will contact you within 24 hours.');
       
-      // Reset form
       setFormData({
         fullName: '',
         email: '',
@@ -351,10 +481,8 @@ function Contact() {
         requirements: ''
       });
       
-      // Clear errors
       setErrors({});
       
-      // Clear message after 5 seconds
       setTimeout(() => {
         setSubmitMessage('');
       }, 5000);
@@ -461,1056 +589,1086 @@ Please follow up with this lead.`;
   ];
 
   return (
-    <div style={{
-      position: 'relative',
-      minHeight: '100vh',
-      width: '100vw',
-      maxWidth: '100%',
-      background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
-      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-      overflowX: 'hidden',
-      boxSizing: 'border-box'
-    }}>
-      <AnimatedPattern />
-      <FloatingBubbles />
+    <>
+      {/* =====================================================
+          ✅ SEO OPTIMIZED HELMET - CONTACT PAGE
+          AGGRESSIVE VIJAYAWADA + CUSTOM WEB APP KEYWORDS
+      ====================================================== */}
+
+      <Helmet>
+        <html lang="en-IN" />
+
+        {/* ✅ PRIMARY TITLE */}
+        <title>
+          Contact Best Web Development Company in Vijayawada | Custom Web Applications | SMYVISION
+        </title>
+
+        {/* ✅ META DESCRIPTION */}
+        <meta
+          name="description"
+          content="Contact SMYVISION TECHNOLOGIES, the best web development company in Vijayawada. Get a free quote for website development, custom web applications, business automation, and AI chatbot solutions. Call +91 8500352005 or WhatsApp us. Serving Vijayawada and Andhra Pradesh."
+        />
+
+        {/* ✅ KEYWORDS */}
+        <meta
+          name="keywords"
+          content="contact best web development company vijayawada, web development company vijayawada contact, website developers vijayawada contact, custom web application development vijayawada, web development services vijayawada, business automation vijayawada, AI chatbot development vijayawada, contact web company vijayawada, smyvision technologies contact, best website developers vijayawada, web development vijayawda, web company in vijaywaa, get free quote web development vijayawada"
+        />
+
+        <meta name="author" content="SMYVISION TECHNOLOGIES" />
+        <meta name="publisher" content="SMYVISION TECHNOLOGIES" />
+
+        {/* ✅ ROBOTS */}
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+
+        <meta name="application-name" content="SMYVISION TECHNOLOGIES" />
+
+        {/* ✅ LOCAL SEO */}
+        <meta name="geo.region" content="IN-AP" />
+        <meta name="geo.placename" content="Vijayawada" />
+        <meta name="ICBM" content="16.5062, 80.6480" />
+        <meta name="geo.position" content="16.5062;80.6480" />
+
+        <link rel="canonical" href={CONTACT_URL} />
+
+        {/* ✅ OPEN GRAPH */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="SMYVISION TECHNOLOGIES" />
+        <meta property="og:title" content="Contact Best Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES" />
+        <meta property="og:description" content="Contact SMYVISION TECHNOLOGIES, the best web development company in Vijayawada. Free consultation for website development, custom web applications, and business automation. Call +91 8500352005." />
+        <meta property="og:url" content={CONTACT_URL} />
+        <meta property="og:image" content={`${WEBSITE_URL}/Logo.png`} />
+        <meta property="og:image:alt" content="SMYVISION TECHNOLOGIES - Best Web Development Company in Vijayawada" />
+        <meta property="og:locale" content="en_IN" />
+
+        {/* ✅ TWITTER CARD */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Best Web Development Company in Vijayawada | SMYVISION" />
+        <meta name="twitter:description" content="Get a free quote from the best web development company in Vijayawada. Custom web applications, business automation, and AI chatbot solutions." />
+        <meta name="twitter:image" content={`${WEBSITE_URL}/Logo.png`} />
+        <meta name="twitter:image:alt" content="SMYVISION TECHNOLOGIES - Contact Us" />
+
+        {/* ✅ AI SEARCH */}
+        <meta name="subject" content="Contact Best Web Development Company in Vijayawada - SMYVISION TECHNOLOGIES" />
+        <meta name="classification" content="Web Development Company" />
+        <meta name="coverage" content="Vijayawada, Andhra Pradesh, India" />
+        <meta name="distribution" content="global" />
+        <meta name="rating" content="general" />
+
+        {/* ✅ STRUCTURED DATA */}
+        <script type="application/ld+json">{JSON.stringify(contactStructuredData)}</script>
+      </Helmet>
 
       <div style={{
         position: 'relative',
-        zIndex: 1,
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 clamp(16px, 5vw, 50px)',
-        width: '100%',
+        minHeight: '100vh',
+        width: '100vw',
+        maxWidth: '100%',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
+        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        overflowX: 'hidden',
         boxSizing: 'border-box'
       }}>
-        {/* Hero Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          style={{
-            textAlign: 'center',
-            padding: 'clamp(100px, 12vw, 140px) 0 60px',
-            position: 'relative',
-            width: '100%',
-            boxSizing: 'border-box'
-          }}
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: 'spring', stiffness: 100 }}
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: 'min(600px, 100vw)',
-              height: 'min(600px, 100vw)',
-              background: 'radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%)',
-              borderRadius: '50%',
-              zIndex: 0
-            }}
-          />
-          
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+        <AnimatedPattern />
+        <FloatingBubbles />
+
+        <div style={{
+          position: 'relative',
+          zIndex: 1,
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 clamp(16px, 5vw, 50px)',
+          width: '100%',
+          boxSizing: 'border-box'
+        }}>
+          {/* Hero Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8 }}
             style={{
-              fontSize: 'clamp(2rem, 6vw, 3.5rem)',
-              color: '#1e293b',
-              marginBottom: '16px',
-              fontWeight: '800',
-              lineHeight: '1.2',
-              position: 'relative'
+              textAlign: 'center',
+              padding: 'clamp(100px, 12vw, 140px) 0 60px',
+              position: 'relative',
+              width: '100%',
+              boxSizing: 'border-box'
             }}
           >
-            Let's Build
-            <span style={{
-              background: 'linear-gradient(135deg, #4f46e5, #8b5cf6)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              display: 'block',
-              marginTop: '8px'
-            }}>
-              Together
-            </span>
-          </motion.h1>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            style={{
-              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
-              color: '#64748b',
-              maxWidth: '800px',
-              margin: '0 auto 60px',
-              lineHeight: '1.6'
-            }}
-          >
-            Ready to transform your business with cutting-edge technology? Share your vision with us, and let's create something extraordinary.
-          </motion.p>
-
-          {/* Stats */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: 'clamp(16px, 4vw, 30px)',
-            flexWrap: 'wrap',
-            position: 'relative'
-          }}>
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 + index * 0.1, type: 'spring' }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                style={{
-                  background: 'white',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid #e2e8f0',
-                  padding: 'clamp(20px, 4vw, 24px)',
-                  borderRadius: '16px',
-                  minWidth: '140px',
-                  maxWidth: '200px',
-                  flex: '1 1 0',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                <div style={{
-                  fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-                  fontWeight: '800',
-                  color: '#4f46e5',
-                  marginBottom: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px'
-                }}>
-                  {stat.icon}
-                  {stat.value}
-                </div>
-                <div style={{
-                  fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                  color: '#64748b',
-                  fontWeight: '500'
-                }}>
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Contact Form Section */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: '-50px' }}
-          style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
-        >
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
-            gap: 'clamp(40px, 8vw, 80px)',
-            width: '100%'
-          }}>
-            {/* Contact Info */}
             <motion.div
-              initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 style={{
-                fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 100 }}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: 'min(600px, 100vw)',
+                height: 'min(600px, 100vw)',
+                background: 'radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%)',
+                borderRadius: '50%',
+                zIndex: 0
+              }}
+            />
+            
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              style={{
+                fontSize: 'clamp(2rem, 6vw, 3.5rem)',
                 color: '#1e293b',
-                marginBottom: '32px',
-                fontWeight: '700'
-              }}>
-                Get In Touch
-              </h2>
-              
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '24px',
-                marginBottom: '40px'
-              }}>
-                {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ x: 10 }}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '16px',
-                      cursor: info.action ? 'pointer' : 'default',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onClick={info.action}
-                  >
-                    <div style={{
-                      width: '48px',
-                      height: '48px',
-                      background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(139, 92, 246, 0.1))',
-                      borderRadius: '12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}>
-                      {info.icon}
-                    </div>
-                    <div>
-                      <h3 style={{
-                        fontSize: '1.1rem',
-                        color: '#1e293b',
-                        marginBottom: '4px',
-                        fontWeight: '600'
-                      }}>
-                        {info.title}
-                      </h3>
-                      <p style={{
-                        color: '#64748b',
-                        fontSize: '0.95rem',
-                        lineHeight: '1.5'
-                      }}>
-                        {info.details}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Social Media Icons */}
-              <div style={{ marginBottom: '32px' }}>
-                <h3 style={{
-                  fontSize: '1.25rem',
-                  color: '#1e293b',
-                  marginBottom: '20px',
-                  fontWeight: '600'
-                }}>
-                  Follow Us
-                </h3>
-                <div style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '12px'
-                }}>
-                  {socialMedia.map((social, index) => (
-                    <motion.a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ 
-                        scale: 1.1, 
-                        y: -5,
-                        boxShadow: `0 8px 20px ${typeof social.color === 'string' && social.color.startsWith('#') ? `${social.color}40` : 'rgba(0,0,0,0.2)'}`
-                      }}
-                      whileTap={{ scale: 0.95 }}
-                      style={{
-                        width: '44px',
-                        height: '44px',
-                        borderRadius: '12px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        textDecoration: 'none',
-                        background: social.color,
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
-                      }}
-                      title={social.label}
-                    >
-                      {social.icon}
-                    </motion.a>
-                  ))}
-                </div>
-              </div>
-
-              {/* Quick Action Buttons */}
-              <div>
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '12px'
-                }}>
-                  <motion.a
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    href="mailto:smyvisiontechnologies@gmail.com"
-                    style={{
-                      background: 'linear-gradient(135deg, #4f46e5, #8b5cf6)',
-                      color: 'white',
-                      padding: '12px 20px',
-                      borderRadius: '12px',
-                      fontSize: '0.95rem',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      textDecoration: 'none',
-                      boxShadow: '0 5px 15px rgba(79, 70, 229, 0.3)',
-                      textAlign: 'center',
-                      justifyContent: 'center'
-                    }}
-                  >
-                    <LightIcons.Mail />
-                    Email Your Question
-                  </motion.a>
-                  
-                  <motion.a
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    href="https://wa.me/918500352005"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      background: '#25D366',
-                      color: 'white',
-                      padding: '12px 20px',
-                      borderRadius: '12px',
-                      fontSize: '0.95rem',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      textDecoration: 'none',
-                      boxShadow: '0 5px 15px rgba(37, 211, 102, 0.3)',
-                      textAlign: 'center',
-                      justifyContent: 'center'
-                    }}
-                  >
-                    <LightIcons.Whatsapp />
-                    WhatsApp Inquiry
-                  </motion.a>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Contact Form */}
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+                marginBottom: '16px',
+                fontWeight: '800',
+                lineHeight: '1.2',
+                position: 'relative'
+              }}
             >
-              <form onSubmit={handleSubmit}>
+              Let's Build
+              <span style={{
+                background: 'linear-gradient(135deg, #4f46e5, #8b5cf6)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                display: 'block',
+                marginTop: '8px'
+              }}>
+                Together
+              </span>
+            </motion.h1>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="contact-subtitle"
+              style={{
+                fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+                color: '#64748b',
+                maxWidth: '800px',
+                margin: '0 auto 60px',
+                lineHeight: '1.6'
+              }}
+            >
+              Ready to transform your business with cutting-edge technology? Share your vision with us, and let's create something extraordinary.
+            </motion.p>
+
+            {/* Stats */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: 'clamp(16px, 4vw, 30px)',
+              flexWrap: 'wrap',
+              position: 'relative'
+            }}>
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5 + index * 0.1, type: 'spring' }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  style={{
+                    background: 'white',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid #e2e8f0',
+                    padding: 'clamp(20px, 4vw, 24px)',
+                    borderRadius: '16px',
+                    minWidth: '140px',
+                    maxWidth: '200px',
+                    flex: '1 1 0',
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <div style={{
+                    fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
+                    fontWeight: '800',
+                    color: '#4f46e5',
+                    marginBottom: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}>
+                    {stat.icon}
+                    {stat.value}
+                  </div>
+                  <div style={{
+                    fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+                    color: '#64748b',
+                    fontWeight: '500'
+                  }}>
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Contact Form Section */}
+          <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-50px' }}
+            style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
+          >
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
+              gap: 'clamp(40px, 8vw, 80px)',
+              width: '100%'
+            }}>
+              {/* Contact Info */}
+              <motion.div
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
                 <h2 style={{
                   fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
                   color: '#1e293b',
                   marginBottom: '32px',
                   fontWeight: '700'
                 }}>
-                  Send Message
+                  Get In Touch
                 </h2>
-
-                {submitMessage && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    style={{
-                      background: submitMessage.includes('error') ? '#ef4444' : 
-                                 submitMessage.includes('fix') ? '#f59e0b' : '#10b981',
-                      color: 'white',
-                      padding: '16px',
-                      borderRadius: '12px',
-                      marginBottom: '24px',
-                      fontSize: '0.95rem',
-                      textAlign: 'center'
-                    }}
-                  >
-                    {submitMessage}
-                  </motion.div>
-                )}
-
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(250px, 100%), 1fr))',
-                  gap: '20px',
-                  marginBottom: '20px'
-                }}>
-                  {/* Full Name with Icon */}
-                  <div>
-                    <label style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      color: '#1e293b',
-                      marginBottom: '8px',
-                      fontWeight: '500',
-                      fontSize: '0.95rem'
-                    }}>
-                      <LightIcons.User />
-                      Full Name *
-                    </label>
-                    <div style={{
-                      position: 'relative'
-                    }}>
-                      <input
-                        type="text"
-                        name="fullName"
-                        value={formData.fullName}
-                        onChange={handleInputChange}
-                        required
-                        placeholder="Enter your full name"
-                        style={{
-                          width: '100%',
-                          padding: '12px 16px 12px 40px',
-                          border: `1px solid ${errors.fullName ? '#ef4444' : '#e2e8f0'}`,
-                          borderRadius: '12px',
-                          fontSize: '0.95rem',
-                          transition: 'all 0.3s ease',
-                          boxSizing: 'border-box',
-                          backgroundColor: errors.fullName ? '#fef2f2' : 'white'
-                        }}
-                      />
-                      {errors.fullName && (
-                        <p style={{
-                          color: '#ef4444',
-                          fontSize: '0.85rem',
-                          marginTop: '4px',
-                          marginLeft: '4px'
-                        }}>
-                          {errors.fullName}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Email with Icon */}
-                  <div>
-                    <label style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      color: '#1e293b',
-                      marginBottom: '8px',
-                      fontWeight: '500',
-                      fontSize: '0.95rem'
-                    }}>
-                      <LightIcons.AtSign />
-                      Email Address *
-                    </label>
-                    <div style={{
-                      position: 'relative'
-                    }}>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        placeholder="Enter your email address"
-                        style={{
-                          width: '100%',
-                          padding: '12px 16px 12px 40px',
-                          border: `1px solid ${errors.email ? '#ef4444' : '#e2e8f0'}`,
-                          borderRadius: '12px',
-                          fontSize: '0.95rem',
-                          transition: 'all 0.3s ease',
-                          boxSizing: 'border-box',
-                          backgroundColor: errors.email ? '#fef2f2' : 'white'
-                        }}
-                      />
-                      {errors.email && (
-                        <p style={{
-                          color: '#ef4444',
-                          fontSize: '0.85rem',
-                          marginTop: '4px',
-                          marginLeft: '4px'
-                        }}>
-                          {errors.email}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Phone with Icon */}
-                  <div>
-                    <label style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      color: '#1e293b',
-                      marginBottom: '8px',
-                      fontWeight: '500',
-                      fontSize: '0.95rem'
-                    }}>
-                      <LightIcons.Smartphone />
-                      Phone Number (Indian)
-                    </label>
-                    <div style={{
-                      position: 'relative'
-                    }}>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        placeholder="e.g., 8500352005 "
-                        style={{
-                          width: '100%',
-                          padding: '12px 16px 12px 40px',
-                          border: `1px solid ${errors.phone ? '#ef4444' : '#e2e8f0'}`,
-                          borderRadius: '12px',
-                          fontSize: '0.95rem',
-                          transition: 'all 0.3s ease',
-                          boxSizing: 'border-box',
-                          backgroundColor: errors.phone ? '#fef2f2' : 'white'
-                        }}
-                      />
-                      {errors.phone && (
-                        <p style={{
-                          color: '#ef4444',
-                          fontSize: '0.85rem',
-                          marginTop: '4px',
-                          marginLeft: '4px'
-                        }}>
-                          {errors.phone}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Company with Icon */}
-                  <div>
-                    <label style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      color: '#1e293b',
-                      marginBottom: '8px',
-                      fontWeight: '500',
-                      fontSize: '0.95rem'
-                    }}>
-                      <LightIcons.Building />
-                      Company Name
-                    </label>
-                    <div style={{
-                      position: 'relative'
-                    }}>
-                      <input
-                        type="text"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        placeholder="Enter your company name"
-                        style={{
-                          width: '100%',
-                          padding: '12px 16px 12px 40px',
-                          border: '1px solid #e2e8f0',
-                          borderRadius: '12px',
-                          fontSize: '0.95rem',
-                          transition: 'all 0.3s ease',
-                          boxSizing: 'border-box'
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Industry with Icon and Dropdown Arrow */}
-                  <div>
-                    <label style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      color: '#1e293b',
-                      marginBottom: '8px',
-                      fontWeight: '500',
-                      fontSize: '0.95rem'
-                    }}>
-                      <LightIcons.Briefcase />
-                      Industry
-                    </label>
-                    <div style={{
-                      position: 'relative',
-                      width: '100%'
-                    }}>
-                      <select
-                        name="industry"
-                        value={formData.industry}
-                        onChange={handleInputChange}
-                        style={{
-                          width: '100%',
-                          padding: '12px 16px 12px 40px',
-                          border: '1px solid #e2e8f0',
-                          borderRadius: '12px',
-                          fontSize: '0.95rem',
-                          transition: 'all 0.3s ease',
-                          boxSizing: 'border-box',
-                          background: 'white',
-                          appearance: 'none',
-                          cursor: 'pointer'
-                        }}
-                      >
-                        <option value="">Select your industry</option>
-                        {industries.map((industry, index) => (
-                          <option key={index} value={industry}>{industry}</option>
-                        ))}
-                      </select>
-                      <div style={{
-                        position: 'absolute',
-                        right: '12px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        pointerEvents: 'none',
-                        color: '#64748b'
-                      }}>
-                        ▼
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Service with Icon and Dropdown Arrow */}
-                  <div>
-                    <label style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      color: '#1e293b',
-                      marginBottom: '8px',
-                      fontWeight: '500',
-                      fontSize: '0.95rem'
-                    }}>
-                      <LightIcons.Cogs />
-                      Service Interested In
-                    </label>
-                    <div style={{
-                      position: 'relative',
-                      width: '100%'
-                    }}>
-                      <select
-                        name="service"
-                        value={formData.service}
-                        onChange={handleInputChange}
-                        style={{
-                          width: '100%',
-                          padding: '12px 16px 12px 40px',
-                          border: '1px solid #e2e8f0',
-                          borderRadius: '12px',
-                          fontSize: '0.95rem',
-                          transition: 'all 0.3s ease',
-                          boxSizing: 'border-box',
-                          background: 'white',
-                          appearance: 'none',
-                          cursor: 'pointer'
-                        }}
-                      >
-                        <option value="">Select a service</option>
-                        {services.map((service, index) => (
-                          <option key={index} value={service}>{service}</option>
-                        ))}
-                      </select>
-                      <div style={{
-                        position: 'absolute',
-                        right: '12px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        pointerEvents: 'none',
-                        color: '#64748b'
-                      }}>
-                        ▼
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Requirements with Icon */}
-                <div style={{ marginBottom: '32px' }}>
-                  <label style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    color: '#1e293b',
-                    marginBottom: '8px',
-                    fontWeight: '500',
-                    fontSize: '0.95rem'
-                  }}>
-                    <LightIcons.FileText />
-                    Project Requirements *
-                  </label>
-                  <div style={{
-                    position: 'relative'
-                  }}>
-                    <textarea
-                      name="requirements"
-                      value={formData.requirements}
-                      onChange={handleInputChange}
-                      required
-                      rows="6"
-                      placeholder="Describe your project requirements in detail..."
-                      style={{
-                        width: '100%',
-                        padding: '12px 16px',
-                        border: `1px solid ${errors.requirements ? '#ef4444' : '#e2e8f0'}`,
-                        borderRadius: '12px',
-                        fontSize: '0.95rem',
-                        transition: 'all 0.3s ease',
-                        boxSizing: 'border-box',
-                        resize: 'vertical',
-                        backgroundColor: errors.requirements ? '#fef2f2' : 'white'
-                      }}
-                    />
-                    {errors.requirements && (
-                      <p style={{
-                        color: '#ef4444',
-                        fontSize: '0.85rem',
-                        marginTop: '4px',
-                        marginLeft: '4px'
-                      }}>
-                        {errors.requirements}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
+                
                 <div style={{
                   display: 'flex',
-                  gap: '16px',
-                  flexWrap: 'wrap'
+                  flexDirection: 'column',
+                  gap: '24px',
+                  marginBottom: '40px'
                 }}>
-                  <motion.button
-                    type="submit"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    disabled={isSubmitting}
-                    style={{
-                      background: 'linear-gradient(135deg, #4f46e5, #8b5cf6)',
-                      color: 'white',
-                      border: 'none',
-                      padding: '14px 32px',
-                      borderRadius: '12px',
-                      fontSize: '1rem',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      boxShadow: '0 5px 15px rgba(79, 70, 229, 0.3)',
-                      flex: '1',
-                      minWidth: '200px',
-                      opacity: isSubmitting ? 0.7 : 1
-                    }}
-                  >
-                    {isSubmitting ? 'Submitting...' : 'Submit'}
-                    {!isSubmitting && <LightIcons.ExternalLink />}
-                  </motion.button>
-
-                  <motion.button
-                    type="button"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={handleWhatsAppSubmit}
-                    style={{
-                      background: '#25D366',
-                      color: 'white',
-                      border: 'none',
-                      padding: '14px 32px',
-                      borderRadius: '12px',
-                      fontSize: '1rem',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      boxShadow: '0 5px 15px rgba(37, 211, 102, 0.3)',
-                      flex: '1',
-                      minWidth: '200px'
-                    }}
-                  >
-                    <LightIcons.Whatsapp />
-                    Send via WhatsApp
-                  </motion.button>
-                </div>
-              </form>
-            </motion.div>
-          </div>
-        </motion.section>
-
-        {/* FAQ Section */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
-        >
-          <motion.div
-            initial={{ y: 50 }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            style={{ textAlign: 'center', marginBottom: '40px' }}
-          >
-            <h2 style={{
-              fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-              color: '#1e293b',
-              marginBottom: '12px',
-              fontWeight: '700'
-            }}>
-              Frequently Asked Questions
-            </h2>
-            <div style={{
-              width: '60px',
-              height: '4px',
-              background: 'linear-gradient(90deg, #4f46e5, #8b5cf6)',
-              margin: '0 auto 20px',
-              borderRadius: '2px'
-            }} />
-            <p style={{
-              fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-              color: '#64748b',
-              maxWidth: '800px',
-              margin: '0 auto',
-              lineHeight: '1.6',
-              padding: '0 16px'
-            }}>
-              Find answers to common questions about our services and process
-            </p>
-          </motion.div>
-
-          <div style={{
-            maxWidth: '800px',
-            margin: '0 auto',
-            width: '100%',
-            boxSizing: 'border-box'
-          }}>
-            <AnimatePresence>
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  style={{
-                    background: 'white',
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '12px',
-                    marginBottom: '12px',
-                    overflow: 'hidden',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
-                    width: '100%'
-                  }}
-                >
-                  <motion.div
-                    whileHover={{ background: '#f8fafc' }}
-                    style={{
-                      padding: 'clamp(16px, 4vw, 20px)',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  >
-                    <h3 style={{
-                      fontSize: 'clamp(1rem, 2vw, 1.1rem)',
-                      color: '#1e293b',
-                      fontWeight: '600',
-                      marginRight: '16px',
-                      flex: 1,
-                      textAlign: 'left'
-                    }}>
-                      {faq.question}
-                    </h3>
+                  {contactInfo.map((info, index) => (
                     <motion.div
-                      animate={{ rotate: openFaq === index ? 45 : 0 }}
-                      transition={{ duration: 0.3 }}
+                      key={index}
+                      whileHover={{ x: 10 }}
                       style={{
-                        fontSize: '1.5rem',
-                        color: '#4f46e5',
-                        fontWeight: '300',
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '16px',
+                        cursor: info.action ? 'pointer' : 'default',
+                        transition: 'all 0.3s ease'
+                      }}
+                      onClick={info.action}
+                    >
+                      <div style={{
+                        width: '48px',
+                        height: '48px',
+                        background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(139, 92, 246, 0.1))',
+                        borderRadius: '12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         flexShrink: 0
+                      }}>
+                        {info.icon}
+                      </div>
+                      <div>
+                        <h3 style={{
+                          fontSize: '1.1rem',
+                          color: '#1e293b',
+                          marginBottom: '4px',
+                          fontWeight: '600'
+                        }}>
+                          {info.title}
+                        </h3>
+                        <p style={{
+                          color: '#64748b',
+                          fontSize: '0.95rem',
+                          lineHeight: '1.5'
+                        }}>
+                          {info.details}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Social Media Icons */}
+                <div style={{ marginBottom: '32px' }}>
+                  <h3 style={{
+                    fontSize: '1.25rem',
+                    color: '#1e293b',
+                    marginBottom: '20px',
+                    fontWeight: '600'
+                  }}>
+                    Follow Us
+                  </h3>
+                  <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '12px'
+                  }}>
+                    {socialMedia.map((social, index) => (
+                      <motion.a
+                        key={index}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ 
+                          scale: 1.1, 
+                          y: -5,
+                          boxShadow: `0 8px 20px rgba(0,0,0,0.2)`
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        style={{
+                          width: '44px',
+                          height: '44px',
+                          borderRadius: '12px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          textDecoration: 'none',
+                          background: social.color,
+                          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+                        }}
+                        title={social.label}
+                      >
+                        {social.icon}
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quick Action Buttons */}
+                <div>
+                  <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '12px'
+                  }}>
+                    <motion.a
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                      href="mailto:smyvisiontechnologies@gmail.com"
+                      style={{
+                        background: 'linear-gradient(135deg, #4f46e5, #8b5cf6)',
+                        color: 'white',
+                        padding: '12px 20px',
+                        borderRadius: '12px',
+                        fontSize: '0.95rem',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        textDecoration: 'none',
+                        boxShadow: '0 5px 15px rgba(79, 70, 229, 0.3)',
+                        textAlign: 'center',
+                        justifyContent: 'center'
                       }}
                     >
-                      +
-                    </motion.div>
-                  </motion.div>
-                  
-                  <AnimatePresence>
-                    {openFaq === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        style={{ overflow: 'hidden' }}
-                      >
-                        <div style={{
-                          padding: '0 clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px)',
-                          color: '#64748b',
-                          fontSize: 'clamp(0.9rem, 2vw, 1rem)',
-                          lineHeight: '1.6',
-                          borderTop: '1px solid #e2e8f0',
-                          textAlign: 'left',
-                          whiteSpace: 'pre-line'
-                        }}>
-                          {faq.answer}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-        </motion.section>
+                      <LightIcons.Mail />
+                      Email Your Question
+                    </motion.a>
+                    
+                    <motion.a
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                      href="https://wa.me/918500352005"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        background: '#25D366',
+                        color: 'white',
+                        padding: '12px 20px',
+                        borderRadius: '12px',
+                        fontSize: '0.95rem',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        textDecoration: 'none',
+                        boxShadow: '0 5px 15px rgba(37, 211, 102, 0.3)',
+                        textAlign: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <LightIcons.Whatsapp />
+                      WhatsApp Inquiry
+                    </motion.a>
+                  </div>
+                </div>
+              </motion.div>
 
-        {/* Bottom CTA */}
-        <motion.section
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          style={{
-            textAlign: 'center',
-            background: 'linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%)',
-            padding: 'clamp(40px, 8vw, 60px) clamp(16px, 4vw, 32px)',
-            borderRadius: '24px',
-            marginBottom: 'clamp(60px, 10vw, 100px)',
-            position: 'relative',
-            overflow: 'hidden',
-            boxShadow: '0 20px 40px rgba(79, 70, 229, 0.3)',
-            width: '100%',
-            boxSizing: 'border-box'
-          }}
-        >
-          <motion.h2
-            initial={{ y: 30 }}
-            whileInView={{ y: 0 }}
+              {/* Contact Form */}
+              <motion.div
+                initial={{ x: 50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <form onSubmit={handleSubmit}>
+                  <h2 style={{
+                    fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
+                    color: '#1e293b',
+                    marginBottom: '32px',
+                    fontWeight: '700'
+                  }}>
+                    Send Message
+                  </h2>
+
+                  {submitMessage && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      style={{
+                        background: submitMessage.includes('error') ? '#ef4444' : 
+                                   submitMessage.includes('fix') ? '#f59e0b' : '#10b981',
+                        color: 'white',
+                        padding: '16px',
+                        borderRadius: '12px',
+                        marginBottom: '24px',
+                        fontSize: '0.95rem',
+                        textAlign: 'center'
+                      }}
+                    >
+                      {submitMessage}
+                    </motion.div>
+                  )}
+
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(250px, 100%), 1fr))',
+                    gap: '20px',
+                    marginBottom: '20px'
+                  }}>
+                    {/* Full Name */}
+                    <div>
+                      <label style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        color: '#1e293b',
+                        marginBottom: '8px',
+                        fontWeight: '500',
+                        fontSize: '0.95rem'
+                      }}>
+                        <LightIcons.User />
+                        Full Name *
+                      </label>
+                      <div style={{ position: 'relative' }}>
+                        <input
+                          type="text"
+                          name="fullName"
+                          value={formData.fullName}
+                          onChange={handleInputChange}
+                          required
+                          placeholder="Enter your full name"
+                          style={{
+                            width: '100%',
+                            padding: '12px 16px 12px 40px',
+                            border: `1px solid ${errors.fullName ? '#ef4444' : '#e2e8f0'}`,
+                            borderRadius: '12px',
+                            fontSize: '0.95rem',
+                            transition: 'all 0.3s ease',
+                            boxSizing: 'border-box',
+                            backgroundColor: errors.fullName ? '#fef2f2' : 'white'
+                          }}
+                        />
+                        {errors.fullName && (
+                          <p style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '4px', marginLeft: '4px' }}>
+                            {errors.fullName}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        color: '#1e293b',
+                        marginBottom: '8px',
+                        fontWeight: '500',
+                        fontSize: '0.95rem'
+                      }}>
+                        <LightIcons.AtSign />
+                        Email Address *
+                      </label>
+                      <div style={{ position: 'relative' }}>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          placeholder="Enter your email address"
+                          style={{
+                            width: '100%',
+                            padding: '12px 16px 12px 40px',
+                            border: `1px solid ${errors.email ? '#ef4444' : '#e2e8f0'}`,
+                            borderRadius: '12px',
+                            fontSize: '0.95rem',
+                            transition: 'all 0.3s ease',
+                            boxSizing: 'border-box',
+                            backgroundColor: errors.email ? '#fef2f2' : 'white'
+                          }}
+                        />
+                        {errors.email && (
+                          <p style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '4px', marginLeft: '4px' }}>
+                            {errors.email}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Phone */}
+                    <div>
+                      <label style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        color: '#1e293b',
+                        marginBottom: '8px',
+                        fontWeight: '500',
+                        fontSize: '0.95rem'
+                      }}>
+                        <LightIcons.Smartphone />
+                        Phone Number (Indian)
+                      </label>
+                      <div style={{ position: 'relative' }}>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          placeholder="e.g., 8500352005"
+                          style={{
+                            width: '100%',
+                            padding: '12px 16px 12px 40px',
+                            border: `1px solid ${errors.phone ? '#ef4444' : '#e2e8f0'}`,
+                            borderRadius: '12px',
+                            fontSize: '0.95rem',
+                            transition: 'all 0.3s ease',
+                            boxSizing: 'border-box',
+                            backgroundColor: errors.phone ? '#fef2f2' : 'white'
+                          }}
+                        />
+                        {errors.phone && (
+                          <p style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '4px', marginLeft: '4px' }}>
+                            {errors.phone}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Company */}
+                    <div>
+                      <label style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        color: '#1e293b',
+                        marginBottom: '8px',
+                        fontWeight: '500',
+                        fontSize: '0.95rem'
+                      }}>
+                        <LightIcons.Building />
+                        Company Name
+                      </label>
+                      <div style={{ position: 'relative' }}>
+                        <input
+                          type="text"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleInputChange}
+                          placeholder="Enter your company name"
+                          style={{
+                            width: '100%',
+                            padding: '12px 16px 12px 40px',
+                            border: '1px solid #e2e8f0',
+                            borderRadius: '12px',
+                            fontSize: '0.95rem',
+                            transition: 'all 0.3s ease',
+                            boxSizing: 'border-box'
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Industry */}
+                    <div>
+                      <label style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        color: '#1e293b',
+                        marginBottom: '8px',
+                        fontWeight: '500',
+                        fontSize: '0.95rem'
+                      }}>
+                        <LightIcons.Briefcase />
+                        Industry
+                      </label>
+                      <div style={{ position: 'relative', width: '100%' }}>
+                        <select
+                          name="industry"
+                          value={formData.industry}
+                          onChange={handleInputChange}
+                          style={{
+                            width: '100%',
+                            padding: '12px 16px 12px 40px',
+                            border: '1px solid #e2e8f0',
+                            borderRadius: '12px',
+                            fontSize: '0.95rem',
+                            transition: 'all 0.3s ease',
+                            boxSizing: 'border-box',
+                            background: 'white',
+                            appearance: 'none',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          <option value="">Select your industry</option>
+                          {industries.map((industry, index) => (
+                            <option key={index} value={industry}>{industry}</option>
+                          ))}
+                        </select>
+                        <div style={{
+                          position: 'absolute',
+                          right: '12px',
+                          top: '50%',
+                          transform: 'translateY(-50%)',
+                          pointerEvents: 'none',
+                          color: '#64748b'
+                        }}>▼</div>
+                      </div>
+                    </div>
+
+                    {/* Service */}
+                    <div>
+                      <label style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        color: '#1e293b',
+                        marginBottom: '8px',
+                        fontWeight: '500',
+                        fontSize: '0.95rem'
+                      }}>
+                        <LightIcons.Cogs />
+                        Service Interested In
+                      </label>
+                      <div style={{ position: 'relative', width: '100%' }}>
+                        <select
+                          name="service"
+                          value={formData.service}
+                          onChange={handleInputChange}
+                          style={{
+                            width: '100%',
+                            padding: '12px 16px 12px 40px',
+                            border: '1px solid #e2e8f0',
+                            borderRadius: '12px',
+                            fontSize: '0.95rem',
+                            transition: 'all 0.3s ease',
+                            boxSizing: 'border-box',
+                            background: 'white',
+                            appearance: 'none',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          <option value="">Select a service</option>
+                          {services.map((service, index) => (
+                            <option key={index} value={service}>{service}</option>
+                          ))}
+                        </select>
+                        <div style={{
+                          position: 'absolute',
+                          right: '12px',
+                          top: '50%',
+                          transform: 'translateY(-50%)',
+                          pointerEvents: 'none',
+                          color: '#64748b'
+                        }}>▼</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Requirements */}
+                  <div style={{ marginBottom: '32px' }}>
+                    <label style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      color: '#1e293b',
+                      marginBottom: '8px',
+                      fontWeight: '500',
+                      fontSize: '0.95rem'
+                    }}>
+                      <LightIcons.FileText />
+                      Project Requirements *
+                    </label>
+                    <div style={{ position: 'relative' }}>
+                      <textarea
+                        name="requirements"
+                        value={formData.requirements}
+                        onChange={handleInputChange}
+                        required
+                        rows="6"
+                        placeholder="Describe your project requirements in detail..."
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          border: `1px solid ${errors.requirements ? '#ef4444' : '#e2e8f0'}`,
+                          borderRadius: '12px',
+                          fontSize: '0.95rem',
+                          transition: 'all 0.3s ease',
+                          boxSizing: 'border-box',
+                          resize: 'vertical',
+                          backgroundColor: errors.requirements ? '#fef2f2' : 'white'
+                        }}
+                      />
+                      {errors.requirements && (
+                        <p style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '4px', marginLeft: '4px' }}>
+                          {errors.requirements}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                    <motion.button
+                      type="submit"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      disabled={isSubmitting}
+                      style={{
+                        background: 'linear-gradient(135deg, #4f46e5, #8b5cf6)',
+                        color: 'white',
+                        border: 'none',
+                        padding: '14px 32px',
+                        borderRadius: '12px',
+                        fontSize: '1rem',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        boxShadow: '0 5px 15px rgba(79, 70, 229, 0.3)',
+                        flex: '1',
+                        minWidth: '200px',
+                        opacity: isSubmitting ? 0.7 : 1
+                      }}
+                    >
+                      {isSubmitting ? 'Submitting...' : 'Submit'}
+                      {!isSubmitting && <LightIcons.ExternalLink />}
+                    </motion.button>
+
+                    <motion.button
+                      type="button"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={handleWhatsAppSubmit}
+                      style={{
+                        background: '#25D366',
+                        color: 'white',
+                        border: 'none',
+                        padding: '14px 32px',
+                        borderRadius: '12px',
+                        fontSize: '1rem',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        boxShadow: '0 5px 15px rgba(37, 211, 102, 0.3)',
+                        flex: '1',
+                        minWidth: '200px'
+                      }}
+                    >
+                      <LightIcons.Whatsapp />
+                      Send via WhatsApp
+                    </motion.button>
+                  </div>
+                </form>
+              </motion.div>
+            </div>
+          </motion.section>
+
+          {/* FAQ Section */}
+          <motion.section
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            style={{
-              fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-              color: 'white',
-              marginBottom: '16px',
-              fontWeight: '700'
-            }}
+            style={{ marginBottom: 'clamp(60px, 10vw, 100px)', width: '100%' }}
           >
-            Still have questions?
-          </motion.h2>
-          <motion.p
-            initial={{ y: 30 }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            style={{
-              fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-              color: 'rgba(255, 255, 255, 0.9)',
-              maxWidth: '600px',
-              margin: '0 auto 32px',
-              lineHeight: '1.6'
-            }}
-          >
-            We're here to help! Reach out to us through any channel.
-          </motion.p>
-          
-          <motion.div
-            initial={{ y: 30 }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: 'clamp(16px, 4vw, 24px)',
-              flexWrap: 'wrap'
-            }}
-          >
-            <motion.a
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              href="mailto:smyvisiontechnologies@gmail.com"
-              style={{
-                background: 'white',
-                color: '#4f46e5',
-                border: 'none',
-                padding: 'clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px)',
-                borderRadius: '12px',
-                fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}
+            <motion.div
+              initial={{ y: 50 }}
+              whileInView={{ y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{ textAlign: 'center', marginBottom: '40px' }}
             >
-              <LightIcons.Mail />
-              Email Your Question
-            </motion.a>
-            
-            <motion.a
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://wa.me/918500352005"
-              target="_blank"
-              rel="noopener noreferrer"
+              <h2 style={{
+                fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
+                color: '#1e293b',
+                marginBottom: '12px',
+                fontWeight: '700'
+              }}>
+                Frequently Asked Questions
+              </h2>
+              <div style={{
+                width: '60px',
+                height: '4px',
+                background: 'linear-gradient(90deg, #4f46e5, #8b5cf6)',
+                margin: '0 auto 20px',
+                borderRadius: '2px'
+              }} />
+              <p style={{
+                fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+                color: '#64748b',
+                maxWidth: '800px',
+                margin: '0 auto',
+                lineHeight: '1.6',
+                padding: '0 16px'
+              }}>
+                Find answers to common questions about our services and process
+              </p>
+            </motion.div>
+
+            <div style={{
+              maxWidth: '800px',
+              margin: '0 auto',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}>
+              <AnimatePresence>
+                {faqs.map((faq, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    style={{
+                      background: 'white',
+                      border: '1px solid #e2e8f0',
+                      borderRadius: '12px',
+                      marginBottom: '12px',
+                      overflow: 'hidden',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
+                      width: '100%'
+                    }}
+                  >
+                    <motion.div
+                      whileHover={{ background: '#f8fafc' }}
+                      style={{
+                        padding: 'clamp(16px, 4vw, 20px)',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        transition: 'all 0.3s ease'
+                      }}
+                      onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                    >
+                      <h3 style={{
+                        fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+                        color: '#1e293b',
+                        fontWeight: '600',
+                        marginRight: '16px',
+                        flex: 1,
+                        textAlign: 'left'
+                      }}>
+                        {faq.question}
+                      </h3>
+                      <motion.div
+                        animate={{ rotate: openFaq === index ? 45 : 0 }}
+                        transition={{ duration: 0.3 }}
+                        style={{
+                          fontSize: '1.5rem',
+                          color: '#4f46e5',
+                          fontWeight: '300',
+                          flexShrink: 0
+                        }}
+                      >
+                        +
+                      </motion.div>
+                    </motion.div>
+                    
+                    <AnimatePresence>
+                      {openFaq === index && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          style={{ overflow: 'hidden' }}
+                        >
+                          <div style={{
+                            padding: '0 clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px)',
+                            color: '#64748b',
+                            fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                            lineHeight: '1.6',
+                            borderTop: '1px solid #e2e8f0',
+                            textAlign: 'left',
+                            whiteSpace: 'pre-line'
+                          }}>
+                            {faq.answer}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          </motion.section>
+
+          {/* Bottom CTA */}
+          <motion.section
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{
+              textAlign: 'center',
+              background: 'linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%)',
+              padding: 'clamp(40px, 8vw, 60px) clamp(16px, 4vw, 32px)',
+              borderRadius: '24px',
+              marginBottom: 'clamp(60px, 10vw, 100px)',
+              position: 'relative',
+              overflow: 'hidden',
+              boxShadow: '0 20px 40px rgba(79, 70, 229, 0.3)',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}
+          >
+            <motion.h2
+              initial={{ y: 30 }}
+              whileInView={{ y: 0 }}
+              viewport={{ once: true }}
               style={{
-                background: 'rgba(255, 255, 255, 0.2)',
+                fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
                 color: 'white',
-                border: '2px solid white',
-                padding: 'clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px)',
-                borderRadius: '12px',
-                fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                backdropFilter: 'blur(10px)',
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
+                marginBottom: '16px',
+                fontWeight: '700'
               }}
             >
-              <LightIcons.Whatsapp />
-              WhatsApp Inquiry
-            </motion.a>
-            
-            <motion.a
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              href="tel:+918500352005"
+              Still have questions?
+            </motion.h2>
+            <motion.p
+              initial={{ y: 30 }}
+              whileInView={{ y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
               style={{
-                background: 'rgba(255, 255, 255, 0.2)',
-                color: 'white',
-                border: '2px solid white',
-                padding: 'clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px)',
-                borderRadius: '12px',
-                fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                backdropFilter: 'blur(10px)',
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
+                fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+                color: 'rgba(255, 255, 255, 0.9)',
+                maxWidth: '600px',
+                margin: '0 auto 32px',
+                lineHeight: '1.6'
               }}
             >
-              <LightIcons.Phone />
-              Call Now
-            </motion.a>
-          </motion.div>
-        </motion.section>
+              We're here to help! Reach out to us through any channel.
+            </motion.p>
+            
+            <motion.div
+              initial={{ y: 30 }}
+              whileInView={{ y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: 'clamp(16px, 4vw, 24px)',
+                flexWrap: 'wrap'
+              }}
+            >
+              <motion.a
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                href="mailto:smyvisiontechnologies@gmail.com"
+                style={{
+                  background: 'white',
+                  color: '#4f46e5',
+                  border: 'none',
+                  padding: 'clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px)',
+                  borderRadius: '12px',
+                  fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}
+              >
+                <LightIcons.Mail />
+                Email Your Question
+              </motion.a>
+              
+              <motion.a
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                href="https://wa.me/918500352005"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  color: 'white',
+                  border: '2px solid white',
+                  padding: 'clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px)',
+                  borderRadius: '12px',
+                  fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  backdropFilter: 'blur(10px)',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}
+              >
+                <LightIcons.Whatsapp />
+                WhatsApp Inquiry
+              </motion.a>
+              
+              <motion.a
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                href="tel:+918500352005"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  color: 'white',
+                  border: '2px solid white',
+                  padding: 'clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px)',
+                  borderRadius: '12px',
+                  fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  backdropFilter: 'blur(10px)',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}
+              >
+                <LightIcons.Phone />
+                Call Now
+              </motion.a>
+            </motion.div>
+          </motion.section>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

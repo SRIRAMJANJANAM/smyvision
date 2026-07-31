@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import {
   FaArrowRight,
@@ -20,12 +21,91 @@ import {
 } from "react-icons/fa6";
 
 /* =========================================================
-   CONFIG
+   ✅ SEO CONFIGURATION
 ========================================================= */
 
+const WEBSITE_URL = "https://smyvisiontechnologies.com";
 const PHONE_NUMBER = "8500352005";
-
 const PHONE_LINK = "+918500352005";
+const EMAIL = "smyvisiontechnologies@gmail.com";
+
+/* =========================================================
+   ✅ SITE-WIDE STRUCTURED DATA (NAVBAR LEVEL)
+========================================================= */
+
+const siteWideSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+      "@id": `${WEBSITE_URL}/#organization`,
+      "name": "SMYVISION TECHNOLOGIES",
+      "alternateName": ["SMYVISION", "Best Web Development Company Vijayawada", "Best Web Developers Vijayawada", "SMYVISION Tech"],
+      "url": WEBSITE_URL,
+      "logo": `${WEBSITE_URL}/Logo.png`,
+      "image": `${WEBSITE_URL}/Logo.png`,
+      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada, trusted for professional website development, custom web application development, responsive web design, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
+      "email": EMAIL,
+      "telephone": PHONE_LINK,
+      "foundingDate": "2026",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Vijayawada",
+        "addressRegion": "Andhra Pradesh",
+        "addressCountry": "IN",
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "16.5062",
+        "longitude": "80.6480",
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Vijayawada" },
+        { "@type": "State", "name": "Andhra Pradesh" },
+        { "@type": "Country", "name": "India" },
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": PHONE_LINK,
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Telugu", "Hindi"],
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": PHONE_LINK,
+          "contactType": "sales",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Telugu"],
+        },
+      ],
+      "sameAs": [
+        "https://www.facebook.com/share/1AAbW51BTs/",
+        "https://linkedin.com/company/smyvisiontechnologies",
+        "https://instagram.com/smyvisiontechnologies",
+        "https://youtube.com/@smyvisiontechnologies",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${WEBSITE_URL}/#website`,
+      "name": "SMYVISION TECHNOLOGIES - Best Web Development Company Vijayawada",
+      "url": WEBSITE_URL,
+      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada offering website development, custom web applications, business automation and AI chatbot solutions.",
+      "publisher": { "@id": `${WEBSITE_URL}/#organization` },
+      "inLanguage": "en-IN",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${WEBSITE_URL}/search?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ],
+};
 
 /* =========================================================
    NAVIGATION DATA
@@ -37,13 +117,11 @@ const navLinks = [
     path: "/",
     icon: <FaHouse />,
   },
-
   {
     name: "About",
     path: "/about",
     icon: <FaUsers />,
   },
-
   {
     name: "Careers",
     path: "/careers",
@@ -54,45 +132,30 @@ const navLinks = [
 const services = [
   {
     title: "Website Development",
-
     description:
       "Professional, responsive and conversion-focused websites built for modern businesses.",
-
     icon: <FaGlobe />,
-
     path: "/services",
   },
-
   {
     title: "Business Automation",
-
     description:
       "Smart automation systems designed to simplify workflows and improve business efficiency.",
-
     icon: <FaGears />,
-
     path: "/services",
   },
-
   {
     title: "AI Chatbot Solutions",
-
     description:
       "Intelligent chatbot solutions for customer communication, enquiries and lead generation.",
-
     icon: <FaRobot />,
-
     path: "/services",
   },
-
   {
     title: "Custom Digital Solutions",
-
     description:
       "Explore scalable digital solutions created around your unique business requirements.",
-
     icon: <FaWandMagicSparkles />,
-
     path: "/services",
   },
 ];
@@ -103,14 +166,9 @@ const services = [
 
 const Navbar = () => {
   const location = useLocation();
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-
-  const [isMobileServicesOpen, setIsMobileServicesOpen] =
-    useState(false);
-
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   /* =========================================================
@@ -122,10 +180,7 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => {
@@ -139,9 +194,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setIsMenuOpen(false);
-
     setIsServicesOpen(false);
-
     setIsMobileServicesOpen(false);
   }, [location.pathname]);
 
@@ -169,7 +222,6 @@ const Navbar = () => {
     if (path === "/") {
       return location.pathname === "/";
     }
-
     return location.pathname.startsWith(path);
   };
 
@@ -181,7 +233,6 @@ const Navbar = () => {
     const message = encodeURIComponent(
       "Hi SMYVISION TECHNOLOGIES, I would like to discuss a website or digital solution for my business."
     );
-
     window.open(
       `https://wa.me/91${PHONE_NUMBER}?text=${message}`,
       "_blank",
@@ -191,6 +242,26 @@ const Navbar = () => {
 
   return (
     <>
+      {/* =====================================================
+          ✅ SITE-WIDE SEO - NAVBAR LEVEL
+          ORGANIZATION SCHEMA ON EVERY PAGE
+      ====================================================== */}
+
+      <Helmet>
+        {/* ✅ Site-wide Organization Schema - appears on all pages */}
+        <script type="application/ld+json">
+          {JSON.stringify(siteWideSchema)}
+        </script>
+
+        {/* ✅ Site-wide meta tags for brand recognition */}
+        <meta name="application-name" content="SMYVISION TECHNOLOGIES" />
+        <meta name="author" content="SMYVISION TECHNOLOGIES" />
+        <meta name="publisher" content="SMYVISION TECHNOLOGIES" />
+        <meta name="distribution" content="global" />
+        <meta name="rating" content="general" />
+        <meta name="coverage" content="Vijayawada, Andhra Pradesh, India" />
+      </Helmet>
+
       <style>{navbarStyles}</style>
 
       {/* =====================================================
@@ -198,11 +269,11 @@ const Navbar = () => {
       ====================================================== */}
 
       <header
-        className={`smy-navbar-wrapper ${
-          isScrolled ? "navbar-scrolled" : ""
-        }`}
+        className={`smy-navbar-wrapper ${isScrolled ? "navbar-scrolled" : ""}`}
+        role="banner"
+        aria-label="Main navigation"
       >
-        <nav className="smy-navbar">
+        <nav className="smy-navbar" role="navigation" aria-label="Primary navigation">
           {/* =================================================
               MOBILE LEFT CALL BUTTON
           ================================================= */}
@@ -210,7 +281,8 @@ const Navbar = () => {
           <a
             href={`tel:${PHONE_LINK}`}
             className="mobile-call-button"
-            aria-label="Call SMYVISION TECHNOLOGIES"
+            aria-label="Call SMYVISION TECHNOLOGIES at +91 8500352005"
+            title="Call Best Web Development Company in Vijayawada"
           >
             <FaPhone />
           </a>
@@ -222,17 +294,19 @@ const Navbar = () => {
           <Link
             to="/"
             className="smy-brand"
-            aria-label="SMYVISION TECHNOLOGIES Home"
+            aria-label="SMYVISION TECHNOLOGIES - Best Web Development Company in Vijayawada - Home"
+            title="Best Web Development Company in Vijayawada"
           >
             <img
               src="/Logo.png"
-              alt="SMYVISION TECHNOLOGIES"
+              alt="SMYVISION TECHNOLOGIES - Best Web Development Company in Vijayawada"
               className="smy-logo"
+              width="58"
+              height="58"
             />
 
             <div className="smy-brand-content">
               <strong>SMYVISION</strong>
-
               <span>TECHNOLOGIES</span>
             </div>
           </Link>
@@ -247,14 +321,10 @@ const Navbar = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`smy-nav-link ${
-                    isActive(item.path) ? "active" : ""
-                  }`}
+                  className={`smy-nav-link ${isActive(item.path) ? "active" : ""}`}
+                  title={`${item.name} - SMYVISION TECHNOLOGIES Vijayawada`}
                 >
-                  <span className="smy-nav-icon">
-                    {item.icon}
-                  </span>
-
+                  <span className="smy-nav-icon">{item.icon}</span>
                   <span>{item.name}</span>
                 </Link>
               ))}
@@ -269,18 +339,16 @@ const Navbar = () => {
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
                 <div
-                  className={`smy-services-main ${
-                    isActive("/services") ? "active" : ""
-                  }`}
+                  className={`smy-services-main ${isActive("/services") ? "active" : ""}`}
                 >
                   {/* CLICK SERVICES TEXT -> SERVICES PAGE */}
 
                   <Link
                     to="/services"
                     className="smy-services-link"
+                    title="Web Development Services in Vijayawada - Custom Web Applications"
                   >
                     <FaCode />
-
                     <span>Services</span>
                   </Link>
 
@@ -289,17 +357,11 @@ const Navbar = () => {
                   <button
                     type="button"
                     className="smy-services-arrow-button"
-                    onClick={() =>
-                      setIsServicesOpen((current) => !current)
-                    }
+                    onClick={() => setIsServicesOpen((current) => !current)}
                     aria-label="Open services menu"
                     aria-expanded={isServicesOpen}
                   >
-                    <FaChevronDown
-                      className={
-                        isServicesOpen ? "rotate" : ""
-                      }
-                    />
+                    <FaChevronDown className={isServicesOpen ? "rotate" : ""} />
                   </button>
                 </div>
 
@@ -307,53 +369,25 @@ const Navbar = () => {
                     SERVICES DROPDOWN
                 ================================================= */}
 
-                <div
-                  className={`smy-services-dropdown ${
-                    isServicesOpen ? "show" : ""
-                  }`}
-                >
+                <div className={`smy-services-dropdown ${isServicesOpen ? "show" : ""}`}>
                   <div className="smy-dropdown-feature">
-                    <span className="smy-dropdown-label">
-                      OUR EXPERTISE
-                    </span>
+                    <span className="smy-dropdown-label">OUR EXPERTISE</span>
 
-                    <h3>
-                      Smart Digital Solutions Built for Modern Businesses.
-                    </h3>
+                    <h3>Smart Digital Solutions Built for Modern Businesses.</h3>
 
                     <p>
-                      We help businesses build stronger digital
-                      foundations through professional websites,
-                      automation systems, AI-powered solutions and
-                      custom digital experiences.
+                      We help businesses build stronger digital foundations through professional websites,
+                      automation systems, AI-powered solutions and custom digital experiences.
                     </p>
 
                     <div className="dropdown-feature-points">
-                      <span>
-                        <FaArrowRight />
-
-                        Business-focused development
-                      </span>
-
-                      <span>
-                        <FaArrowRight />
-
-                        Responsive digital experiences
-                      </span>
-
-                      <span>
-                        <FaArrowRight />
-
-                        Scalable technology solutions
-                      </span>
+                      <span><FaArrowRight />Business-focused development</span>
+                      <span><FaArrowRight />Responsive digital experiences</span>
+                      <span><FaArrowRight />Scalable technology solutions</span>
                     </div>
 
-                    <Link
-                      to="/services"
-                      className="smy-dropdown-explore"
-                    >
+                    <Link to="/services" className="smy-dropdown-explore" title="Explore All Web Development Services Vijayawada">
                       Explore All Services
-
                       <FaArrowRight />
                     </Link>
                   </div>
@@ -364,21 +398,13 @@ const Navbar = () => {
                         key={service.title}
                         to={service.path}
                         className="smy-service-card"
+                        title={`${service.title} in Vijayawada - SMYVISION TECHNOLOGIES`}
                       >
-                        <div className="smy-service-icon">
-                          {service.icon}
-                        </div>
-
+                        <div className="smy-service-icon">{service.icon}</div>
                         <div className="service-card-content">
-                          <strong>
-                            {service.title}
-                          </strong>
-
-                          <p>
-                            {service.description}
-                          </p>
+                          <strong>{service.title}</strong>
+                          <p>{service.description}</p>
                         </div>
-
                         <FaArrowRight className="smy-service-arrow" />
                       </Link>
                     ))}
@@ -395,9 +421,9 @@ const Navbar = () => {
               <a
                 href={`tel:${PHONE_LINK}`}
                 className="desktop-call-button"
+                title="Call Best Web Development Company in Vijayawada"
               >
                 <FaPhone />
-
                 <span>Call Us</span>
               </a>
 
@@ -405,7 +431,8 @@ const Navbar = () => {
                 type="button"
                 className="smy-whatsapp"
                 onClick={openWhatsApp}
-                aria-label="Contact us on WhatsApp"
+                aria-label="Contact SMYVISION TECHNOLOGIES on WhatsApp"
+                title="WhatsApp Best Web Developers in Vijayawada"
               >
                 <FaWhatsapp />
               </button>
@@ -413,9 +440,9 @@ const Navbar = () => {
               <Link
                 to="/contact"
                 className="smy-contact-button"
+                title="Get Free Quote from Best Web Development Company Vijayawada"
               >
                 <span>Get Free Quote</span>
-
                 <FaArrowRight />
               </Link>
             </div>
@@ -427,20 +454,12 @@ const Navbar = () => {
 
           <button
             type="button"
-            className={`smy-mobile-toggle ${
-              isMenuOpen ? "active" : ""
-            }`}
-            onClick={() =>
-              setIsMenuOpen((current) => !current)
-            }
+            className={`smy-mobile-toggle ${isMenuOpen ? "active" : ""}`}
+            onClick={() => setIsMenuOpen((current) => !current)}
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
           >
-            {isMenuOpen ? (
-              <FaXmark />
-            ) : (
-              <FaBars />
-            )}
+            {isMenuOpen ? <FaXmark /> : <FaBars />}
           </button>
         </nav>
       </header>
@@ -450,10 +469,9 @@ const Navbar = () => {
       ====================================================== */}
 
       <div
-        className={`smy-mobile-overlay ${
-          isMenuOpen ? "show" : ""
-        }`}
+        className={`smy-mobile-overlay ${isMenuOpen ? "show" : ""}`}
         onClick={() => setIsMenuOpen(false)}
+        aria-hidden="true"
       />
 
       {/* =====================================================
@@ -461,9 +479,10 @@ const Navbar = () => {
       ====================================================== */}
 
       <aside
-        className={`smy-mobile-menu ${
-          isMenuOpen ? "show" : ""
-        }`}
+        className={`smy-mobile-menu ${isMenuOpen ? "show" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation menu"
       >
         {/* =================================================
             MOBILE MENU HEADER
@@ -473,7 +492,8 @@ const Navbar = () => {
           <a
             href={`tel:${PHONE_LINK}`}
             className="mobile-menu-call"
-            aria-label="Call SMYVISION TECHNOLOGIES"
+            aria-label="Call SMYVISION TECHNOLOGIES at +91 8500352005"
+            title="Call Best Web Development Company in Vijayawada"
           >
             <FaPhone />
           </a>
@@ -482,15 +502,17 @@ const Navbar = () => {
             to="/"
             className="smy-mobile-brand"
             onClick={() => setIsMenuOpen(false)}
+            aria-label="SMYVISION TECHNOLOGIES - Home"
           >
             <img
               src="/Logo.png"
-              alt="SMYVISION TECHNOLOGIES"
+              alt="SMYVISION TECHNOLOGIES - Best Web Development Company Vijayawada"
+              width="58"
+              height="58"
             />
 
             <div>
               <strong>SMYVISION</strong>
-
               <span>TECHNOLOGIES</span>
             </div>
           </Link>
@@ -510,29 +532,20 @@ const Navbar = () => {
         ================================================= */}
 
         <div className="smy-mobile-content">
-          <span className="smy-mobile-label">
-            NAVIGATION
-          </span>
+          <span className="smy-mobile-label">NAVIGATION</span>
 
           {navLinks.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`smy-mobile-link ${
-                isActive(item.path) ? "active" : ""
-              }`}
+              className={`smy-mobile-link ${isActive(item.path) ? "active" : ""}`}
               onClick={() => setIsMenuOpen(false)}
+              title={`${item.name} - SMYVISION TECHNOLOGIES`}
             >
               <div>
-                <span className="smy-mobile-link-icon">
-                  {item.icon}
-                </span>
-
-                <strong>
-                  {item.name}
-                </strong>
+                <span className="smy-mobile-link-icon">{item.icon}</span>
+                <strong>{item.name}</strong>
               </div>
-
               <FaArrowRight />
             </Link>
           ))}
@@ -541,41 +554,27 @@ const Navbar = () => {
               MOBILE SERVICES
           ================================================= */}
 
-          <div
-            className={`mobile-services-main-row ${
-              isActive("/services") ? "active" : ""
-            }`}
-          >
+          <div className={`mobile-services-main-row ${isActive("/services") ? "active" : ""}`}>
             <Link
               to="/services"
               className="mobile-services-direct-link"
               onClick={() => setIsMenuOpen(false)}
+              title="Web Development Services Vijayawada"
             >
               <div>
-                <span className="smy-mobile-link-icon">
-                  <FaCode />
-                </span>
-
-                <strong>
-                  Services
-                </strong>
+                <span className="smy-mobile-link-icon"><FaCode /></span>
+                <strong>Services</strong>
               </div>
             </Link>
 
             <button
               type="button"
               className="mobile-services-toggle"
-              onClick={() =>
-                setIsMobileServicesOpen((current) => !current)
-              }
+              onClick={() => setIsMobileServicesOpen((current) => !current)}
               aria-label="Open mobile services list"
               aria-expanded={isMobileServicesOpen}
             >
-              <FaChevronDown
-                className={
-                  isMobileServicesOpen ? "rotate" : ""
-                }
-              />
+              <FaChevronDown className={isMobileServicesOpen ? "rotate" : ""} />
             </button>
           </div>
 
@@ -583,32 +582,20 @@ const Navbar = () => {
               MOBILE SERVICES LIST
           ================================================= */}
 
-          <div
-            className={`smy-mobile-services ${
-              isMobileServicesOpen ? "show" : ""
-            }`}
-          >
+          <div className={`smy-mobile-services ${isMobileServicesOpen ? "show" : ""}`}>
             {services.map((service) => (
               <Link
                 key={service.title}
                 to={service.path}
                 className="smy-mobile-service"
                 onClick={() => setIsMenuOpen(false)}
+                title={`${service.title} in Vijayawada`}
               >
-                <span>
-                  {service.icon}
-                </span>
-
+                <span>{service.icon}</span>
                 <div>
-                  <strong>
-                    {service.title}
-                  </strong>
-
-                  <p>
-                    {service.description}
-                  </p>
+                  <strong>{service.title}</strong>
+                  <p>{service.description}</p>
                 </div>
-
                 <FaArrowRight />
               </Link>
             ))}
@@ -619,26 +606,19 @@ const Navbar = () => {
           ================================================= */}
 
           <div className="mobile-contact-box">
-            <span>
-              READY TO START?
-            </span>
-
-            <h3>
-              Let's Discuss Your Next Digital Project.
-            </h3>
-
+            <span>READY TO START?</span>
+            <h3>Let's Discuss Your Next Digital Project.</h3>
             <p>
-              Tell us what you are planning and let's explore
-              the right digital solution for your business.
+              Tell us what you are planning and let's explore the right digital solution for your business.
             </p>
 
             <div className="smy-mobile-actions">
               <a
                 href={`tel:${PHONE_LINK}`}
                 className="smy-mobile-call-action"
+                title="Call Best Web Development Company Vijayawada"
               >
                 <FaPhone />
-
                 Call {PHONE_NUMBER}
               </a>
 
@@ -646,11 +626,10 @@ const Navbar = () => {
                 to="/contact"
                 className="smy-mobile-quote"
                 onClick={() => setIsMenuOpen(false)}
+                title="Get Free Quote - Web Development Vijayawada"
               >
                 <FaEnvelope />
-
                 Get a Free Quote
-
                 <FaArrowRight />
               </Link>
 
@@ -658,9 +637,9 @@ const Navbar = () => {
                 type="button"
                 className="smy-mobile-whatsapp"
                 onClick={openWhatsApp}
+                title="WhatsApp Best Web Developers Vijayawada"
               >
                 <FaWhatsapp />
-
                 Chat on WhatsApp
               </button>
             </div>
@@ -672,7 +651,7 @@ const Navbar = () => {
 };
 
 /* =========================================================
-   COMPLETE NAVBAR CSS
+   COMPLETE NAVBAR CSS (UNCHANGED)
 ========================================================= */
 
 const navbarStyles = `
@@ -699,86 +678,28 @@ const navbarStyles = `
   .smy-navbar-wrapper {
     position: fixed;
     z-index: 5000;
-
     top: 18px;
     left: 50%;
-
-    width: min(
-      1320px,
-      calc(100% - 40px)
-    );
-
+    width: min(1320px, calc(100% - 40px));
     transform: translateX(-50%);
-
-    background:
-      rgba(
-        255,
-        255,
-        255,
-        0.96
-      );
-
-    border:
-      1px solid
-      rgba(
-        220,
-        228,
-        239,
-        0.95
-      );
-
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(220, 228, 239, 0.95);
     border-radius: 24px;
-
-    box-shadow:
-      0 20px 65px
-      rgba(
-        8,
-        30,
-        65,
-        0.11
-      );
-
-    backdrop-filter:
-      blur(22px);
-
-    -webkit-backdrop-filter:
-      blur(22px);
-
-    transition:
-      top 0.3s ease,
-      width 0.3s ease,
-      border-radius 0.3s ease,
-      background 0.3s ease,
-      box-shadow 0.3s ease;
+    box-shadow: 0 20px 65px rgba(8, 30, 65, 0.11);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    transition: top 0.3s ease, width 0.3s ease, border-radius 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
   }
 
   .smy-navbar-wrapper.navbar-scrolled {
     top: 0;
-
     width: 100%;
-
     border-radius: 0;
-
     border-top: 0;
     border-left: 0;
     border-right: 0;
-
-    background:
-      rgba(
-        255,
-        255,
-        255,
-        0.985
-      );
-
-    box-shadow:
-      0 12px 40px
-      rgba(
-        8,
-        30,
-        65,
-        0.1
-      );
+    background: rgba(255, 255, 255, 0.985);
+    box-shadow: 0 12px 40px rgba(8, 30, 65, 0.1);
   }
 
   /* =========================================================
@@ -786,31 +707,17 @@ const navbarStyles = `
   ========================================================= */
 
   .smy-navbar {
-    width:
-      min(
-        1320px,
-        100%
-      );
-
+    width: min(1320px, 100%);
     min-height: 88px;
-
     margin: auto;
-
-    padding:
-      0 28px;
-
+    padding: 0 28px;
     display: flex;
-
     align-items: center;
-
-    justify-content:
-      space-between;
-
+    justify-content: space-between;
     gap: 30px;
   }
 
-  .navbar-scrolled
-  .smy-navbar {
+  .navbar-scrolled .smy-navbar {
     min-height: 80px;
   }
 
@@ -820,74 +727,45 @@ const navbarStyles = `
 
   .smy-brand {
     min-width: fit-content;
-
     display: flex;
-
     align-items: center;
-
     gap: 13px;
-
     color: inherit;
-
     text-decoration: none;
   }
 
   .smy-logo {
     width: 58px;
-
     height: 58px;
-
     flex-shrink: 0;
-
     object-fit: contain;
-
-    transition:
-      transform 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
-  .smy-brand:hover
-  .smy-logo {
-    transform:
-      scale(1.06)
-      rotate(-3deg);
+  .smy-brand:hover .smy-logo {
+    transform: scale(1.06) rotate(-3deg);
   }
 
   .smy-brand-content {
     display: flex;
-
     flex-direction: column;
-
     gap: 2px;
   }
 
-  .smy-brand-content
-  strong {
-    color:
-      var(--smy-dark);
-
+  .smy-brand-content strong {
+    color: var(--smy-dark);
     font-size: 23px;
-
     font-weight: 900;
-
-    letter-spacing:
-      -0.045em;
-
+    letter-spacing: -0.045em;
     line-height: 1;
   }
 
-  .smy-brand-content
-  span {
+  .smy-brand-content span {
     margin-top: 4px;
-
     color: #76849a;
-
     font-size: 9px;
-
     font-weight: 800;
-
-    letter-spacing:
-      0.24em;
-
+    letter-spacing: 0.24em;
     line-height: 1;
   }
 
@@ -897,73 +775,41 @@ const navbarStyles = `
 
   .smy-desktop-navigation {
     flex: 1;
-
     display: flex;
-
     align-items: center;
-
-    justify-content:
-      flex-end;
-
+    justify-content: flex-end;
     gap: 27px;
   }
 
   .smy-nav-links {
     display: flex;
-
     align-items: center;
-
     gap: 6px;
   }
 
   .smy-nav-link {
     min-height: 50px;
-
-    padding:
-      0 16px;
-
+    padding: 0 16px;
     display: flex;
-
     align-items: center;
-
     gap: 9px;
-
     color: #526176;
-
     border-radius: 13px;
-
     font-size: 14px;
-
     font-weight: 720;
-
     text-decoration: none;
-
-    transition:
-      color 0.25s ease,
-      background 0.25s ease,
-      transform 0.25s ease;
+    transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
   }
 
   .smy-nav-link:hover,
   .smy-nav-link.active {
-    color:
-      var(--smy-blue);
-
-    background:
-      rgba(
-        7,
-        88,
-        232,
-        0.075
-      );
-
-    transform:
-      translateY(-2px);
+    color: var(--smy-blue);
+    background: rgba(7, 88, 232, 0.075);
+    transform: translateY(-2px);
   }
 
   .smy-nav-icon {
     display: flex;
-
     font-size: 14px;
   }
 
@@ -977,89 +823,53 @@ const navbarStyles = `
 
   .smy-services-main {
     min-height: 50px;
-
     display: flex;
-
     align-items: center;
-
     overflow: hidden;
-
     border-radius: 13px;
-
-    transition:
-      background 0.25s ease;
+    transition: background 0.25s ease;
   }
 
   .smy-services-main:hover,
   .smy-services-main.active {
-    background:
-      rgba(
-        7,
-        88,
-        232,
-        0.075
-      );
+    background: rgba(7, 88, 232, 0.075);
   }
 
   .smy-services-link {
     min-height: 50px;
-
     display: flex;
-
     align-items: center;
-
     gap: 9px;
-
-    padding:
-      0 8px
-      0 16px;
-
+    padding: 0 8px 0 16px;
     color: #526176;
-
     font-size: 14px;
-
     font-weight: 720;
-
     text-decoration: none;
   }
 
-  .smy-services-main:hover
-  .smy-services-link,
-  .smy-services-main.active
-  .smy-services-link {
-    color:
-      var(--smy-blue);
+  .smy-services-main:hover .smy-services-link,
+  .smy-services-main.active .smy-services-link {
+    color: var(--smy-blue);
   }
 
   .smy-services-arrow-button {
     width: 38px;
-
     min-height: 50px;
-
     display: grid;
-
     place-items: center;
-
     color: #7d899a;
-
     background: transparent;
-
     border: 0;
-
     cursor: pointer;
   }
 
-  .smy-services-arrow-button
-  svg {
+  .smy-services-arrow-button svg {
     font-size: 11px;
-
-    transition:
-      transform 0.25s ease;
+    transition: transform 0.25s ease;
   }
 
   .rotate {
-    transform:
-      rotate(180deg);
+    transform: rotate(180deg);
   }
 
   /* =========================================================
@@ -1068,279 +878,125 @@ const navbarStyles = `
 
   .smy-services-dropdown {
     position: absolute;
-
-    top:
-      calc(
-        100% + 20px
-      );
-
+    top: calc(100% + 20px);
     left: 50%;
-
     width: 840px;
-
     padding: 22px;
-
     display: grid;
-
-    grid-template-columns:
-      0.82fr
-      1.18fr;
-
+    grid-template-columns: 0.82fr 1.18fr;
     gap: 22px;
-
     visibility: hidden;
-
     opacity: 0;
-
     pointer-events: none;
-
-    transform:
-      translate(
-        -50%,
-        14px
-      )
-      scale(0.98);
-
-    background:
-      rgba(
-        255,
-        255,
-        255,
-        0.995
-      );
-
-    border:
-      1px solid
-      var(--smy-border);
-
+    transform: translate(-50%, 14px) scale(0.98);
+    background: rgba(255, 255, 255, 0.995);
+    border: 1px solid var(--smy-border);
     border-radius: 26px;
-
-    box-shadow:
-      0 35px 100px
-      rgba(
-        8,
-        30,
-        65,
-        0.18
-      );
-
-    transition:
-      opacity 0.25s ease,
-      transform 0.25s ease,
-      visibility 0.25s ease;
+    box-shadow: 0 35px 100px rgba(8, 30, 65, 0.18);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
   }
 
   .smy-services-dropdown.show {
     visibility: visible;
-
     opacity: 1;
-
     pointer-events: auto;
-
-    transform:
-      translate(
-        -50%,
-        0
-      )
-      scale(1);
+    transform: translate(-50%, 0) scale(1);
   }
 
   .smy-dropdown-feature {
     padding: 32px;
-
     border-radius: 21px;
-
-    background:
-      radial-gradient(
-        circle at 90% 10%,
-        rgba(
-          68,
-          134,
-          255,
-          0.32
-        ),
-        transparent 35%
-      ),
-      linear-gradient(
-        145deg,
-        #06162c,
-        #0d346d
-      );
+    background: radial-gradient(circle at 90% 10%, rgba(68, 134, 255, 0.32), transparent 35%), linear-gradient(145deg, #06162c, #0d346d);
   }
 
   .smy-dropdown-label {
     color: #76a8ff;
-
     font-size: 9px;
-
     font-weight: 850;
-
-    letter-spacing:
-      0.17em;
+    letter-spacing: 0.17em;
   }
 
-  .smy-dropdown-feature
-  h3 {
-    margin:
-      15px 0
-      13px;
-
+  .smy-dropdown-feature h3 {
+    margin: 15px 0 13px;
     color: white;
-
     font-size: 27px;
-
     line-height: 1.15;
-
-    letter-spacing:
-      -0.04em;
+    letter-spacing: -0.04em;
   }
 
-  .smy-dropdown-feature
-  > p {
+  .smy-dropdown-feature > p {
     margin: 0;
-
     color: #b4c4da;
-
     font-size: 12px;
-
     line-height: 1.8;
   }
 
   .dropdown-feature-points {
     display: grid;
-
     gap: 9px;
-
     margin-top: 21px;
   }
 
-  .dropdown-feature-points
-  span {
+  .dropdown-feature-points span {
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
     color: #c5d2e4;
-
     font-size: 10px;
   }
 
-  .dropdown-feature-points
-  svg {
+  .dropdown-feature-points svg {
     color: #6fa7ff;
-
     font-size: 9px;
   }
 
   .smy-dropdown-explore {
     margin-top: 24px;
-
-    display:
-      inline-flex;
-
+    display: inline-flex;
     align-items: center;
-
     gap: 9px;
-
     color: white;
-
     font-size: 11px;
-
     font-weight: 750;
-
     text-decoration: none;
   }
 
   .smy-dropdown-services {
     display: grid;
-
-    grid-template-columns:
-      1fr 1fr;
-
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
 
   .smy-service-card {
     position: relative;
-
     min-height: 145px;
-
     padding: 19px;
-
     display: flex;
-
-    align-items:
-      flex-start;
-
+    align-items: flex-start;
     gap: 13px;
-
     color: inherit;
-
-    background:
-      #fafcff;
-
-    border:
-      1px solid
-      #e5eaf2;
-
+    background: #fafcff;
+    border: 1px solid #e5eaf2;
     border-radius: 17px;
-
     text-decoration: none;
-
-    transition:
-      transform 0.25s ease,
-      border-color 0.25s ease,
-      box-shadow 0.25s ease;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
   .smy-service-card:hover {
-    transform:
-      translateY(-5px);
-
-    border-color:
-      rgba(
-        7,
-        88,
-        232,
-        0.22
-      );
-
-    box-shadow:
-      0 16px 40px
-      rgba(
-        8,
-        30,
-        65,
-        0.1
-      );
+    transform: translateY(-5px);
+    border-color: rgba(7, 88, 232, 0.22);
+    box-shadow: 0 16px 40px rgba(8, 30, 65, 0.1);
   }
 
   .smy-service-icon {
     width: 48px;
-
     height: 48px;
-
     flex-shrink: 0;
-
     display: grid;
-
     place-items: center;
-
-    color:
-      var(--smy-blue);
-
-    background:
-      rgba(
-        7,
-        88,
-        232,
-        0.08
-      );
-
+    color: var(--smy-blue);
+    background: rgba(7, 88, 232, 0.08);
     border-radius: 13px;
-
     font-size: 19px;
   }
 
@@ -1348,40 +1004,25 @@ const navbarStyles = `
     min-width: 0;
   }
 
-  .smy-service-card
-  strong {
+  .smy-service-card strong {
     display: block;
-
     padding-right: 14px;
-
-    color:
-      var(--smy-dark);
-
+    color: var(--smy-dark);
     font-size: 13px;
   }
 
-  .smy-service-card
-  p {
-    margin:
-      7px 0
-      0;
-
+  .smy-service-card p {
+    margin: 7px 0 0;
     color: #758297;
-
     font-size: 10px;
-
     line-height: 1.6;
   }
 
   .smy-service-arrow {
     position: absolute;
-
     top: 20px;
-
     right: 14px;
-
     color: #9da8b7;
-
     font-size: 9px;
   }
 
@@ -1391,151 +1032,69 @@ const navbarStyles = `
 
   .smy-nav-actions {
     display: flex;
-
     align-items: center;
-
     gap: 10px;
   }
 
   .desktop-call-button {
     min-height: 48px;
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
-    padding:
-      0 14px;
-
-    color:
-      var(--smy-dark);
-
-    background:
-      #f6f8fc;
-
-    border:
-      1px solid
-      var(--smy-border);
-
+    padding: 0 14px;
+    color: var(--smy-dark);
+    background: #f6f8fc;
+    border: 1px solid var(--smy-border);
     border-radius: 13px;
-
     font-size: 12px;
-
     font-weight: 720;
-
     text-decoration: none;
-
-    transition:
-      color 0.25s ease,
-      transform 0.25s ease;
+    transition: color 0.25s ease, transform 0.25s ease;
   }
 
   .desktop-call-button:hover {
-    color:
-      var(--smy-blue);
-
-    transform:
-      translateY(-2px);
+    color: var(--smy-blue);
+    transform: translateY(-2px);
   }
 
   .smy-whatsapp {
     width: 48px;
-
     height: 48px;
-
     display: grid;
-
     place-items: center;
-
-    color:
-      var(--smy-whatsapp);
-
-    background:
-      rgba(
-        22,
-        168,
-        117,
-        0.08
-      );
-
-    border:
-      1px solid
-      rgba(
-        22,
-        168,
-        117,
-        0.13
-      );
-
+    color: var(--smy-whatsapp);
+    background: rgba(22, 168, 117, 0.08);
+    border: 1px solid rgba(22, 168, 117, 0.13);
     border-radius: 13px;
-
     font-size: 20px;
-
     cursor: pointer;
-
-    transition:
-      color 0.25s ease,
-      background 0.25s ease,
-      transform 0.25s ease;
+    transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
   }
 
   .smy-whatsapp:hover {
     color: white;
-
-    background:
-      var(--smy-whatsapp);
-
-    transform:
-      translateY(-3px);
+    background: var(--smy-whatsapp);
+    transform: translateY(-3px);
   }
 
   .smy-contact-button {
     min-height: 48px;
-
-    padding:
-      0 20px;
-
+    padding: 0 20px;
     display: flex;
-
     align-items: center;
-
     gap: 9px;
-
     color: white;
-
-    background:
-      linear-gradient(
-        135deg,
-        var(--smy-blue),
-        var(--smy-purple)
-      );
-
+    background: linear-gradient(135deg, var(--smy-blue), var(--smy-purple));
     border-radius: 13px;
-
-    box-shadow:
-      0 12px 28px
-      rgba(
-        7,
-        88,
-        232,
-        0.24
-      );
-
+    box-shadow: 0 12px 28px rgba(7, 88, 232, 0.24);
     font-size: 12px;
-
     font-weight: 780;
-
     text-decoration: none;
-
-    transition:
-      transform 0.25s ease;
+    transition: transform 0.25s ease;
   }
 
   .smy-contact-button:hover {
-    transform:
-      translateY(-3px);
+    transform: translateY(-3px);
   }
 
   /* =========================================================
@@ -1553,38 +1112,19 @@ const navbarStyles = `
 
   .smy-mobile-overlay {
     position: fixed;
-
     z-index: 4998;
-
     inset: 0;
-
     visibility: hidden;
-
     opacity: 0;
-
     pointer-events: none;
-
-    background:
-      rgba(
-        3,
-        12,
-        28,
-        0.58
-      );
-
-    backdrop-filter:
-      blur(5px);
-
-    transition:
-      opacity 0.3s ease,
-      visibility 0.3s ease;
+    background: rgba(3, 12, 28, 0.58);
+    backdrop-filter: blur(5px);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
   .smy-mobile-overlay.show {
     visibility: visible;
-
     opacity: 1;
-
     pointer-events: auto;
   }
 
@@ -1594,50 +1134,20 @@ const navbarStyles = `
 
   .smy-mobile-menu {
     position: fixed;
-
     z-index: 5001;
-
     top: 0;
-
     right: 0;
-
-    width:
-      min(
-        440px,
-        100%
-      );
-
+    width: min(440px, 100%);
     height: 100dvh;
-
     overflow-y: auto;
-
     background: white;
-
-    box-shadow:
-      -25px 0 80px
-      rgba(
-        3,
-        15,
-        36,
-        0.22
-      );
-
-    transform:
-      translateX(105%);
-
-    transition:
-      transform 0.35s
-      cubic-bezier(
-        0.22,
-        1,
-        0.36,
-        1
-      );
+    box-shadow: -25px 0 80px rgba(3, 15, 36, 0.22);
+    transform: translateX(105%);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .smy-mobile-menu.show {
-    transform:
-      translateX(0);
+    transform: translateX(0);
   }
 
   /* =========================================================
@@ -1646,135 +1156,71 @@ const navbarStyles = `
 
   .smy-mobile-header {
     min-height: 100px;
-
-    padding:
-      14px 20px;
-
+    padding: 14px 20px;
     display: grid;
-
-    grid-template-columns:
-      60px
-      1fr
-      60px;
-
+    grid-template-columns: 60px 1fr 60px;
     align-items: center;
-
     gap: 10px;
-
-    border-bottom:
-      1px solid
-      #e9edf3;
+    border-bottom: 1px solid #e9edf3;
   }
 
   .mobile-menu-call,
   .smy-mobile-close {
     width: 56px;
-
     height: 56px;
-
     display: grid;
-
     place-items: center;
-
     border-radius: 16px;
-
     text-decoration: none;
-
     font-size: 21px;
   }
 
   .mobile-menu-call {
-    color:
-      var(--smy-blue);
-
-    background:
-      rgba(
-        7,
-        88,
-        232,
-        0.08
-      );
-
-    border:
-      1px solid
-      rgba(
-        7,
-        88,
-        232,
-        0.11
-      );
+    color: var(--smy-blue);
+    background: rgba(7, 88, 232, 0.08);
+    border: 1px solid rgba(7, 88, 232, 0.11);
   }
 
   .smy-mobile-close {
     color: white;
-
-    background:
-      linear-gradient(
-        135deg,
-        var(--smy-blue),
-        var(--smy-purple)
-      );
-
+    background: linear-gradient(135deg, var(--smy-blue), var(--smy-purple));
     border: 0;
-
     cursor: pointer;
   }
 
   .smy-mobile-brand {
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 11px;
-
     text-decoration: none;
   }
 
-  .smy-mobile-brand
-  img {
+  .smy-mobile-brand img {
     width: 58px;
-
     height: 58px;
-
     object-fit: contain;
   }
 
-  .smy-mobile-brand
-  div {
+  .smy-mobile-brand div {
     display: flex;
-
     flex-direction: column;
   }
 
-  .smy-mobile-brand
-  strong {
-    color:
-      var(--smy-dark);
-
+  .smy-mobile-brand strong {
+    color: var(--smy-dark);
     font-size: 21px;
-
     font-weight: 900;
-
-    letter-spacing:
-      -0.04em;
-
+    letter-spacing: -0.04em;
     line-height: 1;
   }
 
-  .smy-mobile-brand
-  span {
+  .smy-mobile-brand span {
     margin-top: 4px;
-
     color: #7c8898;
-
     font-size: 7px;
-
     font-weight: 800;
-
-    letter-spacing:
-      0.21em;
+    letter-spacing: 0.21em;
   }
 
   /* =========================================================
@@ -1782,118 +1228,63 @@ const navbarStyles = `
   ========================================================= */
 
   .smy-mobile-content {
-    padding:
-      32px 24px;
+    padding: 32px 24px;
   }
 
   .smy-mobile-label {
     display: block;
-
     margin-bottom: 14px;
-
     color: #8c98a9;
-
     font-size: 9px;
-
     font-weight: 850;
-
-    letter-spacing:
-      0.17em;
+    letter-spacing: 0.17em;
   }
 
   .smy-mobile-link {
     width: 100%;
-
     min-height: 68px;
-
-    padding:
-      11px 15px;
-
+    padding: 11px 15px;
     display: flex;
-
     align-items: center;
-
-    justify-content:
-      space-between;
-
+    justify-content: space-between;
     color: #46546a;
-
-    border:
-      1px solid
-      transparent;
-
+    border: 1px solid transparent;
     border-radius: 16px;
-
     text-decoration: none;
-
-    transition:
-      color 0.25s ease,
-      background 0.25s ease,
-      transform 0.25s ease;
+    transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
   }
 
   .smy-mobile-link:hover,
   .smy-mobile-link.active {
-    color:
-      var(--smy-blue);
-
-    background:
-      rgba(
-        7,
-        88,
-        232,
-        0.06
-      );
-
-    transform:
-      translateX(3px);
+    color: var(--smy-blue);
+    background: rgba(7, 88, 232, 0.06);
+    transform: translateX(3px);
   }
 
-  .smy-mobile-link
-  > div {
+  .smy-mobile-link > div {
     display: flex;
-
     align-items: center;
-
     gap: 14px;
   }
 
   .smy-mobile-link-icon {
     width: 44px;
-
     height: 44px;
-
     display: grid;
-
     place-items: center;
-
     flex-shrink: 0;
-
-    color:
-      var(--smy-blue);
-
-    background:
-      rgba(
-        7,
-        88,
-        232,
-        0.08
-      );
-
+    color: var(--smy-blue);
+    background: rgba(7, 88, 232, 0.08);
     border-radius: 12px;
-
     font-size: 17px;
   }
 
-  .smy-mobile-link
-  strong {
+  .smy-mobile-link strong {
     font-size: 14px;
   }
 
-  .smy-mobile-link
-  > svg {
+  .smy-mobile-link > svg {
     color: #9ca8b8;
-
     font-size: 11px;
   }
 
@@ -1903,95 +1294,56 @@ const navbarStyles = `
 
   .mobile-services-main-row {
     min-height: 68px;
-
     display: grid;
-
-    grid-template-columns:
-      1fr
-      58px;
-
+    grid-template-columns: 1fr 58px;
     align-items: center;
-
     overflow: hidden;
-
-    border:
-      1px solid
-      transparent;
-
+    border: 1px solid transparent;
     border-radius: 16px;
-
-    transition:
-      background 0.25s ease;
+    transition: background 0.25s ease;
   }
 
   .mobile-services-main-row:hover,
   .mobile-services-main-row.active {
-    background:
-      rgba(
-        7,
-        88,
-        232,
-        0.05
-      );
+    background: rgba(7, 88, 232, 0.05);
   }
 
   .mobile-services-direct-link {
     min-height: 68px;
-
     display: flex;
-
     align-items: center;
-
-    padding:
-      11px 15px;
-
+    padding: 11px 15px;
     color: #46546a;
-
     text-decoration: none;
   }
 
-  .mobile-services-direct-link
-  > div {
+  .mobile-services-direct-link > div {
     display: flex;
-
     align-items: center;
-
     gap: 14px;
   }
 
-  .mobile-services-direct-link
-  strong {
+  .mobile-services-direct-link strong {
     font-size: 14px;
   }
 
-  .mobile-services-main-row.active
-  .mobile-services-direct-link {
-    color:
-      var(--smy-blue);
+  .mobile-services-main-row.active .mobile-services-direct-link {
+    color: var(--smy-blue);
   }
 
   .mobile-services-toggle {
     height: 58px;
-
     display: grid;
-
     place-items: center;
-
     color: #8995a6;
-
     background: transparent;
-
     border: 0;
-
     cursor: pointer;
   }
 
-  .mobile-services-toggle
-  svg {
+  .mobile-services-toggle svg {
     font-size: 13px;
-
-    transition:
-      transform 0.25s ease;
+    transition: transform 0.25s ease;
   }
 
   /* =========================================================
@@ -2000,130 +1352,64 @@ const navbarStyles = `
 
   .smy-mobile-services {
     max-height: 0;
-
     overflow: hidden;
-
     opacity: 0;
-
-    transition:
-      max-height 0.4s ease,
-      opacity 0.3s ease,
-      padding 0.3s ease;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
   }
 
   .smy-mobile-services.show {
     max-height: 760px;
-
-    padding:
-      11px 0;
-
+    padding: 11px 0;
     opacity: 1;
   }
 
   .smy-mobile-service {
     position: relative;
-
-    margin:
-      7px 0
-      7px 10px;
-
+    margin: 7px 0 7px 10px;
     padding: 15px;
-
     display: grid;
-
-    grid-template-columns:
-      46px
-      1fr
-      auto;
-
+    grid-template-columns: 46px 1fr auto;
     align-items: start;
-
     gap: 12px;
-
     color: inherit;
-
-    background:
-      #f8fafd;
-
-    border:
-      1px solid
-      #e7ebf2;
-
+    background: #f8fafd;
+    border: 1px solid #e7ebf2;
     border-radius: 15px;
-
     text-decoration: none;
-
-    transition:
-      transform 0.25s ease,
-      border-color 0.25s ease;
+    transition: transform 0.25s ease, border-color 0.25s ease;
   }
 
   .smy-mobile-service:hover {
-    transform:
-      translateX(3px);
-
-    border-color:
-      rgba(
-        7,
-        88,
-        232,
-        0.2
-      );
+    transform: translateX(3px);
+    border-color: rgba(7, 88, 232, 0.2);
   }
 
-  .smy-mobile-service
-  > span {
+  .smy-mobile-service > span {
     width: 46px;
-
     height: 46px;
-
     display: grid;
-
     place-items: center;
-
-    color:
-      var(--smy-blue);
-
-    background:
-      rgba(
-        7,
-        88,
-        232,
-        0.08
-      );
-
+    color: var(--smy-blue);
+    background: rgba(7, 88, 232, 0.08);
     border-radius: 12px;
-
     font-size: 18px;
   }
 
-  .smy-mobile-service
-  strong {
-    color:
-      var(--smy-dark);
-
+  .smy-mobile-service strong {
+    color: var(--smy-dark);
     font-size: 13px;
   }
 
-  .smy-mobile-service
-  p {
-    margin:
-      6px 0
-      0;
-
+  .smy-mobile-service p {
+    margin: 6px 0 0;
     color: #7b8798;
-
     font-size: 10px;
-
     line-height: 1.55;
   }
 
-  .smy-mobile-service
-  > svg {
+  .smy-mobile-service > svg {
     margin-top: 5px;
-
     color: #a2adbb;
-
     font-size: 10px;
   }
 
@@ -2133,71 +1419,36 @@ const navbarStyles = `
 
   .mobile-contact-box {
     margin-top: 32px;
-
     padding: 27px;
-
     color: white;
-
-    background:
-      radial-gradient(
-        circle at 90% 10%,
-        rgba(
-          70,
-          135,
-          255,
-          0.25
-        ),
-        transparent 35%
-      ),
-      linear-gradient(
-        145deg,
-        #07182f,
-        #0d346d
-      );
-
+    background: radial-gradient(circle at 90% 10%, rgba(70, 135, 255, 0.25), transparent 35%), linear-gradient(145deg, #07182f, #0d346d);
     border-radius: 22px;
   }
 
-  .mobile-contact-box
-  > span {
+  .mobile-contact-box > span {
     color: #76a8ff;
-
     font-size: 9px;
-
     font-weight: 850;
-
-    letter-spacing:
-      0.16em;
+    letter-spacing: 0.16em;
   }
 
-  .mobile-contact-box
-  h3 {
-    margin:
-      11px 0;
-
+  .mobile-contact-box h3 {
+    margin: 11px 0;
     color: white;
-
     font-size: 23px;
-
     line-height: 1.25;
   }
 
-  .mobile-contact-box
-  p {
+  .mobile-contact-box p {
     margin: 0;
-
     color: #afc0d8;
-
     font-size: 11px;
-
     line-height: 1.7;
   }
 
   .smy-mobile-actions {
     display: grid;
-
     gap: 10px;
-
     margin-top: 22px;
   }
 
@@ -2205,58 +1456,35 @@ const navbarStyles = `
   .smy-mobile-quote,
   .smy-mobile-whatsapp {
     min-height: 55px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 9px;
-
-    padding:
-      0 17px;
-
+    padding: 0 17px;
     border-radius: 14px;
-
     font-size: 12px;
-
     font-weight: 750;
-
     text-decoration: none;
   }
 
   .smy-mobile-call-action {
-    color:
-      var(--smy-dark);
-
+    color: var(--smy-dark);
     background: white;
   }
 
   .smy-mobile-quote {
     color: white;
-
-    background:
-      linear-gradient(
-        135deg,
-        #1670ff,
-        #7350e4
-      );
+    background: linear-gradient(135deg, #1670ff, #7350e4);
   }
 
   .smy-mobile-whatsapp {
     color: white;
-
-    background:
-      var(--smy-whatsapp);
-
+    background: var(--smy-whatsapp);
     border: 0;
-
     cursor: pointer;
   }
 
-  .smy-mobile-whatsapp
-  svg {
+  .smy-mobile-whatsapp svg {
     font-size: 19px;
   }
 
@@ -2265,514 +1493,130 @@ const navbarStyles = `
   ========================================================= */
 
   @media (max-width: 1120px) {
-    .smy-desktop-navigation {
-      display: none;
-    }
+    .smy-desktop-navigation { display: none; }
 
     .smy-navbar-wrapper {
       top: 12px;
-
-      width:
-        calc(
-          100% - 20px
-        );
-
+      width: calc(100% - 20px);
       border-radius: 22px;
-
-      box-shadow:
-        0 16px 45px
-        rgba(
-          8,
-          30,
-          65,
-          0.14
-        );
+      box-shadow: 0 16px 45px rgba(8, 30, 65, 0.14);
     }
 
     .smy-navbar-wrapper.navbar-scrolled {
       top: 0;
-
       width: 100%;
-
       border-radius: 0;
     }
 
-    /* BIG MOBILE NAVBAR */
-
     .smy-navbar {
       min-height: 100px;
-
       position: relative;
-
       display: grid;
-
-      grid-template-columns:
-        68px
-        minmax(
-          0,
-          1fr
-        )
-        68px;
-
+      grid-template-columns: 68px minmax(0, 1fr) 68px;
       align-items: center;
-
       gap: 10px;
-
-      padding:
-        0 20px;
+      padding: 0 20px;
     }
 
-    .navbar-scrolled
-    .smy-navbar {
-      min-height: 92px;
-    }
-
-    /* LEFT CALL */
+    .navbar-scrolled .smy-navbar { min-height: 92px; }
 
     .mobile-call-button {
       width: 60px;
-
       height: 60px;
-
       display: grid;
-
       place-items: center;
-
       justify-self: start;
-
-      color:
-        var(--smy-blue);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(
-            7,
-            88,
-            232,
-            0.12
-          ),
-          rgba(
-            7,
-            88,
-            232,
-            0.05
-          )
-        );
-
-      border:
-        1px solid
-        rgba(
-          7,
-          88,
-          232,
-          0.15
-        );
-
+      color: var(--smy-blue);
+      background: linear-gradient(145deg, rgba(7, 88, 232, 0.12), rgba(7, 88, 232, 0.05));
+      border: 1px solid rgba(7, 88, 232, 0.15);
       border-radius: 18px;
-
-      box-shadow:
-        0 8px 22px
-        rgba(
-          7,
-          88,
-          232,
-          0.1
-        );
-
+      box-shadow: 0 8px 22px rgba(7, 88, 232, 0.1);
       text-decoration: none;
-
       font-size: 23px;
-
-      transition:
-        transform 0.25s ease,
-        background 0.25s ease;
+      transition: transform 0.25s ease, background 0.25s ease;
     }
 
-    .mobile-call-button:active {
-      transform:
-        scale(0.94);
-    }
-
-    /* CENTER BRAND */
+    .mobile-call-button:active { transform: scale(0.94); }
 
     .smy-brand {
       min-width: 0;
-
       justify-self: center;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       gap: 12px;
     }
 
-    .smy-logo {
-      width: 64px;
-
-      height: 64px;
-
-      flex-shrink: 0;
-    }
-
-    .smy-brand-content {
-      min-width: 0;
-    }
-
-    .smy-brand-content
-    strong {
-      font-size: 23px;
-
-      white-space: nowrap;
-    }
-
-    .smy-brand-content
-    span {
-      margin-top: 5px;
-
-      font-size: 8px;
-
-      letter-spacing:
-        0.22em;
-
-      white-space: nowrap;
-    }
-
-    /* RIGHT MENU */
+    .smy-logo { width: 64px; height: 64px; flex-shrink: 0; }
+    .smy-brand-content { min-width: 0; }
+    .smy-brand-content strong { font-size: 23px; white-space: nowrap; }
+    .smy-brand-content span { margin-top: 5px; font-size: 8px; letter-spacing: 0.22em; white-space: nowrap; }
 
     .smy-mobile-toggle {
       width: 60px;
-
       height: 60px;
-
       display: grid;
-
       place-items: center;
-
       justify-self: end;
-
-      color:
-        var(--smy-dark);
-
-      background:
-        linear-gradient(
-          145deg,
-          #f8faff,
-          #f1f5fb
-        );
-
-      border:
-        1px solid
-        var(--smy-border);
-
+      color: var(--smy-dark);
+      background: linear-gradient(145deg, #f8faff, #f1f5fb);
+      border: 1px solid var(--smy-border);
       border-radius: 18px;
-
-      box-shadow:
-        0 8px 22px
-        rgba(
-          8,
-          30,
-          65,
-          0.07
-        );
-
+      box-shadow: 0 8px 22px rgba(8, 30, 65, 0.07);
       font-size: 25px;
-
       cursor: pointer;
-
-      transition:
-        transform 0.25s ease,
-        color 0.25s ease,
-        background 0.25s ease;
+      transition: transform 0.25s ease, color 0.25s ease, background 0.25s ease;
     }
 
     .smy-mobile-toggle.active {
       color: white;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--smy-blue),
-          var(--smy-purple)
-        );
+      background: linear-gradient(135deg, var(--smy-blue), var(--smy-purple));
     }
 
-    .smy-mobile-toggle:active {
-      transform:
-        scale(0.94);
-    }
+    .smy-mobile-toggle:active { transform: scale(0.94); }
   }
-
-  /* =========================================================
-     NORMAL MOBILE
-  ========================================================= */
 
   @media (max-width: 600px) {
-    .smy-navbar-wrapper {
-      width:
-        calc(
-          100% - 16px
-        );
-
-      top: 8px;
-
-      border-radius: 20px;
-    }
-
-    .smy-navbar-wrapper.navbar-scrolled {
-      width: 100%;
-
-      top: 0;
-
-      border-radius: 0;
-    }
-
-    .smy-navbar {
-      min-height: 94px;
-
-      grid-template-columns:
-        62px
-        minmax(
-          0,
-          1fr
-        )
-        62px;
-
-      gap: 8px;
-
-      padding:
-        0 14px;
-    }
-
-    .navbar-scrolled
-    .smy-navbar {
-      min-height: 88px;
-    }
-
-    .mobile-call-button {
-      width: 56px;
-
-      height: 56px;
-
-      border-radius: 17px;
-
-      font-size: 21px;
-    }
-
-    .smy-brand {
-      gap: 9px;
-    }
-
-    .smy-logo {
-      width: 58px;
-
-      height: 58px;
-    }
-
-    .smy-brand-content
-    strong {
-      font-size: 20px;
-    }
-
-    .smy-brand-content
-    span {
-      margin-top: 4px;
-
-      font-size: 7px;
-
-      letter-spacing:
-        0.18em;
-    }
-
-    .smy-mobile-toggle {
-      width: 56px;
-
-      height: 56px;
-
-      border-radius: 17px;
-
-      font-size: 23px;
-    }
+    .smy-navbar-wrapper { width: calc(100% - 16px); top: 8px; border-radius: 20px; }
+    .smy-navbar-wrapper.navbar-scrolled { width: 100%; top: 0; border-radius: 0; }
+    .smy-navbar { min-height: 94px; grid-template-columns: 62px minmax(0, 1fr) 62px; gap: 8px; padding: 0 14px; }
+    .navbar-scrolled .smy-navbar { min-height: 88px; }
+    .mobile-call-button { width: 56px; height: 56px; border-radius: 17px; font-size: 21px; }
+    .smy-brand { gap: 9px; }
+    .smy-logo { width: 58px; height: 58px; }
+    .smy-brand-content strong { font-size: 20px; }
+    .smy-brand-content span { margin-top: 4px; font-size: 7px; letter-spacing: 0.18em; }
+    .smy-mobile-toggle { width: 56px; height: 56px; border-radius: 17px; font-size: 23px; }
   }
-
-  /* =========================================================
-     SMALL MOBILE
-  ========================================================= */
 
   @media (max-width: 480px) {
-    .smy-navbar {
-      min-height: 90px;
-
-      grid-template-columns:
-        58px
-        minmax(
-          0,
-          1fr
-        )
-        58px;
-
-      gap: 6px;
-
-      padding:
-        0 11px;
-    }
-
-    .mobile-call-button,
-    .smy-mobile-toggle {
-      width: 53px;
-
-      height: 53px;
-
-      border-radius: 16px;
-    }
-
-    .mobile-call-button {
-      font-size: 20px;
-    }
-
-    .smy-mobile-toggle {
-      font-size: 22px;
-    }
-
-    .smy-brand {
-      gap: 7px;
-    }
-
-    .smy-logo {
-      width: 54px;
-
-      height: 54px;
-    }
-
-    .smy-brand-content
-    strong {
-      font-size: 18px;
-
-      letter-spacing:
-        -0.04em;
-    }
-
-    .smy-brand-content
-    span {
-      font-size: 6.5px;
-
-      letter-spacing:
-        0.15em;
-    }
-
-    .smy-mobile-header {
-      min-height: 92px;
-
-      grid-template-columns:
-        54px
-        1fr
-        54px;
-
-      padding:
-        12px 14px;
-    }
-
-    .mobile-menu-call,
-    .smy-mobile-close {
-      width: 50px;
-
-      height: 50px;
-    }
-
-    .smy-mobile-brand
-    img {
-      width: 51px;
-
-      height: 51px;
-    }
-
-    .smy-mobile-brand
-    strong {
-      font-size: 18px;
-    }
-
-    .smy-mobile-brand
-    span {
-      font-size: 6px;
-    }
+    .smy-navbar { min-height: 90px; grid-template-columns: 58px minmax(0, 1fr) 58px; gap: 6px; padding: 0 11px; }
+    .mobile-call-button, .smy-mobile-toggle { width: 53px; height: 53px; border-radius: 16px; }
+    .mobile-call-button { font-size: 20px; }
+    .smy-mobile-toggle { font-size: 22px; }
+    .smy-brand { gap: 7px; }
+    .smy-logo { width: 54px; height: 54px; }
+    .smy-brand-content strong { font-size: 18px; letter-spacing: -0.04em; }
+    .smy-brand-content span { font-size: 6.5px; letter-spacing: 0.15em; }
+    .smy-mobile-header { min-height: 92px; grid-template-columns: 54px 1fr 54px; padding: 12px 14px; }
+    .mobile-menu-call, .smy-mobile-close { width: 50px; height: 50px; }
+    .smy-mobile-brand img { width: 51px; height: 51px; }
+    .smy-mobile-brand strong { font-size: 18px; }
+    .smy-mobile-brand span { font-size: 6px; }
   }
-
-  /* =========================================================
-     VERY SMALL MOBILE
-  ========================================================= */
 
   @media (max-width: 390px) {
-    .smy-navbar {
-      min-height: 86px;
-
-      grid-template-columns:
-        53px
-        minmax(
-          0,
-          1fr
-        )
-        53px;
-
-      gap: 4px;
-
-      padding:
-        0 8px;
-    }
-
-    .mobile-call-button,
-    .smy-mobile-toggle {
-      width: 49px;
-
-      height: 49px;
-
-      border-radius: 14px;
-    }
-
-    .mobile-call-button {
-      font-size: 18px;
-    }
-
-    .smy-mobile-toggle {
-      font-size: 20px;
-    }
-
-    .smy-brand {
-      gap: 5px;
-    }
-
-    .smy-logo {
-      width: 48px;
-
-      height: 48px;
-    }
-
-    .smy-brand-content
-    strong {
-      font-size: 16px;
-    }
-
-    .smy-brand-content
-    span {
-      margin-top: 3px;
-
-      font-size: 5.5px;
-
-      letter-spacing:
-        0.12em;
-    }
+    .smy-navbar { min-height: 86px; grid-template-columns: 53px minmax(0, 1fr) 53px; gap: 4px; padding: 0 8px; }
+    .mobile-call-button, .smy-mobile-toggle { width: 49px; height: 49px; border-radius: 14px; }
+    .mobile-call-button { font-size: 18px; }
+    .smy-mobile-toggle { font-size: 20px; }
+    .smy-brand { gap: 5px; }
+    .smy-logo { width: 48px; height: 48px; }
+    .smy-brand-content strong { font-size: 16px; }
+    .smy-brand-content span { margin-top: 3px; font-size: 5.5px; letter-spacing: 0.12em; }
   }
 
-  /* =========================================================
-     REDUCED MOTION
-  ========================================================= */
-
-  @media (
-    prefers-reduced-motion:
-    reduce
-  ) {
+  @media (prefers-reduced-motion: reduce) {
     .smy-navbar-wrapper,
     .smy-nav-link,
     .smy-services-dropdown,
@@ -2783,8 +1627,7 @@ const navbarStyles = `
     .smy-mobile-link,
     .mobile-call-button,
     .smy-mobile-toggle {
-      transition:
-        none !important;
+      transition: none !important;
     }
   }
 `;
