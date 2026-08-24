@@ -189,9 +189,9 @@ const structuredData = {
       "@type": "AboutPage",
       "@id": `${ABOUT_URL}#webpage`,
       "url": ABOUT_URL,
-      "name": "About SMYVISION TECHNOLOGIES | Best Web Development Company in Vijayawada | Custom Web Applications",
-      "headline": "About the Best Web Development Company in Vijayawada - SMYVISION TECHNOLOGIES",
-      "description": "Learn about SMYVISION TECHNOLOGIES, the best web development company in Vijayawada. We provide professional website development, custom web applications, business automation, AI chatbot solutions and responsive web design across Vijayawada and Andhra Pradesh.",
+      "name": "About SMYVISION TECHNOLOGIES | Vijayawada Technology Company",
+      "headline": "About SMYVISION TECHNOLOGIES - Technology Company in Vijayawada",
+      "description": "Learn about SMYVISION TECHNOLOGIES, a technology company in Vijayawada building professional websites, custom web applications, business automation solutions and AI chatbots for growing businesses.",
       "isPartOf": { "@id": `${WEBSITE_URL}/#website` },
       "about": { "@id": `${WEBSITE_URL}/#organization` },
       "inLanguage": "en-IN",
@@ -204,11 +204,11 @@ const structuredData = {
       "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
       "@id": `${WEBSITE_URL}/#organization`,
       "name": "SMYVISION TECHNOLOGIES",
-      "alternateName": ["SMYVISION", "Best Web Development Company Vijayawada", "SMYVISION Tech", "Best Web Developers Vijayawada"],
+      "alternateName": ["SMYVISION", "SMYVISION Tech", "SMYVISION TECHNOLOGIES Vijayawada"],
       "url": WEBSITE_URL,
       "logo": `${WEBSITE_URL}/Logo.png`,
       "image": `${WEBSITE_URL}/Logo.png`,
-      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada, trusted for professional website development, custom web application development, responsive web design, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
+      "description": "SMYVISION TECHNOLOGIES is a technology company in Vijayawada providing professional website development, custom web applications, business automation and AI chatbot solutions for growing businesses.",
       "email": EMAIL,
       "telephone": PHONE_LINK,
       "foundingDate": "2026",
@@ -253,7 +253,7 @@ const structuredData = {
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "SMYVISION TECHNOLOGIES - Best Web Development Services Vijayawada",
+        "name": "SMYVISION TECHNOLOGIES Digital Services",
         "itemListElement": [
           {
             "@type": "Offer",
@@ -376,19 +376,19 @@ const About = () => {
 
         {/* ✅ PRIMARY TITLE - Front-loaded with "Best" + "Custom Web Applications" */}
         <title>
-          About SMYVISION TECHNOLOGIES | Best Web Development Company in Vijayawada | Custom Web Applications
+          About SMYVISION TECHNOLOGIES | Vijayawada Technology Company
         </title>
 
         {/* ✅ META DESCRIPTION - High CTR, includes all target keywords */}
         <meta
           name="description"
-          content="Learn about SMYVISION TECHNOLOGIES, the best web development company in Vijayawada. We provide professional website development, custom web applications, business automation, AI chatbot solutions and responsive web design across Vijayawada and Andhra Pradesh. Trusted web developers for growing businesses."
+          content="Learn about SMYVISION TECHNOLOGIES, a Vijayawada technology company building professional websites, custom web applications, business automation solutions and AI chatbots for growing businesses."
         />
 
         {/* ✅ KEYWORDS - Expanded with misspellings, "best", "top", service-specific */}
         <meta
           name="keywords"
-          content="about best web development company vijayawada, web development company in vijayawada, website development company vijayawada, web development services vijayawada, custom web application development vijayawada, best website developers vijayawada, web company vijayawada, web development vijayawda, web company in vijaywaa, business automation vijayawada, AI chatbot development vijayawada, custom web applications vijayawada, web development company andhra pradesh, website development andhra pradesh, top web development agency vijayawada, SMYVISION TECHNOLOGIES, about smyvision technologies, best web developers vijayawada, responsive web design vijayawada, professional website development vijayawada"
+          content="SMYVISION TECHNOLOGIES, about SMYVISION TECHNOLOGIES, technology company Vijayawada, digital solutions company Vijayawada, website development Vijayawada, custom web applications, business automation, AI chatbot solutions"
         />
 
         <meta name="author" content="SMYVISION TECHNOLOGIES" />
@@ -412,22 +412,22 @@ const About = () => {
         {/* ✅ OPEN GRAPH - Social sharing optimized */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="SMYVISION TECHNOLOGIES" />
-        <meta property="og:title" content="About SMYVISION TECHNOLOGIES | Best Web Development Company in Vijayawada | Custom Web Applications" />
-        <meta property="og:description" content="Learn about SMYVISION TECHNOLOGIES, the best web development company in Vijayawada. Professional website development, custom web applications, business automation and AI chatbot solutions in Vijayawada and Andhra Pradesh." />
+        <meta property="og:title" content="About SMYVISION TECHNOLOGIES | Vijayawada Technology Company" />
+        <meta property="og:description" content="Meet SMYVISION TECHNOLOGIES, a Vijayawada technology company creating websites, custom web applications, automation systems and AI chatbot solutions." />
         <meta property="og:url" content={ABOUT_URL} />
         <meta property="og:image" content={`${WEBSITE_URL}/Logo.png`} />
-        <meta property="og:image:alt" content="SMYVISION TECHNOLOGIES - Best Web Development Company in Vijayawada" />
+        <meta property="og:image:alt" content="SMYVISION TECHNOLOGIES - Technology Company in Vijayawada" />
         <meta property="og:locale" content="en_IN" />
 
         {/* ✅ TWITTER CARD */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About SMYVISION TECHNOLOGIES | Best Web Development Company in Vijayawada" />
-        <meta name="twitter:description" content="Learn about SMYVISION TECHNOLOGIES, the best web development company in Vijayawada providing custom web applications, automation and AI solutions." />
+        <meta name="twitter:title" content="About SMYVISION TECHNOLOGIES | Vijayawada Technology Company" />
+        <meta name="twitter:description" content="Learn about SMYVISION TECHNOLOGIES and our approach to websites, custom web applications, business automation and AI solutions." />
         <meta name="twitter:image" content={`${WEBSITE_URL}/Logo.png`} />
-        <meta name="twitter:image:alt" content="SMYVISION TECHNOLOGIES - Best Web Development Company" />
+        <meta name="twitter:image:alt" content="SMYVISION TECHNOLOGIES - Vijayawada Technology Company" />
 
         {/* ✅ AI SEARCH / ENTITY CONTEXT */}
-        <meta name="subject" content="About Best Web Development Company in Vijayawada - SMYVISION TECHNOLOGIES" />
+        <meta name="subject" content="About SMYVISION TECHNOLOGIES - Vijayawada Technology Company" />
         <meta name="classification" content="Web Development Company" />
         <meta name="coverage" content="Vijayawada, Andhra Pradesh, India" />
         <meta name="distribution" content="global" />
@@ -456,11 +456,11 @@ const About = () => {
                 <span>Building Better Digital Experiences for Growing Businesses</span>
               </motion.div>
               <motion.h1 variants={fadeUp}>
-                We Build Technology Around
-                <span> Real Business Goals.</span>
+                About SMYVISION TECHNOLOGIES
+                <span> — Technology Built Around Real Business Goals.</span>
               </motion.h1>
               <motion.p className="about-hero-description" variants={fadeUp}>
-                SMYVISION TECHNOLOGIES creates professional websites, smart automation systems and digital solutions designed to help businesses present themselves better, work more efficiently and connect with customers more effectively.
+                SMYVISION TECHNOLOGIES is a Vijayawada technology company creating professional websites, custom web applications, smart automation systems and AI-powered digital solutions for growing businesses.
               </motion.p>
               <motion.div className="about-hero-actions" variants={fadeUp}>
                 <button type="button" className="about-primary-button" onClick={goToContact}>

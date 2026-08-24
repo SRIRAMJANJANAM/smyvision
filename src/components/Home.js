@@ -355,6 +355,14 @@ const faqItems = [
     question: "How do I start a project with SMYVISION TECHNOLOGIES?",
     answer: "Simply contact our team and tell us about your business and project idea. We will discuss your requirements, understand your goals and recommend the right solution.",
   },
+  {
+    question: "Do you provide website development services in Vijayawada?",
+    answer: "Yes. SMYVISION TECHNOLOGIES provides website development services for businesses in Vijayawada, including responsive business websites, corporate websites, custom web applications, website redesign and related digital solutions.",
+  },
+  {
+    question: "Can you build a website for a local business in Vijayawada?",
+    answer: "Yes. We work with local businesses in Vijayawada and can build professional mobile-responsive websites designed to present services clearly, strengthen online presence and make customer enquiries easier.",
+  },
 ];
 
 /* =========================================================
@@ -410,8 +418,8 @@ const structuredData = {
       "name": "SMYVISION TECHNOLOGIES",
       "alternateName": ["SMYVISION", "Best Web Development Company Vijayawada", "SMYVISION Tech"],
       "url": WEBSITE_URL,
-      "logo": `${WEBSITE_URL}/logo.png`,
-      "image": `${WEBSITE_URL}/logo.png`,
+      "logo": `${WEBSITE_URL}/Logo.png`,
+      "image": `${WEBSITE_URL}/Logo.png`,
       "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada, trusted for professional website development, custom web application development, responsive web design, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
       "telephone": PHONE_LINK,
       "email": EMAIL,
@@ -502,7 +510,7 @@ const structuredData = {
       "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada. We provide responsive websites, custom web applications, SEO-friendly development, business automation and AI chatbot solutions. Top-rated web developers in Vijayawada and Andhra Pradesh.",
       "isPartOf": { "@id": `${WEBSITE_URL}/#website` },
       "about": { "@id": `${WEBSITE_URL}/#organization` },
-      "primaryImageOfPage": { "@type": "ImageObject", "url": `${WEBSITE_URL}/logo.png` },
+      "primaryImageOfPage": { "@type": "ImageObject", "url": `${WEBSITE_URL}/Logo.png` },
       "inLanguage": "en-IN",
     },
     {
@@ -619,7 +627,7 @@ const Home = () => {
         {/* ✅ KEYWORDS - Expanded with misspellings, "best", "top", service-specific terms */}
         <meta
           name="keywords"
-          content="best web development company in vijayawada, website development company vijayawada, web development services vijayawada, custom web application development vijayawada, web company in vijayawada, web developers vijayawada, web designing company vijayawada, responsive website design vijayawada, software company vijayawada, ai chatbot development vijayawada, business automation vijayawada, best web development company vijayawda, web company in vijaywaa, top web development agency vijayawada, professional web services vijayawada, website redesign vijayawada, affordable web development vijayawada, seo friendly website development vijayawada, web development andhra pradesh, smyvision technologies, best website developers vijayawada, custom web application company vijayawada"
+          content="web development company in vijayawada, website development vijayawada, web developers vijayawada, custom web application development vijayawada, responsive website design vijayawada, business automation vijayawada, ai chatbot development vijayawada, smyvision technologies"
         />
 
         <meta name="author" content="SMYVISION TECHNOLOGIES" />
@@ -647,14 +655,14 @@ const Home = () => {
         <meta property="og:description" content="SMYVISION TECHNOLOGIES is the best web development company in Vijayawada. Professional websites, custom web applications, business automation & AI chatbots. Top-rated web developers in Vijayawada." />
         <meta property="og:site_name" content="SMYVISION TECHNOLOGIES" />
         <meta property="og:locale" content="en_IN" />
-        <meta property="og:image" content={`${WEBSITE_URL}/logo.png`} />
+        <meta property="og:image" content={`${WEBSITE_URL}/Logo.png`} />
         <meta property="og:image:alt" content="SMYVISION TECHNOLOGIES - Best Web Development Company in Vijayawada" />
 
         {/* ✅ TWITTER CARD */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Best Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES" />
         <meta name="twitter:description" content="Professional website development, custom web applications, business automation & AI chatbot solutions in Vijayawada and Andhra Pradesh." />
-        <meta name="twitter:image" content={`${WEBSITE_URL}/logo.png`} />
+        <meta name="twitter:image" content={`${WEBSITE_URL}/Logo.png`} />
         <meta name="twitter:image:alt" content="SMYVISION TECHNOLOGIES - Web Development Company" />
 
         {/* ✅ AI SEARCH / ENTITY CONTEXT */}
@@ -685,14 +693,14 @@ const Home = () => {
             <motion.div className="hero-content" initial="hidden" animate="visible" variants={stagger}>
               <motion.div className="hero-badge" variants={fadeUp}>
                 <FaWandMagicSparkles />
-                <span>Building Digital Experiences That Drive Business Forward</span>
+                <span>Web Development & Digital Solutions in Vijayawada</span>
               </motion.div>
               <motion.h1 variants={fadeUp}>
-                Turning Business Ideas Into
-                <span> Powerful Digital Experiences.</span>
+                Web Development Company in Vijayawada
+                <span> Building Powerful Digital Experiences.</span>
               </motion.h1>
               <motion.p className="hero-description" variants={fadeUp}>
-                We combine modern technology, thoughtful design and smart digital solutions to help businesses build stronger brands, simplify operations and create better customer experiences.
+                SMYVISION TECHNOLOGIES is a web development company in Vijayawada creating professional business websites, custom web applications, business automation solutions and AI chatbots for businesses across Vijayawada and Andhra Pradesh.
               </motion.p>
               <motion.div className="hero-actions" variants={fadeUp}>
                 <button type="button" className="primary-button" onClick={goToContact}>
@@ -772,11 +780,11 @@ const Home = () => {
         <section className="section intro-section">
           <div className="container intro-layout">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-              <motion.span className="eyebrow" variants={fadeUp}>BUILD A STRONGER DIGITAL BUSINESS</motion.span>
-              <motion.h2 variants={fadeUp}>Technology Should Help Your Business Move Faster, Work Smarter and Connect Better.</motion.h2>
-              <motion.p variants={fadeUp}>A digital presence should do more than simply display information. It should clearly communicate what your business offers and make it easy for potential customers to take the next step.</motion.p>
-              <motion.p variants={fadeUp}>At <strong>SMYVISION TECHNOLOGIES</strong>, we create professional digital solutions that combine design, development, automation and intelligent technology.</motion.p>
-              <motion.p variants={fadeUp}>Whether you need a professional website, a custom business platform or an intelligent automation system, we focus on creating practical solutions designed around your business.</motion.p>
+              <motion.span className="eyebrow" variants={fadeUp}>WEB DEVELOPMENT IN VIJAYAWADA</motion.span>
+              <motion.h2 variants={fadeUp}>Professional Website Development for Vijayawada Businesses.</motion.h2>
+              <motion.p variants={fadeUp}>A strong website should clearly explain your business, build customer trust and make it simple for people to contact you. We develop responsive and SEO-ready websites for startups, local businesses and growing companies in Vijayawada.</motion.p>
+              <motion.p variants={fadeUp}>At <strong>SMYVISION TECHNOLOGIES</strong>, our Vijayawada web development services include business websites, corporate websites, custom web applications, website redesign, business automation and AI chatbot solutions.</motion.p>
+              <motion.p variants={fadeUp}>Every project is planned around your business goals, customer journey and future growth, with modern design, responsive development and practical technology choices.</motion.p>
               <motion.button variants={fadeUp} type="button" className="primary-button intro-button" onClick={goToContact}>
                 Discuss Your Project<FaArrowRight />
               </motion.button>
@@ -812,7 +820,7 @@ const Home = () => {
         {/* SERVICES - UNCHANGED */}
         <section className="section services-section">
           <div className="container">
-            <SectionHeader eyebrow="OUR DIGITAL SERVICES" title="Technology Solutions Built to Support Real Business Growth" text="We combine strategy, modern design and technology to create digital solutions that solve practical business challenges." />
+            <SectionHeader eyebrow="WEB DEVELOPMENT SERVICES IN VIJAYAWADA" title="Website, Web Application & Automation Solutions for Vijayawada Businesses" text="We build professional websites, custom web applications and smart automation solutions for businesses in Vijayawada and across Andhra Pradesh." />
             <div className="services-grid">
               {services.map((service, index) => (
                 <motion.article className="service-card" key={service.title} initial={{ opacity: 0, y: 40, rotateX: 5 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
@@ -861,7 +869,7 @@ const Home = () => {
         {/* PROJECTS - UNCHANGED */}
         <section className="section projects-section" id="our-work">
           <div className="container">
-            <SectionHeader eyebrow="OUR SELECTED WORK" title="Digital Experiences Created for Real Businesses" text="Explore some of the websites we have designed and developed across different business industries." />
+            <SectionHeader eyebrow="OUR SELECTED WORK" title="Websites & Digital Experiences Built for Real Businesses" text="Explore selected website development projects created for businesses across different industries, with a focus on responsive design and practical user experience." />
             <div className="project-showcase">
               <button className="project-arrow left" type="button" onClick={handlePreviousProject}><FaChevronLeft /></button>
               <div className="project-main-card">
@@ -1003,11 +1011,11 @@ const Home = () => {
         <section className="section digital-growth-section">
           <div className="container digital-growth-layout">
             <div>
-              <span className="eyebrow">YOUR DIGITAL BUSINESS FOUNDATION</span>
-              <h2>Create a Digital Presence That Continues Working for Your Business.</h2>
-              <p>Your digital presence gives customers a place to understand who you are, explore your services and communicate with your business whenever they need you.</p>
-              <p>A professional website also creates the foundation for future opportunities such as online marketing, customer automation, digital lead generation and business management systems.</p>
-              <p>We focus on developing solutions that can support your business today while remaining flexible enough for future improvements and expansion.</p>
+              <span className="eyebrow">VIJAYAWADA WEBSITE DEVELOPMENT PARTNER</span>
+              <h2>Build a Professional Online Presence for Your Business in Vijayawada.</h2>
+              <p>Customers often search online before contacting a business. A professional website gives them a clear place to understand your services, view your work and reach you from mobile, tablet or desktop.</p>
+              <p>SMYVISION TECHNOLOGIES helps Vijayawada businesses create responsive websites, custom web applications and digital systems that support enquiries, customer communication and day-to-day operations.</p>
+              <p>Whether you are launching a new business website or improving an existing digital platform, we focus on clean structure, strong usability, SEO-ready development and room for future growth.</p>
               <button type="button" className="primary-button" onClick={goToContact}>Build Your Digital Presence<FaArrowRight /></button>
             </div>
             <div className="growth-cards">
@@ -1023,8 +1031,8 @@ const Home = () => {
           <div className="container faq-layout">
             <div className="faq-heading">
               <span className="eyebrow">FREQUENTLY ASKED QUESTIONS</span>
-              <h2>Questions About Working With Us?</h2>
-              <p>Find answers to common questions about our website development, digital solutions and project process.</p>
+              <h2>Web Development Questions From Vijayawada Businesses</h2>
+              <p>Find answers to common questions about website development in Vijayawada, responsive design, custom web applications, automation and our project process.</p>
               <button type="button" className="faq-whatsapp-button" onClick={openWhatsApp}><FaWhatsapp />Ask Us on WhatsApp</button>
             </div>
             <div className="faq-list">

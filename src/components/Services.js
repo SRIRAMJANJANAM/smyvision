@@ -81,17 +81,17 @@ const LightIcons = {
 const SEOStructuredData = () => {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "WebDevelopmentCompany",
+    "@type": "ProfessionalService",
     "name": "SMYVISION TECHNOLOGIES",
-    "description": "Top web development company in Vijayawada, Hyderabad, and Bangalore offering professional website development, automation solutions, and chatbot development services.",
+    "description": "SMYVISION TECHNOLOGIES provides website development, custom web applications, business automation and AI chatbot solutions for businesses in Vijayawada and across India.",
     "url": "https://smyvisiontechnologies.com",
-    "founder": "Sri Ram Janjanam",
+    "founder": { "@type": "Person", "name": "Sri Ram Janjanam" },
     "foundingDate": "2026",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Vijayawada",
       "addressRegion": "Andhra Pradesh",
-      "addressCountry": "India"
+      "addressCountry": "IN"
     },
     "serviceArea": {
       "@type": "Place",
@@ -160,8 +160,9 @@ const SEOStructuredData = () => {
     },
     "sameAs": [
       "https://www.linkedin.com/company/smyvisiontechnologies",
-      "https://twitter.com/smyvisiontech",
-      "https://www.facebook.com/share/1AAbW51BTs/"
+      "https://www.facebook.com/share/1AAbW51BTs/",
+      "https://instagram.com/smyvisiontechnologies",
+      "https://youtube.com/@smyvisiontechnologies"
     ]
   };
 
@@ -169,60 +170,6 @@ const SEOStructuredData = () => {
     <script type="application/ld+json">
       {JSON.stringify(structuredData)}
     </script>
-  );
-};
-
-// Hidden SEO Text Component
-const HiddenSEOText = () => {
-  return (
-    <div style={{
-      position: 'absolute',
-      left: '-9999px',
-      top: '-9999px',
-      height: '1px',
-      width: '1px',
-      overflow: 'hidden'
-    }}>
-      <h1>SMYVISION TECHNOLOGIES - Top Web Development Company</h1>
-      <h2>Best Website Development Services in Vijayawada, Hyderabad, Bangalore</h2>
-      
-      <p>SMYVISION TECHNOLOGIES is the leading web development company in Vijayawada, Hyderabad, and Bangalore. We specialize in professional website development services for businesses across South India.</p>
-      
-      <h3>Web Development Services in Vijayawada</h3>
-      <p>As the top web development company in Vijayawada, we offer customized website solutions for local businesses. Our Vijayawada-based team provides expert web development services with 24/7 support.</p>
-      
-      <h3>Website Development Company in Hyderabad</h3>
-      <p>We are a premier website development company in Hyderabad offering cutting-edge web solutions. Our Hyderabad office serves clients with responsive website design and development services.</p>
-      
-      <h3>Best Web Developers in Bangalore</h3>
-      <p>Our Bangalore team provides professional web development services for startups and enterprises. We are recognized as one of the best web development companies in Bangalore for automation and chatbot solutions.</p>
-      
-      <h3>Services Offered:</h3>
-      <ul>
-        <li>Website Development in Vijayawada</li>
-        <li>Web Development Company Hyderabad</li>
-        <li>Bangalore Web Development Services</li>
-        <li>E-commerce Website Development</li>
-        <li>Custom Web Applications</li>
-        <li>Business Automation Solutions</li>
-        <li>AI Chatbot Development</li>
-      </ul>
-      
-      <h3>Why Choose Our Web Development Services?</h3>
-      <p>We are the preferred choice for web development in Vijayawada, Hyderabad, and Bangalore because of our:</p>
-      <ul>
-        <li>Expert team of web developers</li>
-        <li>Affordable pricing for businesses</li>
-        <li>Timely project delivery</li>
-        <li>24/7 technical support</li>
-        <li>Modern technology stack</li>
-        <li>Client-centric approach</li>
-      </ul>
-      
-      <p>Contact the best web development company in Vijayawada, Hyderabad, and Bangalore today. Call 8500352005 for a free consultation on website development services.</p>
-      
-      <h4>Keywords: top web development companies in vijayawada, website development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, affordable web development vijayawada, professional website developers hyderabad, custom web development bangalore, e-commerce website development south india</h4>
-    </div>
   );
 };
 
@@ -287,76 +234,6 @@ const AnimatedPattern = () => {
 function Services() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
-
-  useEffect(() => {
-    // Enhanced SEO Meta tags for location-based keywords
-    const metaTags = [
-      { name: 'description', content: 'Top web development company in Vijayawada, Hyderabad, Bangalore. SMYVISION TECHNOLOGIES provides professional website development, automation solutions, and chatbot development services across South India.' },
-      { name: 'keywords', content: 'top web development companies in vijayawada, website development company hyderabad, best web developers in bangalore, web development services vijayawada, hyderabad web development company, bangalore website developers, affordable web development vijayawada, professional website developers hyderabad, custom web development bangalore, e-commerce website development south india, web development andhra pradesh, website company telangana, bangalore web services, vijayawada website designers, hyderabad web solutions' },
-      { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
-      { name: 'author', content: 'SMYVISION TECHNOLOGIES' },
-      { name: 'geo.region', content: 'IN-AP, IN-TG, IN-KA' },
-      { name: 'geo.placename', content: 'Vijayawada, Hyderabad, Bangalore' },
-      { name: 'geo.position', content: '16.5062;80.6480' },
-      { name: 'ICBM', content: '16.5062, 80.6480' },
-      
-      // Open Graph Tags
-      { property: 'og:title', content: 'Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION' },
-      { property: 'og:description', content: 'Professional website development services in Vijayawada, Hyderabad, and Bangalore. Custom web solutions, automation, and chatbot development for businesses.' },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: 'https://smyvisiontechnologies.com/services' },
-      { property: 'og:locale', content: 'en_IN' },
-      { property: 'og:locale:alternate', content: 'te_IN' },
-      
-      // Twitter Cards
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'Top Web Development Company | Vijayawada Hyderabad Bangalore' },
-      { name: 'twitter:description', content: 'Best web development services in Vijayawada, Hyderabad, Bangalore. Professional website solutions for businesses.' }
-    ];
-
-    metaTags.forEach(tag => {
-      const meta = document.createElement('meta');
-      if (tag.name) meta.name = tag.name;
-      if (tag.property) meta.setAttribute('property', tag.property);
-      meta.content = tag.content;
-      document.head.appendChild(meta);
-    });
-
-    // Canonical URL
-    const canonicalLink = document.createElement('link');
-    canonicalLink.rel = 'canonical';
-    canonicalLink.href = 'https://smyvisiontechnologies.com/services';
-    document.head.appendChild(canonicalLink);
-
-    // Page Title with location keywords
-    document.title = 'Top Web Development Company in Vijayawada, Hyderabad, Bangalore | SMYVISION';
-
-    // Ensure proper viewport setup
-    const viewportMeta = document.querySelector('meta[name="viewport"]');
-    if (!viewportMeta) {
-      const meta = document.createElement('meta');
-      meta.name = 'viewport';
-      meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-      document.head.appendChild(meta);
-    }
-
-    // Reset body styles
-    document.body.style.margin = '0';
-    document.body.style.padding = '0';
-    document.body.style.overflowX = 'hidden';
-    document.body.style.width = '100%';
-
-    return () => {
-      metaTags.forEach(tag => {
-        const selector = tag.name ? `meta[name="${tag.name}"]` : `meta[property="${tag.property}"]`;
-        const element = document.querySelector(selector);
-        if (element) element.remove();
-      });
-      
-      const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) canonical.remove();
-    };
-  }, []);
 
   const handleCallNow = () => {
     window.location.href = 'tel:8500352005';
@@ -438,16 +315,30 @@ function Services() {
     <>
       {/* SEO Head Components */}
       <Helmet>
-        <meta name="geo.region" content="IN-AP, IN-TG, IN-KA" />
-        <meta name="geo.placename" content="Vijayawada, Hyderabad, Bangalore" />
+        <title>Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES</title>
+        <meta
+          name="description"
+          content="Explore website development, custom web applications, business automation and AI chatbot solutions from SMYVISION TECHNOLOGIES in Vijayawada."
+        />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="author" content="SMYVISION TECHNOLOGIES" />
+        <meta property="og:title" content="Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES" />
+        <meta property="og:description" content="Professional website development, business automation and AI chatbot solutions for businesses in Vijayawada and beyond." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://smyvisiontechnologies.com/services" />
+        <meta property="og:locale" content="en_IN" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES" />
+        <meta name="twitter:description" content="Website development, automation and AI chatbot solutions from SMYVISION TECHNOLOGIES." />
+        <meta name="geo.region" content="IN-AP" />
+        <meta name="geo.placename" content="Vijayawada" />
         <meta name="geo.position" content="16.5062;80.6480" />
         <meta name="ICBM" content="16.5062, 80.6480" />
-        <meta name="location" content="Vijayawada, Hyderabad, Bangalore, India" />
+        <meta name="location" content="Vijayawada, Andhra Pradesh, India" />
         <link rel="canonical" href="https://smyvisiontechnologies.com/services" />
         
         {/* Location-specific alternate URLs */}
         <link rel="alternate" hrefLang="en-in" href="https://smyvisiontechnologies.com/services" />
-        <link rel="alternate" hrefLang="te-in" href="https://smyvisiontechnologies.com/te/services" />
         
         {/* Local business schema */}
         <script type="application/ld+json">
@@ -455,11 +346,12 @@ function Services() {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "SMYVISION TECHNOLOGIES",
-            "image": "https://smyvisiontechnologies.com/logo.png",
+            "foundingDate": "2026",
+            "image": "https://smyvisiontechnologies.com/Logo.png",
             "@id": "https://smyvisiontechnologies.com",
             "url": "https://smyvisiontechnologies.com",
             "telephone": "+918500352005",
-            "priceRange": "2999",
+            "priceRange": "₹₹",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "Vijayawada",
@@ -480,15 +372,15 @@ function Services() {
                 "Tuesday",
                 "Wednesday",
                 "Thursday",
-                "Friday"
+                "Friday",
+                "Saturday"
               ],
               "opens": "09:00",
               "closes": "18:00"
             },
             "sameAs": [
               "https://www.facebook.com/share/1AAbW51BTs/",
-              "https://twitter.com/smyvisiontech",
-              "https://www.linkedin.com/company/smyvisiontechnologies"
+                      "https://www.linkedin.com/company/smyvisiontechnologies"
             ]
           })}
         </script>
@@ -507,9 +399,6 @@ function Services() {
         overflowX: 'hidden',
         boxSizing: 'border-box'
       }}>
-        {/* Hidden SEO Text (for search engines only) */}
-        <HiddenSEOText />
-        
         <AnimatedPattern />
         <FloatingBubbles />
 

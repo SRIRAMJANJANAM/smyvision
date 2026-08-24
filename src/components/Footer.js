@@ -601,7 +601,9 @@ const Footer = () => {
                     WEBSITE_URL,
 
                   logo:
-                    `${WEBSITE_URL}/logo.png`,
+                    `${WEBSITE_URL}/Logo.png`,
+                  
+                  foundingDate: "2026",
 
                   description:
                     "SMYVISION TECHNOLOGIES is a professional web development company in Vijayawada providing website development, responsive web design, custom web applications, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
