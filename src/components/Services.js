@@ -77,92 +77,150 @@ const LightIcons = {
   ),
 };
 
-// SEO Structured Data Component (Hidden)
+// SEO + LOCAL ENTITY + AEO/GEO STRUCTURED DATA
 const SEOStructuredData = () => {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "SMYVISION TECHNOLOGIES",
-    "description": "SMYVISION TECHNOLOGIES provides website development, custom web applications, business automation and AI chatbot solutions for businesses in Vijayawada and across India.",
-    "url": "https://smyvisiontechnologies.com",
-    "founder": { "@type": "Person", "name": "Sri Ram Janjanam" },
-    "foundingDate": "2026",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Vijayawada",
-      "addressRegion": "Andhra Pradesh",
-      "addressCountry": "IN"
-    },
-    "serviceArea": {
-      "@type": "Place",
-      "name": "Vijayawada, Hyderabad, Bangalore, India"
-    },
-    "serviceType": [
-      "Website Development",
-      "Web Application Development",
-      "Automation Solutions",
-      "Chatbot Development",
-      "Digital Transformation"
-    ],
-    "areaServed": [
+    "@graph": [
       {
-        "@type": "City",
-        "name": "Vijayawada"
-      },
-      {
-        "@type": "City",
-        "name": "Hyderabad"
-      },
-      {
-        "@type": "City",
-        "name": "Bangalore"
-      },
-      {
-        "@type": "State",
-        "name": "Andhra Pradesh"
-      },
-      {
-        "@type": "State",
-        "name": "Telangana"
-      },
-      {
-        "@type": "State",
-        "name": "Karnataka"
-      }
-    ],
-    "offers": {
-      "@type": "AggregateOffer",
-      "offerCount": "3",
-      "offers": [
-        {
-          "@type": "Offer",
-          "name": "Website Development Services",
-          "description": "Professional website development for businesses in Vijayawada, Hyderabad, and Bangalore"
+        "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+        "@id": "https://smyvisiontechnologies.com/#organization",
+        "name": "SMYVISION TECHNOLOGIES",
+        "alternateName": "SMYVISION",
+        "url": "https://smyvisiontechnologies.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://smyvisiontechnologies.com/#logo",
+          "url": "https://smyvisiontechnologies.com/Logo.png",
+          "contentUrl": "https://smyvisiontechnologies.com/Logo.png",
+          "caption": "SMYVISION TECHNOLOGIES"
         },
-        {
-          "@type": "Offer",
-          "name": "Automation Development",
-          "description": "Business automation solutions for companies in South India"
+        "image": { "@id": "https://smyvisiontechnologies.com/#logo" },
+        "description": "SMYVISION TECHNOLOGIES is a web development company in Vijayawada providing professional website development, custom web development, custom web applications, e-commerce website development, responsive web design, business automation and digital solutions.",
+        "foundingDate": "2026",
+        "telephone": "+918500352005",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Vijayawada",
+          "addressRegion": "Andhra Pradesh",
+          "addressCountry": "IN"
         },
-        {
-          "@type": "Offer",
-          "name": "Chatbot Solutions",
-          "description": "AI-powered chatbot development for enterprises"
+        "areaServed": [
+          { "@type": "City", "name": "Vijayawada" },
+          { "@type": "State", "name": "Andhra Pradesh" },
+          { "@type": "Country", "name": "India" }
+        ],
+        "knowsAbout": [
+          "Web Development Company in Vijayawada",
+          "Website Development Company in Vijayawada",
+          "Website Development in Vijayawada",
+          "Web Design Company in Vijayawada",
+          "Website Developers in Vijayawada",
+          "Website Designers in Vijayawada",
+          "Custom Web Development in Vijayawada",
+          "Custom Web Application Development in Vijayawada",
+          "E-commerce Website Development in Vijayawada",
+          "Responsive Web Design in Vijayawada",
+          "Business Website Development in Vijayawada",
+          "Business Automation",
+          "Management Portals",
+          "Business Dashboards",
+          "SEO-ready Web Development"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+918500352005",
+          "contactType": "sales and customer enquiries",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Telugu", "Hindi"]
+        },
+        "sameAs": [
+          "https://www.facebook.com/share/1AAbW51BTs/",
+          "https://www.linkedin.com/company/smyvisiontechnologies",
+          "https://instagram.com/smyvisiontechnologies",
+          "https://youtube.com/@smyvisiontechnologies"
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://smyvisiontechnologies.com/services#custom-web-development",
+        "name": "Custom Web Development in Vijayawada",
+        "serviceType": "Custom Web Development",
+        "description": "Purpose-built custom web development services in Vijayawada including custom portals, management systems, dashboards, workflow tools and custom web applications.",
+        "provider": { "@id": "https://smyvisiontechnologies.com/#organization" },
+        "areaServed": {
+          "@type": "City",
+          "name": "Vijayawada",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Andhra Pradesh"
+          }
         }
-      ]
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+918500352005",
-      "contactType": "customer service",
-      "areaServed": ["IN"],
-      "availableLanguage": ["English", "Telugu", "Hindi"]
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/smyvisiontechnologies",
-      "https://www.facebook.com/share/1AAbW51BTs/",
-      "https://instagram.com/smyvisiontechnologies",
-      "https://youtube.com/@smyvisiontechnologies"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://smyvisiontechnologies.com/services#website-development",
+        "name": "Website Development in Vijayawada",
+        "serviceType": "Website Development",
+        "description": "Professional responsive business website development in Vijayawada designed to strengthen digital presence, trust and customer enquiries.",
+        "provider": { "@id": "https://smyvisiontechnologies.com/#organization" },
+        "areaServed": { "@type": "City", "name": "Vijayawada" }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://smyvisiontechnologies.com/services#ecommerce-development",
+        "name": "E-commerce Website Development in Vijayawada",
+        "serviceType": "E-commerce Development",
+        "description": "Custom e-commerce website development in Vijayawada with product catalogues, storefronts, order workflows and payment integration.",
+        "provider": { "@id": "https://smyvisiontechnologies.com/#organization" },
+        "areaServed": { "@type": "City", "name": "Vijayawada" }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://smyvisiontechnologies.com/services#business-automation",
+        "name": "Business Automation in Vijayawada",
+        "serviceType": "Business Automation",
+        "description": "Custom workflow automation, dashboards and digital systems in Vijayawada designed to simplify repetitive business processes.",
+        "provider": { "@id": "https://smyvisiontechnologies.com/#organization" },
+        "areaServed": { "@type": "City", "name": "Vijayawada" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://smyvisiontechnologies.com/services#webpage",
+        "url": "https://smyvisiontechnologies.com/services",
+        "name": "Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES",
+        "headline": "Website & Custom Web Development Services in Vijayawada",
+        "description": "Explore website development, custom web development, e-commerce website development and business automation services in Vijayawada from SMYVISION TECHNOLOGIES.",
+        "keywords": [
+          "Web Development Company in Vijayawada",
+          "Website Development Company in Vijayawada",
+          "Website Development in Vijayawada",
+          "Web Design Company in Vijayawada",
+          "Website Developers in Vijayawada",
+          "Custom Web Development in Vijayawada",
+          "Custom Web Application Development in Vijayawada",
+          "E-commerce Website Development in Vijayawada",
+          "Responsive Web Design in Vijayawada",
+          "Business Website Development in Vijayawada",
+          "Business Automation"
+        ],
+        "spatialCoverage": {
+          "@type": "City",
+          "name": "Vijayawada",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Andhra Pradesh"
+          }
+        },
+        "about": { "@id": "https://smyvisiontechnologies.com/#organization" },
+        "mentions": [
+          { "@id": "https://smyvisiontechnologies.com/services#custom-web-development" },
+          { "@id": "https://smyvisiontechnologies.com/services#website-development" },
+          { "@id": "https://smyvisiontechnologies.com/services#ecommerce-development" },
+          { "@id": "https://smyvisiontechnologies.com/services#business-automation" }
+        ],
+        "inLanguage": "en-IN"
+      }
     ]
   };
 
@@ -234,6 +292,7 @@ const AnimatedPattern = () => {
 function Services() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
+  const [fullscreenImage, setFullscreenImage] = useState(null);
 
   const handleCallNow = () => {
     window.location.href = 'tel:8500352005';
@@ -243,45 +302,68 @@ function Services() {
     window.location.href = '/contact';
   };
 
+  const openFullscreenImage = (src, alt) => {
+    setFullscreenImage({ src, alt });
+  };
+
+  const closeFullscreenImage = () => {
+    setFullscreenImage(null);
+  };
+
   const services = [
     {
       id: 1,
-      title: 'Websites Development',
+      title: 'Premium Website Development',
       image: '/images/web.png',
-      description: 'SMYVISION TECHNOLOGIES provides affordable and professional website solutions for businesses of all sizes. A well-designed website builds trust, credibility, and a strong online presence.',
-      features: ['Customized Solutions', 'Expert Implementation', '24/7 Support', 'Regular Updates'],
-      color: '#4f46e5',
+      description: 'High-end business websites designed to build trust, communicate clearly and convert visitors into genuine enquiries.',
+      features: ['Business Websites', 'Corporate Websites', 'Responsive Design', 'SEO-Ready Structure'],
+      color: '#0758e8',
       bgColor: 'rgba(79, 70, 229, 0.05)'
     },
     {
       id: 2,
-      title: 'Automation Development',
-      image: '/images/auto.png',
-      description: 'SMYVISION TECHNOLOGIES delivers reliable and affordable automation solutions to improve business efficiency. Automation reduces manual effort, minimizes errors, and saves valuable time.',
-      features: ['High Accuracy & Reliability', 'Expert Implementation', 'Error Reduction & Consistency', 'Business-Specific Design'],
-      color: '#008080',
-      bgColor: 'rgba(245, 158, 11, 0.05)'
-    },{
-      id: 3,
-      title: 'Smart Chatbot Solutions',
-      image: '/images/chat.png',
-      description: 'SMYVISION TECHNOLOGIES creates intelligent chatbot solutions that engage customers instantly and provide accurate responses around the clock. Chatbots improve customer experience, reduce response time, and automate routine conversations.',
-      features: ['24/7 Instant Customer Support',
-    'Natural & Human-Like Conversations',
-    'Reduced Support Workload',
-    'Seamless Business Integration'],
-      color: '#2b05ff',
-      bgColor: 'rgba(245, 158, 11, 0.05)'
+      title: 'Custom Web Development',
+      image: '/images/cust.png',
+      description: 'Purpose-built web platforms created around your exact workflows, customers and long-term business requirements.',
+      features: ['Custom Portals', 'Management Systems', 'Client Dashboards', 'Web Applications'],
+      color: '#0758e8',
+      bgColor: 'rgba(7, 88, 232, 0.05)'
     },
-    
+    {
+      id: 3,
+      title: 'Custom E-commerce Solutions',
+      image: '/images/ecomm.png',
+      description: 'Premium online stores with product management, smooth shopping journeys and scalable functionality built for your brand.',
+      features: ['Product Catalogues', 'Custom Storefronts', 'Order Workflows', 'Payment Integration'],
+      color: '#6d28d9',
+      bgColor: 'rgba(109, 40, 217, 0.05)'
+    },
+    {
+      id: 4,
+      title: 'Business Automation',
+      image: '/images/auto.png',
+      description: 'Custom automation systems that reduce repetitive work, simplify operations and connect important business processes.',
+      features: ['Workflow Automation', 'Custom Dashboards', 'Business Systems', 'Process Automation'],
+      color: '#008080',
+      bgColor: 'rgba(0, 128, 128, 0.05)'
+    },
+    {
+      id: 5,
+      title: 'Chatbot Solutions (Coming Soon)',
+      image: '/images/chat.png',
+      description: 'Smart experiences for customer enquiries, lead handling and business communication without unnecessary complexity.',
+      features: ['Chatbots', 'Lead Automation', 'Customer Support', 'Smart Business Tools'],
+      color: '#2b05ff',
+      bgColor: 'rgba(43, 5, 255, 0.05)'
+    },
   ];
 
   const whyChooseUs = [
     { icon: <LightIcons.Monitor />, title: 'Technology Expertise', desc: 'Latest tools and technologies for optimal performance', color: '#10b981' },
     { icon: <LightIcons.Users />, title: 'Client-Centric Approach', desc: 'Solutions tailored to your specific business needs', color: '#8b5cf6' },
-    { icon: <LightIcons.Zap />, title: 'Cutting-edge Solutions', desc: '95% projects delivered on or before deadline', color: '#f59e0b' },
+    { icon: <LightIcons.Zap />, title: 'Practical Solutions', desc: 'Technology chosen around real business requirements', color: '#f59e0b' },
     { icon: <LightIcons.Clock />, title: 'Timely Delivery', desc: 'Consistent on-time delivery with quality assurance', color: '#ef4444' },
-    { icon: <LightIcons.RefreshCw />, title: 'Ongoing Support', desc: 'Round-the-clock support with 30-minute response time', color: '#3b82f6' }
+    { icon: <LightIcons.RefreshCw />, title: 'Ongoing Support', desc: 'Post-launch guidance and support based on project scope', color: '#3b82f6' }
   ];
 
   const processSteps = [
@@ -294,98 +376,125 @@ function Services() {
 
   const faqs = [
     {
+      question: "Do you provide custom web development?",
+      answer: "Yes. SMYVISION TECHNOLOGIES provides custom web development for businesses that need purpose-built portals, management systems, dashboards, workflow tools and custom web applications."
+    },
+    {
       question: "What industries do you serve?",
-      answer: "We serve a diverse range of industries including technology, healthcare, finance, e-commerce, manufacturing, and education."
+      answer: "We work with businesses across different industries and develop websites, custom web applications, e-commerce solutions and automation systems according to their requirements."
     },
     {
       question: "How long does project implementation take?",
-      answer: "Implementation timelines vary: websites (2-4 weeks), web apps (4-12 weeks), mobile apps (6-16 weeks)."
+      answer: "Project timelines depend on scope, functionality and complexity. A standard business website usually takes less time than a custom web application, e-commerce platform or advanced business system."
     },
     {
       question: "Do you provide ongoing support and maintenance?",
-      answer: "Yes, we offer comprehensive support packages including basic, professional, and enterprise support."
+      answer: "Yes. We provide post-launch technical guidance and support according to the project requirements and agreed service scope."
     },
     {
       question: "What is your pricing model?",
-      answer: "We offer flexible pricing: Fixed Price, Time & Materials, Dedicated Team, and Subscription Model."
+      answer: "Pricing depends on the project scope, number of pages, required functionality, integrations and development complexity. Contact us with your requirements for a suitable quotation."
     }
   ];
 
   return (
     <>
-      {/* SEO Head Components */}
+
+        {/* Home.js typography + text color matching only */}
+        <style>{`
+          .services-page {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+            color: #607086 !important;
+          }
+
+          .services-page h1,
+          .services-page h2,
+          .services-page h3,
+          .services-page h4,
+          .services-page h5,
+          .services-page h6 {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+            color: #07162d;
+            letter-spacing: -0.035em;
+          }
+
+          .services-page p,
+          .services-page li {
+            color: #607086;
+          }
+
+          .services-page button,
+          .services-page a,
+          .services-page input,
+          .services-page textarea,
+          .services-page select {
+            font-family: inherit;
+          }
+        `}</style>
+      {/* SEO + AEO/GEO HEAD */}
       <Helmet>
+        <html lang="en-IN" />
+
         <title>Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES</title>
+
         <meta
           name="description"
-          content="Explore website development, custom web applications, business automation and AI chatbot solutions from SMYVISION TECHNOLOGIES in Vijayawada."
+          content="Explore website development, custom web development, e-commerce website development and business automation services in Vijayawada from SMYVISION TECHNOLOGIES."
         />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+        <meta
+          name="googlebot"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+
         <meta name="author" content="SMYVISION TECHNOLOGIES" />
-        <meta property="og:title" content="Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES" />
-        <meta property="og:description" content="Professional website development, business automation and AI chatbot solutions for businesses in Vijayawada and beyond." />
+        <meta name="publisher" content="SMYVISION TECHNOLOGIES" />
+        <meta name="application-name" content="SMYVISION TECHNOLOGIES" />
+        <meta
+          name="keywords"
+          content="web development company in Vijayawada, website development company in Vijayawada, website development Vijayawada, web design company in Vijayawada, website developers in Vijayawada, website designers in Vijayawada, custom web development Vijayawada, custom web application development Vijayawada, e-commerce website development Vijayawada, responsive web design Vijayawada, business website development Vijayawada"
+        />
+
+        <link rel="canonical" href="https://smyvisiontechnologies.com/services" />
+
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="SMYVISION TECHNOLOGIES" />
+        <meta
+          property="og:title"
+          content="Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES"
+        />
+        <meta
+          property="og:description"
+          content="Website development, custom web applications, e-commerce website development and business automation services in Vijayawada by SMYVISION TECHNOLOGIES."
+        />
         <meta property="og:url" content="https://smyvisiontechnologies.com/services" />
         <meta property="og:locale" content="en_IN" />
+        <meta property="og:image" content="https://smyvisiontechnologies.com/Logo.png" />
+        <meta
+          property="og:image:alt"
+          content="SMYVISION TECHNOLOGIES web development services in Vijayawada"
+        />
+
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES" />
-        <meta name="twitter:description" content="Website development, automation and AI chatbot solutions from SMYVISION TECHNOLOGIES." />
-        <meta name="geo.region" content="IN-AP" />
-        <meta name="geo.placename" content="Vijayawada" />
-        <meta name="geo.position" content="16.5062;80.6480" />
-        <meta name="ICBM" content="16.5062, 80.6480" />
-        <meta name="location" content="Vijayawada, Andhra Pradesh, India" />
-        <link rel="canonical" href="https://smyvisiontechnologies.com/services" />
-        
-        {/* Location-specific alternate URLs */}
-        <link rel="alternate" hrefLang="en-in" href="https://smyvisiontechnologies.com/services" />
-        
-        {/* Local business schema */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "SMYVISION TECHNOLOGIES",
-            "foundingDate": "2026",
-            "image": "https://smyvisiontechnologies.com/Logo.png",
-            "@id": "https://smyvisiontechnologies.com",
-            "url": "https://smyvisiontechnologies.com",
-            "telephone": "+918500352005",
-            "priceRange": "₹₹",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Vijayawada",
-              "addressLocality": "Vijayawada",
-              "addressRegion": "Andhra Pradesh",
-              "postalCode": "520001",
-              "addressCountry": "IN"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 16.5062,
-              "longitude": 80.6480
-            },
-            "openingHoursSpecification": {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-              ],
-              "opens": "09:00",
-              "closes": "18:00"
-            },
-            "sameAs": [
-              "https://www.facebook.com/share/1AAbW51BTs/",
-                      "https://www.linkedin.com/company/smyvisiontechnologies"
-            ]
-          })}
-        </script>
+        <meta
+          name="twitter:title"
+          content="Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES"
+        />
+        <meta
+          name="twitter:description"
+          content="Website development, custom web applications, e-commerce and business automation solutions in Vijayawada from SMYVISION TECHNOLOGIES."
+        />
+        <meta name="twitter:image" content="https://smyvisiontechnologies.com/Logo.png" />
+        <meta
+          name="twitter:image:alt"
+          content="SMYVISION TECHNOLOGIES web development services in Vijayawada"
+        />
       </Helmet>
-      
+
       {/* Hidden SEO Structured Data */}
       <SEOStructuredData />
       
@@ -395,7 +504,7 @@ function Services() {
         width: '100vw',
         maxWidth: '100%',
         background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
-        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
         overflowX: 'hidden',
         boxSizing: 'border-box'
       }}>
@@ -456,7 +565,7 @@ function Services() {
                   padding: '0 10px'
                 }}
               >
-                Transformative
+                Custom Web Development
                 <span style={{
                   background: 'linear-gradient(135deg, #4f46e5, #8b5cf6)',
                   WebkitBackgroundClip: 'text',
@@ -464,7 +573,7 @@ function Services() {
                   display: 'block',
                   marginTop: '10px'
                 }}>
-                  Technology Solutions
+                  That Supports Business Growth
                 </span>
               </motion.h1>
               
@@ -474,14 +583,14 @@ function Services() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 style={{
                   fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
-                  color: '#64748b',
+                  color: '#607086',
                   maxWidth: '800px',
                   margin: '0 auto 40px',
                   lineHeight: '1.6',
                   padding: '0 16px'
                 }}
               >
-                Discover our comprehensive suite of technology services designed to accelerate your digital transformation, enhance operational efficiency, and drive sustainable business growth.
+                Explore professional website development, custom web development, e-commerce and business automation services designed around real business goals and customer needs.
               </motion.p>
 
               {/* Animated Stats */}
@@ -494,9 +603,9 @@ function Services() {
                 padding: '0 16px'
               }}>
                 {[
-                  { value: '3+', label: 'Services we offer', color: '#4f46e5' },
-                  { value: '98%', label: 'Client Satisfaction', color: '#10b981' },
-                  { value: '24/7', label: 'Support Available', color: '#3b82f6' }
+                  { value: '3+', label: 'Services we offer', color: '#0758e8' },
+                  { value: '100%', label: 'Responsive Development', color: '#10b981' },
+                  { value: '5', label: 'Core Digital Solutions', color: '#3b82f6' }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -532,7 +641,7 @@ function Services() {
                     </motion.div>
                     <div style={{
                       fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
-                      color: '#64748b',
+                      color: '#607086',
                       fontWeight: '500'
                     }}>
                       {stat.label}
@@ -577,13 +686,13 @@ function Services() {
                   }} />
                   <p style={{
                     fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-                    color: '#64748b',
+                    color: '#607086',
                     maxWidth: '800px',
                     margin: '0 auto',
                     lineHeight: '1.6',
                     padding: '0 16px'
                   }}>
-                    Comprehensive technology solutions tailored to your business needs
+                    Custom digital solutions tailored to your business needs
                   </p>
                 </motion.div>
 
@@ -642,12 +751,19 @@ function Services() {
                           src={service.image}
                           alt={service.title}
                           loading="lazy"
+                          onClick={(event) =>
+                            openFullscreenImage(
+                              event.currentTarget.currentSrc || event.currentTarget.src,
+                              service.title
+                            )
+                          }
                           style={{
                             width: '100%',
                             height: '100%',
                             objectFit: 'cover',
                             display: 'block',
-                            transition: 'transform 0.35s ease'
+                            transition: 'transform 0.35s ease',
+                            cursor: 'zoom-in'
                           }}
                           onError={(e) => {
                             e.currentTarget.src = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80';
@@ -668,7 +784,7 @@ function Services() {
                       
                       {/* Service Description */}
                       <p style={{
-                        color: '#64748b',
+                        color: '#607086',
                         marginBottom: '20px',
                         fontSize: 'clamp(0.95rem, 2vw, 1rem)',
                         lineHeight: '1.6'
@@ -777,7 +893,7 @@ function Services() {
                   }} />
                   <p style={{
                     fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-                    color: '#64748b',
+                    color: '#607086',
                     maxWidth: '800px',
                     margin: '0 auto',
                     lineHeight: '1.6',
@@ -841,7 +957,7 @@ function Services() {
                         {item.title}
                       </h3>
                       <p style={{
-                        color: '#64748b',
+                        color: '#607086',
                         fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
                         lineHeight: '1.5'
                       }}>
@@ -885,7 +1001,7 @@ function Services() {
                   }} />
                   <p style={{
                     fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-                    color: '#64748b',
+                    color: '#607086',
                     maxWidth: '800px',
                     margin: '0 auto',
                     lineHeight: '1.6',
@@ -972,7 +1088,7 @@ function Services() {
                           {step.title}
                         </h3>
                         <p style={{
-                          color: '#64748b',
+                          color: '#607086',
                           fontSize: 'clamp(0.9rem, 2vw, 1rem)',
                           lineHeight: '1.6'
                         }}>
@@ -994,13 +1110,13 @@ function Services() {
                 transition={{ duration: 0.6 }}
                 style={{
                   textAlign: 'center',
-                  background: 'linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%)',
+                  background: 'linear-gradient(135deg, #06172f 0%, #0c2856 55%, #0758e8 100%)',
                   padding: 'clamp(40px, 8vw, 60px) clamp(16px, 4vw, 32px)',
                   borderRadius: '24px',
                   margin: 'clamp(60px, 10vw, 100px) 0',
                   position: 'relative',
                   overflow: 'hidden',
-                  boxShadow: '0 20px 40px rgba(79, 70, 229, 0.3)',
+                  boxShadow: '0 20px 45px rgba(6, 23, 47, 0.28)',
                   width: '100%',
                   boxSizing: 'border-box'
                 }}
@@ -1054,7 +1170,7 @@ function Services() {
                     whileTap={{ scale: 0.95 }}
                     style={{
                       background: 'white',
-                      color: '#4f46e5',
+                      color: '#0758e8',
                       border: 'none',
                       padding: 'clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px)',
                       borderRadius: '12px',
@@ -1128,13 +1244,13 @@ function Services() {
                   }} />
                   <p style={{
                     fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-                    color: '#64748b',
+                    color: '#607086',
                     maxWidth: '800px',
                     margin: '0 auto',
                     lineHeight: '1.6',
                     padding: '0 16px'
                   }}>
-                    Find answers to common questions about our services
+                    Planning a digital project? Find clear answers about our services, process, timelines and how we can help your business move forward.
                   </p>
                 </motion.div>
 
@@ -1189,7 +1305,7 @@ function Services() {
                             transition={{ duration: 0.3 }}
                             style={{
                               fontSize: '1.5rem',
-                              color: '#4f46e5',
+                              color: '#0758e8',
                               fontWeight: '300',
                               flexShrink: 0
                             }}
@@ -1209,7 +1325,7 @@ function Services() {
                             >
                               <div style={{
                                 padding: '0 clamp(16px, 4vw, 20px) clamp(16px, 4vw, 20px)',
-                                color: '#64748b',
+                                color: '#607086',
                                 fontSize: 'clamp(0.9rem, 2vw, 1rem)',
                                 lineHeight: '1.6',
                                 borderTop: '1px solid #e2e8f0',
@@ -1229,6 +1345,82 @@ function Services() {
           </main>
         </div>
       </div>
+
+      <AnimatePresence>
+        {fullscreenImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22 }}
+            onClick={closeFullscreenImage}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 99999,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '24px',
+              background: 'rgba(3, 12, 27, 0.92)',
+              backdropFilter: 'blur(10px)',
+              cursor: 'zoom-out'
+            }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Full screen service image"
+          >
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                closeFullscreenImage();
+              }}
+              aria-label="Close full screen image"
+              style={{
+                position: 'fixed',
+                top: '20px',
+                right: '20px',
+                width: '46px',
+                height: '46px',
+                display: 'grid',
+                placeItems: 'center',
+                padding: 0,
+                border: '2px solid rgba(255,255,255,.92)',
+                borderRadius: '50%',
+                color: '#fff',
+                background: '#e53935',
+                fontSize: '29px',
+                lineHeight: 1,
+                cursor: 'pointer',
+                boxShadow: '0 12px 30px rgba(229,57,53,.3)'
+              }}
+            >
+              ×
+            </button>
+
+            <motion.img
+              src={fullscreenImage.src}
+              alt={fullscreenImage.alt}
+              initial={{ opacity: 0, scale: 0.94, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 8 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(event) => event.stopPropagation()}
+              style={{
+                maxWidth: 'min(1180px, 94vw)',
+                maxHeight: '88vh',
+                width: 'auto',
+                height: 'auto',
+                objectFit: 'contain',
+                borderRadius: '18px',
+                boxShadow: '0 30px 90px rgba(0,0,0,.4)'
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </>
   );
 }

@@ -24,9 +24,9 @@ const contactStructuredData = {
       "@type": "ContactPage",
       "@id": `${CONTACT_URL}#webpage`,
       "url": CONTACT_URL,
-      "name": "Contact Best Web Development Company in Vijayawada | Custom Web Applications | SMYVISION TECHNOLOGIES",
-      "headline": "Contact the Best Web Development Company in Vijayawada for Custom Web Applications",
-      "description": "Contact SMYVISION TECHNOLOGIES, the best web development company in Vijayawada. Get a free quote for website development, custom web applications, business automation, and AI chatbot solutions. Call +91 8500352005 or WhatsApp us today.",
+      "name": "Contact SMYVISION TECHNOLOGIES | Web Development Company in Vijayawada",
+      "headline": "Contact a Web Development Company in Vijayawada",
+      "description": "Contact SMYVISION TECHNOLOGIES, a web development company in Vijayawada, for website development, custom web development, web applications, e-commerce solutions and business automation. Call or WhatsApp us for a project consultation.",
       "isPartOf": { "@id": `${WEBSITE_URL}/#website` },
       "about": { "@id": `${WEBSITE_URL}/#organization` },
       "inLanguage": "en-IN",
@@ -39,11 +39,11 @@ const contactStructuredData = {
       "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
       "@id": `${WEBSITE_URL}/#organization`,
       "name": "SMYVISION TECHNOLOGIES",
-      "alternateName": ["SMYVISION", "Best Web Development Company Vijayawada", "Best Web Developers Vijayawada"],
+      "alternateName": "SMYVISION",
       "url": WEBSITE_URL,
       "logo": `${WEBSITE_URL}/Logo.png`,
       "image": `${WEBSITE_URL}/Logo.png`,
-      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada, trusted for professional website development, custom web application development, responsive web design, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
+      "description": "SMYVISION TECHNOLOGIES is a web development company in Vijayawada providing professional website development, custom web development, responsive web design, custom web applications, e-commerce solutions and business automation across Vijayawada and Andhra Pradesh.",
       "email": EMAIL,
       "telephone": PHONE_LINK,
       "foundingDate": "2026",
@@ -62,6 +62,16 @@ const contactStructuredData = {
         { "@type": "City", "name": "Vijayawada" },
         { "@type": "State", "name": "Andhra Pradesh" },
         { "@type": "Country", "name": "India" },
+      ],
+      "knowsAbout": [
+        "Web Development Company in Vijayawada",
+        "Website Development in Vijayawada",
+        "Web Design in Vijayawada",
+        "Custom Web Development in Vijayawada",
+        "Custom Web Application Development in Vijayawada",
+        "E-commerce Website Development in Vijayawada",
+        "Responsive Web Design in Vijayawada",
+        "Business Website Development in Vijayawada"
       ],
       "contactPoint": [
         {
@@ -600,19 +610,19 @@ Please follow up with this lead.`;
 
         {/* ✅ PRIMARY TITLE */}
         <title>
-          Contact Best Web Development Company in Vijayawada | Custom Web Applications | SMYVISION
+          Contact Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES
         </title>
 
         {/* ✅ META DESCRIPTION */}
         <meta
           name="description"
-          content="Contact SMYVISION TECHNOLOGIES, the best web development company in Vijayawada. Get a free quote for website development, custom web applications, business automation, and AI chatbot solutions. Call +91 8500352005 or WhatsApp us. Serving Vijayawada and Andhra Pradesh."
+          content="Contact SMYVISION TECHNOLOGIES, a web development company in Vijayawada, for website development, web design, custom web development, web applications, e-commerce solutions and business automation. Call or WhatsApp us for a project consultation."
         />
 
         {/* ✅ KEYWORDS */}
         <meta
           name="keywords"
-          content="contact best web development company vijayawada, web development company vijayawada contact, website developers vijayawada contact, custom web application development vijayawada, web development services vijayawada, business automation vijayawada, AI chatbot development vijayawada, contact web company vijayawada, smyvision technologies contact, best website developers vijayawada, web development vijayawda, web company in vijaywaa, get free quote web development vijayawada"
+          content="web development company in Vijayawada, website development company in Vijayawada, website development Vijayawada, web design company in Vijayawada, website developers in Vijayawada, website designers in Vijayawada, custom web development Vijayawada, custom web application development Vijayawada, e-commerce website development Vijayawada, responsive web design Vijayawada, business website development Vijayawada, professional website development Vijayawada, web development services Vijayawada, SMYVISION TECHNOLOGIES contact"
         />
 
         <meta name="author" content="SMYVISION TECHNOLOGIES" />
@@ -636,22 +646,22 @@ Please follow up with this lead.`;
         {/* ✅ OPEN GRAPH */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="SMYVISION TECHNOLOGIES" />
-        <meta property="og:title" content="Contact Best Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES" />
-        <meta property="og:description" content="Contact SMYVISION TECHNOLOGIES, the best web development company in Vijayawada. Free consultation for website development, custom web applications, and business automation. Call +91 8500352005." />
+        <meta property="og:title" content="Contact Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES" />
+        <meta property="og:description" content="Contact SMYVISION TECHNOLOGIES for website development, web design, custom web applications, e-commerce and business automation services in Vijayawada." />
         <meta property="og:url" content={CONTACT_URL} />
         <meta property="og:image" content={`${WEBSITE_URL}/Logo.png`} />
-        <meta property="og:image:alt" content="SMYVISION TECHNOLOGIES - Best Web Development Company in Vijayawada" />
+        <meta property="og:image:alt" content="SMYVISION TECHNOLOGIES - Web Development Company in Vijayawada" />
         <meta property="og:locale" content="en_IN" />
 
         {/* ✅ TWITTER CARD */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Contact Best Web Development Company in Vijayawada | SMYVISION" />
-        <meta name="twitter:description" content="Get a free quote from the best web development company in Vijayawada. Custom web applications, business automation, and AI chatbot solutions." />
+        <meta name="twitter:title" content="Contact Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES" />
+        <meta name="twitter:description" content="Contact SMYVISION TECHNOLOGIES for website development, custom web applications, e-commerce and business automation solutions in Vijayawada." />
         <meta name="twitter:image" content={`${WEBSITE_URL}/Logo.png`} />
         <meta name="twitter:image:alt" content="SMYVISION TECHNOLOGIES - Contact Us" />
 
         {/* ✅ AI SEARCH */}
-        <meta name="subject" content="Contact Best Web Development Company in Vijayawada - SMYVISION TECHNOLOGIES" />
+        <meta name="subject" content="Contact Web Development Company in Vijayawada - SMYVISION TECHNOLOGIES" />
         <meta name="classification" content="Web Development Company" />
         <meta name="coverage" content="Vijayawada, Andhra Pradesh, India" />
         <meta name="distribution" content="global" />

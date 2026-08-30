@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -58,6 +58,11 @@ const quickLinks = [
   {
     name: "Careers",
     path: "/careers",
+  },
+
+  {
+    name: "Portfolio",
+    path: "/portfolio",
   },
 
   {
@@ -148,6 +153,11 @@ const Footer = () => {
   const [showScrollTop, setShowScrollTop] =
     useState(false);
 
+  const [footerVisible, setFooterVisible] =
+    useState(false);
+
+  const footerRef = useRef(null);
+
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(
@@ -165,6 +175,32 @@ const Footer = () => {
         "scroll",
         handleScroll
       );
+    };
+  }, []);
+
+
+  useEffect(() => {
+    const footer = footerRef.current;
+
+    if (!footer) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setFooterVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.14,
+        rootMargin: "0px 0px -8% 0px",
+      }
+    );
+
+    observer.observe(footer);
+
+    return () => {
+      observer.disconnect();
     };
   }, []);
 
@@ -197,7 +233,10 @@ const Footer = () => {
         {styles}
       </style>
 
-      <footer className="premium-footer">
+      <footer
+        ref={footerRef}
+        className={`premium-footer ${footerVisible ? "footer-visible" : ""}`}
+      >
         {/* =====================================================
             MAIN FOOTER
         ====================================================== */}
@@ -221,10 +260,6 @@ const Footer = () => {
                   className="footer-brand"
                   aria-label="SMYVISION TECHNOLOGIES Home"
                 >
-                  <div className="footer-logo-icon">
-                    <FaCode />
-                  </div>
-
                   <div className="footer-brand-text">
                     <strong>
                       SMYVISION
@@ -555,7 +590,7 @@ const Footer = () => {
 
               <span />
 
-              <Link to="/terms">
+              <Link to="/terms-and-conditions">
                 Terms
               </Link>
 
@@ -702,6 +737,41 @@ const Footer = () => {
 ========================================================= */
 
 const styles = `
+
+  /* =========================================================
+     ANIMATE ONLY WHEN FOOTER ENTERS VIEWPORT
+  ========================================================= */
+
+  .premium-footer:not(.footer-visible) .footer-brand-text,
+  .premium-footer:not(.footer-visible) .footer-description,
+  .premium-footer:not(.footer-visible) .footer-trust-list,
+  .premium-footer:not(.footer-visible) .footer-link-list li,
+  .premium-footer:not(.footer-visible) .footer-socials a,
+  .premium-footer:not(.footer-visible) .footer-socials a svg,
+  .premium-footer:not(.footer-visible) .footer-contact-list > *,
+  .premium-footer:not(.footer-visible) .footer-contact-card > div,
+  .premium-footer:not(.footer-visible) .footer-contact-card > div::after,
+  .premium-footer:not(.footer-visible) .footer-highlight-item,
+  .premium-footer:not(.footer-visible) .footer-highlight-icon,
+  .premium-footer:not(.footer-visible) .footer-link-list a svg {
+    animation-play-state: paused !important;
+  }
+
+  .premium-footer.footer-visible .footer-brand-text,
+  .premium-footer.footer-visible .footer-description,
+  .premium-footer.footer-visible .footer-trust-list,
+  .premium-footer.footer-visible .footer-link-list li,
+  .premium-footer.footer-visible .footer-socials a,
+  .premium-footer.footer-visible .footer-socials a svg,
+  .premium-footer.footer-visible .footer-contact-list > *,
+  .premium-footer.footer-visible .footer-contact-card > div,
+  .premium-footer.footer-visible .footer-contact-card > div::after,
+  .premium-footer.footer-visible .footer-highlight-item,
+  .premium-footer.footer-visible .footer-highlight-icon,
+  .premium-footer.footer-visible .footer-link-list a svg {
+    animation-play-state: running !important;
+  }
+
   .premium-footer {
     position: relative;
 
@@ -883,6 +953,57 @@ const styles = `
   }
 
   /* =========================================================
+     PREMIUM REVEAL ANIMATIONS
+  ========================================================= */
+
+  .footer-reveal {
+    animation-duration: .9s;
+    animation-timing-function: cubic-bezier(.22,1,.36,1);
+    animation-fill-mode: both;
+  }
+
+  .footer-reveal-left {
+    animation-name: footerRevealLeft;
+  }
+
+  .footer-reveal-right {
+    animation-name: footerRevealRight;
+  }
+
+  @keyframes footerRevealLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-46px) translateY(12px);
+      filter: blur(7px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes footerRevealRight {
+    from {
+      opacity: 0;
+      transform: translateX(46px) translateY(12px);
+      filter: blur(7px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+      filter: blur(0);
+    }
+  }
+
+
+  .premium-footer.footer-visible .footer-brand-text,
+  .premium-footer.footer-visible .footer-description,
+  .premium-footer.footer-visible .footer-trust-list {
+    animation-fill-mode: both;
+  }
+
+  /* =========================================================
      BRAND
   ========================================================= */
 
@@ -893,78 +1014,27 @@ const styles = `
 
     align-items: center;
 
-    gap: 13px;
+    gap: 0;
 
     margin-bottom: 23px;
 
     text-decoration: none;
   }
 
-  .footer-logo-icon {
-    width: 50px;
 
-    height: 50px;
-
-    display: grid;
-
-    place-items: center;
-
-    color: white;
-
-    background:
-      linear-gradient(
-        135deg,
-        #176fff,
-        #6d39df
-      );
-
-    border:
-      1px solid
-      rgba(
-        255,
-        255,
-        255,
-        0.12
-      );
-
-    border-radius: 15px;
-
-    box-shadow:
-      0 12px 30px
-      rgba(
-        19,
-        91,
-        230,
-        0.24
-      );
-
-    font-size: 20px;
-
-    transition:
-      transform
-      0.3s ease,
-      box-shadow
-      0.3s ease;
+  .footer-brand-text {
+    opacity: 0;
+    animation: footerItemFromLeft .78s cubic-bezier(.22,1,.36,1) both;
   }
 
-  .footer-brand:hover
-  .footer-logo-icon {
-    transform:
-      translateY(
-        -4px
-      )
-      rotate(
-        4deg
-      );
+  .footer-description {
+    opacity: 0;
+    animation: footerItemFromRight .82s .12s cubic-bezier(.22,1,.36,1) both;
+  }
 
-    box-shadow:
-      0 18px 38px
-      rgba(
-        19,
-        91,
-        230,
-        0.34
-      );
+  .footer-trust-list {
+    opacity: 0;
+    animation: footerItemFromLeft .82s .24s cubic-bezier(.22,1,.36,1) both;
   }
 
   .footer-brand-text {
@@ -1045,6 +1115,41 @@ const styles = `
     flex-wrap: wrap;
 
     gap: 9px;
+  }
+
+
+  .footer-socials a {
+    opacity: 0;
+    animation-duration: .72s;
+    animation-timing-function: cubic-bezier(.22,1,.36,1);
+    animation-fill-mode: forwards;
+  }
+
+  .footer-socials a:nth-child(odd) { animation-name: footerItemFromLeft; }
+  .footer-socials a:nth-child(even) { animation-name: footerItemFromRight; }
+
+  .footer-socials a:nth-child(1) { animation-delay: .18s; }
+  .footer-socials a:nth-child(2) { animation-delay: .32s; }
+  .footer-socials a:nth-child(3) { animation-delay: .46s; }
+  .footer-socials a:nth-child(4) { animation-delay: .60s; }
+
+  .footer-socials a svg {
+    animation: footerSocialFloat 3.2s ease-in-out infinite;
+  }
+
+  .footer-socials a:nth-child(2) svg { animation-delay: .22s; }
+  .footer-socials a:nth-child(3) svg { animation-delay: .44s; }
+  .footer-socials a:nth-child(4) svg { animation-delay: .66s; }
+
+  @keyframes footerSocialFloat {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+      box-shadow: 0 0 0 rgba(23,111,255,0);
+    }
+    50% {
+      transform: translateY(-5px) scale(1.045);
+      box-shadow: 0 12px 25px rgba(23,111,255,.12);
+    }
   }
 
   .footer-socials a {
@@ -1196,18 +1301,76 @@ const styles = `
 
   .footer-link-list a:hover {
     color: white;
-
-    transform:
-      translateX(
-        5px
-      );
   }
 
-  .footer-link-list a:hover svg {
-    transform:
-      translateX(
-        2px
-      );
+  .footer-link-list a svg {
+    animation: footerArrowMove 1.9s ease-in-out infinite;
+  }
+
+  .footer-link-list li:nth-child(2) a svg { animation-delay: .12s; }
+  .footer-link-list li:nth-child(3) a svg { animation-delay: .24s; }
+  .footer-link-list li:nth-child(4) a svg { animation-delay: .36s; }
+  .footer-link-list li:nth-child(5) a svg { animation-delay: .48s; }
+  .footer-link-list li:nth-child(6) a svg { animation-delay: .60s; }
+
+  @keyframes footerArrowMove {
+    0%, 100% {
+      transform: translateX(0);
+      opacity: .72;
+    }
+    50% {
+      transform: translateX(5px);
+      opacity: 1;
+    }
+  }
+
+  /* Each footer link enters one-by-one from alternating sides */
+  .footer-link-list li {
+    opacity: 0;
+    animation-duration: .72s;
+    animation-timing-function: cubic-bezier(.22,1,.36,1);
+    animation-fill-mode: forwards;
+  }
+
+  .footer-link-list li:nth-child(odd) {
+    animation-name: footerItemFromLeft;
+  }
+
+  .footer-link-list li:nth-child(even) {
+    animation-name: footerItemFromRight;
+  }
+
+  .footer-link-list li:nth-child(1) { animation-delay: .12s; }
+  .footer-link-list li:nth-child(2) { animation-delay: .24s; }
+  .footer-link-list li:nth-child(3) { animation-delay: .36s; }
+  .footer-link-list li:nth-child(4) { animation-delay: .48s; }
+  .footer-link-list li:nth-child(5) { animation-delay: .60s; }
+  .footer-link-list li:nth-child(6) { animation-delay: .72s; }
+
+  @keyframes footerItemFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-34px);
+      filter: blur(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes footerItemFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(34px);
+      filter: blur(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+      filter: blur(0);
+    }
   }
 
   /* =========================================================
@@ -1219,6 +1382,26 @@ const styles = `
 
     gap: 10px;
   }
+
+  .footer-contact-list > * {
+    opacity: 0;
+    animation-duration: .78s;
+    animation-timing-function: cubic-bezier(.22,1,.36,1);
+    animation-fill-mode: forwards;
+  }
+
+  .footer-contact-list > *:nth-child(odd) {
+    animation-name: footerItemFromLeft;
+  }
+
+  .footer-contact-list > *:nth-child(even) {
+    animation-name: footerItemFromRight;
+  }
+
+  .footer-contact-list > *:nth-child(1) { animation-delay: .18s; }
+  .footer-contact-list > *:nth-child(2) { animation-delay: .34s; }
+  .footer-contact-list > *:nth-child(3) { animation-delay: .50s; }
+  .footer-contact-list > *:nth-child(4) { animation-delay: .66s; }
 
   .footer-contact-card {
     width: 100%;
@@ -1290,6 +1473,54 @@ const styles = `
         255,
         0.26
       );
+  }
+
+
+  .footer-contact-card > div {
+    position: relative;
+    overflow: visible;
+    animation: footerContactIconPulse 2.35s ease-in-out infinite;
+  }
+
+  .footer-contact-card:nth-child(2) > div { animation-delay: .18s; }
+  .footer-contact-card:nth-child(3) > div { animation-delay: .36s; }
+  .footer-contact-card:nth-child(4) > div { animation-delay: .54s; }
+
+  .footer-contact-card > div::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border: 1px solid rgba(102,160,255,.20);
+    border-radius: 13px;
+    animation: footerContactRing 2.35s ease-out infinite;
+  }
+
+  .footer-whatsapp-card > div::after {
+    border-color: rgba(47,210,142,.22);
+  }
+
+  @keyframes footerContactIconPulse {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-4px) scale(1.06);
+    }
+  }
+
+  @keyframes footerContactRing {
+    0% {
+      transform: scale(.86);
+      opacity: .7;
+    }
+    70% {
+      transform: scale(1.14);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1.14);
+      opacity: 0;
+    }
   }
 
   .footer-contact-card > div {
@@ -1428,6 +1659,21 @@ const styles = `
       0.25s ease;
   }
 
+  .footer-highlight-item {
+    opacity: 0;
+    animation-duration: .8s;
+    animation-timing-function: cubic-bezier(.22,1,.36,1);
+    animation-fill-mode: forwards;
+  }
+
+  .footer-highlight-item:nth-child(odd) { animation-name: footerItemFromLeft; }
+  .footer-highlight-item:nth-child(even) { animation-name: footerItemFromRight; }
+
+  .footer-highlight-item:nth-child(1) { animation-delay: .18s; }
+  .footer-highlight-item:nth-child(2) { animation-delay: .36s; }
+  .footer-highlight-item:nth-child(3) { animation-delay: .54s; }
+
+
   .footer-highlight-item:hover {
     background:
       rgba(
@@ -1441,6 +1687,19 @@ const styles = `
       translateY(
         -3px
       );
+  }
+
+
+  .footer-highlight-icon {
+    animation: footerHighlightIcon 3.4s ease-in-out infinite;
+  }
+
+  .footer-highlight-item:nth-child(2) .footer-highlight-icon { animation-delay: .3s; }
+  .footer-highlight-item:nth-child(3) .footer-highlight-icon { animation-delay: .6s; }
+
+  @keyframes footerHighlightIcon {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-4px) rotate(3deg); }
   }
 
   .footer-highlight-icon {
@@ -1755,6 +2014,7 @@ const styles = `
         23px;
     }
 
+
     .footer-description {
       margin:
         0 auto
@@ -1864,6 +2124,9 @@ const styles = `
   ) {
     * {
       scroll-behavior: auto !important;
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
     }
   }
 `;

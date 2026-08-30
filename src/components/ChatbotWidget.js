@@ -1,7 +1,11 @@
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRobot, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const ChatbotWidget = ({ setIsChatbotOpen }) => {
   const [open, setOpen] = useState(false);
+  const [showNotificationBadge, setShowNotificationBadge] = useState(true);
   const [messages, setMessages] = useState([
     { sender: "bot", text: "Hi there! 👋 I'm your assistant from SMYVISION. How can I help you today?" }
   ]);
@@ -74,14 +78,21 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
   ];
 
   // Get time-based greeting
+  // 12:00 AM - 11:59 AM  -> Good morning
+  // 12:00 PM - 4:59 PM   -> Good afternoon
+  // 5:00 PM  - 9:59 PM   -> Good evening
+  // 10:00 PM - 11:59 PM  -> Good night
   const getTimeBasedGreeting = () => {
     const hour = new Date().getHours();
-    if (hour >= 5 && hour < 12) {
+
+    if (hour >= 0 && hour < 12) {
       return "Good morning";
     } else if (hour >= 12 && hour < 17) {
       return "Good afternoon";
-    } else {
+    } else if (hour >= 17 && hour < 22) {
       return "Good evening";
+    } else {
+      return "Good night";
     }
   };
 
@@ -90,6 +101,11 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
     const newState = !open;
     setOpen(newState);
     setIsChatbotOpen(newState);
+
+    // Remove the initial notification badge after the chatbot is opened.
+    if (newState) {
+      setShowNotificationBadge(false);
+    }
   };
 
   // Clear all cache and reset everything
@@ -904,12 +920,14 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
     if (q.includes("hello") || q.includes("hi") || q.includes("hey") || q.includes("greetings")) 
       return `${currentTimeGreeting}! 😊 How can I assist you today?`;
     
-    // Good morning/afternoon/evening
-    if (q.includes("good morning")) 
+    // Good morning / afternoon / evening / night
+    if (q.includes("good morning"))
       return `${currentTimeGreeting}! 🌞 How can I help you today?`;
-    if (q.includes("good afternoon")) 
+    if (q.includes("good afternoon"))
       return `${currentTimeGreeting}! ☀️ What can I assist you with?`;
-    if (q.includes("good evening") || q.includes("good night")) 
+    if (q.includes("good evening"))
+      return `${currentTimeGreeting}! 🌆 How may I help you?`;
+    if (q.includes("good night"))
       return `${currentTimeGreeting}! 🌙 How may I help you?`;
     
     if (q.includes("services") || q.includes("offer") || q.includes("provide") || q.includes('which type of services')) 
@@ -925,7 +943,7 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
       return "Our business hours are 9 AM - 7 PM IST, Monday through Friday.";
     
     if (q.includes("bye") || q.includes("goodbye") || q.includes("see you")) 
-      return `Goodbye! ${currentTimeGreeting === "Good evening" ? "🌙" : "👋"} Have a great day!`;
+      return `Goodbye! ${currentTimeGreeting === "Good evening" || currentTimeGreeting === "Good night" ? "🌙" : "👋"} Have a great day!`;
     
     // Polite acknowledgments
     if (q.includes("ok") || q.includes("okay") || q.includes("alright") || q.includes("fine")) {
@@ -1137,14 +1155,13 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
     if (isMobile) {
       return {
         position: "fixed",
-        top: "0",
-        left: "0",
-        right: "0",
-        bottom: "0",
-        width: "100%",
-        height: "100%",
+        inset: "0",
+        width: "100vw",
+        height: "100dvh",
+        maxWidth: "100vw",
+        maxHeight: "100dvh",
         borderRadius: "0",
-        zIndex: 1001,
+        zIndex: 2147483600,
         backgroundImage: "url('/logo.png')",
         backgroundSize: "150px",
         backgroundPosition: "center",
@@ -1177,14 +1194,14 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
       width: "64px",
       height: "64px",
       borderRadius: "50%",
-      backgroundColor: "#4f46e5",
+      background: "linear-gradient(145deg, #07162d 0%, #123b78 58%, #2563eb 100%)",
       color: "#fff",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       cursor: "pointer",
       fontSize: "28px",
-      boxShadow: "0 4px 12px rgba(79, 70, 229, 0.3)",
+      boxShadow: "0 10px 28px rgba(7, 22, 45, 0.30), 0 0 0 6px rgba(37, 99, 235, 0.08)",
       transition: "all 0.3s ease",
       animation: "pulse 2s infinite",
       border: "3px solid white",
@@ -1212,13 +1229,124 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
 
   return (
     <>
+
+        <style>{`
+          .chatbot-global-close {
+            position: fixed !important;
+            top: max(12px, env(safe-area-inset-top)) !important;
+            right: 12px !important;
+            width: 42px !important;
+            height: 42px !important;
+            min-width: 42px !important;
+            min-height: 42px !important;
+            border: 2px solid rgba(255,255,255,.95) !important;
+            border-radius: 50% !important;
+            background: #e53935 !important;
+            color: #ffffff !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 19px !important;
+            line-height: 1 !important;
+            cursor: pointer !important;
+            z-index: 2147483647 !important;
+            box-shadow: 0 8px 24px rgba(229,57,53,.35) !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            -webkit-transform: none !important;
+            pointer-events: auto !important;
+          }
+
+          @media (min-width: 769px) {
+            .chatbot-global-close {
+              display: none !important;
+            }
+          }
+
+          .chatbot-notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 5px;
+            border-radius: 999px;
+            background: #ef4444;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+            line-height: 1;
+            box-sizing: border-box;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, .38);
+            pointer-events: none;
+            animation: chatbotBadgePop .45s ease-out both,
+                       chatbotBadgePulse 2s ease-in-out .6s infinite;
+          }
+
+          @keyframes chatbotBadgePop {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+          }
+
+          @keyframes chatbotBadgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+          }
+
+          .chatbot-fa-robot {
+            color: #ffffff;
+            font-size: 29px;
+            transform-origin: center;
+            filter: drop-shadow(0 0 6px rgba(255,255,255,.22));
+            animation: chatbotRobotAlive 2.4s ease-in-out infinite;
+          }
+
+          @keyframes chatbotRobotAlive {
+            0%, 100% {
+              transform: translateY(0) rotate(0deg) scale(1);
+            }
+            25% {
+              transform: translateY(-2px) rotate(-5deg) scale(1.03);
+            }
+            50% {
+              transform: translateY(-3px) rotate(0deg) scale(1.06);
+            }
+            75% {
+              transform: translateY(-2px) rotate(5deg) scale(1.03);
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .chatbot-fa-robot,
+            .chatbot-notification-badge {
+              animation: none;
+            }
+          }
+        `}</style>
+
       {/* Chat Icon - On mobile, don't show the X when chat is open */}
       {!isMobile && (
         <div
           onClick={handleToggle}
           style={getChatIconStyles()}
+          role="button"
+          tabIndex={0}
+          aria-label={open ? "Close SMYVISION assistant" : "Open SMYVISION assistant"}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") handleToggle();
+          }}
         >
-          {open ? "✕" : "💬"}
+          {open ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faRobot} className="chatbot-fa-robot" />}
+          {!open && showNotificationBadge && (
+            <span className="chatbot-notification-badge">1</span>
+          )}
         </div>
       )}
       
@@ -1227,13 +1355,36 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
         <div
           onClick={handleToggle}
           style={getChatIconStyles()}
+          role="button"
+          tabIndex={0}
+          aria-label="Open SMYVISION assistant"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") handleToggle();
+          }}
         >
-          💬
+          <FontAwesomeIcon icon={faRobot} className="chatbot-fa-robot" />
+          {showNotificationBadge && (
+            <span className="chatbot-notification-badge">1</span>
+          )}
         </div>
       )}
 
+      {/* Emergency / Always-visible mobile close button */}
+      {open && createPortal(
+        <button
+          type="button"
+          onClick={handleClose}
+          aria-label="Close chatbot"
+          title="Close chatbot"
+          className="chatbot-global-close"
+        >
+          <FontAwesomeIcon icon={faXmark} />
+        </button>,
+        document.body
+      )}
+
       {/* Chat Box */}
-      {open && (
+      {open && createPortal((
         <div
           style={{
             ...getChatboxStyles(),
@@ -1250,7 +1401,7 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
           <div style={{
             background: "linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%)",
             color: "white",
-            padding: isMobile ? "12px 16px" : "20px",
+            padding: isMobile ? "12px 62px 12px 14px" : "20px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "flex-start",
@@ -1258,16 +1409,24 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
             backdropFilter: "blur(10px)",
             position: "relative",
             zIndex: 1,
-            minHeight: "60px",
-            boxSizing: "border-box"
+            minHeight: isMobile ? "68px" : "60px",
+            boxSizing: "border-box",
+            position: "sticky",
+            top: 0,
+            left: 0,
+            right: 0,
+            width: "100%",
+            paddingTop: isMobile ? "max(12px, env(safe-area-inset-top))" : "20px",
+            zIndex: 50
           }}>
             <div style={{ 
               position: "relative", 
               zIndex: 2,
               flex: 1,
               minWidth: 0,
-              marginRight: isMobile ? "12px" : "0",
-              paddingRight: isMobile ? "8px" : "0"
+              marginRight: isMobile ? "8px" : "0",
+              paddingRight: isMobile ? "4px" : "0",
+              overflow: "hidden"
             }}>
               <div style={{ 
                 fontSize: isMobile ? "15px" : "18px", 
@@ -1312,9 +1471,11 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
                   fontSize: isMobile ? "10px" : "12px",
                   transition: "background 0.2s",
                   whiteSpace: "nowrap",
-                  opacity: (isSubmitting || isTyping) ? 0.6 : 1,
+                  opacity: 1,
                   backdropFilter: "blur(10px)",
                   flexShrink: 0,
+                  position: "relative",
+                  zIndex: 60,
                   height: "28px",
                   display: "flex",
                   alignItems: "center",
@@ -1333,36 +1494,41 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
               >
                 {isMobile ? "Clear" : "Clear Chat"}
               </button>
-              <button
-                onClick={handleClose}
-                disabled={isSubmitting || isTyping}
-                style={{
-                  background: "rgba(255, 0, 0, 0.8)",
-                  border: "none",
-                  color: "white",
-                  width: "28px",
-                  height: "28px",
-                  borderRadius: "50%",
-                  cursor: (isSubmitting || isTyping) ? "not-allowed" : "pointer",
-                  fontSize: "16px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  opacity: (isSubmitting || isTyping) ? 0.6 : 1,
-                  backdropFilter: "blur(10px)",
-                  flexShrink: 0
-                }}
-              >
-                ✕
-              </button>
+              {!isMobile && (
+                <button
+                  onClick={handleClose}
+                  aria-label="Close chatbot"
+                  title="Close"
+                  style={{
+                    background: "rgba(255, 0, 0, 0.8)",
+                    border: "none",
+                    color: "white",
+                    width: "28px",
+                    height: "28px",
+                    borderRadius: "50%",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    opacity: 1,
+                    backdropFilter: "blur(10px)",
+                    flexShrink: 0
+                  }}
+                >
+                  ✕
+                </button>
+              )}
             </div>
           </div>
 
           {/* Messages Container */}
           <div style={{
             flex: 1,
-            padding: isMobile ? "12px 16px" : "20px",
+            padding: isMobile ? "12px 12px" : "20px",
             overflowY: "auto",
+            overflowX: "hidden",
+            WebkitOverflowScrolling: "touch",
             background: "rgba(248, 250, 252, 0.23)",
             display: "flex",
             flexDirection: "column",
@@ -1399,7 +1565,9 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
                     boxShadow: m.sender === "user" 
                       ? "0 2px 8px rgba(79, 70, 229, 0.3)" 
                       : "0 2px 4px rgba(0, 0, 0, 0.05)",
-                    whiteSpace: "pre-line",
+                    whiteSpace: "pre-wrap",
+                    overflowWrap: "anywhere",
+                    wordBreak: "break-word",
                     backdropFilter: "blur(10px)",
                     border: m.sender === "user" 
                       ? "1px solid rgba(255, 255, 255, 0.2)" 
@@ -1588,7 +1756,7 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
           {/* Input Area */}
           <div style={{
             borderTop: "1px solid rgba(226, 232, 240, 0.5)",
-            padding: isMobile ? "12px 16px 16px 16px" : "16px",
+            padding: isMobile ? "10px 12px max(12px, env(safe-area-inset-bottom)) 12px" : "16px",
             background: "rgba(255, 255, 255, 0.9)",
             flexShrink: 0,
             position: "relative",
@@ -1707,7 +1875,7 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
             </div>
           </div>
         </div>
-      )}
+      ), document.body)}
 
       {/* Add CSS for pulse and typing animations */}
       <style>
@@ -1750,6 +1918,12 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
           
           /* Logo background styles */
           @media (max-width: 768px) {
+            html, body {
+              width: 100%;
+              max-width: 100%;
+              overscroll-behavior: none;
+            }
+
             body {
               overflow: ${open ? 'hidden' : 'auto'};
             }

@@ -73,7 +73,6 @@ const PHONE_LINK = "+918500352005";
 
 const EMAIL = "smyvisiontechnologies@gmail.com";
 
-const PROJECT_CHANGE_TIME = 7000;
 
 /* =========================================================
    SERVICES (UNCHANGED)
@@ -83,41 +82,47 @@ const services = [
   {
     icon: <FaLaptopCode />,
     image: "/images/web.png",
-    title: "Website Development",
+    fallback: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=85",
+    title: "Premium Website Development",
     description:
-      "Professional websites built to establish trust, present your services clearly and help potential customers connect with your business.",
-    features: [
-      "Business Websites",
-      "Corporate Websites",
-      "Responsive Web Design",
-      "SEO-Ready Development",
-    ],
+      "High-end business websites designed to build trust, communicate clearly and convert visitors into genuine enquiries.",
+    features: ["Business Websites", "Corporate Websites", "Responsive Design", "SEO-Ready Structure"],
+  },
+  {
+    icon: <FaCode />,
+    image: "/images/cust.png",
+    fallback: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1400&q=85",
+    title: "Custom Web Development",
+    description:
+      "Purpose-built web platforms created around your exact workflows, customers and long-term business requirements.",
+    features: ["Custom Portals", "Management Systems", "Client Dashboards", "Web Applications"],
+  },
+  {
+    icon: <FaGlobe />,
+    image: "/images/ecomm.png",
+    fallback: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85",
+    title: "Custom E-commerce Solutions",
+    description:
+      "Premium online stores with product management, smooth shopping journeys and scalable functionality built for your brand.",
+    features: ["Product Catalogues", "Custom Storefronts", "Order Workflows", "Payment Integration"],
   },
   {
     icon: <FaBarsProgress />,
     image: "/images/auto.png",
+    fallback: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85",
     title: "Business Automation",
     description:
-      "Custom automation solutions designed to simplify repetitive operations, improve efficiency and create better digital workflows.",
-    features: [
-      "Workflow Automation",
-      "Custom Dashboards",
-      "Business Management Systems",
-      "Process Automation",
-    ],
+      "Custom automation systems that reduce repetitive work, simplify operations and connect important business processes.",
+    features: ["Workflow Automation", "Custom Dashboards", "Business Systems", "Process Automation"],
   },
   {
     icon: <FaBrain />,
     image: "/images/chat.png",
-    title: "AI & Chatbot Solutions",
+    fallback: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1400&q=85",
+    title: "Chatbot Solutions(Coming Soon)",
     description:
-      "Smart AI-powered solutions that help businesses automate communication, manage enquiries and deliver faster customer experiences.",
-    features: [
-      "AI Chatbots",
-      "Customer Support",
-      "Lead Automation",
-      "Smart Business Tools",
-    ],
+      "Smart experiences for customer enquiries, lead handling and business communication without unnecessary complexity.",
+    features: ["Chatbots", "Lead Automation", "Customer Support", "Smart Business Tools"],
   },
 ];
 
@@ -180,6 +185,7 @@ const projects = [
     title: "NKR Car Rentals",
     category: "Car Rental Website",
     image: "/images/nkr.png",
+    fallback: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=85",
     url: "https://www.nkrselfdrivecarrentals.in/",
     description:
       "A modern car rental website designed to present services clearly, provide easy customer navigation and create a professional mobile experience.",
@@ -188,6 +194,7 @@ const projects = [
     title: "Bindiya Beauty Salon",
     category: "Beauty & Salon Website",
     image: "/images/beauty.png",
+    fallback: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85",
     url: "https://www.bindiyazbeautysalon.in/",
     description:
       "A premium salon website created to showcase services, strengthen brand identity and provide customers with a smooth digital experience.",
@@ -196,6 +203,7 @@ const projects = [
     title: "Happy Organize",
     category: "Home Services Website",
     image: "/images/home.png",
+    fallback: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85",
     url: "https://www.happyorganize.com/",
     description:
       "A professional home services website designed with clear service presentation, responsive layouts and customer-focused navigation.",
@@ -204,9 +212,19 @@ const projects = [
     title: "Arvis Fertilizers",
     category: "Agriculture Business Website",
     image: "/images/arvis.png",
+    fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85",
     url: "https://www.arvisfertilizers.com/",
     description:
       "A modern agriculture-focused digital platform developed to strengthen business presentation and communicate products professionally.",
+  },
+  {
+    title: "Yatheendra Engineering Works",
+    category: "Engineering Works Website",
+    image: "/images/yath.png",
+    fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85",
+    url: "https://yatheendraengineeringworks.vercel.app/",
+    description:
+      "A modern industrial fabrication platform developed to strengthen business presentation and communicate welding services professionally.",
   },
 ];
 
@@ -215,17 +233,31 @@ const projects = [
 ========================================================= */
 
 const projectMarqueeRowOne = [
-  { title: "NKR Car Rentals", image: "/images/nkr.png", category: "Car Rental" },
-  { title: "Bindiya Beauty Salon", image: "/images/beauty.png", category: "Beauty & Salon" },
-  { title: "Happy Organize", image: "/images/home.png", category: "Home Services" },
-  { title: "Arvis Fertilizers", image: "/images/arvis.png", category: "Agriculture" },
+  { title: "NKR Car Rentals", image: "/images/nkr.png",
+    fallback: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=85", category: "Car Rental" },
+  { title: "Bindiya Beauty Salon", image: "/images/beauty.png",
+    fallback: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85", category: "Beauty & Salon" },
+  { title: "Happy Organize", image: "/images/home.png",
+    fallback: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85", category: "Home Services" },
+  { title: "Arvis Fertilizers", image: "/images/arvis.png",
+    fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Agriculture" },
+  { title: "Yatheendra Engineering Works", image: "/images/Yath.png",
+    fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Engineering Works" },
+    { title: "Daiva Pesticides", image: "/images/daiva.png",
+    fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Engineering Works" },
 ];
 
 const projectMarqueeRowTwo = [
-  { title: "Arvis Fertilizers", image: "/images/arvis.png", category: "Agriculture" },
-  { title: "Happy Organize", image: "/images/home.png", category: "Home Services" },
-  { title: "Bindiya Beauty Salon", image: "/images/beauty.png", category: "Beauty & Salon" },
-  { title: "NKR Car Rentals", image: "/images/nkr.png", category: "Car Rental" },
+  { title: "Yatheendra Engineering Works", image: "/images/Yath.png",
+    fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Engineering Works" },
+  { title: "Arvis Fertilizers", image: "/images/arvis.png",
+    fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Agriculture" },
+  { title: "Happy Organize", image: "/images/home.png",
+    fallback: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85", category: "Home Services" },
+  { title: "Bindiya Beauty Salon", image: "/images/beauty.png",
+    fallback: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85", category: "Beauty & Salon" },
+  { title: "NKR Car Rentals", image: "/images/nkr.png",
+    fallback: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=85", category: "Car Rental" },
 ];
 
 /* =========================================================
@@ -256,25 +288,6 @@ const reviews = [
     review:
       "The team delivered a professional digital platform with a clean structure and responsive design that supports our business presentation.",
   },
-];
-
-/* =========================================================
-   TECHNOLOGIES (UNCHANGED)
-========================================================= */
-
-const technologies = [
-  { icon: <FaReact />, name: "React JS", description: "Modern interactive user interfaces" },
-  { icon: <SiJavascript />, name: "JavaScript", description: "Dynamic frontend functionality" },
-  { icon: <FaHtml5 />, name: "HTML5", description: "Semantic modern web structure" },
-  { icon: <FaCss3Alt />, name: "CSS3", description: "Responsive modern styling" },
-  { icon: <FaPython />, name: "Python", description: "Powerful backend development" },
-  { icon: <SiDjango />, name: "Django", description: "Secure business applications" },
-  { icon: <FaNodeJs />, name: "Node.js", description: "Scalable backend applications" },
-  { icon: <SiMysql />, name: "MySQL", description: "Reliable structured databases" },
-  { icon: <SiPostgresql />, name: "PostgreSQL", description: "Advanced database solutions" },
-  { icon: <SiMongodb />, name: "MongoDB", description: "Flexible modern databases" },
-  { icon: <SiFirebase />, name: "Firebase", description: "Cloud-powered applications" },
-  { icon: <FaCloud />, name: "Cloud Solutions", description: "Modern scalable infrastructure" },
 ];
 
 /* =========================================================
@@ -356,12 +369,28 @@ const faqItems = [
     answer: "Simply contact our team and tell us about your business and project idea. We will discuss your requirements, understand your goals and recommend the right solution.",
   },
   {
-    question: "Do you provide website development services in Vijayawada?",
-    answer: "Yes. SMYVISION TECHNOLOGIES provides website development services for businesses in Vijayawada, including responsive business websites, corporate websites, custom web applications, website redesign and related digital solutions.",
+    question: "Do you provide professional website development services?",
+    answer: "Yes. SMYVISION TECHNOLOGIES develops responsive business websites, corporate websites, custom web applications, website redesigns and related digital solutions for businesses with different requirements.",
   },
   {
-    question: "Can you build a website for a local business in Vijayawada?",
-    answer: "Yes. We work with local businesses in Vijayawada and can build professional mobile-responsive websites designed to present services clearly, strengthen online presence and make customer enquiries easier.",
+    question: "Can you build a website for a local business?",
+    answer: "Yes. We build professional, mobile-responsive websites for local businesses that clearly present services, strengthen online visibility and make customer enquiries easier.",
+  },
+  {
+    question: "Do you provide custom web development?",
+    answer: "Yes. SMYVISION TECHNOLOGIES provides custom web development for businesses that need more than a standard website, including customer portals, management systems, dashboards, workflow tools and custom web applications.",
+  },
+  {
+    question: "Can SMYVISION TECHNOLOGIES develop custom web applications?",
+    answer: "Yes. SMYVISION TECHNOLOGIES develops custom web applications including business dashboards, management portals, customer-facing platforms and workflow automation systems designed around specific business requirements.",
+  },
+  {
+    question: "What should I look for when choosing a web development company?",
+    answer: "Look for a web development company that can show real project work, build responsive and search-friendly websites, explain the development process clearly, support your business goals and provide suitable post-launch guidance. SMYVISION TECHNOLOGIES focuses on these areas for every project.",
+  },
+  {
+    question: "Can SMYVISION TECHNOLOGIES build e-commerce websites?",
+    answer: "Yes. We develop custom e-commerce websites with product catalogues, responsive storefronts, order workflows and payment integration based on project requirements.",
   },
 ];
 
@@ -388,156 +417,208 @@ const industries = [
 ];
 
 /* =========================================================
-   ✅ SEO OPTIMIZED - FAQ SCHEMA
-========================================================= */
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
-};
-
-/* =========================================================
-   ✅ SEO OPTIMIZED - STRUCTURED DATA
-   AGGRESSIVE VIJAYAWADA + CUSTOM WEB APPLICATION TARGETING
+   TECHNICAL SEO + LOCAL SEO + AEO/GEO ENTITY STRUCTURED DATA
+   Clean factual entities; no keyword-stuffed alternate names
 ========================================================= */
 
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["ProfessionalService", "LocalBusiness", "Organization"],
+      "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
       "@id": `${WEBSITE_URL}/#organization`,
       "name": "SMYVISION TECHNOLOGIES",
-      "alternateName": ["SMYVISION", "Best Web Development Company Vijayawada", "SMYVISION Tech"],
-      "url": WEBSITE_URL,
-      "logo": `${WEBSITE_URL}/Logo.png`,
-      "image": `${WEBSITE_URL}/Logo.png`,
-      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada, trusted for professional website development, custom web application development, responsive web design, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
+      "alternateName": "SMYVISION",
+      "url": `${WEBSITE_URL}/`,
+      "logo": {
+        "@type": "ImageObject",
+        "@id": `${WEBSITE_URL}/#logo`,
+        "url": `${WEBSITE_URL}/Logo.png`,
+        "contentUrl": `${WEBSITE_URL}/Logo.png`,
+        "caption": "SMYVISION TECHNOLOGIES"
+      },
+      "image": { "@id": `${WEBSITE_URL}/#logo` },
+      "description": "SMYVISION TECHNOLOGIES is a web development company in Vijayawada providing website development, web design, custom web development, business website development, custom web applications, e-commerce website development, business automation and digital solutions.",
+      "foundingDate": "2026",
       "telephone": PHONE_LINK,
       "email": EMAIL,
-      "foundingDate": "2026",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Vijayawada",
         "addressRegion": "Andhra Pradesh",
-        "addressCountry": "IN",
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "16.5062",
-        "longitude": "80.6480",
+        "addressCountry": "IN"
       },
       "areaServed": [
         { "@type": "City", "name": "Vijayawada" },
         { "@type": "State", "name": "Andhra Pradesh" },
-        { "@type": "Country", "name": "India" },
+        { "@type": "Country", "name": "India" }
+      ],
+      "knowsAbout": [
+        "Web Development Company in Vijayawada",
+        "Website Development Company in Vijayawada",
+        "Website Development in Vijayawada",
+        "Web Design Company in Vijayawada",
+        "Website Designers in Vijayawada",
+        "Website Developers in Vijayawada",
+        "Custom Web Development in Vijayawada",
+        "Custom Web Application Development in Vijayawada",
+        "E-commerce Website Development in Vijayawada",
+        "Responsive Web Design in Vijayawada",
+        "Business Website Development in Vijayawada",
+        "Professional Website Development in Vijayawada",
+        "Local Business Website Development in Vijayawada",
+        "Business Automation",
+        "Management Portals",
+        "Business Dashboards",
+        "SEO-ready Web Development"
       ],
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": PHONE_LINK,
-        "contactType": "customer service",
+        "contactType": "sales and customer enquiries",
         "areaServed": "IN",
-        "availableLanguage": ["English", "Telugu", "Hindi"],
+        "availableLanguage": ["English", "Telugu", "Hindi"]
       },
       "sameAs": [
         "https://www.facebook.com/share/1AAbW51BTs/",
         "https://linkedin.com/company/smyvisiontechnologies",
         "https://instagram.com/smyvisiontechnologies",
-        "https://youtube.com/@smyvisiontechnologies",
+        "https://youtube.com/@smyvisiontechnologies"
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "SMYVISION TECHNOLOGIES - Best Web Development Services Vijayawada",
+        "name": "Web Development and Digital Solutions",
         "itemListElement": [
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Website Development Vijayawada",
-              "description": "Professional business websites and responsive web design for companies in Vijayawada.",
-            },
+              "@id": `${WEBSITE_URL}/#website-development-service`,
+              "name": "Website Development in Vijayawada",
+              "serviceType": "Website Development",
+              "description": "Responsive business website development in Vijayawada for startups, local businesses and growing companies.",
+              "areaServed": { "@type": "City", "name": "Vijayawada" },
+              "provider": { "@id": `${WEBSITE_URL}/#organization` }
+            }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Custom Web Application Development",
-              "description": "Scalable custom web applications, management dashboards and business portals developed for Vijayawada businesses.",
-            },
+              "@id": `${WEBSITE_URL}/#custom-web-development-service`,
+              "name": "Custom Web Development in Vijayawada",
+              "serviceType": "Custom Web Development",
+              "description": "Custom web development services in Vijayawada for businesses that need purpose-built portals, management systems, dashboards, web platforms and workflow-based digital solutions.",
+              "areaServed": { "@type": "City", "name": "Vijayawada" },
+              "provider": { "@id": `${WEBSITE_URL}/#organization` }
+            }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Business Automation Vijayawada",
-              "description": "Workflow automation and business management systems for companies in Vijayawada and Andhra Pradesh.",
-            },
+              "@id": `${WEBSITE_URL}/#custom-web-application-service`,
+              "name": "Custom Web Application Development in Vijayawada",
+              "serviceType": "Custom Web Application Development",
+              "description": "Custom web applications in Vijayawada including business dashboards, management portals and workflow systems built around specific business requirements.",
+              "areaServed": [
+                { "@type": "City", "name": "Vijayawada" },
+                { "@type": "State", "name": "Andhra Pradesh" }
+              ],
+              "provider": { "@id": `${WEBSITE_URL}/#organization` }
+            }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "AI Chatbot Development Vijayawada",
-              "description": "Intelligent AI chatbot solutions for lead generation and customer support automation in Vijayawada.",
-            },
+              "@id": `${WEBSITE_URL}/#ecommerce-service`,
+              "name": "E-commerce Website Development in Vijayawada",
+              "serviceType": "E-commerce Website Development",
+              "description": "Custom e-commerce website development in Vijayawada with product catalogues, responsive storefronts, order workflows and payment integration.",
+              "areaServed": { "@type": "City", "name": "Vijayawada" },
+              "provider": { "@id": `${WEBSITE_URL}/#organization` }
+            }
           },
-        ],
-      },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": `${WEBSITE_URL}/#business-automation-service`,
+              "name": "Business Automation in Vijayawada",
+              "serviceType": "Business Automation",
+              "description": "Custom workflow automation, dashboards and digital business systems in Vijayawada designed to reduce repetitive work.",
+              "areaServed": { "@type": "City", "name": "Vijayawada" },
+              "provider": { "@id": `${WEBSITE_URL}/#organization` }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": `${WEBSITE_URL}/#custom-web-development-vijayawada`,
+      "name": "Custom Web Development in Vijayawada",
+      "serviceType": "Custom Web Development",
+      "description": "Purpose-built custom web development services in Vijayawada including business portals, management systems, dashboards, workflow tools and custom web applications.",
+      "provider": { "@id": `${WEBSITE_URL}/#organization` },
+      "areaServed": {
+        "@type": "City",
+        "name": "Vijayawada",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "Andhra Pradesh"
+        }
+      }
     },
     {
       "@type": "WebSite",
       "@id": `${WEBSITE_URL}/#website`,
-      "name": "SMYVISION TECHNOLOGIES - Best Web Development Company Vijayawada",
-      "url": WEBSITE_URL,
-      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada offering website development, custom web applications, business automation and AI chatbot solutions.",
+      "url": `${WEBSITE_URL}/`,
+      "name": "SMYVISION TECHNOLOGIES",
+      "description": "Web development in Vijayawada, website design, custom web applications, e-commerce website development and digital business solutions from SMYVISION TECHNOLOGIES.",
       "publisher": { "@id": `${WEBSITE_URL}/#organization` },
-      "inLanguage": "en-IN",
+      "inLanguage": "en-IN"
     },
     {
       "@type": "WebPage",
       "@id": `${WEBSITE_URL}/#webpage`,
-      "url": WEBSITE_URL,
-      "name": "Best Web Development Company in Vijayawada | Custom Web Applications | SMYVISION TECHNOLOGIES",
-      "headline": "Best Website Development & Custom Web Application Company in Vijayawada",
-      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada. We provide responsive websites, custom web applications, SEO-friendly development, business automation and AI chatbot solutions. Top-rated web developers in Vijayawada and Andhra Pradesh.",
+      "url": `${WEBSITE_URL}/`,
+      "name": "Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES",
+      "headline": "Web Development Company in Vijayawada",
+      "description": "SMYVISION TECHNOLOGIES provides website development, custom web development, custom web applications, e-commerce and business automation services in Vijayawada, Andhra Pradesh.",
+      "keywords": [
+        "Web Development Company in Vijayawada",
+        "Website Development Company in Vijayawada",
+        "Website Development in Vijayawada",
+        "Web Design Company in Vijayawada",
+        "Website Designers in Vijayawada",
+        "Website Developers in Vijayawada",
+        "Custom Web Development in Vijayawada",
+        "Custom Web Application Development in Vijayawada",
+        "E-commerce Website Development in Vijayawada",
+        "Responsive Web Design in Vijayawada",
+        "Business Website Development in Vijayawada",
+        "Professional Website Development in Vijayawada",
+        "Local Business Website Development in Vijayawada",
+        "Business Automation"
+      ],
+      "spatialCoverage": {
+        "@type": "City",
+        "name": "Vijayawada",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "Andhra Pradesh"
+        }
+      },
       "isPartOf": { "@id": `${WEBSITE_URL}/#website` },
       "about": { "@id": `${WEBSITE_URL}/#organization` },
-      "primaryImageOfPage": { "@type": "ImageObject", "url": `${WEBSITE_URL}/Logo.png` },
-      "inLanguage": "en-IN",
-    },
-    {
-      "@type": "Service",
-      "@id": `${WEBSITE_URL}/#web-development-service`,
-      "name": "Best Web Development Services in Vijayawada",
-      "serviceType": "Web Development",
-      "description": "Professional website development services in Vijayawada including business websites, responsive web design, custom web applications and SEO-friendly development by the best web development company in Vijayawada and Andhra Pradesh.",
-      "provider": { "@id": `${WEBSITE_URL}/#organization` },
-      "areaServed": [
-        { "@type": "City", "name": "Vijayawada" },
-        { "@type": "State", "name": "Andhra Pradesh" },
-      ],
-    },
-    {
-      "@type": "Service",
-      "@id": `${WEBSITE_URL}/#custom-web-app-service`,
-      "name": "Custom Web Application Development in Vijayawada",
-      "serviceType": "Custom Web Application Development",
-      "description": "Expert custom web application development services in Vijayawada. We build scalable business dashboards, management portals and custom digital platforms for businesses in Vijayawada and across Andhra Pradesh.",
-      "provider": { "@id": `${WEBSITE_URL}/#organization` },
-      "areaServed": [
-        { "@type": "City", "name": "Vijayawada" },
-        { "@type": "State", "name": "Andhra Pradesh" },
-      ],
-    },
-  ],
+      "mainEntity": { "@id": `${WEBSITE_URL}/#organization` },
+      "mentions": { "@id": `${WEBSITE_URL}/#custom-web-development-vijayawada` },
+      "primaryImageOfPage": { "@id": `${WEBSITE_URL}/#logo` },
+      "inLanguage": "en-IN"
+    }
+  ]
 };
 
 /* =========================================================
@@ -560,15 +641,8 @@ const stagger = {
 
 const Home = () => {
   const navigate = useNavigate();
-  const [activeProject, setActiveProject] = useState(0);
   const [activeFaq, setActiveFaq] = useState(null);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveProject((current) => (current + 1) % projects.length);
-    }, PROJECT_CHANGE_TIME);
-    return () => clearInterval(timer);
-  }, []);
+  const [fullscreenImage, setFullscreenImage] = useState(null);
 
   const goToContact = () => {
     navigate("/contact");
@@ -576,15 +650,8 @@ const Home = () => {
   };
 
   const goToProjects = () => {
-    document.getElementById("our-work")?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handlePreviousProject = () => {
-    setActiveProject((current) => (current - 1 + projects.length) % projects.length);
-  };
-
-  const handleNextProject = () => {
-    setActiveProject((current) => (current + 1) % projects.length);
+    navigate("/portfolio");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const openWhatsApp = () => {
@@ -602,79 +669,79 @@ const Home = () => {
     setActiveFaq((current) => (current === index ? null : index));
   };
 
+  const openFullscreenImage = (src, alt) => {
+    setFullscreenImage({ src, alt });
+  };
+
+  const closeFullscreenImage = () => {
+    setFullscreenImage(null);
+  };
+
+  useEffect(() => {
+    if (!fullscreenImage) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeFullscreenImage();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [fullscreenImage]);
+
   return (
     <>
       {/* =====================================================
           ✅ SEO OPTIMIZED HELMET
-          AGGRESSIVE VIJAYAWADA + CUSTOM WEB APP KEYWORDS
+          TECHNICAL SEO + CUSTOM WEB APP ENTITY SIGNALS
           INCLUDES COMMON MISSPELLINGS FOR MAXIMUM CAPTURE
       ====================================================== */}
 
       <Helmet>
         <html lang="en-IN" />
 
-        {/* ✅ PRIMARY TITLE - Front-loaded with "Best" + "Custom Web Application" */}
-        <title>
-          Best Web Development Company in Vijayawada | Custom Web Applications | SMYVISION TECHNOLOGIES
-        </title>
-
-        {/* ✅ META DESCRIPTION - High CTR, includes all target keywords */}
+        <title>Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES</title>
         <meta
           name="description"
-          content="SMYVISION TECHNOLOGIES is the best web development company in Vijayawada. We build responsive websites, custom web applications, business automation & AI chatbots. Top web developers in Vijayawada, Andhra Pradesh. Free consultation available."
-        />
-
-        {/* ✅ KEYWORDS - Expanded with misspellings, "best", "top", service-specific terms */}
-        <meta
-          name="keywords"
-          content="web development company in vijayawada, website development vijayawada, web developers vijayawada, custom web application development vijayawada, responsive website design vijayawada, business automation vijayawada, ai chatbot development vijayawada, smyvision technologies"
+          content="SMYVISION TECHNOLOGIES is a web development company in Vijayawada offering website development, web design, custom web development, e-commerce website development, web application development and business automation solutions."
         />
 
         <meta name="author" content="SMYVISION TECHNOLOGIES" />
         <meta name="publisher" content="SMYVISION TECHNOLOGIES" />
-
-        {/* ✅ ROBOTS - Full indexing directives */}
+        <meta name="application-name" content="SMYVISION TECHNOLOGIES" />
+        <meta
+          name="keywords"
+          content="web development company in Vijayawada, website development company in Vijayawada, website development Vijayawada, web design company in Vijayawada, website designers in Vijayawada, website developers in Vijayawada, custom web development Vijayawada, custom web application development Vijayawada, e-commerce website development Vijayawada, responsive web design Vijayawada, business website development Vijayawada, professional website development Vijayawada, local business website development Vijayawada"
+        />
+        <meta name="theme-color" content="#ffffff" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+        <link rel="canonical" href={`${WEBSITE_URL}/`} />
 
-        <meta name="application-name" content="SMYVISION TECHNOLOGIES" />
-
-        {/* ✅ LOCAL SEO - Precise geo-targeting with coordinates */}
-        <meta name="geo.region" content="IN-AP" />
-        <meta name="geo.placename" content="Vijayawada" />
-        <meta name="ICBM" content="16.5062, 80.6480" />
-        <meta name="geo.position" content="16.5062;80.6480" />
-
-        <link rel="canonical" href={WEBSITE_URL} />
-
-        {/* ✅ OPEN GRAPH - Social sharing optimized */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={WEBSITE_URL} />
-        <meta property="og:title" content="Best Web Development Company in Vijayawada | Custom Web Applications | SMYVISION TECHNOLOGIES" />
-        <meta property="og:description" content="SMYVISION TECHNOLOGIES is the best web development company in Vijayawada. Professional websites, custom web applications, business automation & AI chatbots. Top-rated web developers in Vijayawada." />
+        <meta property="og:url" content={`${WEBSITE_URL}/`} />
         <meta property="og:site_name" content="SMYVISION TECHNOLOGIES" />
         <meta property="og:locale" content="en_IN" />
+        <meta property="og:title" content="Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES" />
+        <meta property="og:description" content="Website development, web design, custom web applications, e-commerce website development and business automation services in Vijayawada by SMYVISION TECHNOLOGIES." />
         <meta property="og:image" content={`${WEBSITE_URL}/Logo.png`} />
-        <meta property="og:image:alt" content="SMYVISION TECHNOLOGIES - Best Web Development Company in Vijayawada" />
+        <meta property="og:image:alt" content="SMYVISION TECHNOLOGIES web development company in Vijayawada" />
 
-        {/* ✅ TWITTER CARD */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Best Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES" />
-        <meta name="twitter:description" content="Professional website development, custom web applications, business automation & AI chatbot solutions in Vijayawada and Andhra Pradesh." />
+        <meta name="twitter:title" content="Web Development Company in Vijayawada | SMYVISION TECHNOLOGIES" />
+        <meta name="twitter:description" content="Website development, web design, custom web applications, e-commerce and business automation solutions for businesses in Vijayawada and across India." />
         <meta name="twitter:image" content={`${WEBSITE_URL}/Logo.png`} />
-        <meta name="twitter:image:alt" content="SMYVISION TECHNOLOGIES - Web Development Company" />
+        <meta name="twitter:image:alt" content="SMYVISION TECHNOLOGIES web development company in Vijayawada" />
 
-        {/* ✅ AI SEARCH / ENTITY CONTEXT */}
-        <meta name="subject" content="Best Website Development, Custom Web Applications, Business Automation & AI Solutions in Vijayawada" />
-        <meta name="classification" content="Web Development Company" />
-        <meta name="coverage" content="Vijayawada, Andhra Pradesh, India" />
-        <meta name="distribution" content="global" />
-        <meta name="rating" content="general" />
-
-        {/* ✅ STRUCTURED DATA SCRIPTS */}
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
       <style>{styles}</style>
@@ -684,106 +751,173 @@ const Home = () => {
       ====================================================== */}
 
       <main className="smy-home">
-        {/* HERO SECTION - UNCHANGED */}
+        {/* PREMIUM WHITE SPLIT CONVERSION HERO */}
         <section className="hero-section">
-          <div className="hero-grid" />
-          <motion.div className="hero-orb orb-one" animate={{ x: [0, 40, 0], y: [0, -30, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} />
-          <motion.div className="hero-orb orb-two" animate={{ x: [0, -35, 0], y: [0, 30, 0] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }} />
-          <div className="container hero-layout">
-            <motion.div className="hero-content" initial="hidden" animate="visible" variants={stagger}>
-              <motion.div className="hero-badge" variants={fadeUp}>
-                <FaWandMagicSparkles />
-                <span>Web Development & Digital Solutions in Vijayawada</span>
+          <div className="hero-bg-dots hero-bg-dots-left" aria-hidden="true" />
+          <div className="hero-bg-dots hero-bg-dots-right" aria-hidden="true" />
+          <motion.div
+            className="hero-soft-shape hero-soft-shape-one"
+            aria-hidden="true"
+            animate={{ y: [0, -12, 0], rotate: [0, 3, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="hero-soft-shape hero-soft-shape-two"
+            aria-hidden="true"
+            animate={{ y: [0, 10, 0], rotate: [0, -3, 0] }}
+            transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          <div className="container hero-split-layout">
+            <motion.div
+              className="hero-left"
+              initial="hidden"
+              animate="visible"
+              variants={stagger}
+            >
+              <motion.div className="hero-split-kicker" variants={fadeUp}>
+                <span /> PREMIUM WEB DEVELOPMENT
               </motion.div>
+
               <motion.h1 variants={fadeUp}>
-                Web Development Company in Vijayawada
-                <span> Building Powerful Digital Experiences.</span>
+                We Build Websites
+                <span>That Turn Visitors</span>
+                <strong>Into Paying Clients.</strong>
               </motion.h1>
-              <motion.p className="hero-description" variants={fadeUp}>
-                SMYVISION TECHNOLOGIES is a web development company in Vijayawada creating professional business websites, custom web applications, business automation solutions and AI chatbots for businesses across Vijayawada and Andhra Pradesh.
+
+              <motion.div className="hero-accent-line" variants={fadeUp} />
+
+              <motion.p className="hero-split-copy" variants={fadeUp}>
+                High-performance websites and custom web solutions designed to build trust,
+                generate enquiries and help your business grow.
               </motion.p>
-              <motion.div className="hero-actions" variants={fadeUp}>
-                <button type="button" className="primary-button" onClick={goToContact}>
-                  Get a Free Quote
-                  <FaArrowRight />
+
+              <motion.div className="hero-benefit-row" variants={fadeUp}>
+                <div className="hero-benefit-item">
+                  <div className="hero-benefit-icon"><FaBullseye /></div>
+                  <div><strong>Goal Focused</strong><span>Built around your business goals</span></div>
+                </div>
+                <div className="hero-benefit-item">
+                  <div className="hero-benefit-icon"><FaRocket /></div>
+                  <div><strong>High Performance</strong><span>Fast, polished and conversion ready</span></div>
+                </div>
+                <div className="hero-benefit-item">
+                  <div className="hero-benefit-icon"><FaShieldHalved /></div>
+                  <div><strong>Reliable Support</strong><span>Support that keeps you moving forward</span></div>
+                </div>
+              </motion.div>
+
+              <motion.div className="hero-split-actions" variants={fadeUp}>
+                <button type="button" className="hero-primary-cta" onClick={goToContact}>
+                  Get Free Consultation <FaArrowRight />
                 </button>
-                <button type="button" className="secondary-button" onClick={goToProjects}>
-                  Explore Our Work
-                  <FaArrowUpRightFromSquare />
+                <button type="button" className="hero-outline-cta" onClick={() => navigate('/portfolio')}>
+                  View Our Work <FaArrowUpRightFromSquare />
                 </button>
               </motion.div>
-              <motion.div className="hero-features" variants={fadeUp}>
-                <span><FaCircleCheck />Professional Development</span>
-                <span><FaCircleCheck />Smart Digital Solutions</span>
-                <span><FaCircleCheck />Growth-Focused Approach</span>
-              </motion.div>
+
+              <motion.button className="hero-whatsapp-link" type="button" onClick={openWhatsApp} variants={fadeUp}>
+                <FaWhatsapp /> Chat with us on WhatsApp
+              </motion.button>
             </motion.div>
-            <motion.div className="hero-visual" initial={{ opacity: 0, scale: 0.9, rotateY: 8 }} animate={{ opacity: 1, scale: 1, rotateY: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
-              <div className="browser-card">
-                <div className="browser-top">
-                  <div className="browser-dots"><span /><span /><span /></div>
-                  <div className="browser-url">smyvisiontechnologies.com</div>
-                </div>
-                <div className="browser-content">
-                  <div className="browser-brand"><FaCode /><span>SMYVISION</span></div>
-                  <div className="browser-main-content">
-                    <span>DIGITAL INNOVATION</span>
-                    <h2>Create.<br />Transform.<br />Grow.</h2>
-                    <p>Digital solutions designed around real business goals.</p>
-                    <div className="fake-button">Start Your Project</div>
-                  </div>
-                  <motion.div className="browser-widget widget-one" animate={{ y: [0, -10, 0] }} transition={{ duration: 3.5, repeat: Infinity }}>
-                    <FaRocket /><div><strong>Growth Ready</strong><span>Built for business</span></div>
-                  </motion.div>
-                  <motion.div className="browser-widget widget-two" animate={{ y: [0, 10, 0] }} transition={{ duration: 4, repeat: Infinity }}>
-                    <FaBolt /><div><strong>Fast Experience</strong><span>Modern performance</span></div>
-                  </motion.div>
-                </div>
+
+            <motion.div
+              className="hero-right"
+              initial={{ opacity: 0, x: 55, scale: .96 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: .9, delay: .12, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="hero-image-frame">
+                <motion.img
+                  src="/images/vijaywada.png"
+                  alt="SMYVISION TECHNOLOGIES professional web development team"
+                  onError={(event) => {
+                    const fallback =
+                      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=88";
+                    if (event.currentTarget.src !== fallback) {
+                      event.currentTarget.src = fallback;
+                    }
+                  }}
+                  animate={{ scale: [1, 1.025, 1] }}
+                  transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <div className="hero-image-overlay" />
               </div>
-              <motion.div className="floating-card floating-one" animate={{ y: [0, -13, 0], rotate: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity }}>
-                <FaMagnifyingGlass /><div><strong>SEO Ready</strong><small>Search-friendly foundation</small></div>
+
+              <motion.div
+                className="hero-result-card"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div className="result-card-head">
+                  <div><span>RESULTS THAT MATTER</span><strong>Built to support enquiries.</strong></div>
+                  <div className="result-live"><i /> LIVE</div>
+                </div>
+                <p>Clear message. Better experience. Stronger action.</p>
+                <svg viewBox="0 0 320 86" role="img" aria-label="Illustrative rising conversion path">
+                  <defs>
+                    <linearGradient id="heroLineFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#1767f2" stopOpacity=".22" />
+                      <stop offset="100%" stopColor="#1767f2" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path className="result-area" d="M6,75 C45,72 59,54 91,58 C126,64 140,43 169,46 C205,50 215,29 243,31 C275,34 288,17 314,9 L314,86 L6,86 Z" />
+                  <motion.path
+                    className="result-line"
+                    d="M6,75 C45,72 59,54 91,58 C126,64 140,43 169,46 C205,50 215,29 243,31 C275,34 288,17 314,9"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.8, delay: .7, ease: [0.22,1,0.36,1] }}
+                  />
+                  <motion.circle cx="314" cy="9" r="5" className="result-point" animate={{ r: [4,7,4] }} transition={{ duration: 2, repeat: Infinity }} />
+                </svg>
               </motion.div>
-              <motion.div className="floating-card floating-two" animate={{ y: [0, 12, 0], rotate: [0, -1, 0] }} transition={{ duration: 5, repeat: Infinity }}>
-                <FaMobileScreenButton /><div><strong>Responsive</strong><small>Built for every device</small></div>
+
+              <motion.div
+                className="hero-image-tag"
+                animate={{ x: [0, 7, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <FaCircleCheck /> <span><strong>Custom-built</strong> for your brand</span>
               </motion.div>
             </motion.div>
           </div>
         </section>
 
-        {/* STATS SECTION - UNCHANGED */}
-        <section className="stats-section">
-          <div className="container">
-            <div className="stats-grid">
-              <div><strong>15+</strong><span>Projects Worked On</span></div>
-              <div><strong>100%</strong><span>Responsive Development</span></div>
-              <div><strong>3+</strong><span>Core Digital Solutions</span></div>
-              <div><strong>24/7</strong><span>Your Digital Presence</span></div>
-            </div>
+        {/* PROJECT MARQUEE - DIRECTLY AFTER HERO */}
+        <section className="hero-projects-section">
+          <div className="container hero-projects-heading">
+            <span>Websites We’ve Built For Businesses Across Industries</span>
+            <div className="hero-projects-heading-line"><i /><FaArrowRight /><i /></div>
           </div>
-        </section>
-
-        {/* MAIN MARQUEE - UNCHANGED */}
-        <section className="services-marquee-section">
-          <p>Digital solutions created for modern business growth</p>
-          <div className="services-marquee">
-            <div className="services-marquee-track">
-              {[...marqueeItems, ...marqueeItems].map((item, index) => (
-                <div className="services-marquee-item" key={`${item}-${index}`}>
-                  <FaWandMagicSparkles />{item}
-                </div>
-              ))}
-            </div>
-          </div>
+          <div className="hero-project-marquee"><div className="hero-project-track">
+            {[...projectMarqueeRowOne, ...projectMarqueeRowOne, ...projectMarqueeRowOne].map((project, index) => (
+              <ProjectMarqueeCard
+                project={project}
+                key={`${project.title}-hero-${index}`}
+                onImageClick={openFullscreenImage}
+              />
+            ))}
+          </div></div>
+          <div className="hero-project-marquee reverse"><div className="hero-project-track">
+            {[...projectMarqueeRowTwo, ...projectMarqueeRowTwo, ...projectMarqueeRowTwo].map((project, index) => (
+              <ProjectMarqueeCard
+                project={project}
+                key={`${project.title}-hero-2-${index}`}
+                onImageClick={openFullscreenImage}
+              />
+            ))}
+          </div></div>
         </section>
 
         {/* INTRODUCTION - UNCHANGED */}
         <section className="section intro-section">
           <div className="container intro-layout">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-              <motion.span className="eyebrow" variants={fadeUp}>WEB DEVELOPMENT IN VIJAYAWADA</motion.span>
-              <motion.h2 variants={fadeUp}>Professional Website Development for Vijayawada Businesses.</motion.h2>
-              <motion.p variants={fadeUp}>A strong website should clearly explain your business, build customer trust and make it simple for people to contact you. We develop responsive and SEO-ready websites for startups, local businesses and growing companies in Vijayawada.</motion.p>
-              <motion.p variants={fadeUp}>At <strong>SMYVISION TECHNOLOGIES</strong>, our Vijayawada web development services include business websites, corporate websites, custom web applications, website redesign, business automation and AI chatbot solutions.</motion.p>
+              <motion.span className="eyebrow" variants={fadeUp}>PROFESSIONAL WEB DEVELOPMENT</motion.span>
+              <motion.h2 variants={fadeUp}>Website & Custom Web Development for Growing Businesses.</motion.h2>
+              <motion.p variants={fadeUp}>SMYVISION TECHNOLOGIES creates responsive, SEO-ready business websites and custom web solutions for startups, local businesses and growing companies.</motion.p>
+              <motion.p variants={fadeUp}>Our web development services include business websites, corporate websites, custom web development, custom web applications, e-commerce solutions, website redesign and business automation.</motion.p>
               <motion.p variants={fadeUp}>Every project is planned around your business goals, customer journey and future growth, with modern design, responsive development and practical technology choices.</motion.p>
               <motion.button variants={fadeUp} type="button" className="primary-button intro-button" onClick={goToContact}>
                 Discuss Your Project<FaArrowRight />
@@ -794,8 +928,24 @@ const Home = () => {
               <span>ONE DIGITAL PARTNER</span>
               <h3>From Your First Idea to a Complete Digital Solution.</h3>
               <div className="intro-points">
-                {["Professional brand presentation", "Responsive customer experiences", "Smart business automation", "Modern technology stack", "SEO-ready development", "AI-powered solutions", "Clear customer journeys", "Scalable digital systems"].map((item) => (
-                  <div key={item}><FaCheck />{item}</div>
+                {["Professional brand presentation", "Responsive customer experiences", "Smart business automation", "Modern technology stack", "SEO-ready development", "AI-powered solutions", "Clear customer journeys", "Scalable digital systems"].map((item, index) => (
+                  <motion.div
+                    className="intro-point-item"
+                    key={item}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -42 : 42, scale: .96 }}
+                    whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                    viewport={{ once: true, amount: .35 }}
+                    transition={{ duration: .62, delay: index * .07, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <motion.span
+                      className="intro-tick"
+                      animate={{ scale: [1, 1.22, 1], opacity: [1, .55, 1] }}
+                      transition={{ duration: 1.55, repeat: Infinity, delay: index * .16, ease: "easeInOut" }}
+                    >
+                      <FaCheck />
+                    </motion.span>
+                    <span>{item}</span>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -820,16 +970,29 @@ const Home = () => {
         {/* SERVICES - UNCHANGED */}
         <section className="section services-section">
           <div className="container">
-            <SectionHeader eyebrow="WEB DEVELOPMENT SERVICES IN VIJAYAWADA" title="Website, Web Application & Automation Solutions for Vijayawada Businesses" text="We build professional websites, custom web applications and smart automation solutions for businesses in Vijayawada and across Andhra Pradesh." />
+            <SectionHeader eyebrow="PREMIUM DIGITAL SERVICES" title="Custom Digital Solutions Built Around Your Business" text="From premium business websites to custom web development, e-commerce, automation and AI solutions — every project is shaped around your real requirements." />
             <div className="services-grid">
               {services.map((service, index) => (
                 <motion.article className="service-card" key={service.title} initial={{ opacity: 0, y: 40, rotateX: 5 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
                   <div className="service-image-wrap">
-                    <img src={service.image} alt={`${service.title} by SMYVISION TECHNOLOGIES`} />
+                    <img
+                      src={service.image}
+                      alt={`${service.title} service by SMYVISION TECHNOLOGIES`}
+                      onClick={(event) =>
+                        openFullscreenImage(
+                          event.currentTarget.currentSrc || event.currentTarget.src,
+                          `${service.title} service by SMYVISION TECHNOLOGIES`
+                        )
+                      }
+                      onError={(event) => {
+                        if (service.fallback && event.currentTarget.src !== service.fallback) {
+                          event.currentTarget.src = service.fallback;
+                        }
+                      }}
+                    />
                     <div className="service-icon">{service.icon}</div>
                   </div>
                   <div className="service-body">
-                    <span className="service-count">0{index + 1}</span>
                     <h3>{service.title}</h3>
                     <p>{service.description}</p>
                     <div className="service-features">
@@ -866,73 +1029,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* PROJECTS - UNCHANGED */}
-        <section className="section projects-section" id="our-work">
-          <div className="container">
-            <SectionHeader eyebrow="OUR SELECTED WORK" title="Websites & Digital Experiences Built for Real Businesses" text="Explore selected website development projects created for businesses across different industries, with a focus on responsive design and practical user experience." />
-            <div className="project-showcase">
-              <button className="project-arrow left" type="button" onClick={handlePreviousProject}><FaChevronLeft /></button>
-              <div className="project-main-card">
-                <AnimatePresence mode="wait">
-                  <motion.div key={activeProject} className="project-main-layout" initial={{ opacity: 0, scale: 0.97, x: 25 }} animate={{ opacity: 1, scale: 1, x: 0 }} exit={{ opacity: 0, x: -25 }}>
-                    <div className="project-image-side">
-                      <div className="project-browser">
-                        <div className="project-browser-top">
-                          <div><span /><span /><span /></div>
-                          <p>{projects[activeProject].url}</p>
-                        </div>
-                        <img src={projects[activeProject].image} alt={projects[activeProject].title} />
-                      </div>
-                    </div>
-                    <div className="project-info">
-                      <span>{projects[activeProject].category}</span>
-                      <h3>{projects[activeProject].title}</h3>
-                      <p>{projects[activeProject].description}</p>
-                      <a href={projects[activeProject].url} target="_blank" rel="noopener noreferrer">Visit Live Website<FaArrowUpRightFromSquare /></a>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-                <div className="project-progress">
-                  <motion.div key={activeProject} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: PROJECT_CHANGE_TIME / 1000, ease: "linear" }} />
-                </div>
-              </div>
-              <button className="project-arrow right" type="button" onClick={handleNextProject}><FaChevronRight /></button>
-            </div>
-            <div className="project-marquee-area">
-              <div className="project-marquee marquee-left-right">
-                <div className="project-marquee-track">
-                  {[...projectMarqueeRowOne, ...projectMarqueeRowOne, ...projectMarqueeRowOne].map((project, index) => (
-                    <ProjectMarqueeCard project={project} key={`${project.title}-row1-${index}`} />
-                  ))}
-                </div>
-              </div>
-              <div className="project-marquee marquee-right-left">
-                <div className="project-marquee-track">
-                  {[...projectMarqueeRowTwo, ...projectMarqueeRowTwo, ...projectMarqueeRowTwo].map((project, index) => (
-                    <ProjectMarqueeCard project={project} key={`${project.title}-row2-${index}`} />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* TECHNOLOGY - UNCHANGED */}
-        <section className="section technology-section">
-          <div className="container">
-            <SectionHeader eyebrow="OUR TECHNOLOGY STACK" title="Modern Technologies Behind Powerful Digital Solutions" text="We choose technologies according to the actual requirements of each project, focusing on performance, scalability and maintainability." />
-            <div className="technology-grid">
-              {technologies.map((technology, index) => (
-                <motion.div key={technology.name} className="technology-card" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.04 }} whileHover={{ y: -8, scale: 1.03 }}>
-                  <div>{technology.icon}</div>
-                  <h3>{technology.name}</h3>
-                  <p>{technology.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* HOW WE WORK - UNCHANGED */}
         <section className="section process-section">
           <div className="container">
@@ -940,13 +1036,26 @@ const Home = () => {
             <div className="process-path">
               <div className="process-path-line" />
               {processSteps.map((step, index) => (
-                <motion.div className={`process-path-item ${index % 2 === 0 ? "left-side" : "right-side"}`} key={step.number} initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.35 }}>
+                <motion.div
+                  className={`process-path-item ${index % 2 === 0 ? "left-side" : "right-side"}`}
+                  key={step.number}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -90 : 90, y: 28, scale: .96, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
+                  viewport={{ once: true, amount: 0.28 }}
+                  transition={{ duration: .78, delay: index * .05, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <div className="process-content">
                     <span>STEP {step.number}</span>
                     <h3>{step.title}</h3>
                     <p>{step.description}</p>
                   </div>
-                  <motion.div className="process-center-icon" whileInView={{ scale: [0.6, 1.15, 1] }} viewport={{ once: true }}>{step.icon}</motion.div>
+                  <motion.div
+                    className="process-center-icon"
+                    whileInView={{ scale: [0.55, 1.18, 1], rotate: [0, index % 2 === 0 ? -8 : 8, 0] }}
+                    animate={{ boxShadow: ["0 0 0 0 rgba(7,88,232,.18)", "0 0 0 12px rgba(7,88,232,0)", "0 0 0 0 rgba(7,88,232,0)"] }}
+                    transition={{ scale: { duration: .7 }, rotate: { duration: .7 }, boxShadow: { duration: 2.6, repeat: Infinity, delay: index * .22 } }}
+                    viewport={{ once: true }}
+                  >{step.icon}</motion.div>
                 </motion.div>
               ))}
             </div>
@@ -978,8 +1087,16 @@ const Home = () => {
               <p>Different industries have different customers, workflows and challenges. Our approach is built around understanding those differences.</p>
             </div>
             <div className="industry-tags">
-              {industries.map((industry) => (
-                <motion.span key={industry} whileHover={{ scale: 1.07, y: -3 }}><FaWandMagicSparkles />{industry}</motion.span>
+              {industries.map((industry, index) => (
+                <motion.span
+                  className="industry-chip"
+                  key={industry}
+                  initial={{ opacity: 0, y: 24, scale: .9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: .45 }}
+                  transition={{ duration: .55, delay: index * .055, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ scale: 1.07, y: -5 }}
+                ><motion.span className="industry-spark" animate={{ rotate: [0, 12, -10, 0], scale: [1, 1.18, 1] }} transition={{ duration: 2.4, repeat: Infinity, delay: index * .12 }}><FaWandMagicSparkles /></motion.span>{industry}</motion.span>
               ))}
             </div>
           </div>
@@ -994,7 +1111,14 @@ const Home = () => {
                 <motion.article className="review-card" key={review.name} initial={{ opacity: 0, rotateY: 8, y: 30 }} whileInView={{ opacity: 1, rotateY: 0, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
                   <div className="review-header">
                     <div className="quote-icon"><FaQuoteLeft /></div>
-                    <div className="stars">{[1, 2, 3, 4, 5].map((star) => (<FaStar key={star} />))}</div>
+                    <div className="stars">{[1, 2, 3, 4, 5].map((star, starIndex) => (
+                      <motion.span
+                        className="animated-star"
+                        key={star}
+                        animate={{ scale: [1, 1.28, 1], rotate: [0, -7, 7, 0], filter: ["drop-shadow(0 0 0 rgba(243,170,22,0))", "drop-shadow(0 0 8px rgba(243,170,22,.65))", "drop-shadow(0 0 0 rgba(243,170,22,0))"] }}
+                        transition={{ duration: 1.7, repeat: Infinity, delay: starIndex * .16 + index * .08, ease: "easeInOut" }}
+                      ><FaStar /></motion.span>
+                    ))}</div>
                   </div>
                   <p>"{review.review}"</p>
                   <div className="review-user">
@@ -1011,10 +1135,10 @@ const Home = () => {
         <section className="section digital-growth-section">
           <div className="container digital-growth-layout">
             <div>
-              <span className="eyebrow">VIJAYAWADA WEBSITE DEVELOPMENT PARTNER</span>
-              <h2>Build a Professional Online Presence for Your Business in Vijayawada.</h2>
+              <span className="eyebrow">YOUR WEBSITE DEVELOPMENT PARTNER</span>
+              <h2>Build a Professional Online Presence for Your Business.</h2>
               <p>Customers often search online before contacting a business. A professional website gives them a clear place to understand your services, view your work and reach you from mobile, tablet or desktop.</p>
-              <p>SMYVISION TECHNOLOGIES helps Vijayawada businesses create responsive websites, custom web applications and digital systems that support enquiries, customer communication and day-to-day operations.</p>
+              <p>SMYVISION TECHNOLOGIES helps businesses create responsive websites, custom web applications and digital systems that support enquiries, customer communication and day-to-day operations.</p>
               <p>Whether you are launching a new business website or improving an existing digital platform, we focus on clean structure, strong usability, SEO-ready development and room for future growth.</p>
               <button type="button" className="primary-button" onClick={goToContact}>Build Your Digital Presence<FaArrowRight /></button>
             </div>
@@ -1026,13 +1150,13 @@ const Home = () => {
           </div>
         </section>
 
-        {/* FAQ - UNCHANGED */}
+        {/* FAQ */}
         <section className="section faq-section">
           <div className="container faq-layout">
             <div className="faq-heading">
               <span className="eyebrow">FREQUENTLY ASKED QUESTIONS</span>
-              <h2>Web Development Questions From Vijayawada Businesses</h2>
-              <p>Find answers to common questions about website development in Vijayawada, responsive design, custom web applications, automation and our project process.</p>
+              <h2>Questions Before You Start? We’ve Got Answers.</h2>
+              <p>Find answers to common questions about website development, responsive design, custom web applications, automation and our project process.</p>
               <button type="button" className="faq-whatsapp-button" onClick={openWhatsApp}><FaWhatsapp />Ask Us on WhatsApp</button>
             </div>
             <div className="faq-list">
@@ -1098,6 +1222,44 @@ const Home = () => {
           </div>
         </section>
       </main>
+
+      <AnimatePresence>
+        {fullscreenImage && (
+          <motion.div
+            className="image-lightbox"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.24 }}
+            onClick={closeFullscreenImage}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Full screen image preview"
+          >
+            <button
+              type="button"
+              className="image-lightbox-close"
+              onClick={(event) => {
+                event.stopPropagation();
+                closeFullscreenImage();
+              }}
+              aria-label="Close full screen image"
+            >
+              ×
+            </button>
+
+            <motion.img
+              src={fullscreenImage.src}
+              alt={fullscreenImage.alt}
+              initial={{ opacity: 0, scale: 0.94, y: 18 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 10 }}
+              transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+              onClick={closeFullscreenImage}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
@@ -1120,10 +1282,26 @@ const SectionHeader = ({ eyebrow, title, text }) => {
    PROJECT MARQUEE CARD (UNCHANGED)
 ========================================================= */
 
-const ProjectMarqueeCard = ({ project }) => {
+const ProjectMarqueeCard = ({ project, onImageClick }) => {
   return (
     <div className="project-marquee-card">
-      <img src={project.image} alt={`${project.title} project`} />
+      <img
+        src={project.image}
+        alt={`${project.title} project`}
+        onClick={(event) => {
+          if (onImageClick) {
+            onImageClick(
+              event.currentTarget.currentSrc || event.currentTarget.src,
+              `${project.title} project`
+            );
+          }
+        }}
+        onError={(event) => {
+          if (project.fallback && event.currentTarget.src !== project.fallback) {
+            event.currentTarget.src = project.fallback;
+          }
+        }}
+      />
       <div>
         <strong>{project.title}</strong>
         <span>{project.category}</span>
@@ -1264,379 +1442,211 @@ const styles = `
   }
 
   /* =========================================================
-     HERO
+     PREMIUM WHITE SPLIT CONVERSION HERO — REFERENCE MATCH
   ========================================================= */
-
   .hero-section {
-    min-height: 790px;
     position: relative;
+    min-height: 620px;
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding: 120px 0 140px;
-    background: linear-gradient(180deg,#fcfdff,#f2f6ff);
-  }
-
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(7,88,232,.035) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(7,88,232,.035) 1px,transparent 1px);
-    background-size: 46px 46px;
-    mask-image: linear-gradient(to bottom,black,transparent 95%);
-  }
-
-  .hero-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(90px);
-  }
-
-  .orb-one {
-    width: 430px;
-    height: 430px;
-    left: -180px;
-    top: -120px;
-    background: rgba(29,110,255,.16);
-  }
-
-  .orb-two {
-    width: 480px;
-    height: 480px;
-    right: -160px;
-    bottom: -180px;
-    background: rgba(109,40,217,.14);
-  }
-
-  .hero-layout {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1.05fr .95fr;
-    gap: 70px;
-    align-items: center;
-  }
-
-  .hero-badge {
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 15px;
-    margin-bottom: 25px;
-    color: var(--primary);
-    background: rgba(255,255,255,.9);
-    border: 1px solid rgba(7,88,232,.14);
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 750;
-  }
-
-  .hero-content h1 {
-    margin: 0 0 25px;
-    color: var(--heading);
-    font-size: clamp(3rem,5.3vw,5.2rem);
-    line-height: 1.01;
-    letter-spacing: -.06em;
-  }
-
-  .hero-content h1 span {
-    color: transparent;
-    background: linear-gradient(95deg,#0758e8,#7035df);
-    background-clip: text;
-    -webkit-background-clip: text;
-  }
-
-  .hero-description {
-    max-width: 650px;
-    margin: 0 0 32px;
-    font-size: 18px;
-    line-height: 1.75;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 13px;
-  }
-
-  .hero-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 30px;
-  }
-
-  .hero-features span {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 12px;
-    font-weight: 650;
-  }
-
-  .hero-features svg {
-    color: #13a976;
-  }
-
-  /* =========================================================
-     HERO VISUAL
-  ========================================================= */
-
-  .hero-visual {
-    position: relative;
-    perspective: 1000px;
-  }
-
-  .browser-card {
-    padding: 10px;
-    background: rgba(255,255,255,.9);
-    border-radius: 28px;
-    box-shadow: 0 35px 100px rgba(8,31,72,.16);
-  }
-
-  .browser-top {
-    height: 48px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 0 15px;
-  }
-
-  .browser-dots {
-    display: flex;
-    gap: 6px;
-  }
-
-  .browser-dots span {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #cbd5e3;
-  }
-
-  .browser-url {
-    padding: 7px 15px;
-    color: #8692a4;
-    background: #f1f4f8;
-    border-radius: 30px;
-    font-size: 9px;
-  }
-
-  .browser-content {
-    min-height: 430px;
-    position: relative;
-    overflow: hidden;
-    padding: 32px;
-    color: white;
+    padding: 102px 0 58px;
+    isolation: isolate;
     background:
-      radial-gradient(circle at 85% 15%,rgba(57,125,255,.24),transparent 30%),
-      linear-gradient(145deg,#06172f,#0d2854);
-    border-radius: 21px;
+      radial-gradient(circle at 2% 78%, rgba(39,106,242,.075), transparent 18%),
+      radial-gradient(circle at 96% 8%, rgba(78,92,255,.08), transparent 20%),
+      linear-gradient(180deg,#ffffff 0%,#ffffff 78%,#f8fbff 100%);
+    border-bottom: 1px solid #edf2f8;
   }
 
-  .browser-brand {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    font-weight: 850;
+  .hero-bg-dots {
+    position:absolute; width:128px; height:128px; z-index:-2; opacity:.38; pointer-events:none;
+    background-image:radial-gradient(circle,#82adf8 1.35px,transparent 1.55px);
+    background-size:14px 14px;
+  }
+  .hero-bg-dots-left { left:-18px; top:158px; }
+  .hero-bg-dots-right { right:10px; bottom:50px; }
+
+  .hero-soft-shape {
+    position:absolute; z-index:-3; pointer-events:none; border-radius:36px;
+    background:linear-gradient(145deg,rgba(45,112,255,.105),rgba(108,86,245,.025));
+  }
+  .hero-soft-shape-one { width:145px;height:145px;left:-80px;bottom:35px;transform:rotate(28deg); }
+  .hero-soft-shape-two { width:105px;height:105px;right:45px;top:80px;transform:rotate(18deg); }
+
+  .hero-split-layout {
+    position:relative; z-index:2; display:grid;
+    grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
+    align-items:center; gap:52px;
+  }
+  .hero-left { min-width:0; }
+
+  .hero-split-kicker {
+    display:inline-flex; align-items:center; gap:9px; margin-bottom:18px;
+    color:#1f63cd; font-size:9px; font-weight:850; letter-spacing:.145em; text-transform:uppercase;
+  }
+  .hero-split-kicker > span {
+    width:8px;height:8px;border-radius:50%;background:#1767f2;box-shadow:0 0 0 5px rgba(23,103,242,.08);
   }
 
-  .browser-main-content {
-    padding-top: 65px;
+  .hero-left h1 {
+    margin:0; max-width:650px; color:#071a35;
+    font-size:clamp(2.7rem,4.1vw,4.45rem);
+    line-height:1.015; letter-spacing:-.052em; font-weight:850; text-wrap:balance;
+  }
+  .hero-left h1 > span { display:block;color:#071a35; }
+  .hero-left h1 > strong {
+    display:block;font:inherit;color:#1264ef;
+    background:linear-gradient(100deg,#1264ef,#256cf4 55%,#4d46e7);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   }
 
-  .browser-main-content > span {
-    color: #75a8ff;
-    font-size: 9px;
-    font-weight: 850;
-    letter-spacing: .15em;
+  .hero-accent-line {
+    width:42px;height:4px;border-radius:99px;margin:19px 0 17px;
+    background:linear-gradient(90deg,#1264ef,#5d3be6);box-shadow:0 4px 12px rgba(18,100,239,.15);
   }
 
-  .browser-main-content h2 {
-    margin: 14px 0;
-    color: white;
-    font-size: clamp(2.4rem,4vw,3.6rem);
-    line-height: .95;
+  .hero-split-copy {
+    max-width:570px;margin:0;color:#63748b;font-size:14px;line-height:1.72;
   }
 
-  .browser-main-content p {
-    max-width: 280px;
-    color: #b3c4df;
-    font-size: 12px;
+  .hero-benefit-row {
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:22px;max-width:620px;
+  }
+  .hero-benefit-item {
+    min-width:0;display:grid;grid-template-columns:38px 1fr;align-items:center;gap:9px;padding:9px 4px 9px 0;
+  }
+  .hero-benefit-icon {
+    width:38px;height:38px;border:1px solid #e2eaf5;border-radius:11px;display:grid;place-items:center;
+    color:#1767f2;background:#fff;box-shadow:0 8px 20px rgba(35,75,135,.075);font-size:15px;
+  }
+  .hero-benefit-item strong { display:block;color:#102642;font-size:10.5px;line-height:1.35; }
+  .hero-benefit-item span { display:block;margin-top:2px;color:#7a899d;font-size:8.5px;line-height:1.45; }
+
+  .hero-split-actions { display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:23px; }
+  .hero-primary-cta,.hero-outline-cta {
+    min-height:49px;padding:0 21px;border-radius:11px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    font-size:12px;font-weight:800;cursor:pointer;transition:.28s ease;
+  }
+  .hero-primary-cta { color:#fff;background:linear-gradient(135deg,#0d62ed,#5138e8);box-shadow:0 13px 27px rgba(22,92,218,.20); }
+  .hero-outline-cta { color:#1256c8;background:#fff;border:1px solid #9fbfff;box-shadow:0 9px 21px rgba(36,80,145,.045); }
+  .hero-primary-cta:hover,.hero-outline-cta:hover { transform:translateY(-3px); }
+  .hero-primary-cta svg,.hero-outline-cta svg { transition:transform .25s ease; }
+  .hero-primary-cta:hover svg,.hero-outline-cta:hover svg { transform:translate(3px,-1px); }
+
+  .hero-whatsapp-link {
+    margin-top:13px;padding:0;background:transparent;color:#40536e;display:inline-flex;align-items:center;gap:7px;
+    font-weight:700;font-size:11px;cursor:pointer;border-bottom:1px solid #c7d3e2;
+  }
+  .hero-whatsapp-link svg { color:#13a976;font-size:17px; }
+
+  .hero-right {
+    position:relative;min-width:0;min-height:470px;display:flex;align-items:center;justify-content:center;
+  }
+  .hero-image-frame {
+    position:absolute;inset:0 0 0 10px;overflow:hidden;background:#eaf2ff;
+    border-radius:78px 24px 84px 30px;
+    clip-path:polygon(20% 0,100% 0,100% 84%,88% 100%,13% 100%,0 74%,8% 19%);
+    box-shadow:0 28px 62px rgba(30,72,135,.13);
+  }
+  .hero-image-frame::before {
+    content:"";position:absolute;inset:12px;z-index:3;pointer-events:none;border:1px solid rgba(255,255,255,.62);
+    border-radius:66px 18px 70px 24px;
+  }
+  .hero-image-frame img { width:100%;height:100%;object-fit:cover;display:block;transform-origin:center; }
+  .hero-image-overlay { position:absolute;inset:0;background:linear-gradient(120deg,rgba(12,73,178,.055),transparent 46%,rgba(255,255,255,.04)); }
+
+  .hero-right::before {
+    content:"";position:absolute;left:-24px;top:64px;width:5px;height:310px;border-radius:999px;
+    background:linear-gradient(180deg,transparent,#1767f2 18%,#1767f2 80%,transparent);
+    transform:rotate(24deg);z-index:4;box-shadow:0 0 23px rgba(23,103,242,.18);
   }
 
-  .fake-button {
-    width: fit-content;
-    margin-top: 22px;
-    padding: 11px 16px;
-    background: #1768f5;
-    border-radius: 9px;
-    font-size: 10px;
-    font-weight: 750;
+  .hero-result-card {
+    position:absolute;right:20px;bottom:18px;z-index:6;width:min(292px,54%);padding:15px 15px 10px;
+    border:1px solid rgba(213,225,243,.95);border-radius:16px;background:rgba(255,255,255,.94);
+    box-shadow:0 18px 42px rgba(20,54,104,.16);backdrop-filter:blur(14px);
   }
+  .result-card-head { display:flex;justify-content:space-between;align-items:flex-start;gap:10px; }
+  .result-card-head span { display:block;color:#2e5f9c;font-size:6.5px;font-weight:900;letter-spacing:.15em; }
+  .result-card-head strong { display:block;margin-top:4px;color:#102642;font-size:11.5px; }
+  .result-live { display:flex;align-items:center;gap:5px;color:#1767f2;font-size:6.5px;font-weight:900;letter-spacing:.11em; }
+  .result-live i { width:6px;height:6px;border-radius:50%;background:#1767f2;box-shadow:0 0 0 4px rgba(23,103,242,.08); }
+  .hero-result-card p { margin:6px 0 3px;color:#718197;font-size:8px;line-height:1.4; }
+  .hero-result-card svg { width:100%;height:66px;display:block;overflow:visible; }
+  .result-area { fill:url(#heroLineFill); }
+  .result-line { fill:none;stroke:#1767f2;stroke-width:3;stroke-linecap:round; }
+  .result-point { fill:#1767f2; }
 
-  .browser-widget {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 11px 13px;
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 12px;
-    backdrop-filter: blur(12px);
+  .hero-image-tag {
+    position:absolute;left:-2px;bottom:39px;z-index:7;display:flex;align-items:center;gap:7px;padding:9px 11px;
+    border:1px solid #e2eaf6;border-radius:11px;background:rgba(255,255,255,.96);
+    box-shadow:0 12px 29px rgba(30,70,125,.11);color:#1767f2;backdrop-filter:blur(12px);
   }
-
-  .browser-widget div {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .browser-widget strong {
-    font-size: 9px;
-  }
-
-  .browser-widget span {
-    color: #abbcd6;
-    font-size: 7px;
-  }
-
-  .widget-one {
-    top: 90px;
-    right: 24px;
-  }
-
-  .widget-two {
-    right: 30px;
-    bottom: 35px;
-  }
-
-  .floating-card {
-    position: absolute;
-    z-index: 4;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 16px;
-    background: rgba(255,255,255,.95);
-    border-radius: 15px;
-    box-shadow: 0 20px 50px rgba(10,31,67,.16);
-  }
-
-  .floating-card > svg {
-    color: var(--primary);
-  }
-
-  .floating-card div {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .floating-card strong {
-    color: var(--heading);
-    font-size: 11px;
-  }
-
-  .floating-card small {
-    font-size: 8px;
-  }
-
-  .floating-one {
-    left: -45px;
-    bottom: 70px;
-  }
-
-  .floating-two {
-    right: -35px;
-    top: 65px;
-  }
+  .hero-image-tag span { color:#61728a;font-size:8px; }
+  .hero-image-tag strong { color:#102642; }
 
   /* =========================================================
-     STATS
+     TWO-LANE PROJECT MARQUEE - DIRECTLY AFTER HERO
   ========================================================= */
-
-  .stats-section {
-    position: relative;
-    z-index: 3;
-    margin-top: -50px;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    padding: 8px;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    box-shadow: 0 22px 60px rgba(8,33,73,.09);
-  }
-
-  .stats-grid div {
-    padding: 25px;
-    text-align: center;
-  }
-
-  .stats-grid strong {
-    display: block;
-    color: var(--heading);
-    font-size: 27px;
-  }
-
-  .stats-grid span {
-    font-size: 11px;
-  }
-
-  /* =========================================================
-     SERVICES MARQUEE
-  ========================================================= */
-
-  .services-marquee-section {
-    padding: 70px 0 20px;
-    text-align: center;
-  }
-
-  .services-marquee-section > p {
-    margin-bottom: 18px;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-  }
-
-  .services-marquee {
+  .hero-projects-section {
+    padding: 26px 0 32px;
     overflow: hidden;
+    border-bottom: 1px solid #edf1f7;
+    background: linear-gradient(180deg,#f8fbff 0%,#ffffff 100%);
   }
 
-  .services-marquee-track {
+  .hero-projects-heading {
+    display:flex;align-items:center;gap:22px;margin-bottom:10px;color:#155fd9;font-size:11px;font-weight:800;
+  }
+  .hero-projects-heading-line { display:flex;align-items:center;gap:10px;flex:1;max-width:260px;color:#6d9df1; }
+  .hero-projects-heading-line i { display:block;height:1px;flex:1;background:#a8c2eb; }
+  .hero-projects-heading-line svg { font-size:10px; }
+
+  .hero-project-marquee {
+    overflow: hidden;
+    padding: 6px 0;
+  }
+
+  .hero-project-track {
+    display: flex;
     width: max-content;
-    display: flex;
-    gap: 15px;
-    animation: serviceMarquee 30s linear infinite;
+    gap: 12px;
+    animation: heroProjects 30s linear infinite;
   }
 
-  .services-marquee-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 20px;
-    color: #233754;
-    background: #f7f9fd;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 700;
-    white-space: nowrap;
+  .hero-project-marquee.reverse .hero-project-track {
+    animation-direction: reverse;
+    animation-duration: 34s;
   }
 
-  .services-marquee-item svg {
-    color: var(--primary);
+  .hero-project-marquee:hover .hero-project-track {
+    animation-play-state: paused;
   }
 
-  @keyframes serviceMarquee {
+  .hero-projects-section .project-marquee-card {
+    width: 292px;
+    padding: 8px;
+    border: 1px solid #e1e8f2;
+    border-radius: 9px;
+    box-shadow: none;
+    background: #fff;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+
+  .hero-projects-section .project-marquee-card:hover {
+    transform: translateY(-4px);
+    border-color: #b9cce8;
+    box-shadow: 0 12px 32px rgba(9,39,83,.07);
+  }
+
+  .hero-projects-section .project-marquee-card img {
+    border-radius: 6px;
+  }
+
+  @keyframes heroProjects {
     from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    to { transform: translateX(-33.333%); }
   }
 
   /* =========================================================
@@ -1699,14 +1709,35 @@ const styles = `
     gap: 15px;
   }
 
-  .intro-points div {
+  .intro-point-item {
     display: flex;
-    gap: 8px;
+    align-items: center;
+    gap: 10px;
+    min-height: 42px;
+    padding: 10px 12px;
     font-size: 12px;
+    color: #314761;
+    background: rgba(255,255,255,.68);
+    border: 1px solid rgba(214,225,240,.78);
+    border-radius: 13px;
+    box-shadow: 0 8px 24px rgba(8,31,72,.035);
+    backdrop-filter: blur(8px);
   }
 
-  .intro-points svg {
-    color: var(--green);
+  .intro-tick {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: linear-gradient(135deg,#16b77f,#0b9d70);
+    border-radius: 50%;
+    box-shadow: 0 5px 14px rgba(19,169,118,.22);
+  }
+
+  .intro-tick svg {
+    font-size: 11px;
   }
 
   /* =========================================================
@@ -1785,28 +1816,94 @@ const styles = `
   }
 
   .service-card {
+    position: relative;
     overflow: hidden;
-    background: white;
+    isolation: isolate;
+    background: rgba(255,255,255,.96);
     border: 1px solid var(--border);
     border-radius: 25px;
-    box-shadow: 0 15px 50px rgba(9,35,77,.05);
-    transition: .3s;
+    box-shadow: 0 14px 40px rgba(9,35,77,.055);
+    transform: translateZ(0);
+    transition:
+      transform .5s cubic-bezier(.22,1,.36,1),
+      box-shadow .5s cubic-bezier(.22,1,.36,1),
+      border-color .4s ease;
+  }
+
+  .service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background:
+      linear-gradient(
+        115deg,
+        transparent 18%,
+        rgba(7,88,232,.085) 38%,
+        rgba(109,40,217,.11) 50%,
+        rgba(7,88,232,.065) 62%,
+        transparent 82%
+      );
+    transform: translateX(-70%);
+    transition:
+      opacity .35s ease,
+      transform .9s cubic-bezier(.22,1,.36,1);
   }
 
   .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 30px 70px rgba(9,35,77,.12);
+    transform: translateY(-12px) scale(1.022);
+    border-color: rgba(7,88,232,.34);
+    box-shadow:
+      0 34px 75px rgba(9,35,77,.17),
+      0 12px 30px rgba(7,88,232,.10),
+      0 0 0 1px rgba(7,88,232,.07),
+      0 0 42px rgba(7,88,232,.08);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+    transform: translateX(70%);
   }
 
   .service-image-wrap {
     height: 220px;
     position: relative;
+    overflow: hidden;
+    background: #f2f6ff;
+  }
+
+  .service-image-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255,255,255,0) 42%,
+        rgba(6,29,65,.10) 72%,
+        rgba(6,29,65,.24) 100%
+      );
+    transition: opacity .45s ease;
   }
 
   .service-image-wrap img {
     width: 100%;
     height: 100%;
+    display: block;
     object-fit: cover;
+    cursor: pointer;
+    transform: scale(1.01) translateY(0);
+    transition:
+      transform .85s cubic-bezier(.22,1,.36,1),
+      filter .55s ease;
+  }
+
+  .service-card:hover .service-image-wrap img {
+    transform: scale(1.085) translateY(-5px);
+    filter: saturate(1.10) brightness(1.025) contrast(1.025);
   }
 
   .service-icon {
@@ -1820,8 +1917,55 @@ const styles = `
     place-items: center;
     color: white;
     background: linear-gradient(135deg,var(--primary),var(--secondary));
+    border: 1px solid rgba(255,255,255,.42);
     border-radius: 16px;
     font-size: 24px;
+    box-shadow: 0 10px 24px rgba(7,88,232,.22);
+    transition:
+      transform .48s cubic-bezier(.22,1,.36,1),
+      box-shadow .48s ease;
+  }
+
+  .service-card:hover .service-icon {
+    transform: translateY(-10px) scale(1.045);
+    box-shadow:
+      0 20px 38px rgba(7,88,232,.38),
+      0 0 0 8px rgba(7,88,232,.085);
+  }
+
+  .service-card .service-body {
+    position: relative;
+    z-index: 1;
+    transition: transform .48s cubic-bezier(.22,1,.36,1);
+  }
+
+  .service-card:hover .service-body {
+    transform: translateY(-4px);
+  }
+
+  .service-card .service-body h3,
+  .service-card .service-body p,
+  .service-card .service-features,
+  .service-card .service-body button {
+    transition:
+      transform .42s cubic-bezier(.22,1,.36,1),
+      color .3s ease;
+  }
+
+  .service-card:hover .service-body h3 {
+    transform: translateY(-1px);
+  }
+
+  .service-card:hover .service-body button {
+    transform: translateX(8px);
+  }
+
+  .service-card:hover .service-features span svg {
+    transform: scale(1.08);
+  }
+
+  .service-features span svg {
+    transition: transform .32s ease;
   }
 
   .service-body {
@@ -1830,6 +1974,7 @@ const styles = `
   }
 
   .service-count {
+    display: none;
     position: absolute;
     right: 25px;
     top: 25px;
@@ -1913,6 +2058,7 @@ const styles = `
     background: rgba(7,88,232,.08);
     border-radius: 14px;
     font-size: 21px;
+    animation: premiumIconPulse 2.8s ease-in-out infinite;
   }
 
   .benefit-card h3 {
@@ -2149,52 +2295,6 @@ const styles = `
   }
 
   /* =========================================================
-     TECHNOLOGY
-  ========================================================= */
-
-  .technology-section {
-    background: white;
-  }
-
-  .technology-grid {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 18px;
-  }
-
-  .technology-card {
-    padding: 25px;
-    text-align: center;
-    background: #fbfcff;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    transition: .3s;
-  }
-
-  .technology-card > div {
-    width: 55px;
-    height: 55px;
-    display: grid;
-    place-items: center;
-    margin: 0 auto 17px;
-    color: var(--primary);
-    background: rgba(7,88,232,.08);
-    border-radius: 16px;
-    font-size: 27px;
-  }
-
-  .technology-card h3 {
-    margin: 0 0 7px;
-    color: var(--heading);
-    font-size: 15px;
-  }
-
-  .technology-card p {
-    margin: 0;
-    font-size: 11px;
-  }
-
-  /* =========================================================
      PROCESS PATH
   ========================================================= */
 
@@ -2356,15 +2456,39 @@ const styles = `
     gap: 11px;
   }
 
-  .industry-tags span {
+  .industry-tags > .industry-chip {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 7px;
-    padding: 12px 16px;
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.12);
+    gap: 8px;
+    padding: 13px 17px;
+    overflow: hidden;
+    background: linear-gradient(120deg,rgba(255,255,255,.06),rgba(255,255,255,.11),rgba(255,255,255,.06));
+    border: 1px solid rgba(255,255,255,.14);
     border-radius: 999px;
     font-size: 11px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    animation: industryFloat 4.2s ease-in-out infinite;
+  }
+
+  .industry-tags > .industry-chip:nth-child(2n) { animation-delay: -.9s; }
+  .industry-tags > .industry-chip:nth-child(3n) { animation-delay: -1.7s; }
+
+  .industry-chip::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-130%);
+    background: linear-gradient(100deg,transparent,rgba(255,255,255,.14),transparent);
+    animation: industrySheen 4.8s ease-in-out infinite;
+  }
+
+  .industry-spark {
+    position: relative;
+    z-index: 1;
+    display: inline-grid;
+    place-items: center;
+    color: #84aaff;
   }
 
   /* =========================================================
@@ -2403,8 +2527,19 @@ const styles = `
 
   .stars {
     display: flex;
-    gap: 3px;
+    gap: 4px;
     color: #f3aa16;
+  }
+
+  .animated-star {
+    display: inline-grid;
+    place-items: center;
+    color: #f4b21d;
+    transform-origin: center;
+  }
+
+  .animated-star svg {
+    fill: currentColor;
   }
 
   .review-card > p {
@@ -2502,18 +2637,29 @@ const styles = `
   }
 
   .faq-layout {
-    display: grid;
-    grid-template-columns: .7fr 1.3fr;
-    gap: 70px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 38px;
   }
 
   .faq-heading {
-    position: sticky;
-    top: 110px;
+    position: static;
+    width: min(760px, 100%);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .faq-heading h2 {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .faq-heading p {
+    max-width: 660px;
+    margin-left: auto;
+    margin-right: auto;
     line-height: 1.8;
   }
 
@@ -2535,7 +2681,14 @@ const styles = `
     font-size: 21px;
   }
 
+  .faq-heading .faq-whatsapp-button {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .faq-list {
+    width: min(900px, 100%);
+    margin: 0 auto;
     display: grid;
     gap: 12px;
   }
@@ -2768,6 +2921,21 @@ const styles = `
     border: 1px solid rgba(255,255,255,.15);
   }
 
+  @keyframes premiumIconPulse {
+    0%,100% { transform: translateY(0) scale(1); box-shadow: 0 0 0 0 rgba(7,88,232,0); }
+    50% { transform: translateY(-3px) scale(1.04); box-shadow: 0 0 0 8px rgba(7,88,232,.035); }
+  }
+
+  @keyframes industryFloat {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @keyframes industrySheen {
+    0%,55% { transform: translateX(-130%); }
+    78%,100% { transform: translateX(130%); }
+  }
+
   /* =========================================================
      TABLET
   ========================================================= */
@@ -2782,17 +2950,22 @@ const styles = `
       grid-template-columns: 1fr;
     }
 
-    .hero-visual {
-      max-width: 680px;
-      margin: auto;
+    .hero-growth-visual {
+      width: 100%;
+      max-width: 720px;
+      margin: 15px auto 0;
+    }
+
+    .hero-content {
+      max-width: 820px;
+    }
+
+    .hero-stage {
+      transform: none;
     }
 
     .services-grid {
       grid-template-columns: repeat(2,1fr);
-    }
-
-    .technology-grid {
-      grid-template-columns: repeat(3,1fr);
     }
 
     .project-main-layout {
@@ -2825,43 +2998,106 @@ const styles = `
       padding: 75px 0;
     }
 
-    .hero-section {
-      min-height: auto;
-      padding: 90px 0 110px;
-    }
-
-    .hero-content {
+    /* PREMIUM MOBILE INTRO */
+    .intro-layout { gap: 42px; }
+    .intro-layout > div:first-child {
       text-align: center;
+      padding: 0 4px;
     }
-
-    .hero-badge {
+    .intro-layout > div:first-child .eyebrow {
       margin-left: auto;
       margin-right: auto;
     }
-
-    .hero-content h1 {
-      font-size: clamp(2.7rem,13vw,4.2rem);
+    .intro-layout > div:first-child h2 {
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: clamp(2rem,9vw,2.75rem);
+      line-height: 1.05;
     }
-
-    .hero-description {
+    .intro-layout > div:first-child p {
+      max-width: 570px;
+      margin-left: auto;
+      margin-right: auto;
       font-size: 15px;
+      line-height: 1.82;
+    }
+    .intro-button {
+      display: inline-flex !important;
+      width: auto !important;
+      min-width: 220px;
+      margin: 20px auto 0 !important;
+    }
+    .intro-visual-card {
+      text-align: center;
+      padding: 30px 22px;
+    }
+    .intro-icon {
+      margin: 0 auto 20px;
+    }
+    .intro-points {
+      max-width: 540px;
+      margin: 22px auto 0;
+      text-align: left;
+    }
+    .benefit-card { text-align: center; }
+    .benefit-card > div { margin-left: auto; margin-right: auto; }
+    .quote-icon { margin-left: auto; margin-right: auto; }
+    .review-header { align-items: center; }
+
+    .hero-section { padding:105px 0 34px; }
+    .hero-copy { max-width:720px; }
+    .hero-eyebrow { font-size:7px; gap:9px; line-height:1.55; }
+    .hero-eyebrow span { width:22px; }
+    .hero-copy h1 { font-size:clamp(2.65rem,12vw,4.65rem); line-height:.96; }
+    .hero-description { max-width:620px; font-size:15px; line-height:1.72; padding:0 4px; }
+    .hero-actions { flex-direction:column; gap:13px; }
+    .hero-main-cta { width:100%; max-width:390px; }
+    .hero-link-cta { margin-left:auto; margin-right:auto; }
+    .hero-microcopy { max-width:390px; margin-left:auto; margin-right:auto; line-height:1.5; }
+    .hero-stage { height:470px; margin-top:42px; }
+    .line-one { width:92vw; height:340px; }
+    .line-two { width:75vw; height:280px; }
+    .stage-card-left { left:-11%; top:105px; width:43vw; min-width:165px; max-width:240px; height:270px; border-radius:15px; }
+    .stage-card-right { right:-11%; top:105px; width:43vw; min-width:165px; max-width:240px; height:270px; border-radius:15px; }
+    .stage-card-main { top:25px; width:min(74vw,390px); height:385px; border-radius:18px; }
+    .stage-card-top { min-height:38px; padding:0 11px; }
+    .stage-card-top span,.stage-card-top small { font-size:5.5px; }
+    .stage-card-caption { left:10px; right:10px; bottom:10px; min-height:62px; padding:10px 10px 10px 13px; border-radius:12px; }
+    .stage-card-caption strong { font-size:12px; }
+    .stage-card-caption button { width:36px; height:36px; }
+    .hero-stage-badge { padding:9px 10px; border-radius:11px; }
+    .hero-stage-badge span { font-size:8px; }
+    .hero-stage-badge > svg { font-size:14px; }
+    .badge-left { left:2px; bottom:17px; }
+    .badge-right { right:2px; bottom:38px; }
+    .hero-portfolio-link { margin-top:0; }
+    .hero-projects-section { padding:38px 0 44px; }
+    .hero-projects-section .project-marquee-card { width:245px; }
+    .portfolio-link-wrap { justify-content:center; }
+    .portfolio-text-link { margin-left:auto; margin-right:auto; }
+
+    /* MOBILE CTA / LINK ALIGNMENT */
+    .primary-button,
+    .secondary-button,
+    .intro-button,
+    .service-body button,
+    .benefits-layout > div:first-child .primary-button,
+    .project-info a,
+    .faq-whatsapp-button,
+    .white-button,
+    .whatsapp-button,
+    .call-button {
+      margin-left:auto;
+      margin-right:auto;
+      justify-content:center;
     }
 
-    .hero-actions,
-    .hero-features {
-      justify-content: center;
-    }
-
-    .hero-actions button {
-      width: 100%;
-    }
-
-    .floating-card {
-      display: none;
-    }
-
-    .stats-grid {
-      grid-template-columns: repeat(2,1fr);
+    .service-body,
+    .benefits-layout > div:first-child,
+    .faq-heading,
+    .digital-growth-layout > div:first-child {
+      text-align:center;
     }
 
     .quote-strip {
@@ -2882,10 +3118,6 @@ const styles = `
     .reviews-grid,
     .why-grid {
       grid-template-columns: 1fr;
-    }
-
-    .technology-grid {
-      grid-template-columns: repeat(2,1fr);
     }
 
     .project-browser img {
@@ -2952,18 +3184,31 @@ const styles = `
   ========================================================= */
 
   @media (max-width: 480px) {
-    .hero-content h1 {
-      font-size: 2.65rem;
-    }
-
-    .browser-content {
-      min-height: 350px;
-      padding: 23px;
-    }
-
-    .browser-widget {
-      display: none;
-    }
+    .hero-content h1 { font-size:2.55rem; }
+    .hero-kicker { max-width:92%; }
+    .hero-main-cta { min-height:56px; padding:0 17px; font-size:13px; }
+    .hero-art { min-height:455px; }
+    .hero-art-canvas { width:100%; min-height:390px; border-radius:20px; }
+    .canvas-topbar { min-height:64px; padding:0 15px; }
+    .canvas-status { display:none; }
+    .canvas-body { min-height:270px; grid-template-columns:1.08fr .92fr; gap:9px; padding:22px 14px 18px; }
+    .canvas-eyebrow { font-size:6px; }
+    .canvas-copy h2 { font-size:1.75rem; }
+    .canvas-copy-lines { margin:16px 0; }
+    .visual-blue-card { inset:15px 0 10px 11px; padding:16px; border-radius:18px; }
+    .visual-blue-card strong { font-size:17px; }
+    .visual-ring { width:43px; height:43px; font-size:17px; }
+    .visual-glass-card { min-width:98px; padding:9px; font-size:7px; }
+    .glass-one { left:-12px; top:30px; }
+    .glass-two { right:-7px; bottom:28px; }
+    .canvas-footer { gap:8px; padding:0 9px; font-size:6px; }
+    .hero-floating-chip { padding:9px 10px; gap:8px; }
+    .hero-floating-chip strong { font-size:7px; }
+    .hero-floating-chip small { font-size:5px; }
+    .chip-icon { width:29px; height:29px; }
+    .chip-design { left:-7px; top:71px; }
+    .chip-convert { right:-6px; bottom:48px; }
+    .hero-proof { gap:9px 12px; }
 
     .stats-grid div {
       padding: 20px 8px;
@@ -2971,19 +3216,17 @@ const styles = `
 
     .intro-points {
       grid-template-columns: 1fr;
+      gap: 10px;
     }
-
-    .technology-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+    .intro-point-item {
+      justify-content: flex-start;
+      min-height: 46px;
+      padding: 10px 12px;
+      font-size: 11.5px;
     }
-
-    .technology-card {
-      padding: 20px 10px;
-    }
-
-    .technology-card p {
-      display: none;
+    .intro-visual-card h3 {
+      font-size: 22px;
+      line-height: 1.2;
     }
 
     .project-marquee-card {
@@ -3014,6 +3257,277 @@ const styles = `
       scroll-behavior: auto !important;
     }
   }
+
+  @media (max-width: 480px) {
+    .hero-section { padding-top:126px; }
+    .hero-copy h1 { font-size:clamp(2.35rem,12.8vw,3.55rem); }
+    .hero-description { font-size:14px; }
+    .hero-stage { height:410px; margin-top:34px; }
+    .stage-card-main { width:78vw; height:330px; }
+    .stage-card-left,.stage-card-right { width:42vw; min-width:145px; height:225px; top:95px; }
+    .stage-card-left { left:-15%; }
+    .stage-card-right { right:-15%; }
+    .hero-stage-badge { display:none; }
+    .line-one { height:280px; }
+    .line-two { height:225px; }
+    .hero-microcopy i { display:none; }
+    .hero-microcopy { gap:7px 12px; }
+  }
+
+  /* =========================================================
+     WHITE SPLIT HERO — RESPONSIVE ON EVERY SCREEN
+  ========================================================= */
+  @media (max-width: 1180px) {
+    .hero-split-layout { grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);gap:36px; }
+    .hero-left h1 { font-size:clamp(2.6rem,4vw,3.95rem); }
+    .hero-right { min-height:440px; }
+    .hero-result-card { width:min(275px,56%); }
+  }
+
+  @media (max-width: 1024px) {
+    .hero-section { padding:100px 0 54px; }
+    .hero-left h1 { font-size:clamp(2.55rem,4.6vw,3.7rem); }
+    .hero-split-copy { font-size:13.5px; }
+    .hero-benefit-item { grid-template-columns:36px 1fr;gap:7px; }
+    .hero-benefit-icon { width:36px;height:36px; }
+    .hero-right { min-height:410px; }
+  }
+
+  @media (max-width: 900px) {
+    .hero-section { padding:104px 0 50px;min-height:auto; }
+    .hero-split-layout { grid-template-columns:1fr;gap:40px; }
+    .hero-left { text-align:center;max-width:760px;margin:0 auto; }
+    .hero-split-kicker { justify-content:center; }
+    .hero-left h1 { max-width:680px;margin:0 auto;font-size:clamp(2.65rem,7vw,3.75rem); }
+    .hero-split-copy { max-width:590px;margin-left:auto;margin-right:auto; }
+    .hero-accent-line { margin-left:auto;margin-right:auto; }
+    .hero-benefit-row { max-width:620px;margin-left:auto;margin-right:auto; }
+    .hero-split-actions { justify-content:center; }
+    .hero-whatsapp-link { margin-left:auto;margin-right:auto; }
+    .hero-right { width:min(720px,100%);min-height:455px;margin:0 auto; }
+    .hero-image-frame { inset:0 22px; }
+    .hero-right::before { left:10px;height:285px; }
+    .hero-image-tag { left:20px; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section { padding:128px 0 44px; }
+    .hero-bg-dots { opacity:.26; }
+    .hero-soft-shape { opacity:.72; }
+    .hero-split-kicker { font-size:8px;letter-spacing:.12em;margin:10px 0 16px; }
+    .hero-left h1 { font-size:clamp(2.35rem,9.6vw,3.25rem);line-height:1.02;letter-spacing:-.048em; }
+    .hero-accent-line { width:38px;margin-top:16px;margin-bottom:14px; }
+    .hero-split-copy { font-size:13.5px;line-height:1.65;padding:0 8px; }
+    .hero-benefit-row { grid-template-columns:repeat(3,minmax(0,1fr));max-width:610px;gap:5px;margin-top:18px; }
+    .hero-benefit-item { grid-template-columns:1fr;text-align:center;justify-items:center;gap:6px;padding:8px 3px; }
+    .hero-benefit-item strong { font-size:10px; }
+    .hero-benefit-item span { font-size:8px; }
+    .hero-split-actions { margin-top:19px;justify-content:center; }
+    .hero-primary-cta,.hero-outline-cta { min-height:48px;padding:0 18px;font-size:11.5px; }
+    .hero-right { min-height:400px; }
+    .hero-image-frame { inset:0 7px;border-radius:52px 18px 57px 22px;clip-path:polygon(14% 0,100% 0,100% 85%,89% 100%,8% 100%,0 78%,5% 17%); }
+    .hero-right::before { display:none; }
+    .hero-result-card { right:15px;bottom:11px;width:min(280px,68%); }
+    .hero-image-tag { left:14px;bottom:32px; }
+    .hero-projects-heading { justify-content:center;text-align:center;font-size:10px;flex-wrap:wrap;gap:8px;margin-bottom:8px; }
+    .hero-projects-heading-line { display:none; }
+    .hero-projects-section { padding:22px 0 27px; }
+    .hero-projects-section .project-marquee-card { width:235px; }
+
+    .faq-layout { gap:28px; }
+    .faq-heading { width:100%; text-align:center; }
+    .faq-heading h2 { font-size:clamp(2rem,8vw,2.65rem); line-height:1.08; }
+    .faq-heading p { font-size:14px; line-height:1.7; padding:0 4px; }
+    .faq-list { width:100%; max-width:720px; }
+    .faq-question { min-height:64px; padding:15px 17px; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-section { padding:126px 0 40px; }
+    .hero-left h1 { font-size:clamp(2.15rem,10.7vw,2.85rem); }
+    .hero-benefit-row { grid-template-columns:1fr;max-width:360px;gap:0; }
+    .hero-benefit-item { grid-template-columns:38px 1fr;text-align:left;justify-items:stretch;padding:7px 8px; }
+    .hero-benefit-item strong { font-size:11px; }
+    .hero-benefit-item span { font-size:9px; }
+    .hero-split-actions { flex-direction:column;width:100%;gap:9px; }
+    .hero-primary-cta,.hero-outline-cta { width:min(360px,100%); }
+    .hero-right { min-height:350px; }
+    .hero-result-card { width:69%;right:7px;bottom:7px;padding:11px;border-radius:13px; }
+    .faq-section { padding-top:68px; padding-bottom:68px; }
+    .faq-layout { gap:24px; }
+    .faq-whatsapp-button { width:auto; min-height:50px; padding:0 18px; }
+    .faq-question > span { gap:9px; }
+    .faq-question > span small { min-width:20px; }
+    .result-card-head span { font-size:5.8px; }
+    .result-card-head strong { font-size:9.5px; }
+    .hero-result-card p { font-size:7px; }
+    .hero-result-card svg { height:50px; }
+    .hero-image-tag { left:8px;bottom:22px;padding:7px 8px; }
+    .hero-image-tag span { font-size:7px; }
+  }
+
+  @media (max-width: 480px) {
+    .container { width:min(100% - 24px,1180px); }
+    .hero-section { padding:126px 0 36px; }
+    .hero-split-kicker { font-size:7px;gap:7px;white-space:normal;text-align:center;line-height:1.45; }
+    .hero-split-kicker > span { width:7px;height:7px;flex:0 0 7px; }
+    .hero-left h1 { font-size:clamp(2rem,10.5vw,2.55rem);line-height:1.035;letter-spacing:-.044em; }
+    .hero-split-copy { font-size:13px;padding:0; }
+    .hero-whatsapp-link { font-size:10.5px; }
+    .hero-right { min-height:305px; }
+    .hero-image-frame { inset:0;border-radius:34px 12px 38px 15px;clip-path:polygon(10% 0,100% 0,100% 88%,92% 100%,7% 100%,0 81%,4% 14%); }
+    .hero-image-frame::before { inset:7px;border-radius:29px 9px 32px 12px; }
+    .hero-result-card { width:72%;padding:9px; }
+    .result-card-head strong { font-size:8.5px; }
+    .result-live { display:none; }
+    .hero-result-card svg { height:42px; }
+    .hero-image-tag { display:none; }
+    .hero-projects-section .project-marquee-card { width:210px; }
+  }
+
+  @media (max-width: 380px) {
+    .hero-section { padding-top:122px; }
+    .hero-left h1 { font-size:1.95rem; }
+    .hero-split-copy { font-size:12.5px; }
+    .hero-benefit-row { max-width:320px; }
+    .hero-primary-cta,.hero-outline-cta { min-height:46px;font-size:11px; }
+    .hero-right { min-height:270px; }
+    .hero-result-card { width:74%; }
+  }
+
+  @media (min-width: 1500px) {
+    .container { width:min(1280px,calc(100% - 56px)); }
+    .hero-section { min-height:660px; }
+    .hero-left h1 { font-size:4.55rem; }
+    .hero-right { min-height:500px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important; }
+  }
+
+
+  /* =========================================================
+     FULLSCREEN IMAGE PREVIEW
+     No tap hint, no fullscreen symbol, no visible close icon.
+  ========================================================= */
+
+  .service-image-wrap img,
+  .project-marquee-card img {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .project-marquee-card img {
+    cursor: pointer;
+  }
+
+  .image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: grid;
+    place-items: center;
+    padding: clamp(12px, 3vw, 34px);
+    background: rgba(4,14,31,.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    cursor: zoom-out;
+  }
+
+  .image-lightbox::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 15% 18%, rgba(7,88,232,.20), transparent 28%),
+      radial-gradient(circle at 85% 82%, rgba(109,40,217,.15), transparent 30%);
+  }
+
+  .image-lightbox-close {
+    position: fixed;
+    top: clamp(16px, 3vw, 30px);
+    right: clamp(16px, 3vw, 30px);
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 2px solid rgba(255,255,255,.92);
+    border-radius: 50%;
+    outline: none;
+    color: #fff;
+    background: #e53935;
+    box-shadow:
+      0 10px 28px rgba(229,57,53,.34),
+      0 0 0 6px rgba(229,57,53,.11);
+    font-family: Arial, sans-serif;
+    font-size: 31px;
+    font-weight: 400;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+      transform .22s ease,
+      background .22s ease,
+      box-shadow .22s ease;
+  }
+
+  .image-lightbox-close:hover {
+    transform: scale(1.08);
+    background: #c62828;
+    box-shadow:
+      0 13px 34px rgba(229,57,53,.44),
+      0 0 0 8px rgba(229,57,53,.12);
+  }
+
+  .image-lightbox-close:active {
+    transform: scale(.94);
+  }
+
+  .image-lightbox img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    max-width: min(1500px, 96vw);
+    max-height: 92vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: clamp(12px, 1.4vw, 22px);
+    box-shadow:
+      0 35px 100px rgba(0,0,0,.42),
+      0 0 0 1px rgba(255,255,255,.12);
+    cursor: zoom-out;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  @media (hover: none) {
+    .service-card:hover {
+      transform: none;
+    }
+
+    .service-card:hover .service-image-wrap img,
+    .service-card:hover .service-icon,
+    .service-card:hover .service-body h3,
+    .service-card:hover .service-body button {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .image-lightbox {
+      padding: 10px;
+    }
+
+    .image-lightbox img {
+      max-width: 100%;
+      max-height: 94dvh;
+      border-radius: 14px;
+    }
+  }
+
 `;
 
 export default Home;

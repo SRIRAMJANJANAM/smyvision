@@ -13,8 +13,11 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
 import Services from "./components/Services";
+import Portfolio from "./components/Portfolio";
 import Careers from "./components/Careers";
 import Contact from "./components/Contact";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import TermsAndConditions from "./components/TermsAndConditions";
 import Footer from "./components/Footer";
 import ChatbotWidget from "./components/ChatbotWidget";
 import ScrollToTop from "./components/ScrollToTop";
@@ -47,21 +50,16 @@ function App() {
 
   return (
     <Router>
-      {/* Scroll page to top after route change */}
       <ScrollToTop />
 
-      {/* Dynamic canonical URL */}
       <Canonical />
 
-      {/* Main Navbar */}
       <Navbar />
 
-      {/* Floating WhatsApp */}
       <WhatsAppFloating
         isChatbotOpen={isChatbotOpen}
       />
 
-      {/* Main Page Content */}
       <main className="app-main-content">
         <Routes>
           <Route
@@ -80,6 +78,11 @@ function App() {
           />
 
           <Route
+            path="/portfolio"
+            element={<Portfolio />}
+          />
+
+          <Route
             path="/careers"
             element={<Careers />}
           />
@@ -88,13 +91,21 @@ function App() {
             path="/contact"
             element={<Contact />}
           />
+
+          <Route
+            path="/privacy-policy"
+            element={<PrivacyPolicy />}
+          />
+
+          <Route
+            path="/terms-and-conditions"
+            element={<TermsAndConditions />}
+          />
         </Routes>
       </main>
 
-      {/* Footer */}
       <Footer />
 
-      {/* Chatbot */}
       <ChatbotWidget
         setIsChatbotOpen={
           setIsChatbotOpen

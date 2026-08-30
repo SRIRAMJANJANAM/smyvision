@@ -6,6 +6,7 @@ import {
   FaArrowRight,
   FaBars,
   FaBriefcase,
+  FaFolderOpen,
   FaChevronDown,
   FaCode,
   FaEnvelope,
@@ -126,6 +127,11 @@ const navLinks = [
     name: "Careers",
     path: "/careers",
     icon: <FaBriefcase />,
+  },
+  {
+    name: "Portfolio",
+    path: "/portfolio",
+    icon: <FaFolderOpen />,
   },
 ];
 
