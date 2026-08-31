@@ -241,14 +241,14 @@ const projectMarqueeRowOne = [
     fallback: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85", category: "Home Services" },
   { title: "Arvis Fertilizers", image: "/images/arvis.png",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Agriculture" },
-  { title: "Yatheendra Engineering Works", image: "/images/Yath.png",
+  { title: "Yatheendra Engineering Works", image: "/images/yath.png",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Engineering Works" },
     { title: "Daiva Pesticides", image: "/images/daiva.png",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Engineering Works" },
 ];
 
 const projectMarqueeRowTwo = [
-  { title: "Yatheendra Engineering Works", image: "/images/Yath.png",
+  { title: "Yatheendra Engineering Works", image: "/images/yath.png",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Engineering Works" },
   { title: "Arvis Fertilizers", image: "/images/arvis.png",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Agriculture" },
