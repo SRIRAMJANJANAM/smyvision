@@ -76,7 +76,7 @@ const values = [
 const services = [
   {
     icon: <FaGlobe />,
-    image: "/images/web.png",
+    image: "/images/web.webp",
     title: "Premium Website Development",
     description:
       "High-end business websites designed to build trust, communicate clearly and convert visitors into genuine enquiries.",
@@ -89,7 +89,7 @@ const services = [
   },
   {
     icon: <FaCode />,
-    image: "/images/cust.png",
+    image: "/images/cust.webp",
     title: "Custom Web Development",
     description:
       "Purpose-built web platforms created around your exact workflows, customers and long-term business requirements.",
@@ -102,7 +102,7 @@ const services = [
   },
   {
     icon: <FaGlobe />,
-    image: "/images/ecomm.png",
+    image: "/images/ecomm.webp",
     title: "Custom E-commerce Solutions",
     description:
       "Premium online stores with product management, smooth shopping journeys and scalable functionality built for your brand.",
@@ -115,7 +115,7 @@ const services = [
   },
   {
     icon: <FaBolt />,
-    image: "/images/auto.png",
+    image: "/images/auto.webp",
     title: "Business Automation",
     description:
       "Custom automation systems that reduce repetitive work, simplify operations and connect important business processes.",
@@ -128,7 +128,7 @@ const services = [
   },
   {
     icon: <FaComments />,
-    image: "/images/chat.png",
+    image: "/images/chat.webp",
     title: "Chatbot Solutions (Coming Soon)",
     description:
       "Smart experiences for customer enquiries, lead handling and business communication without unnecessary complexity.",
@@ -248,8 +248,8 @@ const structuredData = {
       "name": "SMYVISION TECHNOLOGIES",
       "alternateName": "SMYVISION",
       "url": WEBSITE_URL,
-      "logo": `${WEBSITE_URL}/Logo.png`,
-      "image": `${WEBSITE_URL}/Logo.png`,
+      "logo": `${WEBSITE_URL}/Logo.webp`,
+      "image": `${WEBSITE_URL}/Logo.webp`,
       "description": "SMYVISION TECHNOLOGIES is a web development company in Vijayawada providing professional websites, custom web applications, e-commerce solutions, business automation and digital systems.",
       "email": EMAIL,
       "telephone": PHONE_LINK,
@@ -453,7 +453,7 @@ const About = () => {
         <meta property="og:title" content="About SMYVISION TECHNOLOGIES | Web Development Company in Vijayawada" />
         <meta property="og:description" content="Meet SMYVISION TECHNOLOGIES, a web development company in Vijayawada creating professional websites, custom web applications, e-commerce and business automation solutions." />
         <meta property="og:url" content={ABOUT_URL} />
-        <meta property="og:image" content={`${WEBSITE_URL}/Logo.png`} />
+        <meta property="og:image" content={`${WEBSITE_URL}/Logo.webp`} />
         <meta property="og:image:alt" content="SMYVISION TECHNOLOGIES web development company in Vijayawada" />
         <meta property="og:locale" content="en_IN" />
 
@@ -461,7 +461,7 @@ const About = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About SMYVISION TECHNOLOGIES | Web Development Company in Vijayawada" />
         <meta name="twitter:description" content="Learn about SMYVISION TECHNOLOGIES, our website development services in Vijayawada, custom web applications, business automation and AI solutions." />
-        <meta name="twitter:image" content={`${WEBSITE_URL}/Logo.png`} />
+        <meta name="twitter:image" content={`${WEBSITE_URL}/Logo.webp`} />
         <meta name="twitter:image:alt" content="SMYVISION TECHNOLOGIES web development company in Vijayawada" />
 
         {/* ✅ STRUCTURED DATA SCRIPTS */}

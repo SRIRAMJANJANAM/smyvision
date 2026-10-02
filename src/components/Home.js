@@ -81,7 +81,7 @@ const EMAIL = "smyvisiontechnologies@gmail.com";
 const services = [
   {
     icon: <FaLaptopCode />,
-    image: "/images/web.png",
+    image: "/images/web.webp",
     fallback: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=85",
     title: "Premium Website Development",
     description:
@@ -90,7 +90,7 @@ const services = [
   },
   {
     icon: <FaCode />,
-    image: "/images/cust.png",
+    image: "/images/cust.webp",
     fallback: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1400&q=85",
     title: "Custom Web Development",
     description:
@@ -99,7 +99,7 @@ const services = [
   },
   {
     icon: <FaGlobe />,
-    image: "/images/ecomm.png",
+    image: "/images/ecomm.webp",
     fallback: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85",
     title: "Custom E-commerce Solutions",
     description:
@@ -108,7 +108,7 @@ const services = [
   },
   {
     icon: <FaBarsProgress />,
-    image: "/images/auto.png",
+    image: "/images/auto.webp",
     fallback: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85",
     title: "Business Automation",
     description:
@@ -117,7 +117,7 @@ const services = [
   },
   {
     icon: <FaBrain />,
-    image: "/images/chat.png",
+    image: "/images/chat.webp",
     fallback: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1400&q=85",
     title: "Chatbot Solutions(Coming Soon)",
     description:
@@ -184,7 +184,7 @@ const projects = [
   {
     title: "NKR Car Rentals",
     category: "Car Rental Website",
-    image: "/images/nkr.png",
+    image: "/images/nkr.webp",
     fallback: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=85",
     url: "https://www.nkrselfdrivecarrentals.in/",
     description:
@@ -193,7 +193,7 @@ const projects = [
   {
     title: "Bindiya Beauty Salon",
     category: "Beauty & Salon Website",
-    image: "/images/beauty.png",
+    image: "/images/beauty.webp",
     fallback: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85",
     url: "https://www.bindiyazbeautysalon.in/",
     description:
@@ -202,7 +202,7 @@ const projects = [
   {
     title: "Happy Organize",
     category: "Home Services Website",
-    image: "/images/home.png",
+    image: "/images/home.webp",
     fallback: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85",
     url: "https://www.happyorganize.com/",
     description:
@@ -211,7 +211,7 @@ const projects = [
   {
     title: "Arvis Fertilizers",
     category: "Agriculture Business Website",
-    image: "/images/arvis.png",
+    image: "/images/arvis.webp",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85",
     url: "https://www.arvisfertilizers.com/",
     description:
@@ -220,12 +220,30 @@ const projects = [
   {
     title: "Yatheendra Engineering Works",
     category: "Engineering Works Website",
-    image: "/images/yath.png",
+    image: "/images/yath.webp",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85",
     url: "https://yatheendraengineeringworks.vercel.app/",
     description:
       "A modern industrial fabrication platform developed to strengthen business presentation and communicate welding services professionally.",
   },
+  {
+  title: "AK Paul Electronics",
+  category: "Home Appliance Repair Website",
+  image: "/images/ak-paul-electronics.webp",
+  fallback: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1200&q=85",
+  url: "https://www.customerserviceonline.co.in/",
+  description:
+    "A professional home appliance repair platform developed to showcase AC, washing machine and refrigerator repair services and help customers across Kolkata easily connect for affordable service.",
+},
+{
+  title: "JK Decors & Events",
+  category: "Event Decoration & Management Website",
+  image: "/images/jkdecors.webp",
+  fallback: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=85",
+  url: "https://www.jkdecors.com/",
+  description:
+    "A premium event decoration platform developed to showcase weddings, receptions, engagements, birthdays and celebration services while helping customers easily explore completed events and connect with JK Decors & Events.",
+},
 ];
 
 /* =========================================================
@@ -233,30 +251,46 @@ const projects = [
 ========================================================= */
 
 const projectMarqueeRowOne = [
-  { title: "NKR Car Rentals", image: "/images/nkr.png",
+  { title: "NKR Car Rentals", image: "/images/nkr.webp",
     fallback: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=85", category: "Car Rental" },
-  { title: "Bindiya Beauty Salon", image: "/images/beauty.png",
+  { title: "Bindiya Beauty Salon", image: "/images/beauty.webp",
     fallback: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85", category: "Beauty & Salon" },
-  { title: "Happy Organize", image: "/images/home.png",
+  { title: "Happy Organize", image: "/images/home.webp",
     fallback: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85", category: "Home Services" },
-  { title: "Arvis Fertilizers", image: "/images/arvis.png",
+  { title: "Arvis Fertilizers", image: "/images/arvis.webp",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Agriculture" },
-  { title: "Yatheendra Engineering Works", image: "/images/yath.png",
+  { title: "Yatheendra Engineering Works", image: "/images/yath.webp",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Engineering Works" },
-    { title: "Daiva Pesticides", image: "/images/daiva.png",
+    { title: "Daiva Pesticides", image: "/images/daiva.webp",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Engineering Works" },
+    { title: "My Dentist Banglore", image: "/images/mydentist.webp",
+    fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Hospitals" },
 ];
 
 const projectMarqueeRowTwo = [
-  { title: "Yatheendra Engineering Works", image: "/images/yath.png",
+  { 
+  title: "JK Decors & Events", 
+  image: "/images/jkdecors.webp",
+  fallback: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=85", 
+  category: "Event Decoration & Management" 
+},
+{ 
+  title: "AK Paul Electronics", 
+  image: "/images/ak-paul-electronics.webp",
+  fallback: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=85", 
+  category: "Home Appliance Repair Services" 
+},
+  { title: "Aditya Car AC", image: "/images/aditya.webp",
+    fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Car Ac Specialist" },
+  { title: "Yatheendra Engineering Works", image: "/images/yath.webp",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Engineering Works" },
-  { title: "Arvis Fertilizers", image: "/images/arvis.png",
+  { title: "Arvis Fertilizers", image: "/images/arvis.webp",
     fallback: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85", category: "Agriculture" },
-  { title: "Happy Organize", image: "/images/home.png",
+  { title: "Happy Organize", image: "/images/home.webp",
     fallback: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85", category: "Home Services" },
-  { title: "Bindiya Beauty Salon", image: "/images/beauty.png",
+  { title: "Bindiya Beauty Salon", image: "/images/beauty.webp",
     fallback: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85", category: "Beauty & Salon" },
-  { title: "NKR Car Rentals", image: "/images/nkr.png",
+  { title: "NKR Car Rentals", image: "/images/nkr.webp",
     fallback: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=85", category: "Car Rental" },
 ];
 
@@ -391,6 +425,18 @@ const faqItems = [
   {
     question: "Can SMYVISION TECHNOLOGIES build e-commerce websites?",
     answer: "Yes. We develop custom e-commerce websites with product catalogues, responsive storefronts, order workflows and payment integration based on project requirements.",
+  },
+  {
+    question: "Do you provide website development services in Vijayawada?",
+    answer: "Yes. SMYVISION TECHNOLOGIES provides professional website development, custom web development, e-commerce and web application development services for businesses in Vijayawada.",
+  },
+  {
+    question: "Can you build a website for a local business in Vijayawada?",
+    answer: "Yes. We develop responsive business websites for local businesses in Vijayawada, with clear service presentation, enquiry options and SEO-ready technical foundations.",
+  },
+  {
+    question: "How can I start a website project with SMYVISION TECHNOLOGIES?",
+    answer: "Contact SMYVISION TECHNOLOGIES by phone, WhatsApp or through our website and share your requirements. We will discuss your business goals, required features and suitable website solution.",
   },
 ];
 
@@ -768,120 +814,223 @@ const Home = () => {
             transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut" }}
           />
 
-          <div className="container hero-split-layout">
-            <motion.div
-              className="hero-left"
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
-            >
-              <motion.div className="hero-split-kicker" variants={fadeUp}>
-                <span /> PREMIUM WEB DEVELOPMENT
-              </motion.div>
+        <div className="container hero-split-layout">
+  <motion.div
+    className="hero-left"
+    initial="hidden"
+    animate="visible"
+    variants={stagger}
+  >
+    {/* LOCAL SEO / PRIMARY SERVICE SIGNAL */}
+    <motion.div className="hero-split-kicker" variants={fadeUp}>
+      <span /> WEB DEVELOPMENT COMPANY IN VIJAYAWADA
+    </motion.div>
 
-              <motion.h1 variants={fadeUp}>
-                We Build Websites
-                <span>That Turn Visitors</span>
-                <strong>Into Paying Clients.</strong>
-              </motion.h1>
+    {/* MAIN H1 */}
+    <motion.h1 variants={fadeUp}>
+      Professional Websites
+      <span>That Turn Visitors</span>
+      <strong>Into Paying Clients.</strong>
+    </motion.h1>
 
-              <motion.div className="hero-accent-line" variants={fadeUp} />
+    <motion.div className="hero-accent-line" variants={fadeUp} />
 
-              <motion.p className="hero-split-copy" variants={fadeUp}>
-                High-performance websites and custom web solutions designed to build trust,
-                generate enquiries and help your business grow.
-              </motion.p>
+    {/* SEO + USER-FOCUSED DESCRIPTION */}
+    <motion.p className="hero-split-copy" variants={fadeUp}>
+      SMYVISION TECHNOLOGIES provides professional website development,
+      custom web development and e-commerce solutions for businesses in
+      Vijayawada and across India.
+    </motion.p>
 
-              <motion.div className="hero-benefit-row" variants={fadeUp}>
-                <div className="hero-benefit-item">
-                  <div className="hero-benefit-icon"><FaBullseye /></div>
-                  <div><strong>Goal Focused</strong><span>Built around your business goals</span></div>
-                </div>
-                <div className="hero-benefit-item">
-                  <div className="hero-benefit-icon"><FaRocket /></div>
-                  <div><strong>High Performance</strong><span>Fast, polished and conversion ready</span></div>
-                </div>
-                <div className="hero-benefit-item">
-                  <div className="hero-benefit-icon"><FaShieldHalved /></div>
-                  <div><strong>Reliable Support</strong><span>Support that keeps you moving forward</span></div>
-                </div>
-              </motion.div>
+    <motion.div className="hero-benefit-row" variants={fadeUp}>
+      <div className="hero-benefit-item">
+        <div className="hero-benefit-icon">
+          <FaBullseye />
+        </div>
+        <div>
+          <strong>Goal Focused</strong>
+          <span>Built around your business goals</span>
+        </div>
+      </div>
 
-              <motion.div className="hero-split-actions" variants={fadeUp}>
-                <button type="button" className="hero-primary-cta" onClick={goToContact}>
-                  Get Free Consultation <FaArrowRight />
-                </button>
-                <button type="button" className="hero-outline-cta" onClick={() => navigate('/portfolio')}>
-                  View Our Work <FaArrowUpRightFromSquare />
-                </button>
-              </motion.div>
+      <div className="hero-benefit-item">
+        <div className="hero-benefit-icon">
+          <FaRocket />
+        </div>
+        <div>
+          <strong>High Performance</strong>
+          <span>Fast, polished and conversion ready</span>
+        </div>
+      </div>
 
-              <motion.button className="hero-whatsapp-link" type="button" onClick={openWhatsApp} variants={fadeUp}>
-                <FaWhatsapp /> Chat with us on WhatsApp
-              </motion.button>
-            </motion.div>
+      <div className="hero-benefit-item">
+        <div className="hero-benefit-icon">
+          <FaShieldHalved />
+        </div>
+        <div>
+          <strong>Reliable Support</strong>
+          <span>Support that keeps you moving forward</span>
+        </div>
+      </div>
+    </motion.div>
 
-            <motion.div
-              className="hero-right"
-              initial={{ opacity: 0, x: 55, scale: .96 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: .9, delay: .12, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="hero-image-frame">
-                <motion.img
-                  src="/images/vijaywada.png"
-                  alt="SMYVISION TECHNOLOGIES professional web development team"
-                  onError={(event) => {
-                    const fallback =
-                      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=88";
-                    if (event.currentTarget.src !== fallback) {
-                      event.currentTarget.src = fallback;
-                    }
-                  }}
-                  animate={{ scale: [1, 1.025, 1] }}
-                  transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <div className="hero-image-overlay" />
-              </div>
+    <motion.div className="hero-split-actions" variants={fadeUp}>
+      <button
+        type="button"
+        className="hero-primary-cta"
+        onClick={goToContact}
+      >
+        Get Free Consultation <FaArrowRight />
+      </button>
 
-              <motion.div
-                className="hero-result-card"
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <div className="result-card-head">
-                  <div><span>RESULTS THAT MATTER</span><strong>Built to support enquiries.</strong></div>
-                  <div className="result-live"><i /> LIVE</div>
-                </div>
-                <p>Clear message. Better experience. Stronger action.</p>
-                <svg viewBox="0 0 320 86" role="img" aria-label="Illustrative rising conversion path">
-                  <defs>
-                    <linearGradient id="heroLineFill" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#1767f2" stopOpacity=".22" />
-                      <stop offset="100%" stopColor="#1767f2" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                  <path className="result-area" d="M6,75 C45,72 59,54 91,58 C126,64 140,43 169,46 C205,50 215,29 243,31 C275,34 288,17 314,9 L314,86 L6,86 Z" />
-                  <motion.path
-                    className="result-line"
-                    d="M6,75 C45,72 59,54 91,58 C126,64 140,43 169,46 C205,50 215,29 243,31 C275,34 288,17 314,9"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1.8, delay: .7, ease: [0.22,1,0.36,1] }}
-                  />
-                  <motion.circle cx="314" cy="9" r="5" className="result-point" animate={{ r: [4,7,4] }} transition={{ duration: 2, repeat: Infinity }} />
-                </svg>
-              </motion.div>
+      <button
+        type="button"
+        className="hero-outline-cta"
+        onClick={() => navigate("/portfolio")}
+      >
+        View Our Work <FaArrowUpRightFromSquare />
+      </button>
+    </motion.div>
 
-              <motion.div
-                className="hero-image-tag"
-                animate={{ x: [0, 7, 0] }}
-                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <FaCircleCheck /> <span><strong>Custom-built</strong> for your brand</span>
-              </motion.div>
-            </motion.div>
-          </div>
+    <motion.button
+      className="hero-whatsapp-link"
+      type="button"
+      onClick={openWhatsApp}
+      variants={fadeUp}
+    >
+      <FaWhatsapp /> Chat with us on WhatsApp
+    </motion.button>
+  </motion.div>
+
+  {/* RIGHT SIDE */}
+  <motion.div
+    className="hero-right"
+    initial={{ opacity: 0, x: 55, scale: 0.96 }}
+    animate={{ opacity: 1, x: 0, scale: 1 }}
+    transition={{
+      duration: 0.9,
+      delay: 0.12,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+  >
+    <div className="hero-image-frame">
+      <motion.img
+        src="/images/vijaywada.webp"
+        alt="SMYVISION TECHNOLOGIES web development company in Vijayawada"
+        onError={(event) => {
+          const fallback =
+            "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=88";
+
+          if (event.currentTarget.src !== fallback) {
+            event.currentTarget.src = fallback;
+          }
+        }}
+        animate={{ scale: [1, 1.025, 1] }}
+        transition={{
+          duration: 9,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <div className="hero-image-overlay" />
+    </div>
+
+    <motion.div
+      className="hero-result-card"
+      animate={{ y: [0, -8, 0] }}
+      transition={{
+        duration: 4.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    >
+      <div className="result-card-head">
+        <div>
+          <span>RESULTS THAT MATTER</span>
+          <strong>Built to support enquiries.</strong>
+        </div>
+
+        <div className="result-live">
+          <i /> LIVE
+        </div>
+      </div>
+
+      <p>Clear message. Better experience. Stronger action.</p>
+
+      <svg
+        viewBox="0 0 320 86"
+        role="img"
+        aria-label="Illustrative rising conversion path"
+      >
+        <defs>
+          <linearGradient
+            id="heroLineFill"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="1"
+          >
+            <stop
+              offset="0%"
+              stopColor="#1767f2"
+              stopOpacity=".22"
+            />
+            <stop
+              offset="100%"
+              stopColor="#1767f2"
+              stopOpacity="0"
+            />
+          </linearGradient>
+        </defs>
+
+        <path
+          className="result-area"
+          d="M6,75 C45,72 59,54 91,58 C126,64 140,43 169,46 C205,50 215,29 243,31 C275,34 288,17 314,9 L314,86 L6,86 Z"
+        />
+
+        <motion.path
+          className="result-line"
+          d="M6,75 C45,72 59,54 91,58 C126,64 140,43 169,46 C205,50 215,29 243,31 C275,34 288,17 314,9"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{
+            duration: 1.8,
+            delay: 0.7,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        />
+
+        <motion.circle
+          cx="314"
+          cy="9"
+          r="5"
+          className="result-point"
+          animate={{ r: [4, 7, 4] }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+          }}
+        />
+      </svg>
+    </motion.div>
+
+    <motion.div
+      className="hero-image-tag"
+      animate={{ x: [0, 7, 0] }}
+      transition={{
+        duration: 5.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    >
+      <FaCircleCheck />
+      <span>
+        <strong>Custom-built</strong> for your brand
+      </span>
+    </motion.div>
+  </motion.div>
+</div>
         </section>
 
         {/* PROJECT MARQUEE - DIRECTLY AFTER HERO */}
@@ -914,11 +1063,11 @@ const Home = () => {
         <section className="section intro-section">
           <div className="container intro-layout">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-              <motion.span className="eyebrow" variants={fadeUp}>PROFESSIONAL WEB DEVELOPMENT</motion.span>
-              <motion.h2 variants={fadeUp}>Website & Custom Web Development for Growing Businesses.</motion.h2>
-              <motion.p variants={fadeUp}>SMYVISION TECHNOLOGIES creates responsive, SEO-ready business websites and custom web solutions for startups, local businesses and growing companies.</motion.p>
-              <motion.p variants={fadeUp}>Our web development services include business websites, corporate websites, custom web development, custom web applications, e-commerce solutions, website redesign and business automation.</motion.p>
-              <motion.p variants={fadeUp}>Every project is planned around your business goals, customer journey and future growth, with modern design, responsive development and practical technology choices.</motion.p>
+              <motion.span className="eyebrow" variants={fadeUp}>WEBSITE DEVELOPMENT IN VIJAYAWADA</motion.span>
+              <motion.h2 variants={fadeUp}>Professional Website & Custom Web Development in Vijayawada.</motion.h2>
+              <motion.p variants={fadeUp}>SMYVISION TECHNOLOGIES provides professional website development and custom web development services in Vijayawada for startups, local businesses and growing companies.</motion.p>
+              <motion.p variants={fadeUp}>Our services include business websites, corporate websites, custom web applications, e-commerce development, website redesign and business automation solutions.</motion.p>
+              <motion.p variants={fadeUp}>Every project is built around your business goals, customer journey and future growth with responsive design, SEO-ready development and modern technology.</motion.p>
               <motion.button variants={fadeUp} type="button" className="primary-button intro-button" onClick={goToContact}>
                 Discuss Your Project<FaArrowRight />
               </motion.button>
@@ -1136,8 +1285,8 @@ const Home = () => {
           <div className="container digital-growth-layout">
             <div>
               <span className="eyebrow">YOUR WEBSITE DEVELOPMENT PARTNER</span>
-              <h2>Build a Professional Online Presence for Your Business.</h2>
-              <p>Customers often search online before contacting a business. A professional website gives them a clear place to understand your services, view your work and reach you from mobile, tablet or desktop.</p>
+              <h2>Helping Vijayawada Businesses Build a Professional Online Presence.</h2>
+              <p>Businesses in Vijayawada and across India increasingly rely on their online presence to help customers understand their services, view their work and make enquiries. We build responsive websites designed to make that experience simple and professional.</p>
               <p>SMYVISION TECHNOLOGIES helps businesses create responsive websites, custom web applications and digital systems that support enquiries, customer communication and day-to-day operations.</p>
               <p>Whether you are launching a new business website or improving an existing digital platform, we focus on clean structure, strong usability, SEO-ready development and room for future growth.</p>
               <button type="button" className="primary-button" onClick={goToContact}>Build Your Digital Presence<FaArrowRight /></button>

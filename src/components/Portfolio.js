@@ -24,7 +24,7 @@ const projects = [
     title: "NKR Car Rentals",
     position: 6,
     category: "Car Rental Website",
-    image: "/images/nkr.png",
+    image: "/images/nkr.webp",
     fallback:
       "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.nkrselfdrivecarrentals.in/",
@@ -34,9 +34,9 @@ const projects = [
   },
   {
     title: "Bindiya Beauty Salon",
-    position: 2,
+    position: 1,
     category: "Beauty & Salon Website",
-    image: "/images/beauty.png",
+    image: "/images/beauty.webp",
     fallback:
       "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.bindiyazbeautysalon.in/",
@@ -48,7 +48,7 @@ const projects = [
     title: "Happy Organize",
     position: 3,
     category: "Home Services Website",
-    image: "/images/home.png",
+    image: "/images/home.webp",
     fallback:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.happyorganize.com/",
@@ -60,7 +60,7 @@ const projects = [
     title: "Arvis Fertilizers",
     position: 4,
     category: "Agriculture Business Website",
-    image: "/images/arvis.png",
+    image: "/images/arvis.webp",
     fallback:
       "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.arvisfertilizers.com/",
@@ -72,7 +72,7 @@ const projects = [
     title: "Daiva Pesticides",
     position: 5,
     category: "Agriculture Business Website",
-    image: "/images/daiva.png",
+    image: "/images/daiva.webp",
     fallback:
       "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.daivapesticides.com/",
@@ -84,12 +84,53 @@ const projects = [
   "title": "Yatheendra Engineereing Works",
   "position": 2,
   "category": "Welding & Fabrication Business Website",
-  "image": "/images/yath.png",
+  "image": "/images/yath.webp",
   "fallback": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=85",
   "url": "https://yatheendraengineeringworks.vercel.app/",
   "description": "A modern industrial fabrication digital platform created to strengthen business presentation and communicate welding services professionally to customers.",
   "tags": ["Welding", "Metal Fabrication", "Industrial Services", "Business Website"]
+},
+{
+  "title": "My Dentist Banglore",
+  "position": 7,
+  "category": "Hospital  Website",
+  "image": "/images/mydentist.webp",
+  "fallback": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=85",
+  "url": "https://www.mydentistbangalore.com/",
+ "description": "A modern dental care digital platform created to build trust, showcase professional dental services, and help patients easily connect with My Dentist Bangalore.",
+"tags": ["Dental Care", "Dentist", "Healthcare", "Business Website"]
+},
+{
+  "title": "Aditya Car AC Specialist",
+  "position": 8,
+  "category": "Car AC Service Website",
+  "image": "/images/aditya.webp",
+  "fallback": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1400&q=85",
+  "url": "https://www.adityacarairconditioners.com/",
+  "description": "A modern automotive service website created to showcase professional car AC services, build customer trust, and make it easy for customers to enquire and connect with Aditya Car AC Specialist.",
+  "tags": ["Car AC Service", "Automotive", "AC Repair", "Business Website"]
+},
+{
+  "title": "JK Decors & Events",
+  "position": 9,
+  "category": "Event Management & Decoration Website",
+  "image": "/images/jkdecors.webp",
+  "fallback": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1400&q=85",
+  "url": "https://www.jkdecors.com/",
+  "description": "A premium event decoration website created to showcase wedding, reception, birthday and celebration services, highlight completed events, and help customers easily connect with JK Decors & Events.",
+  "tags": ["Event Decoration", "Wedding Decor", "Event Management", "Business Website"]
+},
+{
+  "title": "AK Paul Electronics",
+  "position": 10,
+  "category": "Home Appliance Repair Service Website",
+  "image": "/images/ak-paul-electronics.webp",
+  "fallback": "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1400&q=85",
+  "url": "https://www.customerserviceonline.co.in/",
+  "description": "A professional home appliance repair website created to showcase AC, washing machine and refrigerator repair services, build customer trust, and make it easy for customers across Kolkata to book affordable repair services.",
+  "tags": ["AC Repair", "Washing Machine Repair", "Refrigerator Repair", "Appliance Service"]
 }
+
   
 ];
 

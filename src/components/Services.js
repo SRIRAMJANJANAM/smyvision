@@ -314,7 +314,7 @@ function Services() {
     {
       id: 1,
       title: 'Premium Website Development',
-      image: '/images/web.png',
+      image: '/images/web.webp',
       description: 'High-end business websites designed to build trust, communicate clearly and convert visitors into genuine enquiries.',
       features: ['Business Websites', 'Corporate Websites', 'Responsive Design', 'SEO-Ready Structure'],
       color: '#0758e8',
@@ -323,7 +323,7 @@ function Services() {
     {
       id: 2,
       title: 'Custom Web Development',
-      image: '/images/cust.png',
+      image: '/images/cust.webp',
       description: 'Purpose-built web platforms created around your exact workflows, customers and long-term business requirements.',
       features: ['Custom Portals', 'Management Systems', 'Client Dashboards', 'Web Applications'],
       color: '#0758e8',
@@ -332,7 +332,7 @@ function Services() {
     {
       id: 3,
       title: 'Custom E-commerce Solutions',
-      image: '/images/ecomm.png',
+      image: '/images/ecomm.webp',
       description: 'Premium online stores with product management, smooth shopping journeys and scalable functionality built for your brand.',
       features: ['Product Catalogues', 'Custom Storefronts', 'Order Workflows', 'Payment Integration'],
       color: '#6d28d9',
@@ -341,7 +341,7 @@ function Services() {
     {
       id: 4,
       title: 'Business Automation',
-      image: '/images/auto.png',
+      image: '/images/auto.webp',
       description: 'Custom automation systems that reduce repetitive work, simplify operations and connect important business processes.',
       features: ['Workflow Automation', 'Custom Dashboards', 'Business Systems', 'Process Automation'],
       color: '#008080',
@@ -350,7 +350,7 @@ function Services() {
     {
       id: 5,
       title: 'Chatbot Solutions (Coming Soon)',
-      image: '/images/chat.png',
+      image: '/images/chat.webp',
       description: 'Smart experiences for customer enquiries, lead handling and business communication without unnecessary complexity.',
       features: ['Chatbots', 'Lead Automation', 'Customer Support', 'Smart Business Tools'],
       color: '#2b05ff',

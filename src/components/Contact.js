@@ -550,7 +550,7 @@ Please follow up with this lead.`;
     {
       icon: <LightIcons.Clock />,
       title: 'Business Hours',
-      details: 'Mon - Fri: 9AM - 7PM IST'
+      details: 'Mon - Sat: 9AM - 7PM IST'
     }
   ];
 
@@ -578,7 +578,7 @@ Please follow up with this lead.`;
     },
     {
       question: "How long does a typical project take to complete?",
-      answer: "Project timelines vary based on complexity:\n• Simple Websites: 2-4 weeks\n• Web Applications: 6-12 weeks\n• Mobile Apps: 8-16 weeks\n• Enterprise Solutions: 3-6+ months\n\nWe provide detailed project timelines during the planning phase and maintain regular progress updates."
+      answer: "Project timelines vary based on complexity:\n• Simple Websites: 2-4 days\n• Web Applications: 6-12 weeks\n• Mobile Apps: 8-16 weeks\n• Enterprise Solutions: 3-6+ months\n\nWe provide detailed project timelines during the planning phase and maintain regular progress updates."
     },
     {
       question: "What is your pricing model?",

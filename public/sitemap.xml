@@ -9,7 +9,7 @@
     <!-- HOME -->
     <url>
         <loc>https://smyvisiontechnologies.com/</loc>
-        <lastmod>2026-08-31</lastmod>
+        <lastmod>2026-10-02</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -17,7 +17,7 @@
     <!-- SERVICES -->
     <url>
         <loc>https://smyvisiontechnologies.com/services</loc>
-        <lastmod>2026-08-31</lastmod>
+        <lastmod>2026-10-02</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -25,7 +25,7 @@
     <!-- PORTFOLIO -->
     <url>
         <loc>https://smyvisiontechnologies.com/portfolio</loc>
-        <lastmod>2026-08-31</lastmod>
+        <lastmod>2026-10-02</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -33,7 +33,7 @@
     <!-- ABOUT -->
     <url>
         <loc>https://smyvisiontechnologies.com/about</loc>
-        <lastmod>2026-08-31</lastmod>
+        <lastmod>2026-10-02</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -41,7 +41,7 @@
     <!-- CONTACT -->
     <url>
         <loc>https://smyvisiontechnologies.com/contact</loc>
-        <lastmod>2026-08-31</lastmod>
+        <lastmod>2026-10-02</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -49,7 +49,7 @@
     <!-- CAREERS -->
     <url>
         <loc>https://smyvisiontechnologies.com/careers</loc>
-        <lastmod>2026-08-31</lastmod>
+        <lastmod>2026-10-02</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
@@ -57,7 +57,7 @@
     <!-- PRIVACY POLICY -->
     <url>
         <loc>https://smyvisiontechnologies.com/privacy-policy</loc>
-        <lastmod>2026-08-31</lastmod>
+        <lastmod>2026-10-02</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
@@ -65,9 +65,17 @@
     <!-- TERMS & CONDITIONS -->
     <url>
         <loc>https://smyvisiontechnologies.com/terms-and-conditions</loc>
-        <lastmod>2026-08-31</lastmod>
+        <lastmod>2026-10-02</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
+
+<!-- WEBSITE DEVELOPMENT VIJAYAWADA -->
+<url>
+    <loc>https://smyvisiontechnologies.com/website-development-vijayawada</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+</url>
 
 </urlset>

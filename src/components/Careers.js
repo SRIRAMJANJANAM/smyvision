@@ -194,7 +194,7 @@ function Careers() {
 
       type: 'Internship',
 
-      posted: '20 August, 2026',
+      posted: '01 October, 2026',
 
       overview: 'We are looking for a motivated Business Development Executive to help grow our company by finding new clients, building strong relationships, and promoting our digital services. This role is ideal for someone who enjoys communication, sales, and business growth.',
 
