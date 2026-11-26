@@ -15,11 +15,12 @@ import About from "./components/About";
 import Services from "./components/Services";
 import Portfolio from "./components/Portfolio";
 import Careers from "./components/Careers";
+import Blog from "./components/Blog";
 import Contact from "./components/Contact";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsAndConditions from "./components/TermsAndConditions";
 
-/* NEW VIJAYAWADA SEO PAGE */
+/* VIJAYAWADA SEO PAGE */
 import WebsiteDevelopmentVijayawada from "./components/WebsiteDevelopmentVijayawada";
 
 import Footer from "./components/Footer";
@@ -30,8 +31,7 @@ import Canonical from "./components/Canonical";
 import WhatsAppFloating from "./components/WhatsAppFloating";
 
 function App() {
-  const [loading, setLoading] =
-    useState(true);
+  const [loading, setLoading] = useState(true);
 
   const [
     isChatbotOpen,
@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2100);
+    }, 1500);
 
     return () => {
       clearTimeout(timer);
@@ -71,75 +71,58 @@ function App() {
       <main className="app-main-content">
         <Routes>
 
-          {/* =====================================
-              HOME
-          ====================================== */}
+          {/* HOME */}
           <Route
             path="/"
             element={<Home />}
           />
 
-          {/* =====================================
-              ABOUT
-          ====================================== */}
+          {/* ABOUT */}
           <Route
             path="/about"
             element={<About />}
           />
 
-          {/* =====================================
-              SERVICES
-          ====================================== */}
+          {/* SERVICES */}
           <Route
             path="/services"
             element={<Services />}
           />
 
-          {/* =====================================
-              WEBSITE DEVELOPMENT VIJAYAWADA
-          ====================================== */}
+          {/* VIJAYAWADA SEO PAGE */}
           <Route
             path="/website-development-vijayawada"
-            element={
-              <WebsiteDevelopmentVijayawada />
-            }
+            element={<WebsiteDevelopmentVijayawada />}
           />
 
-          {/* =====================================
-              PORTFOLIO
-          ====================================== */}
+          {/* PORTFOLIO */}
           <Route
             path="/portfolio"
             element={<Portfolio />}
           />
 
-          {/* =====================================
-              CAREERS
-          ====================================== */}
+          {/* CAREERS */}
           <Route
             path="/careers"
             element={<Careers />}
           />
 
-          {/* =====================================
-              CONTACT
-          ====================================== */}
+          {/* BLOG */}
+          <Route path="/blog/*" element={<Blog />} />
+
+          {/* CONTACT */}
           <Route
             path="/contact"
             element={<Contact />}
           />
 
-          {/* =====================================
-              PRIVACY POLICY
-          ====================================== */}
+          {/* PRIVACY POLICY */}
           <Route
             path="/privacy-policy"
             element={<PrivacyPolicy />}
           />
 
-          {/* =====================================
-              TERMS & CONDITIONS
-          ====================================== */}
+          {/* TERMS & CONDITIONS */}
           <Route
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
@@ -153,9 +136,7 @@ function App() {
 
       {/* CHATBOT */}
       <ChatbotWidget
-        setIsChatbotOpen={
-          setIsChatbotOpen
-        }
+        setIsChatbotOpen={setIsChatbotOpen}
       />
 
       <style>

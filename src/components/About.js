@@ -571,7 +571,7 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
-                <strong>3+</strong>
+                <strong>6+</strong>
                 <span>Core Digital Services</span>
               </motion.div>
 

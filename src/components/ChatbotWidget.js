@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRobot, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCommentDots, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const ChatbotWidget = ({ setIsChatbotOpen }) => {
   const [open, setOpen] = useState(false);
@@ -1343,7 +1343,7 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
             if (e.key === "Enter" || e.key === " ") handleToggle();
           }}
         >
-          {open ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faRobot} className="chatbot-fa-robot" />}
+          {open ? <FontAwesomeIcon icon={faXmark} /> : <FontAwesomeIcon icon={faCommentDots} className="chatbot-fa-robot" />}
           {!open && showNotificationBadge && (
             <span className="chatbot-notification-badge">1</span>
           )}
@@ -1362,7 +1362,7 @@ const ChatbotWidget = ({ setIsChatbotOpen }) => {
             if (e.key === "Enter" || e.key === " ") handleToggle();
           }}
         >
-          <FontAwesomeIcon icon={faRobot} className="chatbot-fa-robot" />
+          <FontAwesomeIcon icon={faCommentDots} className="chatbot-fa-robot" />
           {showNotificationBadge && (
             <span className="chatbot-notification-badge">1</span>
           )}

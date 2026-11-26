@@ -19,10 +19,11 @@ import {
   FaWhatsapp,
   FaXmark,
   FaGears,
+  FaBookOpen,
 } from "react-icons/fa6";
 
 /* =========================================================
-   ✅ SEO CONFIGURATION
+   SEO CONFIGURATION
 ========================================================= */
 
 const WEBSITE_URL = "https://smyvisiontechnologies.com";
@@ -31,7 +32,7 @@ const PHONE_LINK = "+918500352005";
 const EMAIL = "smyvisiontechnologies@gmail.com";
 
 /* =========================================================
-   ✅ SITE-WIDE STRUCTURED DATA (NAVBAR LEVEL)
+   SITE-WIDE STRUCTURED DATA
 ========================================================= */
 
 const siteWideSchema = {
@@ -40,48 +41,54 @@ const siteWideSchema = {
     {
       "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
       "@id": `${WEBSITE_URL}/#organization`,
-      "name": "SMYVISION TECHNOLOGIES",
-      "alternateName": ["SMYVISION", "Best Web Development Company Vijayawada", "Best Web Developers Vijayawada", "SMYVISION Tech"],
-      "url": WEBSITE_URL,
-      "logo": `${WEBSITE_URL}/Logo.png`,
-      "image": `${WEBSITE_URL}/Logo.png`,
-      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada, trusted for professional website development, custom web application development, responsive web design, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
-      "email": EMAIL,
-      "telephone": PHONE_LINK,
-      "foundingDate": "2026",
-      "address": {
+      name: "SMYVISION TECHNOLOGIES",
+      alternateName: [
+        "SMYVISION",
+        "Best Web Development Company Vijayawada",
+        "Best Web Developers Vijayawada",
+        "SMYVISION Tech",
+      ],
+      url: WEBSITE_URL,
+      logo: `${WEBSITE_URL}/Logo.png`,
+      image: `${WEBSITE_URL}/Logo.png`,
+      description:
+        "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada, trusted for professional website development, custom web application development, responsive web design, business automation and AI chatbot solutions across Vijayawada and Andhra Pradesh.",
+      email: EMAIL,
+      telephone: PHONE_LINK,
+      foundingDate: "2026",
+      address: {
         "@type": "PostalAddress",
-        "addressLocality": "Vijayawada",
-        "addressRegion": "Andhra Pradesh",
-        "addressCountry": "IN",
+        addressLocality: "Vijayawada",
+        addressRegion: "Andhra Pradesh",
+        addressCountry: "IN",
       },
-      "geo": {
+      geo: {
         "@type": "GeoCoordinates",
-        "latitude": "16.5062",
-        "longitude": "80.6480",
+        latitude: "16.5062",
+        longitude: "80.6480",
       },
-      "areaServed": [
-        { "@type": "City", "name": "Vijayawada" },
-        { "@type": "State", "name": "Andhra Pradesh" },
-        { "@type": "Country", "name": "India" },
+      areaServed: [
+        { "@type": "City", name: "Vijayawada" },
+        { "@type": "State", name: "Andhra Pradesh" },
+        { "@type": "Country", name: "India" },
       ],
-      "contactPoint": [
+      contactPoint: [
         {
           "@type": "ContactPoint",
-          "telephone": PHONE_LINK,
-          "contactType": "customer service",
-          "areaServed": "IN",
-          "availableLanguage": ["English", "Telugu", "Hindi"],
+          telephone: PHONE_LINK,
+          contactType: "customer service",
+          areaServed: "IN",
+          availableLanguage: ["English", "Telugu", "Hindi"],
         },
         {
           "@type": "ContactPoint",
-          "telephone": PHONE_LINK,
-          "contactType": "sales",
-          "areaServed": "IN",
-          "availableLanguage": ["English", "Telugu"],
+          telephone: PHONE_LINK,
+          contactType: "sales",
+          areaServed: "IN",
+          availableLanguage: ["English", "Telugu"],
         },
       ],
-      "sameAs": [
+      sameAs: [
         "https://www.facebook.com/share/1AAbW51BTs/",
         "https://linkedin.com/company/smyvisiontechnologies",
         "https://instagram.com/smyvisiontechnologies",
@@ -91,16 +98,17 @@ const siteWideSchema = {
     {
       "@type": "WebSite",
       "@id": `${WEBSITE_URL}/#website`,
-      "name": "SMYVISION TECHNOLOGIES - Best Web Development Company Vijayawada",
-      "url": WEBSITE_URL,
-      "description": "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada offering website development, custom web applications, business automation and AI chatbot solutions.",
-      "publisher": { "@id": `${WEBSITE_URL}/#organization` },
-      "inLanguage": "en-IN",
-      "potentialAction": {
+      name: "SMYVISION TECHNOLOGIES - Best Web Development Company Vijayawada",
+      url: WEBSITE_URL,
+      description:
+        "SMYVISION TECHNOLOGIES is the best web development company in Vijayawada offering website development, custom web applications, business automation and AI chatbot solutions.",
+      publisher: { "@id": `${WEBSITE_URL}/#organization` },
+      inLanguage: "en-IN",
+      potentialAction: {
         "@type": "SearchAction",
-        "target": {
+        target: {
           "@type": "EntryPoint",
-          "urlTemplate": `${WEBSITE_URL}/search?q={search_term_string}`,
+          urlTemplate: `${WEBSITE_URL}/search?q={search_term_string}`,
         },
         "query-input": "required name=search_term_string",
       },
@@ -172,6 +180,7 @@ const services = [
 
 const Navbar = () => {
   const location = useLocation();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
@@ -228,6 +237,7 @@ const Navbar = () => {
     if (path === "/") {
       return location.pathname === "/";
     }
+
     return location.pathname.startsWith(path);
   };
 
@@ -239,6 +249,7 @@ const Navbar = () => {
     const message = encodeURIComponent(
       "Hi SMYVISION TECHNOLOGIES, I would like to discuss a website or digital solution for my business."
     );
+
     window.open(
       `https://wa.me/91${PHONE_NUMBER}?text=${message}`,
       "_blank",
@@ -249,17 +260,14 @@ const Navbar = () => {
   return (
     <>
       {/* =====================================================
-          ✅ SITE-WIDE SEO - NAVBAR LEVEL
-          ORGANIZATION SCHEMA ON EVERY PAGE
+          SITE-WIDE SEO - NAVBAR LEVEL
       ====================================================== */}
 
       <Helmet>
-        {/* ✅ Site-wide Organization Schema - appears on all pages */}
         <script type="application/ld+json">
           {JSON.stringify(siteWideSchema)}
         </script>
 
-        {/* ✅ Site-wide meta tags for brand recognition */}
         <meta name="application-name" content="SMYVISION TECHNOLOGIES" />
         <meta name="author" content="SMYVISION TECHNOLOGIES" />
         <meta name="publisher" content="SMYVISION TECHNOLOGIES" />
@@ -279,10 +287,12 @@ const Navbar = () => {
         role="banner"
         aria-label="Main navigation"
       >
-        <nav className="smy-navbar" role="navigation" aria-label="Primary navigation">
-          {/* =================================================
-              MOBILE LEFT CALL BUTTON
-          ================================================= */}
+        <nav
+          className="smy-navbar"
+          role="navigation"
+          aria-label="Primary navigation"
+        >
+          {/* MOBILE LEFT CALL BUTTON */}
 
           <a
             href={`tel:${PHONE_LINK}`}
@@ -293,9 +303,7 @@ const Navbar = () => {
             <FaPhone />
           </a>
 
-          {/* =================================================
-              BRAND
-          ================================================= */}
+          {/* BRAND */}
 
           <Link
             to="/"
@@ -317,9 +325,7 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* =================================================
-              DESKTOP NAVIGATION
-          ================================================= */}
+          {/* DESKTOP NAVIGATION */}
 
           <div className="smy-desktop-navigation">
             <div className="smy-nav-links">
@@ -327,7 +333,9 @@ const Navbar = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`smy-nav-link ${isActive(item.path) ? "active" : ""}`}
+                  className={`smy-nav-link ${
+                    isActive(item.path) ? "active" : ""
+                  }`}
                   title={`${item.name} - SMYVISION TECHNOLOGIES Vijayawada`}
                 >
                   <span className="smy-nav-icon">{item.icon}</span>
@@ -335,9 +343,7 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              {/* =================================================
-                  SERVICES
-              ================================================= */}
+              {/* SERVICES */}
 
               <div
                 className="smy-services-wrapper"
@@ -345,10 +351,10 @@ const Navbar = () => {
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
                 <div
-                  className={`smy-services-main ${isActive("/services") ? "active" : ""}`}
+                  className={`smy-services-main ${
+                    isActive("/services") ? "active" : ""
+                  }`}
                 >
-                  {/* CLICK SERVICES TEXT -> SERVICES PAGE */}
-
                   <Link
                     to="/services"
                     className="smy-services-link"
@@ -358,8 +364,6 @@ const Navbar = () => {
                     <span>Services</span>
                   </Link>
 
-                  {/* ARROW ONLY OPENS DROPDOWN */}
-
                   <button
                     type="button"
                     className="smy-services-arrow-button"
@@ -367,32 +371,54 @@ const Navbar = () => {
                     aria-label="Open services menu"
                     aria-expanded={isServicesOpen}
                   >
-                    <FaChevronDown className={isServicesOpen ? "rotate" : ""} />
+                    <FaChevronDown
+                      className={isServicesOpen ? "rotate" : ""}
+                    />
                   </button>
                 </div>
 
-                {/* =================================================
-                    SERVICES DROPDOWN
-                ================================================= */}
+                {/* SERVICES DROPDOWN */}
 
-                <div className={`smy-services-dropdown ${isServicesOpen ? "show" : ""}`}>
+                <div
+                  className={`smy-services-dropdown ${
+                    isServicesOpen ? "show" : ""
+                  }`}
+                >
                   <div className="smy-dropdown-feature">
                     <span className="smy-dropdown-label">OUR EXPERTISE</span>
 
-                    <h3>Smart Digital Solutions Built for Modern Businesses.</h3>
+                    <h3>
+                      Smart Digital Solutions Built for Modern Businesses.
+                    </h3>
 
                     <p>
-                      We help businesses build stronger digital foundations through professional websites,
-                      automation systems, AI-powered solutions and custom digital experiences.
+                      We help businesses build stronger digital foundations
+                      through professional websites, automation systems,
+                      AI-powered solutions and custom digital experiences.
                     </p>
 
                     <div className="dropdown-feature-points">
-                      <span><FaArrowRight />Business-focused development</span>
-                      <span><FaArrowRight />Responsive digital experiences</span>
-                      <span><FaArrowRight />Scalable technology solutions</span>
+                      <span>
+                        <FaArrowRight />
+                        Business-focused development
+                      </span>
+
+                      <span>
+                        <FaArrowRight />
+                        Responsive digital experiences
+                      </span>
+
+                      <span>
+                        <FaArrowRight />
+                        Scalable technology solutions
+                      </span>
                     </div>
 
-                    <Link to="/services" className="smy-dropdown-explore" title="Explore All Web Development Services Vijayawada">
+                    <Link
+                      to="/services"
+                      className="smy-dropdown-explore"
+                      title="Explore All Web Development Services Vijayawada"
+                    >
                       Explore All Services
                       <FaArrowRight />
                     </Link>
@@ -406,22 +432,41 @@ const Navbar = () => {
                         className="smy-service-card"
                         title={`${service.title} in Vijayawada - SMYVISION TECHNOLOGIES`}
                       >
-                        <div className="smy-service-icon">{service.icon}</div>
+                        <div className="smy-service-icon">
+                          {service.icon}
+                        </div>
+
                         <div className="service-card-content">
                           <strong>{service.title}</strong>
                           <p>{service.description}</p>
                         </div>
+
                         <FaArrowRight className="smy-service-arrow" />
                       </Link>
                     ))}
                   </div>
                 </div>
               </div>
+
+              {/* =================================================
+                  BLOG - AFTER SERVICES
+              ================================================= */}
+
+              <Link
+                to="/blog"
+                className={`smy-nav-link ${
+                  isActive("/blog") ? "active" : ""
+                }`}
+                title="Blog - SMYVISION TECHNOLOGIES"
+              >
+                <span className="smy-nav-icon">
+                  <FaBookOpen />
+                </span>
+                <span>Blog</span>
+              </Link>
             </div>
 
-            {/* =================================================
-                DESKTOP ACTIONS
-            ================================================= */}
+            {/* DESKTOP ACTIONS */}
 
             <div className="smy-nav-actions">
               <a
@@ -454,9 +499,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* =================================================
-              MOBILE RIGHT MENU BUTTON
-          ================================================= */}
+          {/* MOBILE RIGHT MENU BUTTON */}
 
           <button
             type="button"
@@ -470,9 +513,7 @@ const Navbar = () => {
         </nav>
       </header>
 
-      {/* =====================================================
-          MOBILE OVERLAY
-      ====================================================== */}
+      {/* MOBILE OVERLAY */}
 
       <div
         className={`smy-mobile-overlay ${isMenuOpen ? "show" : ""}`}
@@ -480,9 +521,7 @@ const Navbar = () => {
         aria-hidden="true"
       />
 
-      {/* =====================================================
-          MOBILE MENU
-      ====================================================== */}
+      {/* MOBILE MENU */}
 
       <aside
         className={`smy-mobile-menu ${isMenuOpen ? "show" : ""}`}
@@ -490,9 +529,7 @@ const Navbar = () => {
         aria-modal="true"
         aria-label="Mobile navigation menu"
       >
-        {/* =================================================
-            MOBILE MENU HEADER
-        ================================================= */}
+        {/* MOBILE MENU HEADER */}
 
         <div className="smy-mobile-header">
           <a
@@ -533,9 +570,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* =================================================
-            MOBILE MENU CONTENT
-        ================================================= */}
+        {/* MOBILE MENU CONTENT */}
 
         <div className="smy-mobile-content">
           <span className="smy-mobile-label">NAVIGATION</span>
@@ -544,23 +579,30 @@ const Navbar = () => {
             <Link
               key={item.path}
               to={item.path}
-              className={`smy-mobile-link ${isActive(item.path) ? "active" : ""}`}
+              className={`smy-mobile-link ${
+                isActive(item.path) ? "active" : ""
+              }`}
               onClick={() => setIsMenuOpen(false)}
               title={`${item.name} - SMYVISION TECHNOLOGIES`}
             >
               <div>
-                <span className="smy-mobile-link-icon">{item.icon}</span>
+                <span className="smy-mobile-link-icon">
+                  {item.icon}
+                </span>
                 <strong>{item.name}</strong>
               </div>
+
               <FaArrowRight />
             </Link>
           ))}
 
-          {/* =================================================
-              MOBILE SERVICES
-          ================================================= */}
+          {/* MOBILE SERVICES */}
 
-          <div className={`mobile-services-main-row ${isActive("/services") ? "active" : ""}`}>
+          <div
+            className={`mobile-services-main-row ${
+              isActive("/services") ? "active" : ""
+            }`}
+          >
             <Link
               to="/services"
               className="mobile-services-direct-link"
@@ -568,7 +610,9 @@ const Navbar = () => {
               title="Web Development Services Vijayawada"
             >
               <div>
-                <span className="smy-mobile-link-icon"><FaCode /></span>
+                <span className="smy-mobile-link-icon">
+                  <FaCode />
+                </span>
                 <strong>Services</strong>
               </div>
             </Link>
@@ -576,19 +620,25 @@ const Navbar = () => {
             <button
               type="button"
               className="mobile-services-toggle"
-              onClick={() => setIsMobileServicesOpen((current) => !current)}
+              onClick={() =>
+                setIsMobileServicesOpen((current) => !current)
+              }
               aria-label="Open mobile services list"
               aria-expanded={isMobileServicesOpen}
             >
-              <FaChevronDown className={isMobileServicesOpen ? "rotate" : ""} />
+              <FaChevronDown
+                className={isMobileServicesOpen ? "rotate" : ""}
+              />
             </button>
           </div>
 
-          {/* =================================================
-              MOBILE SERVICES LIST
-          ================================================= */}
+          {/* MOBILE SERVICES LIST */}
 
-          <div className={`smy-mobile-services ${isMobileServicesOpen ? "show" : ""}`}>
+          <div
+            className={`smy-mobile-services ${
+              isMobileServicesOpen ? "show" : ""
+            }`}
+          >
             {services.map((service) => (
               <Link
                 key={service.title}
@@ -598,24 +648,49 @@ const Navbar = () => {
                 title={`${service.title} in Vijayawada`}
               >
                 <span>{service.icon}</span>
+
                 <div>
                   <strong>{service.title}</strong>
                   <p>{service.description}</p>
                 </div>
+
                 <FaArrowRight />
               </Link>
             ))}
           </div>
 
           {/* =================================================
-              MOBILE CONTACT BOX
+              MOBILE BLOG - AFTER SERVICES
           ================================================= */}
+
+          <Link
+            to="/blog"
+            className={`smy-mobile-link ${
+              isActive("/blog") ? "active" : ""
+            }`}
+            onClick={() => setIsMenuOpen(false)}
+            title="Blog - SMYVISION TECHNOLOGIES"
+          >
+            <div>
+              <span className="smy-mobile-link-icon">
+                <FaBookOpen />
+              </span>
+              <strong>Blog</strong>
+            </div>
+
+            <FaArrowRight />
+          </Link>
+
+          {/* MOBILE CONTACT BOX */}
 
           <div className="mobile-contact-box">
             <span>READY TO START?</span>
+
             <h3>Let's Discuss Your Next Digital Project.</h3>
+
             <p>
-              Tell us what you are planning and let's explore the right digital solution for your business.
+              Tell us what you are planning and let's explore the right
+              digital solution for your business.
             </p>
 
             <div className="smy-mobile-actions">
@@ -657,7 +732,7 @@ const Navbar = () => {
 };
 
 /* =========================================================
-   COMPLETE NAVBAR CSS (UNCHANGED)
+   COMPLETE NAVBAR CSS
 ========================================================= */
 
 const navbarStyles = `
@@ -677,9 +752,7 @@ const navbarStyles = `
     box-sizing: border-box;
   }
 
-  /* =========================================================
-     MAIN NAVBAR WRAPPER
-  ========================================================= */
+  /* MAIN NAVBAR WRAPPER */
 
   .smy-navbar-wrapper {
     position: fixed;
@@ -708,9 +781,7 @@ const navbarStyles = `
     box-shadow: 0 12px 40px rgba(8, 30, 65, 0.1);
   }
 
-  /* =========================================================
-     NAVBAR
-  ========================================================= */
+  /* NAVBAR */
 
   .smy-navbar {
     width: min(1320px, 100%);
@@ -727,9 +798,7 @@ const navbarStyles = `
     min-height: 80px;
   }
 
-  /* =========================================================
-     BRAND
-  ========================================================= */
+  /* BRAND */
 
   .smy-brand {
     min-width: fit-content;
@@ -775,9 +844,7 @@ const navbarStyles = `
     line-height: 1;
   }
 
-  /* =========================================================
-     DESKTOP
-  ========================================================= */
+  /* DESKTOP */
 
   .smy-desktop-navigation {
     flex: 1;
@@ -819,9 +886,7 @@ const navbarStyles = `
     font-size: 14px;
   }
 
-  /* =========================================================
-     SERVICES MAIN LINK
-  ========================================================= */
+  /* SERVICES MAIN LINK */
 
   .smy-services-wrapper {
     position: relative;
@@ -878,9 +943,7 @@ const navbarStyles = `
     transform: rotate(180deg);
   }
 
-  /* =========================================================
-     SERVICES DROPDOWN
-  ========================================================= */
+  /* SERVICES DROPDOWN */
 
   .smy-services-dropdown {
     position: absolute;
@@ -1032,9 +1095,7 @@ const navbarStyles = `
     font-size: 9px;
   }
 
-  /* =========================================================
-     DESKTOP ACTIONS
-  ========================================================= */
+  /* DESKTOP ACTIONS */
 
   .smy-nav-actions {
     display: flex;
@@ -1103,18 +1164,14 @@ const navbarStyles = `
     transform: translateY(-3px);
   }
 
-  /* =========================================================
-     MOBILE TOP BUTTONS
-  ========================================================= */
+  /* MOBILE TOP BUTTONS */
 
   .mobile-call-button,
   .smy-mobile-toggle {
     display: none;
   }
 
-  /* =========================================================
-     MOBILE OVERLAY
-  ========================================================= */
+  /* MOBILE OVERLAY */
 
   .smy-mobile-overlay {
     position: fixed;
@@ -1134,9 +1191,7 @@ const navbarStyles = `
     pointer-events: auto;
   }
 
-  /* =========================================================
-     MOBILE MENU
-  ========================================================= */
+  /* MOBILE MENU */
 
   .smy-mobile-menu {
     position: fixed;
@@ -1156,9 +1211,7 @@ const navbarStyles = `
     transform: translateX(0);
   }
 
-  /* =========================================================
-     MOBILE MENU HEADER
-  ========================================================= */
+  /* MOBILE MENU HEADER */
 
   .smy-mobile-header {
     min-height: 100px;
@@ -1229,9 +1282,7 @@ const navbarStyles = `
     letter-spacing: 0.21em;
   }
 
-  /* =========================================================
-     MOBILE CONTENT
-  ========================================================= */
+  /* MOBILE CONTENT */
 
   .smy-mobile-content {
     padding: 32px 24px;
@@ -1294,9 +1345,7 @@ const navbarStyles = `
     font-size: 11px;
   }
 
-  /* =========================================================
-     MOBILE SERVICES MAIN ROW
-  ========================================================= */
+  /* MOBILE SERVICES MAIN ROW */
 
   .mobile-services-main-row {
     min-height: 68px;
@@ -1352,9 +1401,7 @@ const navbarStyles = `
     transition: transform 0.25s ease;
   }
 
-  /* =========================================================
-     MOBILE SERVICES LIST
-  ========================================================= */
+  /* MOBILE SERVICES LIST */
 
   .smy-mobile-services {
     max-height: 0;
@@ -1419,9 +1466,7 @@ const navbarStyles = `
     font-size: 10px;
   }
 
-  /* =========================================================
-     MOBILE CONTACT BOX
-  ========================================================= */
+  /* MOBILE CONTACT BOX */
 
   .mobile-contact-box {
     margin-top: 32px;
@@ -1494,12 +1539,12 @@ const navbarStyles = `
     font-size: 19px;
   }
 
-  /* =========================================================
-     LARGE MOBILE / TABLET NAVBAR
-  ========================================================= */
+  /* TABLET / MOBILE NAVBAR */
 
   @media (max-width: 1120px) {
-    .smy-desktop-navigation { display: none; }
+    .smy-desktop-navigation {
+      display: none;
+    }
 
     .smy-navbar-wrapper {
       top: 12px;
@@ -1524,7 +1569,9 @@ const navbarStyles = `
       padding: 0 20px;
     }
 
-    .navbar-scrolled .smy-navbar { min-height: 92px; }
+    .navbar-scrolled .smy-navbar {
+      min-height: 92px;
+    }
 
     .mobile-call-button {
       width: 60px;
@@ -1542,7 +1589,9 @@ const navbarStyles = `
       transition: transform 0.25s ease, background 0.25s ease;
     }
 
-    .mobile-call-button:active { transform: scale(0.94); }
+    .mobile-call-button:active {
+      transform: scale(0.94);
+    }
 
     .smy-brand {
       min-width: 0;
@@ -1553,10 +1602,27 @@ const navbarStyles = `
       gap: 12px;
     }
 
-    .smy-logo { width: 64px; height: 64px; flex-shrink: 0; }
-    .smy-brand-content { min-width: 0; }
-    .smy-brand-content strong { font-size: 23px; white-space: nowrap; }
-    .smy-brand-content span { margin-top: 5px; font-size: 8px; letter-spacing: 0.22em; white-space: nowrap; }
+    .smy-logo {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+    }
+
+    .smy-brand-content {
+      min-width: 0;
+    }
+
+    .smy-brand-content strong {
+      font-size: 23px;
+      white-space: nowrap;
+    }
+
+    .smy-brand-content span {
+      margin-top: 5px;
+      font-size: 8px;
+      letter-spacing: 0.22em;
+      white-space: nowrap;
+    }
 
     .smy-mobile-toggle {
       width: 60px;
@@ -1579,47 +1645,178 @@ const navbarStyles = `
       background: linear-gradient(135deg, var(--smy-blue), var(--smy-purple));
     }
 
-    .smy-mobile-toggle:active { transform: scale(0.94); }
+    .smy-mobile-toggle:active {
+      transform: scale(0.94);
+    }
   }
 
   @media (max-width: 600px) {
-    .smy-navbar-wrapper { width: calc(100% - 16px); top: 8px; border-radius: 20px; }
-    .smy-navbar-wrapper.navbar-scrolled { width: 100%; top: 0; border-radius: 0; }
-    .smy-navbar { min-height: 94px; grid-template-columns: 62px minmax(0, 1fr) 62px; gap: 8px; padding: 0 14px; }
-    .navbar-scrolled .smy-navbar { min-height: 88px; }
-    .mobile-call-button { width: 56px; height: 56px; border-radius: 17px; font-size: 21px; }
-    .smy-brand { gap: 9px; }
-    .smy-logo { width: 58px; height: 58px; }
-    .smy-brand-content strong { font-size: 20px; }
-    .smy-brand-content span { margin-top: 4px; font-size: 7px; letter-spacing: 0.18em; }
-    .smy-mobile-toggle { width: 56px; height: 56px; border-radius: 17px; font-size: 23px; }
+    .smy-navbar-wrapper {
+      width: calc(100% - 16px);
+      top: 8px;
+      border-radius: 20px;
+    }
+
+    .smy-navbar-wrapper.navbar-scrolled {
+      width: 100%;
+      top: 0;
+      border-radius: 0;
+    }
+
+    .smy-navbar {
+      min-height: 94px;
+      grid-template-columns: 62px minmax(0, 1fr) 62px;
+      gap: 8px;
+      padding: 0 14px;
+    }
+
+    .navbar-scrolled .smy-navbar {
+      min-height: 88px;
+    }
+
+    .mobile-call-button {
+      width: 56px;
+      height: 56px;
+      border-radius: 17px;
+      font-size: 21px;
+    }
+
+    .smy-brand {
+      gap: 9px;
+    }
+
+    .smy-logo {
+      width: 58px;
+      height: 58px;
+    }
+
+    .smy-brand-content strong {
+      font-size: 20px;
+    }
+
+    .smy-brand-content span {
+      margin-top: 4px;
+      font-size: 7px;
+      letter-spacing: 0.18em;
+    }
+
+    .smy-mobile-toggle {
+      width: 56px;
+      height: 56px;
+      border-radius: 17px;
+      font-size: 23px;
+    }
   }
 
   @media (max-width: 480px) {
-    .smy-navbar { min-height: 90px; grid-template-columns: 58px minmax(0, 1fr) 58px; gap: 6px; padding: 0 11px; }
-    .mobile-call-button, .smy-mobile-toggle { width: 53px; height: 53px; border-radius: 16px; }
-    .mobile-call-button { font-size: 20px; }
-    .smy-mobile-toggle { font-size: 22px; }
-    .smy-brand { gap: 7px; }
-    .smy-logo { width: 54px; height: 54px; }
-    .smy-brand-content strong { font-size: 18px; letter-spacing: -0.04em; }
-    .smy-brand-content span { font-size: 6.5px; letter-spacing: 0.15em; }
-    .smy-mobile-header { min-height: 92px; grid-template-columns: 54px 1fr 54px; padding: 12px 14px; }
-    .mobile-menu-call, .smy-mobile-close { width: 50px; height: 50px; }
-    .smy-mobile-brand img { width: 51px; height: 51px; }
-    .smy-mobile-brand strong { font-size: 18px; }
-    .smy-mobile-brand span { font-size: 6px; }
+    .smy-navbar {
+      min-height: 90px;
+      grid-template-columns: 58px minmax(0, 1fr) 58px;
+      gap: 6px;
+      padding: 0 11px;
+    }
+
+    .mobile-call-button,
+    .smy-mobile-toggle {
+      width: 53px;
+      height: 53px;
+      border-radius: 16px;
+    }
+
+    .mobile-call-button {
+      font-size: 20px;
+    }
+
+    .smy-mobile-toggle {
+      font-size: 22px;
+    }
+
+    .smy-brand {
+      gap: 7px;
+    }
+
+    .smy-logo {
+      width: 54px;
+      height: 54px;
+    }
+
+    .smy-brand-content strong {
+      font-size: 18px;
+      letter-spacing: -0.04em;
+    }
+
+    .smy-brand-content span {
+      font-size: 6.5px;
+      letter-spacing: 0.15em;
+    }
+
+    .smy-mobile-header {
+      min-height: 92px;
+      grid-template-columns: 54px 1fr 54px;
+      padding: 12px 14px;
+    }
+
+    .mobile-menu-call,
+    .smy-mobile-close {
+      width: 50px;
+      height: 50px;
+    }
+
+    .smy-mobile-brand img {
+      width: 51px;
+      height: 51px;
+    }
+
+    .smy-mobile-brand strong {
+      font-size: 18px;
+    }
+
+    .smy-mobile-brand span {
+      font-size: 6px;
+    }
   }
 
   @media (max-width: 390px) {
-    .smy-navbar { min-height: 86px; grid-template-columns: 53px minmax(0, 1fr) 53px; gap: 4px; padding: 0 8px; }
-    .mobile-call-button, .smy-mobile-toggle { width: 49px; height: 49px; border-radius: 14px; }
-    .mobile-call-button { font-size: 18px; }
-    .smy-mobile-toggle { font-size: 20px; }
-    .smy-brand { gap: 5px; }
-    .smy-logo { width: 48px; height: 48px; }
-    .smy-brand-content strong { font-size: 16px; }
-    .smy-brand-content span { margin-top: 3px; font-size: 5.5px; letter-spacing: 0.12em; }
+    .smy-navbar {
+      min-height: 86px;
+      grid-template-columns: 53px minmax(0, 1fr) 53px;
+      gap: 4px;
+      padding: 0 8px;
+    }
+
+    .mobile-call-button,
+    .smy-mobile-toggle {
+      width: 49px;
+      height: 49px;
+      border-radius: 14px;
+    }
+
+    .mobile-call-button {
+      font-size: 18px;
+    }
+
+    .smy-mobile-toggle {
+      font-size: 20px;
+    }
+
+    .smy-brand {
+      gap: 5px;
+    }
+
+    .smy-logo {
+      width: 48px;
+      height: 48px;
+    }
+
+    .smy-brand-content strong {
+      font-size: 16px;
+    }
+
+    .smy-brand-content span {
+      margin-top: 3px;
+      font-size: 5.5px;
+      letter-spacing: 0.12em;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -356,6 +356,22 @@ function Services() {
       color: '#2b05ff',
       bgColor: 'rgba(43, 5, 255, 0.05)'
     },
+    {
+  id: 6,
+  title: 'Digital Marketing & SEO',
+  image: '/images/digitalmarketing.webp',
+  description: 'Grow your online visibility, attract targeted customers and generate quality leads with strategic digital marketing, SEO and Google Ads campaigns.',
+  features: [
+    'Search Engine Optimization (SEO)',
+    'Google Ads & PPC',
+    'Social Media Marketing',
+    'Google Business Profile',
+    'Lead Generation',
+    'Conversion Optimization'
+  ],
+  color: '#0f766e',
+  bgColor: 'rgba(15, 118, 110, 0.05)'
+},
   ];
 
   const whyChooseUs = [
