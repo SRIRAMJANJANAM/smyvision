@@ -9,7 +9,7 @@ import {
   FaShareAlt,
 } from "react-icons/fa";
 
-const API = "http://127.0.0.1:8000/api/blogs";
+const API = "https://smyvision1126.pythonanywhere.com/api/blogs";
 
 function BlogShareButtons({ slug, title, description = "" }) {
   const [copied, setCopied] = useState(false);

@@ -79,7 +79,7 @@ const projects = [
   {
   title: "The Viceroy Collection",
   category: "Luxury Furniture & Woodcraft Website",
-  image: "/images/viceroy.jpg",
+  image: "/images/viceroy.webp",
   fallback: "https://images.unsplash.com/photo-1538688423619-a81d3f23454b?auto=format&fit=crop&w=1200&q=85",
   url: "https://www.theviceroycollection.com/",
   description: "A premium furniture and craftsmanship platform developed to showcase handcrafted solid wood furniture, luxury doors and architectural elements crafted from fine hardwoods such as teak, mahogany and rosewood, highlighting timeless design, traditional craftsmanship and furniture built to last for generations."
@@ -87,7 +87,7 @@ const projects = [
 {
   title: "Siva Pigeon Nets & Invisible Grills",
   category: "Safety Nets & Invisible Grills Website",
-  image: "/images/siva.jpg",
+  image: "/images/siva.webp",
   fallback: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=85",
   url: "https://www.sivapigeonnetsinvisiblegrills.in/",
   description: "A professional safety solutions platform developed to showcase pigeon nets, balcony safety nets, invisible grills and bird protection solutions, helping homeowners improve safety, protect balconies and easily connect for installation enquiries."
@@ -95,7 +95,7 @@ const projects = [
 {
   title: "Dandeli Adventure Thrills",
   category: "Adventure Tourism & Resort Booking Website",
-  image: "/images/dandeli.jpg",
+  image: "/images/dandeli.webp",
   fallback: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85",
   url: "https://www.dandeliadventurethrills.com/",
   description: "A vibrant adventure tourism platform developed to showcase Dandeli river rafting, jungle adventures, resorts, homestays, camping experiences and travel packages, helping families, friends and groups discover exciting nature escapes and easily connect for booking enquiries."
@@ -103,7 +103,7 @@ const projects = [
 {
   title: "JK Scaffolding",
   category: "Scaffolding & Construction Equipment Website",
-  image: "/images/scaffolding.jpg",
+  image: "/images/scaffolding.webp",
   fallback: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=85",
   url: "https://www.jkscaffoldings.com/",
   description: "A professional scaffolding platform developed to showcase scaffolding systems, centering materials, construction equipment, rental services and industrial support solutions, helping builders, contractors and developers explore products and easily connect for project enquiries."
@@ -111,7 +111,7 @@ const projects = [
 {
   title: "Punjabi Dhol",
   category: "Event Entertainment & Dhol Booking Website",
-  image: "/images/dhol.jpg",
+  image: "/images/dhol.webp",
   fallback: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=85",
   url: "https://www.punjabidhol.in/",
   description: "A vibrant event entertainment platform developed to showcase traditional Punjabi Dhol performances for weddings, baraats, receptions, private parties and corporate celebrations, helping customers bring energetic Punjabi beats to their special occasions and easily connect for event bookings."
@@ -119,7 +119,7 @@ const projects = [
 {
   title: "Venkat Safety Nets",
   category: "Safety Nets & Protection Solutions Website",
-  image: "/images/venkat.jpg",
+  image: "/images/venkat.webp",
   fallback: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=85",
   url: "https://www.venkatsafetynets.com/",
   description: "A professional safety solutions platform developed to showcase balcony safety nets, pigeon nets, sports nets, construction safety nets and other protective installations, helping homeowners and businesses explore reliable safety solutions and easily connect for installation enquiries."
@@ -135,7 +135,7 @@ const projects = [
 {
   title: "RNS Safety Nets Vizag",
   category: "Safety Nets & Protection Solutions Website",
-  image: "/images/rns.jpg",
+  image: "/images/rns.webp",
   fallback: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=85",
   url: "https://www.rnssafetynetsvizag.com/",
   description: "A professional safety solutions platform developed to showcase balcony safety nets, pigeon nets, children and pet safety nets, construction nets, sports nets and industrial protection solutions, helping customers explore reliable safety installations and easily connect for service enquiries across Vizag."

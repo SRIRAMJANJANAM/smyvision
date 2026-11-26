@@ -16,8 +16,8 @@ import {
 } from "react-icons/fa";
 import BlogShareButtons from "./BlogShareButtons";
 
-const API_URL = "http://127.0.0.1:8000/api/blogs/";
-const BACKEND_URL = "http://127.0.0.1:8000";
+const API_URL = "https://smyvision1126.pythonanywhere.com/api/blogs/";
+const BACKEND_URL = "https://smyvision1126.pythonanywhere.com";
 const SITE_URL = "https://smyvisiontechnologies.com";
 const PER_PAGE = 6;
 

@@ -26,7 +26,7 @@ const projects = [
     title: "The Viceroy Collection",
     position: 1,
     category: "Luxury Furniture & Woodcraft Website",
-    image: "/images/viceroy.jpg",
+    image: "/images/viceroy.webp",
     fallback:
       "https://images.unsplash.com/photo-1538688423619-a81d3f23454b?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.theviceroycollection.com/",
@@ -44,7 +44,7 @@ const projects = [
     title: "Siva Pigeon Nets & Invisible Grills",
     position: 2,
     category: "Safety Nets & Invisible Grills Website",
-    image: "/images/siva.jpg",
+    image: "/images/siva.webp",
     fallback:
       "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.sivapigeonnetsinvisiblegrills.in/",
@@ -62,7 +62,7 @@ const projects = [
     title: "JK Scaffolding",
     position: 3,
     category: "Scaffolding & Construction Equipment Website",
-    image: "/images/scaffolding.jpg",
+    image: "/images/scaffolding.webp",
     fallback:
       "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.jkscaffoldings.com/",
@@ -79,7 +79,7 @@ const projects = [
     title: "Punjabi Dhol",
     position: 4,
     category: "Event Entertainment & Dhol Booking Website",
-    image: "/images/dhol.jpg",
+    image: "/images/dhol.webp",
     fallback:
       "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.punjabidhol.in/",
@@ -97,7 +97,7 @@ const projects = [
     title: "Dandeli Adventure Thrills",
     position: 5,
     category: "Adventure Tourism & Resort Booking Website",
-    image: "/images/dandeli.jpg",
+    image: "/images/dandeli.webp",
     fallback:
       "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.dandeliadventurethrills.com/",
@@ -132,7 +132,7 @@ const projects = [
     title: "Venkat Safety Nets",
     position: 7,
     category: "Safety Nets & Protection Solutions Website",
-    image: "/images/venkat.jpg",
+    image: "/images/venkat.webp",
     fallback:
       "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.venkatsafetynets.com/",
@@ -201,7 +201,7 @@ const projects = [
     title: "RNS Safety Nets Vizag",
     position: 11,
     category: "Safety Nets & Protection Solutions Website",
-    image: "/images/rns.jpg",
+    image: "/images/rns.webp",
     fallback:
       "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.rnssafetynetsvizag.com/",
@@ -251,7 +251,7 @@ const projects = [
     title: "NKR Car Rentals",
     position: 14,
     category: "Car Rental Website",
-    image: "/images/nkr.jpg",
+    image: "/images/nkr.webp",
     fallback:
       "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1400&q=85",
     url: "https://www.nkrselfdrivecarrentals.in/",
