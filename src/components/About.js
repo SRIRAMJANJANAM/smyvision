@@ -248,8 +248,8 @@ const structuredData = {
       "name": "SMYVISION TECHNOLOGIES",
       "alternateName": "SMYVISION",
       "url": WEBSITE_URL,
-      "logo": `${WEBSITE_URL}/Logo.webp`,
-      "image": `${WEBSITE_URL}/Logo.webp`,
+      "logo": `${WEBSITE_URL}/Logo.png`,
+      "image": `${WEBSITE_URL}/Logo.png`,
       "description": "SMYVISION TECHNOLOGIES is a web development company in Vijayawada providing professional websites, custom web applications, e-commerce solutions, business automation and digital systems.",
       "email": EMAIL,
       "telephone": PHONE_LINK,
@@ -453,7 +453,7 @@ const About = () => {
         <meta property="og:title" content="About SMYVISION TECHNOLOGIES | Web Development Company in Vijayawada" />
         <meta property="og:description" content="Meet SMYVISION TECHNOLOGIES, a web development company in Vijayawada creating professional websites, custom web applications, e-commerce and business automation solutions." />
         <meta property="og:url" content={ABOUT_URL} />
-        <meta property="og:image" content={`${WEBSITE_URL}/Logo.webp`} />
+        <meta property="og:image" content={`${WEBSITE_URL}/Logo.png`} />
         <meta property="og:image:alt" content="SMYVISION TECHNOLOGIES web development company in Vijayawada" />
         <meta property="og:locale" content="en_IN" />
 
@@ -461,7 +461,7 @@ const About = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About SMYVISION TECHNOLOGIES | Web Development Company in Vijayawada" />
         <meta name="twitter:description" content="Learn about SMYVISION TECHNOLOGIES, our website development services in Vijayawada, custom web applications, business automation and AI solutions." />
-        <meta name="twitter:image" content={`${WEBSITE_URL}/Logo.webp`} />
+        <meta name="twitter:image" content={`${WEBSITE_URL}/Logo.png`} />
         <meta name="twitter:image:alt" content="SMYVISION TECHNOLOGIES web development company in Vijayawada" />
 
         {/* ✅ STRUCTURED DATA SCRIPTS */}

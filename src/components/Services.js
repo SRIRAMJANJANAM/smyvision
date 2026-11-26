@@ -90,12 +90,12 @@ const SEOStructuredData = () => {
         "url": "https://smyvisiontechnologies.com/",
         "logo": {
           "@type": "ImageObject",
-          "@id": "https://smyvisiontechnologies.com/#logo",
+          "@id": "https://smyvisiontechnologies.com/#Logo",
           "url": "https://smyvisiontechnologies.com/Logo.png",
           "contentUrl": "https://smyvisiontechnologies.com/Logo.png",
           "caption": "SMYVISION TECHNOLOGIES"
         },
-        "image": { "@id": "https://smyvisiontechnologies.com/#logo" },
+        "image": { "@id": "https://smyvisiontechnologies.com/#Logo" },
         "description": "SMYVISION TECHNOLOGIES is a web development company in Vijayawada providing professional website development, custom web development, custom web applications, e-commerce website development, responsive web design, business automation and digital solutions.",
         "foundingDate": "2026",
         "telephone": "+918500352005",

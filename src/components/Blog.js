@@ -282,7 +282,7 @@ function Blog() {
         name: "SMYVISION TECHNOLOGIES",
         logo: {
           "@type": "ImageObject",
-          url: `${SITE_URL}/logo.png`,
+          url: `${SITE_URL}/Logo.png`,
         },
       },
       mainEntityOfPage: {
@@ -351,7 +351,7 @@ function Blog() {
                 </button>
 
                 <a className="bv-reading-brand" href="/">
-                  <img src="/logo.png" alt="SMYVISION TECHNOLOGIES" />
+                  <img src="/Logo.png" alt="SMYVISION TECHNOLOGIES" />
                   <span>
                     SMYVISION
                     <small>JOURNAL</small>
@@ -378,7 +378,7 @@ function Blog() {
                 <div className="bv-article-meta-row">
                   <div className="bv-article-author-mini">
                     <div className="bv-mini-avatar">
-                      <img src="/logo.png" alt="" />
+                      <img src="/Logo.png" alt="" />
                     </div>
 
                     <div>
@@ -461,7 +461,7 @@ function Blog() {
 <section className="bv-founder-profile">
   <div className="bv-founder-image">
     <img
-      src="/logo.png"
+      src="/Logo.png"
       alt={selectedBlog.author_name || "Blog Author"}
       onError={(e) => {
         e.currentTarget.style.display = "none";
@@ -621,7 +621,7 @@ function Blog() {
           content="Digital insights, technology and business growth."
         />
         <meta property="og:url" content={`${SITE_URL}/blog`} />
-        <meta property="og:image" content={`${SITE_URL}/logo.png`} />
+        <meta property="og:image" content={`${SITE_URL}/Logo.png`} />
 
         <script type="application/ld+json">
           {JSON.stringify(listingSchema)}
