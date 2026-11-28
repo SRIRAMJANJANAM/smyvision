@@ -28,7 +28,7 @@ import {
    CONFIGURATION
 ========================================================= */
 
-const WEBSITE_URL = "https://smyvisiontechnologies.com";
+const WEBSITE_URL = "https://www.smyvisiontechnologies.com";
 
 const ABOUT_URL = `${WEBSITE_URL}/about`;
 

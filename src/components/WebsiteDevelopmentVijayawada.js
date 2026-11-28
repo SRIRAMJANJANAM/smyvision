@@ -61,7 +61,7 @@ import {
    CONFIGURATION
 ========================================================= */
 
-const WEBSITE_URL = "https://smyvisiontechnologies.com";
+const WEBSITE_URL = "https://www.smyvisiontechnologies.com";
 const PAGE_URL = `${WEBSITE_URL}/website-development-vijayawada`;
 
 const PHONE_NUMBER = "8500352005";

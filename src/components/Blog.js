@@ -18,7 +18,7 @@ import BlogShareButtons from "./BlogShareButtons";
 
 const API_URL = "https://smyvision1126.pythonanywhere.com/api/blogs/";
 const BACKEND_URL = "https://smyvision1126.pythonanywhere.com";
-const SITE_URL = "https://smyvisiontechnologies.com";
+const SITE_URL = "https://www.smyvisiontechnologies.com";
 const PER_PAGE = 6;
 
 const getImageUrl = (image) => {

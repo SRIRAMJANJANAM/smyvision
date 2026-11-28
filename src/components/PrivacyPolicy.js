@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa6";
 
 const PrivacyPolicy = () => {
-  const WEBSITE_URL = "https://smyvisiontechnologies.com";
+  const WEBSITE_URL = "https://www.smyvisiontechnologies.com";
 
   const sections = [
     {
@@ -292,7 +292,7 @@ const PrivacyPolicy = () => {
                 </a>
 
                 <a
-                  href="https://smyvisiontechnologies.com"
+                  href="https://www.smyvisiontechnologies.com"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

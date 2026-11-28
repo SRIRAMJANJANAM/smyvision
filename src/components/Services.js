@@ -84,18 +84,18 @@ const SEOStructuredData = () => {
     "@graph": [
       {
         "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
-        "@id": "https://smyvisiontechnologies.com/#organization",
+        "@id": "https://www.smyvisiontechnologies.com/#organization",
         "name": "SMYVISION TECHNOLOGIES",
         "alternateName": "SMYVISION",
-        "url": "https://smyvisiontechnologies.com/",
+        "url": "https://www.smyvisiontechnologies.com/",
         "logo": {
           "@type": "ImageObject",
-          "@id": "https://smyvisiontechnologies.com/#Logo",
-          "url": "https://smyvisiontechnologies.com/Logo.png",
-          "contentUrl": "https://smyvisiontechnologies.com/Logo.png",
+          "@id": "https://www.smyvisiontechnologies.com/#Logo",
+          "url": "https://www.smyvisiontechnologies.com/Logo.png",
+          "contentUrl": "https://www.smyvisiontechnologies.com/Logo.png",
           "caption": "SMYVISION TECHNOLOGIES"
         },
-        "image": { "@id": "https://smyvisiontechnologies.com/#Logo" },
+        "image": { "@id": "https://www.smyvisiontechnologies.com/#Logo" },
         "description": "SMYVISION TECHNOLOGIES is a web development company in Vijayawada providing professional website development, custom web development, custom web applications, e-commerce website development, responsive web design, business automation and digital solutions.",
         "foundingDate": "2026",
         "telephone": "+918500352005",
@@ -143,11 +143,11 @@ const SEOStructuredData = () => {
       },
       {
         "@type": "Service",
-        "@id": "https://smyvisiontechnologies.com/services#custom-web-development",
+        "@id": "https://www.smyvisiontechnologies.com/services#custom-web-development",
         "name": "Custom Web Development in Vijayawada",
         "serviceType": "Custom Web Development",
         "description": "Purpose-built custom web development services in Vijayawada including custom portals, management systems, dashboards, workflow tools and custom web applications.",
-        "provider": { "@id": "https://smyvisiontechnologies.com/#organization" },
+        "provider": { "@id": "https://www.smyvisiontechnologies.com/#organization" },
         "areaServed": {
           "@type": "City",
           "name": "Vijayawada",
@@ -159,35 +159,35 @@ const SEOStructuredData = () => {
       },
       {
         "@type": "Service",
-        "@id": "https://smyvisiontechnologies.com/services#website-development",
+        "@id": "https://www.smyvisiontechnologies.com/services#website-development",
         "name": "Website Development in Vijayawada",
         "serviceType": "Website Development",
         "description": "Professional responsive business website development in Vijayawada designed to strengthen digital presence, trust and customer enquiries.",
-        "provider": { "@id": "https://smyvisiontechnologies.com/#organization" },
+        "provider": { "@id": "https://www.smyvisiontechnologies.com/#organization" },
         "areaServed": { "@type": "City", "name": "Vijayawada" }
       },
       {
         "@type": "Service",
-        "@id": "https://smyvisiontechnologies.com/services#ecommerce-development",
+        "@id": "https://www.smyvisiontechnologies.com/services#ecommerce-development",
         "name": "E-commerce Website Development in Vijayawada",
         "serviceType": "E-commerce Development",
         "description": "Custom e-commerce website development in Vijayawada with product catalogues, storefronts, order workflows and payment integration.",
-        "provider": { "@id": "https://smyvisiontechnologies.com/#organization" },
+        "provider": { "@id": "https://www.smyvisiontechnologies.com/#organization" },
         "areaServed": { "@type": "City", "name": "Vijayawada" }
       },
       {
         "@type": "Service",
-        "@id": "https://smyvisiontechnologies.com/services#business-automation",
+        "@id": "https://www.smyvisiontechnologies.com/services#business-automation",
         "name": "Business Automation in Vijayawada",
         "serviceType": "Business Automation",
         "description": "Custom workflow automation, dashboards and digital systems in Vijayawada designed to simplify repetitive business processes.",
-        "provider": { "@id": "https://smyvisiontechnologies.com/#organization" },
+        "provider": { "@id": "https://www.smyvisiontechnologies.com/#organization" },
         "areaServed": { "@type": "City", "name": "Vijayawada" }
       },
       {
         "@type": "WebPage",
-        "@id": "https://smyvisiontechnologies.com/services#webpage",
-        "url": "https://smyvisiontechnologies.com/services",
+        "@id": "https://www.smyvisiontechnologies.com/services#webpage",
+        "url": "https://www.smyvisiontechnologies.com/services",
         "name": "Web Development Services in Vijayawada | SMYVISION TECHNOLOGIES",
         "headline": "Website & Custom Web Development Services in Vijayawada",
         "description": "Explore website development, custom web development, e-commerce website development and business automation services in Vijayawada from SMYVISION TECHNOLOGIES.",
@@ -212,12 +212,12 @@ const SEOStructuredData = () => {
             "name": "Andhra Pradesh"
           }
         },
-        "about": { "@id": "https://smyvisiontechnologies.com/#organization" },
+        "about": { "@id": "https://www.smyvisiontechnologies.com/#organization" },
         "mentions": [
-          { "@id": "https://smyvisiontechnologies.com/services#custom-web-development" },
-          { "@id": "https://smyvisiontechnologies.com/services#website-development" },
-          { "@id": "https://smyvisiontechnologies.com/services#ecommerce-development" },
-          { "@id": "https://smyvisiontechnologies.com/services#business-automation" }
+          { "@id": "https://www.smyvisiontechnologies.com/services#custom-web-development" },
+          { "@id": "https://www.smyvisiontechnologies.com/services#website-development" },
+          { "@id": "https://www.smyvisiontechnologies.com/services#ecommerce-development" },
+          { "@id": "https://www.smyvisiontechnologies.com/services#business-automation" }
         ],
         "inLanguage": "en-IN"
       }
@@ -475,7 +475,7 @@ function Services() {
           content="web development company in Vijayawada, website development company in Vijayawada, website development Vijayawada, web design company in Vijayawada, website developers in Vijayawada, website designers in Vijayawada, custom web development Vijayawada, custom web application development Vijayawada, e-commerce website development Vijayawada, responsive web design Vijayawada, business website development Vijayawada"
         />
 
-        <link rel="canonical" href="https://smyvisiontechnologies.com/services" />
+        <link rel="canonical" href="https://www.smyvisiontechnologies.com/services" />
 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="SMYVISION TECHNOLOGIES" />
@@ -487,9 +487,9 @@ function Services() {
           property="og:description"
           content="Website development, custom web applications, e-commerce website development and business automation services in Vijayawada by SMYVISION TECHNOLOGIES."
         />
-        <meta property="og:url" content="https://smyvisiontechnologies.com/services" />
+        <meta property="og:url" content="https://www.smyvisiontechnologies.com/services" />
         <meta property="og:locale" content="en_IN" />
-        <meta property="og:image" content="https://smyvisiontechnologies.com/Logo.png" />
+        <meta property="og:image" content="https://www.smyvisiontechnologies.com/Logo.png" />
         <meta
           property="og:image:alt"
           content="SMYVISION TECHNOLOGIES web development services in Vijayawada"
@@ -504,7 +504,7 @@ function Services() {
           name="twitter:description"
           content="Website development, custom web applications, e-commerce and business automation solutions in Vijayawada from SMYVISION TECHNOLOGIES."
         />
-        <meta name="twitter:image" content="https://smyvisiontechnologies.com/Logo.png" />
+        <meta name="twitter:image" content="https://www.smyvisiontechnologies.com/Logo.png" />
         <meta
           name="twitter:image:alt"
           content="SMYVISION TECHNOLOGIES web development services in Vijayawada"

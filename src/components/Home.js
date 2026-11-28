@@ -43,7 +43,7 @@ import {
    CONFIGURATION
 ========================================================= */
 
-const WEBSITE_URL = "https://smyvisiontechnologies.com";
+const WEBSITE_URL = "https://www.smyvisiontechnologies.com";
 const PHONE_NUMBER = "8500352005";
 const PHONE_LINK = "+918500352005";
 const EMAIL = "smyvisiontechnologies@gmail.com";

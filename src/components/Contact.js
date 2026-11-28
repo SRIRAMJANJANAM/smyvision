@@ -7,7 +7,7 @@ import { FaWhatsapp } from 'react-icons/fa';
    ✅ SEO CONFIGURATION
 ========================================================= */
 
-const WEBSITE_URL = "https://smyvisiontechnologies.com";
+const WEBSITE_URL = "https://www.smyvisiontechnologies.com";
 const CONTACT_URL = `${WEBSITE_URL}/contact`;
 const PHONE_NUMBER = "8500352005";
 const PHONE_LINK = "+918500352005";

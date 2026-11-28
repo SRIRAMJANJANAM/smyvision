@@ -16,7 +16,7 @@ import {
 } from "react-icons/fa6";
 
 const TermsAndConditions = () => {
-  const WEBSITE_URL = "https://smyvisiontechnologies.com";
+  const WEBSITE_URL = "https://www.smyvisiontechnologies.com";
 
   const sections = [
     {
@@ -342,7 +342,7 @@ const TermsAndConditions = () => {
                 </a>
 
                 <a
-                  href="https://smyvisiontechnologies.com"
+                  href="https://www.smyvisiontechnologies.com"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

@@ -1,7 +1,6 @@
 User-agent: *
-
 Allow: /
 
-Sitemap: https://smyvisiontechnologies.com/sitemap.xml
+Sitemap: https://www.smyvisiontechnologies.com/sitemap.xml
 
-Host: https://smyvisiontechnologies.com
+Host: https://www.smyvisiontechnologies.com
